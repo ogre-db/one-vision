@@ -1,0 +1,52 @@
+
+.toov-weapon-list {
+
+  table {
+    font-size: 0.85rem;
+
+    td, th {
+      padding: 2px 5px;
+    }
+
+    tr {
+      cursor: pointer;
+    }
+
+    th {
+      text-align: center;
+      font-size: 0.75rem;
+    }
+    td {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    th:first-child, td:first-child {
+      text-align: left;
+    }
+
+    th:nth-child(1) {
+      width: auto;
+    }
+    th:nth-child(2) {
+      width: 10%;
+    }
+    th:nth-child(3) {
+      width: 10%;
+    }
+    th:nth-child(4) {
+      width: 10%;
+    }
+    th:nth-child(5) {
+      width: 10%;
+    }
+
+    @media only screen and (min-width: 480px) {
+      font-size: 1rem;
+
+      th {
+        font-size: 1rem;
+      }
+    }
+  }
+}
