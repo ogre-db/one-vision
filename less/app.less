@@ -1,44 +1,30 @@
 
-@import "components/colors";
+@background-page: #333;
+@background-muted: #f8f8f8;
+@background-footer: #eee;
+@background-header: #11CACC;
+@background-content: #FB9B49;
+
+@font-face {
+  font-family: 'roslindale-regular';
+  src: url('../fonts/roslindale-regular.eot');
+  src: local('☺'),
+        url('../fonts/roslindale-regular.woff') format('woff'),
+        url('../fonts/roslindale-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'roslindale-condensed';
+  src: url('../fonts/roslindale-condensed.eot');
+  src: local('☺'),
+        url('../fonts/roslindale-condensed.woff') format('woff'),
+        url('../fonts/roslindale-condensed.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import "components/common";
 @import "components/weapons";
 
-@content-width: 960px;
 
-html {
-  background-color: @background-page;
-  font-size: 15px;
-  line-height: 1.4;
-}
-
-body {
-  min-height: 100vh;
-  margin: 0;
-  animation: fadeIn ease 1s;
-  -webkit-animation: fadeIn ease 1s;
-  -moz-animation: fadeIn ease 1s;
-  -o-animation: fadeIn ease 1s;
-  -ms-animation: fadeIn ease 1s;
-}
-
-.toov-main-container {
-  min-height: 100vh;
-  padding-top: 100px;
-  padding-bottom: 80px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-}
-
-p {
-
-}
-
-a {
-
-}
-
-@keyframes fadeIn {
-  0%   {opacity: 0;}
-  100% {opacity: 1;}
-}

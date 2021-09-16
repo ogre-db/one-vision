@@ -1,50 +1,21 @@
-.toov-weapon-list table {
-  font-size: 0.85rem;
+@font-face {
+  font-family: 'roslindale-regular';
+  src: url('../fonts/roslindale-regular.eot');
+  src: local('☺'), url('../fonts/roslindale-regular.woff') format('woff'), url('../fonts/roslindale-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
-.toov-weapon-list table td,
-.toov-weapon-list table th {
-  padding: 2px 5px;
-}
-.toov-weapon-list table tr {
-  cursor: pointer;
-}
-.toov-weapon-list table th {
-  text-align: center;
-  font-size: 0.75rem;
-}
-.toov-weapon-list table td {
-  text-align: center;
-  white-space: nowrap;
-}
-.toov-weapon-list table th:first-child,
-.toov-weapon-list table td:first-child {
-  text-align: left;
-}
-.toov-weapon-list table th:nth-child(1) {
-  width: auto;
-}
-.toov-weapon-list table th:nth-child(2) {
-  width: 10%;
-}
-.toov-weapon-list table th:nth-child(3) {
-  width: 10%;
-}
-.toov-weapon-list table th:nth-child(4) {
-  width: 10%;
-}
-.toov-weapon-list table th:nth-child(5) {
-  width: 10%;
-}
-@media only screen and (min-width: 480px) {
-  .toov-weapon-list table {
-    font-size: 1rem;
-  }
-  .toov-weapon-list table th {
-    font-size: 1rem;
-  }
+@font-face {
+  font-family: 'roslindale-condensed';
+  src: url('../fonts/roslindale-condensed.eot');
+  src: local('☺'), url('../fonts/roslindale-condensed.woff') format('woff'), url('../fonts/roslindale-condensed.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 html {
+  font-family: roslindale-regular, serif;
   background-color: #333;
+  color: #333;
   font-size: 15px;
   line-height: 1.4;
 }
@@ -57,10 +28,11 @@ body {
   -o-animation: fadeIn ease 1s;
   -ms-animation: fadeIn ease 1s;
 }
-.toov-main-container {
+.ov-main-container {
+  background: url('../img/background.png');
   min-height: 100vh;
-  padding-top: 100px;
-  padding-bottom: 80px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 h1,
 h2,
@@ -68,7 +40,80 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: roslindale-regular, serif;
   margin: 0;
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+}
+h5 {
+  font-size: 1rem;
+}
+h6 {
+  font-size: 0.875rem;
+}
+#loading {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+#loading .frame {
+  width: 80%;
+  max-width: 300px;
+  border: 1px solid #fff;
+}
+#loading .frame span {
+  background: darkorange;
+  display: block;
+  width: 0;
+  height: 10px;
+}
+#infoModal {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#infoModal .info-card {
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100% !important;
+  max-width: 400px !important;
+  padding: 15px;
+  transform: translate(-50%, -50%);
+}
+#infoModal .info-card .content {
+  background-color: #e8e3de;
+  padding: 30px;
+  border: 2px solid #333;
+  border-radius: 20px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+#infoModal .info-card .content .uk-modal-close-default {
+  top: 25px;
+  right: 25px;
+  background: linear-gradient(to bottom right, #555, #666), #555;
+  color: #da3e3e;
+  border-radius: 50%;
+  box-shadow: 0 2px 2px #333, inset 0 1px 1px #999;
+}
+#infoModal .info-card .content .uk-modal-close-default:hover {
+  color: #de5454;
+  background: #555;
+}
+#infoModal .info-card .content .uk-modal-close-default svg line {
+  stroke-width: 2;
 }
 @keyframes fadeIn {
   0% {
@@ -77,4 +122,364 @@ h6 {
   100% {
     opacity: 1;
   }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.page-weapons .ov-weapon-list table {
+  position: relative;
+  width: 100%;
+  font-size: 0.85rem;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-radius: 5px;
+}
+.page-weapons .ov-weapon-list table#weaponList {
+  margin-top: 0;
+}
+.page-weapons .ov-weapon-list table tr.divide-header th {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.page-weapons .ov-weapon-list table tr.spacer td {
+  background-color: rgba(95, 88, 84, 0.6);
+  color: #eee;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  text-shadow: 0 0 5px #000;
+}
+.page-weapons .ov-weapon-list table tr:not(.spacer) {
+  cursor: pointer;
+}
+.page-weapons .ov-weapon-list table tr:not(.spacer):hover td {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.page-weapons .ov-weapon-list table.sticky {
+  margin-bottom: 0;
+  background-color: #5f5854;
+}
+.page-weapons .ov-weapon-list table.sticky tr {
+  cursor: default;
+  border: 1px solid #888;
+  border-radius: 5px;
+}
+.page-weapons .ov-weapon-list table.sticky tr th {
+  color: #eee;
+  text-transform: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-shadow: 0 0 5px #000;
+}
+.page-weapons .ov-weapon-list table td,
+.page-weapons .ov-weapon-list table th {
+  padding: 1px 5px;
+  text-align: center;
+  white-space: nowrap;
+}
+.page-weapons .ov-weapon-list table th:first-child,
+.page-weapons .ov-weapon-list table td:first-child {
+  width: 14px;
+  text-align: left;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.page-weapons .ov-weapon-list table th:nth-child(2),
+.page-weapons .ov-weapon-list table td:nth-child(2) {
+  width: auto;
+  text-align: left;
+}
+.page-weapons .ov-weapon-list table th:nth-child(3),
+.page-weapons .ov-weapon-list table td:nth-child(3) {
+  width: 40px;
+}
+.page-weapons .ov-weapon-list table th:nth-child(4),
+.page-weapons .ov-weapon-list table td:nth-child(4) {
+  width: 30px;
+}
+.page-weapons .ov-weapon-list table th:nth-child(5),
+.page-weapons .ov-weapon-list table td:nth-child(5) {
+  width: 25px;
+}
+.page-weapons .ov-weapon-list table th:nth-child(6),
+.page-weapons .ov-weapon-list table td:nth-child(6) {
+  width: 25px;
+}
+.page-weapons .ov-weapon-list table th:nth-child(7),
+.page-weapons .ov-weapon-list table td:nth-child(7) {
+  width: 25px;
+}
+.page-weapons .ov-weapon-list table th:nth-child(8),
+.page-weapons .ov-weapon-list table td:nth-child(8) {
+  width: 13px;
+  text-align: right;
+}
+.page-weapons .ov-weapon-list table th:nth-child(9),
+.page-weapons .ov-weapon-list table td:nth-child(9) {
+  width: 25px;
+}
+.page-weapons .ov-weapon-list table th:nth-child(10),
+.page-weapons .ov-weapon-list table td:nth-child(10) {
+  width: 25px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.page-weapons .ov-weapon-list table th {
+  font-size: 0.75rem;
+}
+.page-weapons .ov-weapon-list table td.element {
+  width: 23px;
+  padding: 0;
+  background: transparent center right / 24px no-repeat;
+}
+.page-weapons .ov-weapon-list table td.ele1 {
+  background-image: url('../img/icons/element-air.png');
+}
+.page-weapons .ov-weapon-list table td.ele2 {
+  background-image: url('../img/icons/element-earth.png');
+}
+.page-weapons .ov-weapon-list table td.ele3 {
+  background-image: url('../img/icons/element-lightning.png');
+}
+.page-weapons .ov-weapon-list table td.ele4 {
+  background-image: url('../img/icons/element-water.png');
+}
+.page-weapons .ov-weapon-list table td.ele5 {
+  background-image: url('../img/icons/element-fire.png');
+}
+.page-weapons .ov-weapon-list table td.ele6 {
+  background-image: url('../img/icons/element-ice.png');
+}
+.page-weapons .ov-weapon-list table td.ele7 {
+  background-image: url('../img/icons/element-divine.png');
+}
+.page-weapons .ov-weapon-list table td.ele8 {
+  background-image: url('../img/icons/element-dark.png');
+}
+.page-weapons .ov-weapon-list table td.type {
+  width: 13px;
+  background: transparent center left / 24px no-repeat;
+}
+.page-weapons .ov-weapon-list table td.t161 {
+  background-image: url('../img/icons/equip-claw.png');
+}
+.page-weapons .ov-weapon-list table td.t162 {
+  background-image: url('../img/icons/equip-dagger.png');
+}
+.page-weapons .ov-weapon-list table td.t163 {
+  background-image: url('../img/icons/equip-sword1h.png');
+}
+.page-weapons .ov-weapon-list table td.t163.h2 {
+  background-image: url('../img/icons/equip-sword1hb.png');
+}
+.page-weapons .ov-weapon-list table td.t164 {
+  background-image: url('../img/icons/equip-sword2h.png');
+}
+.page-weapons .ov-weapon-list table td.t165 {
+  background-image: url('../img/icons/equip-axe1h.png');
+}
+.page-weapons .ov-weapon-list table td.t165.h2 {
+  background-image: url('../img/icons/equip-axe2h.png');
+}
+.page-weapons .ov-weapon-list table td.t167 {
+  background-image: url('../img/icons/equip-spear1h.png');
+}
+.page-weapons .ov-weapon-list table td.t167.h2 {
+  background-image: url('../img/icons/equip-spear2h.png');
+}
+.page-weapons .ov-weapon-list table td.t168 {
+  background-image: url('../img/icons/equip-hammer1h.png');
+}
+.page-weapons .ov-weapon-list table td.t168.h2 {
+  background-image: url('../img/icons/equip-hammer2h.png');
+}
+.page-weapons .ov-weapon-list table td.t170 {
+  background-image: url('../img/icons/equip-katana1h.png');
+}
+.page-weapons .ov-weapon-list table td.t171 {
+  background-image: url('../img/icons/equip-katana2h.png');
+}
+.page-weapons .ov-weapon-list table td.t172 {
+  background-image: url('../img/icons/equip-cudgel1h.png');
+}
+.page-weapons .ov-weapon-list table td.t174 {
+  background-image: url('../img/icons/equip-whip.png');
+}
+.page-weapons .ov-weapon-list table td.t175 {
+  background-image: url('../img/icons/equip-spellbook.png');
+}
+.page-weapons .ov-weapon-list table td.t176 {
+  background-image: url('../img/icons/equip-instrument.png');
+}
+.page-weapons .ov-weapon-list table td.t177 {
+  background-image: url('../img/icons/equip-sidearm.png');
+}
+.page-weapons .ov-weapon-list table td.t177.thrw {
+  background-image: url('../img/icons/equip-throwing.png');
+}
+.page-weapons .ov-weapon-list table td.t178 {
+  background-image: url('../img/icons/equip-bow1h.png');
+}
+.page-weapons .ov-weapon-list table td.t178.h2 {
+  background-image: url('../img/icons/equip-bow2h.png');
+}
+.page-weapons .ov-weapon-list table td.t179 {
+  background-image: url('../img/icons/equip-crossbow1h.png');
+}
+.page-weapons .ov-weapon-list table td.t179.h2 {
+  background-image: url('../img/icons/equip-crossbow2h.png');
+}
+.page-weapons .ov-weapon-list table td.t180 {
+  background-image: url('../img/icons/equip-fusil1h.png');
+}
+.page-weapons .ov-weapon-list table td.t180.h2 {
+  background-image: url('../img/icons/equip-fusil2h.png');
+}
+.page-weapons .ov-weapon-list table td.t190 {
+  background-image: url('../img/icons/equip-unarmed.png');
+}
+.page-weapons .ov-weapon-list table td.t190,
+.page-weapons .ov-weapon-list table td.t161.inn {
+  background-image: url('../img/icons/equip-unarmed.png');
+}
+.page-weapons .ov-weapon-list table td.t191 {
+  background-image: url('../img/icons/equip-throw.png');
+}
+.page-weapons .ov-weapon-list table td.t245 {
+  background-image: url('../img/icons/equip-lobber.png');
+}
+@media only screen and (min-width: 480px) {
+  .page-weapons .ov-weapon-list table {
+    font-size: 1rem;
+  }
+  .page-weapons .ov-weapon-list table th {
+    font-size: 1rem;
+  }
+}
+.page-weapons #infoModal ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.page-weapons #infoModal .title {
+  margin-top: 10px;
+}
+.page-weapons #infoModal .title .level {
+  float: right;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.page-weapons #infoModal .title h2 {
+  font-size: 1.5rem;
+}
+.page-weapons #infoModal .title h5 {
+  font-style: italic;
+}
+.page-weapons #infoModal .title h5 span {
+  display: inline-block;
+  border: 1px solid #333;
+  border-radius: 50%;
+}
+.page-weapons #infoModal .title h5 span img {
+  max-width: 1.4rem;
+  height: auto;
+  box-sizing: border-box;
+}
+.page-weapons #infoModal .stats-top {
+  margin-top: 20px;
+}
+.page-weapons #infoModal .stats-top .basic span {
+  display: inline-block;
+  min-width: 70px;
+}
+.page-weapons #infoModal .stats-top .basic b {
+  display: inline-block;
+  min-width: 50px;
+}
+.page-weapons #infoModal .stats-top .damage {
+  margin-top: 15px;
+}
+.page-weapons #infoModal .stats-top .damage img {
+  width: 40px;
+}
+.page-weapons #infoModal .stats-top .damage b {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+  color: #0e6dcd;
+  font-size: 1.125rem;
+}
+.page-weapons #infoModal .stats-top .on-hit {
+  margin-top: 10px;
+}
+.page-weapons #infoModal .stats-top .on-hit span {
+  display: inline-block;
+  min-width: 70px;
+}
+.page-weapons #infoModal .stats-bottom span {
+  display: inline-block;
+  min-width: 60px;
+}
+.page-weapons #infoModal .stats-bottom b {
+  display: inline-block;
+  min-width: 35px;
+}
+.page-weapons #infoModal .stats-extra {
+  margin-top: 15px;
+}
+.page-weapons #infoModal .stats-extra span {
+  display: inline-block;
+  min-width: 120px;
+}
+.page-weapons #infoModal .notes span {
+  display: inline-block;
+  min-width: 80px;
+}
+.page-weapons #infoModal .class .uk-accordion > li .uk-accordion-title {
+  background-color: #5f5854;
+  color: #eee;
+  font-size: 1rem;
+  padding: 0 10px;
+  text-shadow: 0 0 5px #000;
+  border: 1px solid #888;
+  border-radius: 5px;
+  transition: all 200ms ease-in-out;
+}
+.page-weapons #infoModal .class .uk-accordion > li .uk-accordion-title:before {
+  content: '[show]';
+  font-size: 0.875rem;
+  text-align: right;
+  width: 50px;
+}
+.page-weapons #infoModal .class .uk-accordion > li .uk-accordion-title:hover {
+  color: lightgreen;
+}
+.page-weapons #infoModal .class .uk-accordion > li .uk-accordion-content {
+  margin-top: 5px;
+}
+.page-weapons #infoModal .class .uk-accordion > li .uk-accordion-content li {
+  display: inline-block;
+  float: left;
+  font-size: 0.75rem;
+  width: calc(50% - 20px);
+  padding: 0 10px;
+}
+.page-weapons #infoModal .class .uk-accordion > li.uk-open .uk-accordion-title:before {
+  content: '[hide]';
+}
+.page-weapons #infoModal hr {
+  overflow: visible;
+  text-align: inherit;
+  margin: 10px 0;
+  border: 0;
+  border-top: 2px solid #ccc;
 }

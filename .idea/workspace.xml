@@ -1,7 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aaf0d687-8a70-48c4-8437-51b26da7c723" name="Default" comment="" />
+    <list default="true" id="aaf0d687-8a70-48c4-8437-51b26da7c723" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fonts/roslindale-condensed.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fonts/roslindale-condensed.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fonts/roslindale-condensed.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fonts/roslindale-regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fonts/roslindale-regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fonts/roslindale-regular.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/background.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-air.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-beast.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-crush.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-divine.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-dragon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-earth.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-faerie.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-fire.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-golem.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-human.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-ice.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-light.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-lightning.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-phantom.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-pierce.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-reptile.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-slash.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-umbra.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/damage-water.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/element-air.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/element-dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/element-divine.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/element-earth.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/element-fire.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/element-ice.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/element-light.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/element-lightning.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/element-water.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-armcloth.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-armheavy.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-armlight.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-armorcloth.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-armorheavy.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-armorlight.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-axe1h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-axe2h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-bow1h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-bow2h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-claw.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-crossbow1h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-crossbow2h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-cudgel1h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-cudgel2h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-dagger.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-fusil1h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-fusil2h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-hammer1h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-hammer2h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-helmcloth.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-helmheavy.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-helmlight.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-instrument.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-jewelry.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-katana1h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-katana2h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-leglight.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-lobber.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-shieldheavy.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-sidearm.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-spear1h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-spear2h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-spellbook.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-sword1h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-sword1hb.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-sword2h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-throw.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-throwing.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-unarmed.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/equip-whip.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/item-arcana.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/item-classmark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/item-consumable.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/item-material.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/item-treasure.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/skill-action.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/skill-command.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/skill-special.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/icons/skill-support.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/weapons.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/less/components/common.less" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/equipment.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/less/components/colors.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/less/css/weapons.css" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/app.css" afterPath="$PROJECT_DIR$/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/equipment.json" afterPath="$PROJECT_DIR$/data/equipment.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/app.less" afterPath="$PROJECT_DIR$/less/app.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/less/components/weapons.less" afterPath="$PROJECT_DIR$/less/components/weapons.less" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,48 +115,38 @@
       <file leaf-file-name="app.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/less/app.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+            <state relative-caret-position="204">
+              <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="weapons.less" pinned="false" current-in-tab="false">
+      <file leaf-file-name="common.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/less/components/common.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="98" column="16" lean-forward="false" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="weapons.less" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/less/components/weapons.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+            <state relative-caret-position="601">
+              <caret line="402" column="37" lean-forward="false" selection-start-line="402" selection-start-column="37" selection-end-line="402" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="colors.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/less/components/colors.less">
+      <file leaf-file-name="weapons.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/weapons.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="29" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="equipment.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/equipment.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
+            <state relative-caret-position="187">
+              <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -64,8 +155,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="82" lean-forward="false" selection-start-line="22" selection-start-column="82" selection-end-line="22" selection-end-column="82" />
+            <state relative-caret-position="686">
+              <caret line="145" column="85" lean-forward="false" selection-start-line="145" selection-start-column="85" selection-end-line="145" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -73,12 +164,27 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>contain</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>24px</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/js/app.js" />
-        <option value="$PROJECT_DIR$/less/app.less" />
+        <option value="$PROJECT_DIR$/less/components/colors.less" />
+        <option value="$PROJECT_DIR$/data/equipment.json" />
         <option value="$PROJECT_DIR$/js/equipment.js" />
+        <option value="$PROJECT_DIR$/js/weapons.js" />
+        <option value="$PROJECT_DIR$/less/app.less" />
+        <option value="$PROJECT_DIR$/less/components/common.less" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/less/components/weapons.less" />
       </list>
@@ -117,36 +223,47 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="tacticsogre" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tacticsogre" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="one-vision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="one-vision" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
-              <item name="tacticsogre" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tacticsogre" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="one-vision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="one-vision" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
-              <item name="tacticsogre" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tacticsogre" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="one-vision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="one-vision" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="data" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
-              <item name="tacticsogre" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tacticsogre" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="one-vision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="one-vision" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="fonts" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="one-vision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="one-vision" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="img" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="one-vision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="one-vision" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
-              <item name="tacticsogre" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tacticsogre" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="one-vision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="one-vision" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="less" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
-              <item name="tacticsogre" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tacticsogre" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="one-vision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="one-vision" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="less" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
@@ -155,16 +272,22 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\one-vision\img\icons" />
+      <recent name="C:\xampp\htdocs\one-vision\fonts" />
+      <recent name="C:\xampp\htdocs\one-vision\img" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -192,33 +315,39 @@
       <workItem from="1626810384735" duration="14628000" />
       <workItem from="1629134944504" duration="616000" />
       <workItem from="1631395295242" duration="138000" />
+      <workItem from="1631400789088" duration="5376000" />
+      <workItem from="1631461440804" duration="17139000" />
+      <workItem from="1631547925744" duration="599000" />
+      <workItem from="1631716597556" duration="22698000" />
+      <workItem from="1631745491379" duration="1300000" />
+      <workItem from="1631747202350" duration="1507000" />
+      <workItem from="1631784572106" duration="21747000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18696000" />
+    <option name="totallyTimeSpent" value="89062000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921812" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921812" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +361,172 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/js/weapons.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="59" lean-forward="true" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="87" lean-forward="false" selection-start-line="17" selection-start-column="87" selection-end-line="17" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/components/colors.less" />
+    <entry file="file://$PROJECT_DIR$/less/components/common.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/app.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/components/weapons.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/weapons.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="59" lean-forward="true" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="87" lean-forward="false" selection-start-line="17" selection-start-column="87" selection-end-line="17" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/components/colors.less" />
+    <entry file="file://$PROJECT_DIR$/less/components/common.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/app.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/components/weapons.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="63" column="18" lean-forward="true" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="39" lean-forward="true" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/weapons.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/app.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/components/weapons.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/components/colors.less" />
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="82" lean-forward="false" selection-start-line="22" selection-start-column="82" selection-end-line="22" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/weapons.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/less/app.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -252,11 +547,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/equipment.js">
+    <entry file="file://$PROJECT_DIR$/js/weapons.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
@@ -272,14 +566,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/less/components/colors.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/less/components/colors.less" />
     <entry file="file://$PROJECT_DIR$/less/app.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -292,11 +579,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/equipment.js">
+    <entry file="file://$PROJECT_DIR$/js/weapons.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
@@ -340,70 +626,72 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/less/css/common.css" />
+    <entry file="file://$PROJECT_DIR$/js/jstable.js" />
+    <entry file="file://$PROJECT_DIR$/less/css/weapons.css" />
     <entry file="file://$PROJECT_DIR$/less/css/colors.css" />
-    <entry file="file://$PROJECT_DIR$/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/less/app.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/equipment.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="10675" column="17" lean-forward="true" selection-start-line="10675" selection-start-column="17" selection-end-line="10675" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="82" lean-forward="false" selection-start-line="22" selection-start-column="82" selection-end-line="22" selection-end-column="82" />
-          <folding />
+        <state relative-caret-position="822">
+          <caret line="0" column="458473" lean-forward="true" selection-start-line="0" selection-start-column="458473" selection-end-line="0" selection-end-column="458473" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        <state relative-caret-position="204">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/components/colors.less" />
+    <entry file="file://$PROJECT_DIR$/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/app.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/less/components/common.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="98" column="16" lean-forward="false" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/weapons.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="145" column="85" lean-forward="false" selection-start-line="145" selection-start-column="85" selection-end-line="145" selection-end-column="85" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/less/components/weapons.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/less/components/colors.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="29" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/equipment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
+        <state relative-caret-position="601">
+          <caret line="402" column="37" lean-forward="false" selection-start-line="402" selection-start-column="37" selection-end-line="402" selection-end-column="37" />
           <folding />
         </state>
       </provider>
