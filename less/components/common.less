@@ -1,6 +1,25 @@
 
 @content-width: 960px;
 
+@background-page: #333;
+@background-muted: #f8f8f8;
+@background-footer: #eee;
+@background-header: #11cacc;
+@background-content: #fb9b49;
+@background-card: #e8e3de;
+
+@background-dark: #5f5854;
+@color-red: #da3e3e;
+@color-green: #31c631;
+@color-blue: #0e6dcd;
+@color-orange: #ffa500;
+@highlight-white: rgba(255, 255, 255, 0.4);
+@highlight-dark: rgba(95, 88, 84, 0.6);
+@border-dark: #888;
+@border-light: #ccc;
+@text-light: #eee;
+@text-dark: #333;
+
 html {
   font-family: roslindale-regular, serif;
   background-color: #333;
@@ -59,6 +78,23 @@ a {
 
 }
 
+.condensed {
+  font-family: roslindale-condensed, serif;
+}
+.neg {
+  color: @color-red;
+}
+
+.red {
+  color: @color-red;
+}
+.green {
+  color: @color-green;
+}
+.blue {
+  color: @color-blue;
+}
+
 #loading {
   background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
@@ -109,17 +145,18 @@ a {
     transform: translate(-50%,-50%);
 
     .content {
-      background-color: #e8e3de;
+      background-color: @background-card;
       padding: 30px;
       border: 2px solid #333;
       border-radius: 20px;
       box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 
       .uk-modal-close-default {
-        top: 25px;
-        right: 25px;
         background: linear-gradient(to bottom right, #555, #666), #555;
         color: #da3e3e;
+        top: 25px;
+        right: 25px;
+        padding: 6px 5px 4px;
         border-radius: 50%;
         box-shadow: 0 2px 2px #333, inset 0 1px 1px #999;
 
@@ -133,6 +170,14 @@ a {
             stroke-width: 2;
           }
         }
+      }
+    }
+  }
+  &.uni {
+    .info-card {
+      .content {
+        border-color: @color-orange;
+        box-shadow: 0 0 8px @color-orange;
       }
     }
   }

@@ -1,4 +1,17 @@
 
+@background-dark: #5f5854;
+@background-card: #e8e3de;
+@color-red: #da3e3e;
+@color-green: #31c631;
+@color-blue: #0e6dcd;
+@color-orange: #ffa500;
+@highlight-white: rgba(255, 255, 255, 0.4);
+@highlight-dark: rgba(95, 88, 84, 0.6);
+@border-dark: #888;
+@border-light: #ccc;
+@text-light: #eee;
+@text-dark: #333;
+
 .page-weapons {
 
   .ov-weapon-list {
@@ -25,28 +38,28 @@
           }
         }
 
-        &.spacer {
+        &.separator {
 
           td {
-            background-color: rgba(95, 88, 84, 0.6);
-            color: #eee;
+            background-color: @highlight-dark;
+            color: @text-light;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 5px;
             font-weight: bold;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 500px;
             text-shadow: 0 0 5px #000;
           }
         }
 
-        &:not(.spacer) {
+        &:not(.separator) {
           cursor: pointer;
 
           &:hover {
 
             td {
-              background-color: rgba(255, 255, 255, 0.4);
+              background-color: @highlight-white;
             }
           }
         }
@@ -54,15 +67,15 @@
 
       &.sticky {
         margin-bottom: 0;
-        background-color: #5f5854;
+        background-color: @background-dark;
 
         tr {
           cursor: default;
-          border: 1px solid #888;
+          border: 1px solid @border-dark;
           border-radius: 5px;
 
           th {
-            color: #eee;
+            color: @text-light;
             text-transform: none;
             padding-top: 4px;
             padding-bottom: 4px;
@@ -80,8 +93,22 @@
       th:first-child, td:first-child {
         width: 14px;
         text-align: left;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
+        border-top-left-radius: 500px;
+        border-bottom-left-radius: 500px;
+      }
+      td:first-child {
+        width: 24px;
+        padding: 0;
+
+        img {
+          border: 1px solid @border-dark;
+          border-radius: 50%;
+
+          &.uni {
+            border-color: @color-orange;
+            box-shadow: 0 0 2px @color-orange;
+          }
+        }
       }
       th:nth-child(2), td:nth-child(2) {
         width: auto;
@@ -100,148 +127,26 @@
         width: 25px;
       }
       th:nth-child(7), td:nth-child(7) {
-        width: 25px;
+        width: 30px;
       }
       th:nth-child(8), td:nth-child(8) {
-        width: 13px;
-        text-align: right;
+        width: 14px;
+      }
+      td:nth-child(8) {
+        width: 24px;
+        padding: 0;
       }
       th:nth-child(9), td:nth-child(9) {
-        width: 25px;
+        width: 20px;
       }
       th:nth-child(10), td:nth-child(10) {
         width: 25px;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-top-right-radius: 500px;
+        border-bottom-right-radius: 500px;
       }
 
       th {
         font-size: 0.75rem;
-      }
-
-      td {
-
-        &.element {
-          width: 23px;
-          padding: 0;
-          background: transparent center right / 24px no-repeat;
-        }
-        &.ele1 {
-          background-image: url('../img/icons/element-air.png');
-        }
-        &.ele2 {
-          background-image: url('../img/icons/element-earth.png');
-        }
-        &.ele3 {
-          background-image: url('../img/icons/element-lightning.png');
-        }
-        &.ele4 {
-          background-image: url('../img/icons/element-water.png');
-        }
-        &.ele5 {
-          background-image: url('../img/icons/element-fire.png');
-        }
-        &.ele6 {
-          background-image: url('../img/icons/element-ice.png');
-        }
-        &.ele7 {
-          background-image: url('../img/icons/element-divine.png');
-        }
-        &.ele8 {
-          background-image: url('../img/icons/element-dark.png');
-        }
-
-        &.type {
-          width: 13px;
-          background: transparent center left / 24px no-repeat;
-        }
-        &.t161 {
-          background-image: url('../img/icons/equip-claw.png');
-        }
-        &.t162 {
-          background-image: url('../img/icons/equip-dagger.png');
-        }
-        &.t163 {
-          background-image: url('../img/icons/equip-sword1h.png');
-        }
-        &.t163.h2 {
-          background-image: url('../img/icons/equip-sword1hb.png');
-        }
-        &.t164 {
-          background-image: url('../img/icons/equip-sword2h.png');
-        }
-        &.t165 {
-          background-image: url('../img/icons/equip-axe1h.png');
-        }
-        &.t165.h2 {
-          background-image: url('../img/icons/equip-axe2h.png');
-        }
-        &.t167 {
-          background-image: url('../img/icons/equip-spear1h.png');
-        }
-        &.t167.h2 {
-          background-image: url('../img/icons/equip-spear2h.png');
-        }
-        &.t168 {
-          background-image: url('../img/icons/equip-hammer1h.png');
-        }
-        &.t168.h2 {
-          background-image: url('../img/icons/equip-hammer2h.png');
-        }
-        &.t170 {
-          background-image: url('../img/icons/equip-katana1h.png');
-        }
-        &.t171 {
-          background-image: url('../img/icons/equip-katana2h.png');
-        }
-        &.t172 {
-          background-image: url('../img/icons/equip-cudgel1h.png');
-        }
-        &.t174 {
-          background-image: url('../img/icons/equip-whip.png');
-        }
-        &.t175 {
-          background-image: url('../img/icons/equip-spellbook.png');
-        }
-        &.t176 {
-          background-image: url('../img/icons/equip-instrument.png');
-        }
-        &.t177 {
-          background-image: url('../img/icons/equip-sidearm.png');
-        }
-        &.t177.thrw {
-          background-image: url('../img/icons/equip-throwing.png');
-        }
-        &.t178 {
-          background-image: url('../img/icons/equip-bow1h.png');
-        }
-        &.t178.h2 {
-          background-image: url('../img/icons/equip-bow2h.png');
-        }
-        &.t179 {
-          background-image: url('../img/icons/equip-crossbow1h.png');
-        }
-        &.t179.h2 {
-          background-image: url('../img/icons/equip-crossbow2h.png');
-        }
-        &.t180 {
-          background-image: url('../img/icons/equip-fusil1h.png');
-        }
-        &.t180.h2 {
-          background-image: url('../img/icons/equip-fusil2h.png');
-        }
-        &.t190 {
-          background-image: url('../img/icons/equip-unarmed.png');
-        }
-        &.t190, &.t161.inn {
-          background-image: url('../img/icons/equip-unarmed.png');
-        }
-        &.t191 {
-          background-image: url('../img/icons/equip-throw.png');
-        }
-        &.t245{
-          background-image: url('../img/icons/equip-lobber.png');
-        }
       }
 
       @media only screen and (min-width: 480px) {
@@ -267,9 +172,9 @@
       margin-top: 10px;
 
       .level {
-        float: right;
         font-size: 1rem;
         font-weight: bold;
+        line-height: 2;
         margin-top: 5px;
       }
 
@@ -281,14 +186,14 @@
         font-style: italic;
 
         span {
+          background-color: @highlight-dark;
           display: inline-block;
-          border: 1px solid #333;
           border-radius: 50%;
+          box-shadow: 0 0 4px @highlight-dark;
 
           img {
             max-width: 1.4rem;
             height: auto;
-            box-sizing: border-box;
           }
         }
       }
@@ -301,7 +206,7 @@
 
         span {
           display: inline-block;
-          min-width: 70px;
+          min-width: 75px;
         }
 
         b {
@@ -320,8 +225,27 @@
           display: inline-block;
           width: 40px;
           text-align: center;
-          color: #0e6dcd;
           font-size: 1.125rem;
+        }
+
+        .damage-race.undead {
+          position: relative;
+
+          &:after {
+            content: '\1F480';
+            background-color: #fff;
+            color: transparent;
+            text-shadow: 0 0 0 @color-red;
+            font-size: 0.875rem;
+            position: absolute;
+            text-align: center;
+            right: 28px;
+            top: -10px;
+            width: 18px;
+            height: 18px;
+            border: 1px solid @border-dark;
+            border-radius: 25%;
+          }
         }
       }
 
@@ -346,6 +270,14 @@
         display: inline-block;
         min-width: 35px;
       }
+
+      .obsatk {
+        font-size: 0.75rem;
+
+        span {
+          margin-right: 10px;
+        }
+      }
     }
 
     .stats-extra {
@@ -366,18 +298,19 @@
     }
 
     .class {
+      margin-top: 10px;
 
       .uk-accordion {
 
         &>li {
 
           .uk-accordion-title {
-            background-color: #5f5854;
-            color: #eee;
+            background-color: @background-dark;
+            color: @text-light;
             font-size: 1rem;
             padding: 0 10px;
             text-shadow: 0 0 5px #000;
-            border: 1px solid #888;
+            border: 1px solid @border-dark;
             border-radius: 5px;
             transition: all 200ms ease-in-out;
 
@@ -389,7 +322,7 @@
             }
 
             &:hover {
-              color: lightgreen;
+              color: @color-green;
             }
           }
 
@@ -423,7 +356,7 @@
       text-align: inherit;
       margin: 10px 0;
       border: 0;
-      border-top: 2px solid #ccc;
+      border-top: 2px solid @border-light;
     }
   }
 }
