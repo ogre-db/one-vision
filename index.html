@@ -54,7 +54,7 @@
                 </thead>
             </table>
             <div id="infoModal" uk-modal bg-close="true">
-                <div class="info-card uk-modal-dialog uk-position-center" uk-overflow-auto>
+                <div class="info-card uk-modal-dialog uk-animation-scale-up uk-animation-fast">
                     <div class="content">
                         <button class="uk-modal-close-default" type="button" uk-close></button>
                         <div class="title uk-width-1-1">
@@ -90,9 +90,16 @@
                                 </div>
                             </div>
                             <div class="on-hit">
-                                <ul>
-                                    <li><span>On Hit: </span><small><b class="on-hit-eff">—</b></small></li>
-                                </ul>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <span>On Hit: </span>
+                                        </td>
+                                        <td>
+                                            <small><b class="on-hit-eff">—</b></small>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                         <hr>
@@ -126,16 +133,44 @@
                             <ul>
                                 <li><span>Skill Bonus: </span><b class="skillbon">—</b></li>
                                 <li><span>Passive Bonus: </span><b class="passive">—</b></li>
-                                <li><span>Use Effect: </span><b>—</b></li>
-                                <li><span>Equipment Set: </span><b class="itemset">—</b></li>
+                                <li><span>Use Effect: </span><b class="ability">—</b></li>
+                                <li class="itemset"><span>Equipment Set: </span><b>—</b></li>
                             </ul>
                         </div>
                         <hr>
                         <div class="notes uk-width-1-1">
-                            <ul>
-                                <li><span>Location: </span><b><small>Buy in common/PotD shop at the start of Chapter 1</small></b></li>
-                                <li><span>Notes: </span><b><small>—</small></b></li>
-                            </ul>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span>Obtain: </span>
+                                    </td>
+                                    <td>
+                                        <small><b class="location">—</b></small>
+                                    </td>
+                                </tr>
+                                <tr class="ingredients">
+                                    <td colSpan="2">
+                                        <ul uk-accordion>
+                                            <li>
+                                                <a class="uk-accordion-title" href="#">Ingredients</a>
+                                                <div class="uk-accordion-content">
+                                                    <ul>
+                                                        <li><span>Skill Bonus</span><b>x2</b></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="note">
+                                    <td>
+                                        <span>Notes: </span>
+                                    </td>
+                                    <td>
+                                        <small><b>—</b></small>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                         <div class="class uk-width-1-1">
                             <ul uk-accordion>
@@ -143,10 +178,6 @@
                                     <a class="uk-accordion-title" href="#">Class List</a>
                                     <div class="uk-accordion-content">
                                         <ul>
-                                            <li>Warrior/Amazon</li>
-                                            <li>Archer</li>
-                                            <li>Wizard</li>
-                                            <li>Cleric</li>
                                         </ul>
                                     </div>
                                 </li>

@@ -113,39 +113,21 @@ a {
       height: 10px;
     }
   }
-
-  //.frame {
-  //  display: table-cell;
-  //  text-align: center;
-  //  vertical-align: middle;
-  //
-  //  i {
-  //    text-align: center;
-  //    color: #fff;
-  //    animation-name: spin;
-  //    animation-duration: 5000ms;
-  //    animation-iteration-count: infinite;
-  //    animation-timing-function: linear;
-  //  }
-  //}
 }
 
 #infoModal {
-  padding-top: 0;
-  padding-bottom: 0;
 
   .info-card {
     background: transparent;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100% !important;
+    width: 100%;
     max-width: 400px !important;
-    padding: 15px;
-    transform: translate(-50%,-50%);
+    margin: 0 auto;
 
     .content {
       background-color: @background-card;
+      position: relative;
+      box-sizing: border-box;
+      width: 100%;
       padding: 30px;
       border: 2px solid #333;
       border-radius: 20px;
@@ -154,8 +136,8 @@ a {
       .uk-modal-close-default {
         background: linear-gradient(to bottom right, #555, #666), #555;
         color: #da3e3e;
-        top: 25px;
-        right: 25px;
+        top: 10px;
+        right: 10px;
         padding: 6px 5px 4px;
         border-radius: 50%;
         box-shadow: 0 2px 2px #333, inset 0 1px 1px #999;

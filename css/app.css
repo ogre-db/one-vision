@@ -94,22 +94,17 @@ h6 {
   width: 0;
   height: 10px;
 }
-#infoModal {
-  padding-top: 0;
-  padding-bottom: 0;
-}
 #infoModal .info-card {
   background: transparent;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100% !important;
+  width: 100%;
   max-width: 400px !important;
-  padding: 15px;
-  transform: translate(-50%, -50%);
+  margin: 0 auto;
 }
 #infoModal .info-card .content {
   background-color: #e8e3de;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
   padding: 30px;
   border: 2px solid #333;
   border-radius: 20px;
@@ -118,8 +113,8 @@ h6 {
 #infoModal .info-card .content .uk-modal-close-default {
   background: linear-gradient(to bottom right, #555, #666), #555;
   color: #da3e3e;
-  top: 25px;
-  right: 25px;
+  top: 10px;
+  right: 10px;
   padding: 6px 5px 4px;
   border-radius: 50%;
   box-shadow: 0 2px 2px #333, inset 0 1px 1px #999;
@@ -237,6 +232,9 @@ h6 {
 .page-weapons .ov-weapon-list table td:nth-child(4) {
   width: 30px;
 }
+.page-weapons .ov-weapon-list table td:nth-child(4) {
+  font-size: 0.875rem;
+}
 .page-weapons .ov-weapon-list table th:nth-child(5),
 .page-weapons .ov-weapon-list table td:nth-child(5) {
   width: 25px;
@@ -282,6 +280,46 @@ h6 {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+.page-weapons #infoModal table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.page-weapons #infoModal .uk-accordion > li .uk-accordion-title {
+  background-color: #5f5854;
+  color: #eee;
+  font-size: 1rem;
+  padding: 0 10px;
+  text-shadow: 0 0 5px #000;
+  border: 1px solid #888;
+  border-radius: 5px;
+  transition: all 200ms ease-in-out;
+}
+.page-weapons #infoModal .uk-accordion > li .uk-accordion-title:before {
+  content: '[show]';
+  font-size: 0.875rem;
+  text-align: right;
+  width: 50px;
+}
+.page-weapons #infoModal .uk-accordion > li .uk-accordion-title:hover {
+  color: #ffa500;
+}
+.page-weapons #infoModal .uk-accordion > li .uk-accordion-content {
+  margin-top: 5px;
+}
+.page-weapons #infoModal .uk-accordion > li .uk-accordion-content li {
+  display: inline-block;
+  float: left;
+  font-size: 0.75rem;
+  width: calc(50% - 20px);
+  padding: 0 10px;
+}
+.page-weapons #infoModal .uk-accordion > li.uk-open .uk-accordion-title {
+  color: #ffa500;
+}
+.page-weapons #infoModal .uk-accordion > li.uk-open .uk-accordion-title:before {
+  content: '[hide]';
 }
 .page-weapons #infoModal .title {
   margin-top: 10px;
@@ -352,9 +390,12 @@ h6 {
 .page-weapons #infoModal .stats-top .on-hit {
   margin-top: 10px;
 }
-.page-weapons #infoModal .stats-top .on-hit span {
-  display: inline-block;
-  min-width: 70px;
+.page-weapons #infoModal .stats-top .on-hit table td:first-child {
+  width: 60px;
+  vertical-align: top;
+}
+.page-weapons #infoModal .stats-top .on-hit table td:last-child {
+  width: auto;
 }
 .page-weapons #infoModal .stats-bottom span {
   display: inline-block;
@@ -371,50 +412,48 @@ h6 {
   margin-right: 10px;
 }
 .page-weapons #infoModal .stats-extra {
+  font-size: 0.875rem;
   margin-top: 15px;
 }
 .page-weapons #infoModal .stats-extra span {
   display: inline-block;
   min-width: 120px;
 }
-.page-weapons #infoModal .notes span {
+.page-weapons #infoModal .stats-extra .itemset b {
+  color: #31c631;
+}
+.page-weapons #infoModal .notes table td {
+  padding: 0;
+}
+.page-weapons #infoModal .notes table td:first-child {
+  width: 60px;
+  vertical-align: top;
+}
+.page-weapons #infoModal .notes table td:last-child {
+  width: auto;
+}
+.page-weapons #infoModal .notes .uk-accordion {
+  margin-top: 5px;
+}
+.page-weapons #infoModal .notes .uk-accordion > li .uk-accordion-title {
+  background-color: #5f5854;
+}
+.page-weapons #infoModal .notes .uk-accordion > li .uk-accordion-content {
+  margin-top: 5px;
+}
+.page-weapons #infoModal .notes .uk-accordion > li .uk-accordion-content li {
+  width: calc(100% - 20px);
+}
+.page-weapons #infoModal .notes .uk-accordion > li .uk-accordion-content li span {
   display: inline-block;
-  min-width: 80px;
+  width: calc(100% - 20px);
+}
+.page-weapons #infoModal .notes .uk-accordion > li .uk-accordion-content li b {
+  display: inline-block;
+  width: 20px;
 }
 .page-weapons #infoModal .class {
   margin-top: 10px;
-}
-.page-weapons #infoModal .class .uk-accordion > li .uk-accordion-title {
-  background-color: #5f5854;
-  color: #eee;
-  font-size: 1rem;
-  padding: 0 10px;
-  text-shadow: 0 0 5px #000;
-  border: 1px solid #888;
-  border-radius: 5px;
-  transition: all 200ms ease-in-out;
-}
-.page-weapons #infoModal .class .uk-accordion > li .uk-accordion-title:before {
-  content: '[show]';
-  font-size: 0.875rem;
-  text-align: right;
-  width: 50px;
-}
-.page-weapons #infoModal .class .uk-accordion > li .uk-accordion-title:hover {
-  color: #31c631;
-}
-.page-weapons #infoModal .class .uk-accordion > li .uk-accordion-content {
-  margin-top: 5px;
-}
-.page-weapons #infoModal .class .uk-accordion > li .uk-accordion-content li {
-  display: inline-block;
-  float: left;
-  font-size: 0.75rem;
-  width: calc(50% - 20px);
-  padding: 0 10px;
-}
-.page-weapons #infoModal .class .uk-accordion > li.uk-open .uk-accordion-title:before {
-  content: '[hide]';
 }
 .page-weapons #infoModal hr {
   overflow: visible;

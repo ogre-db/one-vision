@@ -1,15 +1,51 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    const weaponsJson = 'data/weapons.json';
-    const skillsJson = 'data/skills.json';
-    var weapons = [];
-    var skills = [];
+    const weaponsJson = 'data/weapons.json',
+        skillsJson = 'data/skills.json',
+        abilitiesJson = 'data/abilities.json',
+        classesJson = 'data/classes.json',
+        shopJson = 'data/shop.json',
+        armorJson = 'data/armor.json',
+        sundriesJson = 'data/sundries.json';
+    let weapons = [],
+        skills = [],
+        abilities = [],
+        classes = [],
+        shop = [],
+        armor = [],
+        sundries = [];
 
-    const weaponList = document.getElementById('weaponList');
-    const infoModal = document.getElementById('infoModal');
+    const weaponList = document.getElementById('weaponList'),
+        infoModal = document.getElementById('infoModal'),
+        infoTitle = infoModal.querySelector('.title h2'),
+        infoLevel = infoModal.querySelector('.title .level'),
+        infoType = infoModal.querySelector('.title h5 i'),
+        infoHands = infoModal.querySelector('.title h5 img'),
+        infoScaling = infoModal.querySelector('.stats-top b.scaling'),
+        infoAttack = infoModal.querySelector('.stats-top b.attack'),
+        infoAccuracy = infoModal.querySelector('.stats-top b.accuracy'),
+        infoWeight = infoModal.querySelector('.stats-top b.weight'),
+        infoRtCost = infoModal.querySelector('.stats-top b.rtcost'),
+        infoRange = infoModal.querySelector('.stats-top b.range'),
+        infoDamagePanel = infoModal.querySelector('.damage'),
+        infoDamageType = infoModal.querySelector('.damage .damage-type'),
+        infoDamageElement = infoModal.querySelector('.damage .damage-element'),
+        infoDamageRace = infoModal.querySelector('.damage .damage-race'),
+        infoOnhit = infoModal.querySelector('.on-hit .on-hit-eff'),
+        statsDefPanel = infoModal.querySelector('.stats-bottom .defense'),
+        statsBottom = infoModal.querySelectorAll('.stats-bottom b'),
+        infoSkillBon = infoModal.querySelector('.stats-extra .skillbon'),
+        infoPassive = infoModal.querySelector('.stats-extra .passive'),
+        infoAbility = infoModal.querySelector('.stats-extra .ability'),
+        infoSet = infoModal.querySelector('.stats-extra .itemset'),
+        infoLocation = infoModal.querySelector('.notes .location'),
+        infoNotes = infoModal.querySelector('.notes .note'),
+        infoIngredientPanel = infoModal.querySelector('.notes .ingredients'),
+        infoIngredients = infoModal.querySelector('.notes .uk-accordion-content ul'),
+        infoClass = infoModal.querySelector('.class .uk-accordion-content ul');
+
     // const progress = document.getElementById('progress');
-
     // UIkit.modal(loading).show();
 
     listWeapons();
@@ -41,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 tr.id = index;
                 let type = document.createElement('td');
                     let classImg = document.createElement('img');
-                        classImg.setAttribute('src', element.hnd === 1 ? types[element.typ + innate]['icon2'] : types[element.typ + innate]['icon1']);
+                        classImg.setAttribute('src', ( element.hnd === 1 || (element.typ === 177 && element.wght > 2)) ? types[element.typ + innate]['icon2'] : types[element.typ + innate]['icon1']);
                         if (element.skillbonamt >= 8) classImg.classList.add('uni');
                     type.appendChild(classImg);
                 let name = document.createElement('td');
@@ -72,27 +108,6 @@ document.addEventListener("DOMContentLoaded", function() {
             // progress.style.width = (index + 1) * 100 / total + '%';
         });
 
-        const infoTitle = infoModal.querySelector('.title h2');
-        const infoClass = infoModal.querySelector('.title .level');
-        const infoType = infoModal.querySelector('.title h5 i');
-        const infoHands = infoModal.querySelector('.title h5 img');
-        const infoScaling = infoModal.querySelector('.stats-top b.scaling');
-        const infoAttack = infoModal.querySelector('.stats-top b.attack');
-        const infoAccuracy = infoModal.querySelector('.stats-top b.accuracy');
-        const infoWeight = infoModal.querySelector('.stats-top b.weight');
-        const infoRtCost = infoModal.querySelector('.stats-top b.rtcost');
-        const infoRange = infoModal.querySelector('.stats-top b.range');
-        const infoDamagePanel = infoModal.querySelector('.damage');
-        const infoDamageType = infoModal.querySelector('.damage .damage-type');
-        const infoDamageElement = infoModal.querySelector('.damage .damage-element');
-        const infoDamageRace = infoModal.querySelector('.damage .damage-race');
-        const infoOnhit = infoModal.querySelector('.on-hit .on-hit-eff');
-        const statsDefPanel = infoModal.querySelector('.stats-bottom .defense');
-        const statsBottom = infoModal.querySelectorAll('.stats-bottom b');
-        const infoSkillBon = infoModal.querySelector('.stats-extra .skillbon');
-        const infoPassive = infoModal.querySelector('.stats-extra .passive');
-        const infoSet = infoModal.querySelector('.stats-extra .itemset');
-
         document.querySelectorAll('#weaponList tr:not(.spacer)').forEach( (element) => {
 
             element.addEventListener( 'click', function (event) {
@@ -119,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 weapon.skillbonamt >= 8 ? infoModal.classList.add('uni') : infoModal.classList.remove('uni');
                 infoTitle.textContent = weapon.name;
-                infoClass.textContent = 'Lv ' + weapon.lvlreq;
+                infoLevel.textContent = 'Lv ' + weapon.lvlreq;
                 infoType.textContent = types[weapon.typ + innate]['name'];
                 infoHands.setAttribute('data-src', weapon.hnd === 1 ? 'img/icons/icon-hands2.png' : 'img/icons/icon-hands1.png');
                 infoScaling.innerHTML = scalingFormula[weapon.frm]['name'];
@@ -199,17 +214,98 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
                 weapon.def ? statsDefPanel.classList.remove('uk-hidden') : statsDefPanel.classList.add('uk-hidden');
 
-                if ( weapon.skillbon1 || weapon.skillbon2 ) {
-                    let skill = skills[matchByColumn(skills, 'id', weapon.skillbon1 + weapon.skillbon2 * 256 )];
+                if ( weapon.skillbon ) {
+                    let skill = skills.find((row) => row['id'] === weapon.skillbon);
                     infoSkillBon.textContent = skill.name + ' +' + (weapon.skillbonamt > 24 ? (weapon.skillbonamt - 24) : ((weapon.skillbonamt > 8 ? (weapon.skillbonamt - 8) : weapon.skillbonamt)));
                 } else infoSkillBon.textContent = '—';
                 if ( weapon.passeff ) {
-                    let skill = skills[matchByColumn(skills, 'id', weapon.passeff )];
-                    infoPassive.textContent = skill.name;
+                    let passive = skills.find((row) => row['id'] === weapon.passeff);
+                    infoPassive.textContent = passive.name;
                 } else infoPassive.textContent = '—';
+                if ( weapon.ablty ) {
+                    let ability = abilities.find((row) => row['id'] === weapon.ablty);
+                    infoAbility.textContent = weapon.abltyuse + 'x ' + ability.name;
+                } else infoAbility.textContent = '—';
                 if ( weapon.set ) {
-                    infoSet.textContent = itemSets[weapon.set]['name'];
-                } else infoSet.textContent = '—';
+                    infoSet.querySelector('b').textContent = itemSets[weapon.set]['name'];
+                    infoSet.classList.remove('uk-hidden');
+                } else infoSet.classList.add('uk-hidden');
+
+                let inSets = [];
+                let infoClasses = [];
+                if ( innate === 0 ) {
+                    infoLocation.innerHTML = '';
+                    let shopArticle = shop.find((row) => row['id'] === weapon.id);
+                    if (shopArticle) {
+                        infoLocation.innerHTML += 'Buy in ' +
+                            ( shopArticle.common ? 'Common' : '' ) +
+                            ( shopArticle.deneb ? (( shopArticle.common ? '|' : '' ) + "Deneb's") : '' ) +
+                            ( shopArticle.potd ? (( shopArticle.common || shopArticle.deneb ? '|' : '' ) + 'PotD') : '' ) + ' shop ' +
+                            storyPoints[Math.max(shopArticle.common, shopArticle.deneb, shopArticle.potd)];
+                    }
+                    if ( weapon.craftbk ) {
+                        infoLocation.innerHTML += shopArticle ? '<br>' : '';
+                        let craftBook = sundries.find((row) => row['id'] === weapon.craftbk);
+                        infoLocation.innerHTML += 'Craft with ' + craftBook.name;
+
+                        let ingredients = [];
+                        let ingNum = 0;
+                        for (let i = 1; i < 4; i++) {
+                            if ( weapon['ing' + i] ) {
+                                if ( i > 1 && weapon['ing' + (i - 1)] === weapon['ing' + i] ) {
+                                    ingredients[ingNum - 1]['amt']++;
+                                } else {
+                                    ingredients.push({
+                                        'id': weapon['ing' + i],
+                                        'amt': 1
+                                    });
+                                    ingNum++;
+                                }
+                            }
+                        }
+                        if ( ingredients ) {
+                            infoIngredients.innerHTML = '';
+                            ingredients.forEach( function( ing ) {
+                                let ingredient = weapons.find((row) => row['id'] === ing.id);
+                                if ( ! ingredient ) ingredient = armor.find((row) => row['id'] === ing.id);
+                                if ( ! ingredient ) ingredient = sundries.find((row) => row['id'] === ing.id);
+                                infoIngredients.innerHTML += '<li><span>' + ingredient.name + '</span><b>x' + ing.amt + '</b></li>';
+                            })
+                        }
+                        infoIngredientPanel.classList.remove('uk-hidden');
+                    } else infoIngredientPanel.classList.add('uk-hidden');
+                    if ( weapon.loc && weapon.loc !== '???' ) {
+                        infoLocation.innerHTML += ( shopArticle || weapon.craftbk ) ? '<br>' : '';
+                        infoLocation.innerHTML += weapon.loc;
+                    } else if ( !shopArticle && !weapon.craftbk ) {
+                        infoLocation.innerHTML += '???';
+                    }
+
+                    for (let i = 0; i < 56; i++) {
+                        if (weapon['eq' + i] === 1) inSets.push(i);
+                    }
+                    infoClasses = classes.filter((rows) => inSets.includes(rows['eqset']));
+
+                } else {
+                    infoClasses = classes.filter((rows) => (weapon.id === rows['innml'] || weapon.id === rows['innrng']));
+                    inSets = [1];
+                    infoLocation.textContent = '—';
+                }
+
+                if (weapon.notes) {
+                    infoNotes.querySelector('b').textContent = weapon.notes;
+                    infoNotes.classList.remove('uk-hidden');
+                } else infoNotes.classList.add('uk-hidden');
+
+                let setCount = inSets.length;
+                if ( setCount === 0 )
+                    infoClass.innerHTML = '<li>None</li>';
+                else if ( setCount < 56 ) {
+                    infoClass.innerHTML = '';
+                    infoClasses.forEach( function(el) {
+                        infoClass.innerHTML += '<li>' + el.name + '</li>';
+                    });
+                } else infoClass.innerHTML = '<li>All</li>';
 
                 UIkit.modal(infoModal).show();
             })
@@ -220,6 +316,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
         fetchJSON(skillsJson).then(
             data => skills = data
+        );
+        fetchJSON(abilitiesJson).then(
+            data => abilities = data
+        );
+        fetchJSON(classesJson).then(
+            data => classes = data
+        );
+        fetchJSON(shopJson).then(
+            data => shop = data
+        );
+        fetchJSON(armorJson).then(
+            data => armor = data
+        );
+        fetchJSON(sundriesJson).then(
+            data => sundries = data
         );
     }
 });

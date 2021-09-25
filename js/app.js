@@ -1,9 +1,9 @@
 
-var forEach = function (array, callback, scope) {
-    for (var i = 0; i < array.length; i++) {
+function forEach (array, callback, scope) {
+    for (let i = 0; i < array.length; i++) {
         callback.call(scope, i, array[i]);
     }
-};
+}
 
 async function fetchJSON(url) {
 
@@ -17,16 +17,6 @@ function isOdd(num) {
 
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function matchByColumn( array, column, value) {
-    let index = false;
-    array.some(function (col, i) {
-        if (col[column] === value) {
-            index = i;
-        }
-    });
-    return index;
 }
 
 const elements = {
@@ -1119,4 +1109,27 @@ const abilityType = {
     '43': {
         'name': 'Finisher'
     }
+};
+
+const storyPoints = {
+    '1': 'at the start of Chapter 1',
+    '2': 'at the middle of Chapter 1',
+    '3': 'at the end of Chapter 1',
+    '4': 'at the start of Chapter 2',
+    '5': 'at the middle of Chapter 2',
+    '6': 'at the end of Chapter 2',
+    '7': 'at the start of Chapter 3',
+    '8': 'at the middle of Chapter 3',
+    '9': 'at the end of Chapter 3',
+    '10': 'at the start of Chapter 4',
+    '11': 'in Chapter 4 after Hagia Banhamuba',
+    '12': 'in Chapter 4 after Barnicia',
+    '13': 'in Chapter 4 after Heim',
+    '14': 'after CODA - Episode 1',
+    '15': 'after CODA - Final Episode',
+    '201': 'when the class is acquired (Deneb has to be recruited)',
+    '202': 'when the class is acquired (Deneb has to be recruited)',
+    '203': 'when the class is acquired (Deneb has to be recruited)',
+    '204': 'when the class is acquired (Deneb has to be recruited)',
+    '205': 'when the class is acquired (Deneb has to be recruited)'
 };
