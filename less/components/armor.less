@@ -1,5 +1,5 @@
 
-.page-weapons {
+.page-armor {
 
   .ov-item-list {
 
@@ -13,29 +13,35 @@
         width: 40px;
       }
       th:nth-child(4), td:nth-child(4) {
-        width: 30px;
-      }
-      td:nth-child(4) {
-        font-size: 0.875rem;
+        width: 40px;
       }
       th:nth-child(5), td:nth-child(5) {
         width: 25px;
       }
       th:nth-child(6), td:nth-child(6) {
-        width: 25px;
+        width: 30px;
+      }
+      td:nth-child(6) {
+        font-size: 0.875rem;
       }
       th:nth-child(7), td:nth-child(7) {
         width: 30px;
       }
-      th:nth-child(8) {
-        width: 14px;
+      td:nth-child(7) {
+        font-size: 0.875rem;
+      }
+      th:nth-child(8), td:nth-child(8) {
+        width: 30px;
       }
       td:nth-child(8) {
+        font-size: 0.875rem;
+      }
+      th:nth-child(9) {
+        width: 14px;
+      }
+      td:nth-child(9) {
         width: 24px;
         padding: 0;
-      }
-      th:nth-child(9), td:nth-child(9) {
-        width: 20px;
       }
       th:nth-child(10), td:nth-child(10) {
         width: 25px;
@@ -44,7 +50,7 @@
   }
 }
 
-#sidePanel.weapons-panel {
+#sidePanel.armor-panel {
 
   .title {
     margin-top: 10px;
@@ -61,18 +67,20 @@
     }
 
     h5 {
-      font-style: italic;
       margin-top: 2px;
+      font-style: italic;
 
       span {
-        background-color: @highlight-dark;
         display: inline-block;
+        margin-right: 5px;
         border-radius: 50%;
-        box-shadow: 0 0 4px @highlight-dark;
+        box-shadow: 0 0 2px @border-dark;
 
         img {
-          max-width: 1.4rem;
+          max-width: 2rem;
           height: auto;
+          border: 1px solid @border-dark;
+          border-radius: 50%;
         }
       }
     }
@@ -166,6 +174,26 @@
       span {
         margin-right: 10px;
       }
+    }
+  }
+
+  .stats-resists {
+    text-align: center;
+
+    .uk-grid {
+      margin-top: 10px;
+
+      align-content: center;
+    }
+
+    img {
+      width: 30px;
+    }
+    b {
+      display: inline-block;
+      width: 30px;
+      text-align: center;
+      font-size: 1rem;
     }
   }
 

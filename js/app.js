@@ -1,21 +1,65 @@
 
+document.addEventListener('DOMContentLoaded', function() {
+
+    const panelClose = document.querySelector('#panelClose');
+    if (panelClose) {
+        panelClose.addEventListener('click', function (event) {
+            closePanel(event);
+        });
+    }
+    const sidePanel = document.querySelector('#sidePanel');
+    if (sidePanel) {
+        sidePanel.addEventListener('animationend', function (event) {
+            sidePanel.classList.remove('fade-from-right', 'fade-to-right');
+            if (event.animationName === 'fadeToRight') sidePanel.classList.remove('open');
+        });
+    }
+});
+
+function openPanel (panel) {
+
+    if ( ! panel.classList.contains('open') ) {
+
+        panel.classList.add('open', 'fade-from-right');
+    }
+}
+
+function closePanel (close) {
+    close.target.closest('#sidePanel').classList.add('fade-to-right');
+}
+
+function swapEffectStart ( panel, content ) {
+
+    if ( panel.classList.contains('open') ) {
+        content.classList.add('blur-cycle');
+    }
+}
+function swapEffectRemove ( panel, content ) {
+
+    if ( panel.classList.contains('open') ) {
+        setTimeout( function () {
+            content.classList.remove('blur-cycle');
+        }, 500)
+    }
+}
+
 function forEach (array, callback, scope) {
     for (let i = 0; i < array.length; i++) {
         callback.call(scope, i, array[i]);
     }
 }
 
-async function fetchJSON(url) {
+async function fetchJSON (url) {
 
     let response = await fetch(url);
     return response.json();
 }
 
-function isOdd(num) {
+function isOdd (num) {
     return (num % 2 === 1);
 }
 
-function capitalize(string) {
+function capitalize (string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
@@ -239,6 +283,70 @@ const types = {
         'name': 'Innate Lobber',
         'icon1': 'img/icons/equip-lobber.png',
         'icon2': 'img/icons/equip-lobber.png'
+    },
+    '182': {
+        'name': 'Shields',
+        'iconl': 'img/icons/equip-shieldlight.png',
+        'iconh': 'img/icons/equip-shieldheavy.png'
+    },
+    '23': {
+        'name': 'Helms',
+        'iconc': 'img/icons/equip-helmcloth.png',
+        'iconl': 'img/icons/equip-helmlight.png',
+        'iconh': 'img/icons/equip-helmheavy.png',
+        'iconm': 'img/icons/equip-helmmage.png',
+        'icona': 'img/icons/equip-helmsniper.png'
+    },
+    '24': {
+        'name': 'Body Armor',
+        'iconc': 'img/icons/equip-armorlight.png',
+        'iconl': 'img/icons/equip-armorlight.png',
+        'iconh': 'img/icons/equip-armorheavy.png',
+        'iconm': 'img/icons/equip-armorcloth.png',
+        'icona': 'img/icons/equip-armorlight.png'
+    },
+    '25': {
+        'name': 'Armguards',
+        'iconc': 'img/icons/equip-armcloth.png',
+        'iconl': 'img/icons/equip-armlight.png',
+        'iconh': 'img/icons/equip-armheavy.png',
+        'iconm': 'img/icons/equip-armmage.png',
+        'icona': 'img/icons/equip-armsniper.png',
+        'icond': 'img/icons/equip-armhealer.png'
+    },
+    '27': {
+        'name': 'Legguards',
+        'iconc': 'img/icons/equip-leglight.png',
+        'iconl': 'img/icons/equip-leglight.png',
+        'iconh': 'img/icons/equip-legheavy.png',
+        'iconm': 'img/icons/equip-legmage.png',
+        'icona': 'img/icons/equip-legsniper.png',
+        'icond': 'img/icons/equip-leghealer.png'
+    },
+    '29': {
+        'name': 'Jewelry',
+        'icon': 'img/icons/equip-jewelry.png',
+    }
+};
+
+const armorTypes = {
+    'c': {
+        'name': 'Cloth'
+    },
+    'l': {
+        'name': 'Light'
+    },
+    'h': {
+        'name': 'Heavy'
+    },
+    'm': {
+        'name': 'Mage'
+    },
+    'a': {
+        'name': 'Sniper'
+    },
+    'd': {
+        'name': 'Healer'
     }
 };
 
@@ -247,13 +355,13 @@ const scalingFormula = {
         'name': '—'
     },
     '1': {
-        'name': '<strong class="blue">Str</strong>/Dex'
+        'name': 'Str/<small>Dex</small>'
     },
     '5': {
-        'name': '<strong class="green">Dex</strong>/Str'
+        'name': 'Dex/<small>Str</small>'
     },
     '7': {
-        'name': '<strong class="green">Dex</strong>/Str'
+        'name': 'Dex/<small>Str</small>'
     },
     '20': {
         'name': 'Level'

@@ -23,16 +23,13 @@ body {
   min-height: 100vh;
   margin: 0;
   animation: fadeIn ease 1s;
-  -webkit-animation: fadeIn ease 1s;
-  -moz-animation: fadeIn ease 1s;
-  -o-animation: fadeIn ease 1s;
-  -ms-animation: fadeIn ease 1s;
 }
 .ov-main-container {
   background: url('../img/background.png');
   min-height: 100vh;
   padding-top: 20px;
   padding-bottom: 20px;
+  margin: 0 auto;
 }
 h1,
 h2,
@@ -62,6 +59,13 @@ h5 {
 h6 {
   font-size: 0.875rem;
 }
+.uk-link-toggle:focus .uk-link,
+.uk-link-toggle:hover .uk-link,
+.uk-link:hover,
+a:hover {
+  color: #0f6ecd;
+  text-decoration: none;
+}
 .condensed {
   font-family: roslindale-condensed, serif;
 }
@@ -76,6 +80,60 @@ h6 {
 }
 .blue {
   color: #0e6dcd;
+}
+.orange {
+  color: #ffa500;
+}
+button {
+  background: transparent;
+  border: none;
+}
+.ov-button-pad {
+  background: linear-gradient(to bottom right, #555, #666), #555;
+  color: #da3e3e;
+  top: 10px;
+  right: 10px;
+  padding: 6px 5px 4px;
+  border-radius: 50%;
+  box-shadow: 0 2px 2px #333, inset 0 1px 1px #999;
+}
+.ov-button-pad:hover {
+  color: #de5454;
+  background: #555;
+}
+.ov-button-pad svg line {
+  stroke-width: 2;
+}
+.fade-from-right {
+  animation: fadeFromRight 250ms ease-in;
+}
+.fade-to-right {
+  animation: fadeToRight 250ms ease-out;
+}
+.fade-in {
+  opacity: 1;
+  transition: opacity 150ms ease-in;
+}
+.fade-out {
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+.scale-zero-to-normal {
+  animation: scaleZeroToNormal 100ms ease-in;
+  transform-origin: top;
+}
+.scale-normal-to-zero {
+  animation: scaleNormalToZero 100ms ease-out;
+  transform-origin: top;
+}
+.blur-zero-to-full {
+  animation: blurZeroToFull 150ms ease-in;
+}
+.blur-full-to-zero {
+  animation: blurFullToZero 150ms ease-out;
+}
+.blur-cycle {
+  animation: blurCycle 200ms ease-out;
 }
 #loading {
   background-color: rgba(0, 0, 0, 0.8);
@@ -94,59 +152,7 @@ h6 {
   width: 0;
   height: 10px;
 }
-#infoModal .info-card {
-  background: transparent;
-  width: 100%;
-  max-width: 400px !important;
-  margin: 0 auto;
-}
-#infoModal .info-card .content {
-  background-color: #e8e3de;
-  position: relative;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 30px;
-  border: 2px solid #333;
-  border-radius: 20px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-}
-#infoModal .info-card .content .uk-modal-close-default {
-  background: linear-gradient(to bottom right, #555, #666), #555;
-  color: #da3e3e;
-  top: 10px;
-  right: 10px;
-  padding: 6px 5px 4px;
-  border-radius: 50%;
-  box-shadow: 0 2px 2px #333, inset 0 1px 1px #999;
-}
-#infoModal .info-card .content .uk-modal-close-default:hover {
-  color: #de5454;
-  background: #555;
-}
-#infoModal .info-card .content .uk-modal-close-default svg line {
-  stroke-width: 2;
-}
-#infoModal.uni .info-card .content {
-  border-color: #ffa500;
-  box-shadow: 0 0 8px #ffa500;
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.page-weapons .ov-weapon-list table {
+.ov-item-list table {
   position: relative;
   width: 100%;
   font-size: 0.85rem;
@@ -154,14 +160,14 @@ h6 {
   border-collapse: separate;
   border-radius: 5px;
 }
-.page-weapons .ov-weapon-list table#weaponList {
+.ov-item-list table#itemList {
   margin-top: 0;
 }
-.page-weapons .ov-weapon-list table tr.divide-header th {
+.ov-item-list table tr.divide-header th {
   padding-top: 0;
   padding-bottom: 0;
 }
-.page-weapons .ov-weapon-list table tr.separator td {
+.ov-item-list table tr.separator td {
   background-color: rgba(95, 88, 84, 0.6);
   color: #eee;
   font-size: 0.75rem;
@@ -172,207 +178,361 @@ h6 {
   border-radius: 500px;
   text-shadow: 0 0 5px #000;
 }
-.page-weapons .ov-weapon-list table tr:not(.separator) {
+.ov-item-list table tr:not(.separator) {
   cursor: pointer;
 }
-.page-weapons .ov-weapon-list table tr:not(.separator):hover td {
+.ov-item-list table tr:not(.separator):hover td {
   background-color: rgba(255, 255, 255, 0.4);
 }
-.page-weapons .ov-weapon-list table.sticky {
+.ov-item-list table tr.selected {
+  pointer-events: none;
+}
+.ov-item-list table tr.selected td {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.ov-item-list table.sticky {
   margin-bottom: 0;
   background-color: #5f5854;
 }
-.page-weapons .ov-weapon-list table.sticky tr {
+.ov-item-list table.sticky tr {
   cursor: default;
-  border: 1px solid #888;
   border-radius: 5px;
 }
-.page-weapons .ov-weapon-list table.sticky tr th {
+.ov-item-list table.sticky tr th {
   color: #eee;
   text-transform: none;
   padding-top: 4px;
   padding-bottom: 4px;
   text-shadow: 0 0 5px #000;
 }
-.page-weapons .ov-weapon-list table td,
-.page-weapons .ov-weapon-list table th {
+.ov-item-list table td,
+.ov-item-list table th {
   padding: 1px 5px;
   text-align: center;
   white-space: nowrap;
+  vertical-align: middle;
 }
-.page-weapons .ov-weapon-list table th:first-child,
-.page-weapons .ov-weapon-list table td:first-child {
+.ov-item-list table th:first-child,
+.ov-item-list table td:first-child {
   width: 14px;
   text-align: left;
   border-top-left-radius: 500px;
   border-bottom-left-radius: 500px;
 }
-.page-weapons .ov-weapon-list table td:first-child {
+.ov-item-list table td:first-child {
   width: 24px;
   padding: 0;
 }
-.page-weapons .ov-weapon-list table td:first-child img {
-  border: 1px solid #888;
+.ov-item-list table td:first-child .type-icon {
+  border: 1px solid #7c7672;
   border-radius: 50%;
 }
-.page-weapons .ov-weapon-list table td:first-child img.uni {
+.ov-item-list table td:first-child .type-icon.uni {
   border-color: #ffa500;
   box-shadow: 0 0 2px #ffa500;
 }
-.page-weapons .ov-weapon-list table th:nth-child(2),
-.page-weapons .ov-weapon-list table td:nth-child(2) {
-  width: auto;
-  text-align: left;
-}
-.page-weapons .ov-weapon-list table th:nth-child(3),
-.page-weapons .ov-weapon-list table td:nth-child(3) {
-  width: 40px;
-}
-.page-weapons .ov-weapon-list table th:nth-child(4),
-.page-weapons .ov-weapon-list table td:nth-child(4) {
-  width: 30px;
-}
-.page-weapons .ov-weapon-list table td:nth-child(4) {
-  font-size: 0.875rem;
-}
-.page-weapons .ov-weapon-list table th:nth-child(5),
-.page-weapons .ov-weapon-list table td:nth-child(5) {
-  width: 25px;
-}
-.page-weapons .ov-weapon-list table th:nth-child(6),
-.page-weapons .ov-weapon-list table td:nth-child(6) {
-  width: 25px;
-}
-.page-weapons .ov-weapon-list table th:nth-child(7),
-.page-weapons .ov-weapon-list table td:nth-child(7) {
-  width: 30px;
-}
-.page-weapons .ov-weapon-list table th:nth-child(8),
-.page-weapons .ov-weapon-list table td:nth-child(8) {
-  width: 14px;
-}
-.page-weapons .ov-weapon-list table td:nth-child(8) {
-  width: 24px;
-  padding: 0;
-}
-.page-weapons .ov-weapon-list table th:nth-child(9),
-.page-weapons .ov-weapon-list table td:nth-child(9) {
-  width: 20px;
-}
-.page-weapons .ov-weapon-list table th:nth-child(10),
-.page-weapons .ov-weapon-list table td:nth-child(10) {
-  width: 25px;
+.ov-item-list table th:last-child,
+.ov-item-list table td:last-child {
   border-top-right-radius: 500px;
   border-bottom-right-radius: 500px;
 }
-.page-weapons .ov-weapon-list table th {
+.ov-item-list table th {
   font-size: 0.75rem;
 }
 @media only screen and (min-width: 480px) {
-  .page-weapons .ov-weapon-list table {
+  .ov-item-list table {
     font-size: 1rem;
   }
-  .page-weapons .ov-weapon-list table th {
+  .ov-item-list table th {
     font-size: 1rem;
   }
 }
-.page-weapons #infoModal ul {
-  list-style: none;
+#sidePanel {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#sidePanel::-webkit-scrollbar {
+  display: none;
+}
+#sidePanel.open {
+  display: block;
+}
+#sidePanel.uni #panelClose {
+  border-left-color: #ffa500;
+}
+#sidePanel.uni .panel {
+  border-color: #ffa500;
+  box-shadow: 0 0 8px #ffa500;
+}
+#sidePanel #panelClose {
+  position: absolute;
+  box-sizing: border-box;
+  cursor: pointer;
+  left: 0;
+  top: 50%;
+  height: 0;
+  width: 0;
   padding: 0;
-  margin: 0;
+  border: 60px solid transparent;
+  border-left: 15px solid #5f5854;
+  border-right: 15px solid transparent;
+  transform: translate(0, -50%);
 }
-.page-weapons #infoModal table {
+#sidePanel .panel {
+  background-color: #e8e3de;
+  position: relative;
+  box-sizing: border-box;
+  width: calc 70%;
+  max-width: 360px !important;
+  margin: 35px 15px;
+  padding: 30px;
+  border: 2px solid #5f5854;
+  border-radius: 20px;
+  box-shadow: 2px 2px 8px #5f5854;
+}
+#sidePanel .panel .content table {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
 }
-.page-weapons #infoModal .uk-accordion > li .uk-accordion-title {
+#sidePanel .panel .content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#sidePanel .panel .content .uk-accordion > li .uk-accordion-title {
   background-color: #5f5854;
   color: #eee;
   font-size: 1rem;
-  padding: 0 10px;
+  padding: 1px 10px;
   text-shadow: 0 0 5px #000;
-  border: 1px solid #888;
   border-radius: 5px;
   transition: all 200ms ease-in-out;
 }
-.page-weapons #infoModal .uk-accordion > li .uk-accordion-title:before {
+#sidePanel .panel .content .uk-accordion > li .uk-accordion-title:before {
   content: '[show]';
   font-size: 0.875rem;
+  line-height: 1.6;
   text-align: right;
   width: 50px;
+  background: transparent;
 }
-.page-weapons #infoModal .uk-accordion > li .uk-accordion-title:hover {
+#sidePanel .panel .content .uk-accordion > li .uk-accordion-title:hover {
   color: #ffa500;
 }
-.page-weapons #infoModal .uk-accordion > li .uk-accordion-content {
+#sidePanel .panel .content .uk-accordion > li .uk-accordion-content {
   margin-top: 5px;
 }
-.page-weapons #infoModal .uk-accordion > li .uk-accordion-content li {
+#sidePanel .panel .content .uk-accordion > li .uk-accordion-content li {
   display: inline-block;
   float: left;
   font-size: 0.75rem;
   width: calc(50% - 20px);
   padding: 0 10px;
 }
-.page-weapons #infoModal .uk-accordion > li.uk-open .uk-accordion-title {
+#sidePanel .panel .content .uk-accordion > li.uk-open .uk-accordion-title {
   color: #ffa500;
 }
-.page-weapons #infoModal .uk-accordion > li.uk-open .uk-accordion-title:before {
+#sidePanel .panel .content .uk-accordion > li.uk-open .uk-accordion-title:before {
   content: '[hide]';
 }
-.page-weapons #infoModal .title {
+#sidePanel .panel hr {
+  overflow: visible;
+  text-align: inherit;
+  margin: 10px 0;
+  border: 0;
+  border-top: 2px solid #ccc;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes scaleYZeroToNormal {
+  0% {
+    transform: scale(1, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+@keyframes scaleYNormalToZero {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 0);
+  }
+}
+@keyframes blurZeroToFull {
+  0% {
+    filter: none;
+  }
+  100% {
+    filter: blur(4px) brightness(0.5);
+  }
+}
+@keyframes blurFullToZero {
+  0% {
+    filter: blur(4px) brightness(0.5);
+  }
+  100% {
+    filter: none;
+  }
+}
+@keyframes blurCycle {
+  0% {
+    filter: none;
+  }
+  50% {
+    filter: blur(4px) brightness(0.5);
+  }
+  100% {
+    filter: none;
+  }
+}
+@keyframes fadeFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fadeToRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.page-weapons .ov-item-list table th:nth-child(2),
+.page-weapons .ov-item-list table td:nth-child(2) {
+  width: auto;
+  text-align: left;
+}
+.page-weapons .ov-item-list table th:nth-child(3),
+.page-weapons .ov-item-list table td:nth-child(3) {
+  width: 40px;
+}
+.page-weapons .ov-item-list table th:nth-child(4),
+.page-weapons .ov-item-list table td:nth-child(4) {
+  width: 30px;
+}
+.page-weapons .ov-item-list table td:nth-child(4) {
+  font-size: 0.875rem;
+}
+.page-weapons .ov-item-list table th:nth-child(5),
+.page-weapons .ov-item-list table td:nth-child(5) {
+  width: 25px;
+}
+.page-weapons .ov-item-list table th:nth-child(6),
+.page-weapons .ov-item-list table td:nth-child(6) {
+  width: 25px;
+}
+.page-weapons .ov-item-list table th:nth-child(7),
+.page-weapons .ov-item-list table td:nth-child(7) {
+  width: 30px;
+}
+.page-weapons .ov-item-list table th:nth-child(8) {
+  width: 14px;
+}
+.page-weapons .ov-item-list table td:nth-child(8) {
+  width: 24px;
+  padding: 0;
+}
+.page-weapons .ov-item-list table th:nth-child(9),
+.page-weapons .ov-item-list table td:nth-child(9) {
+  width: 20px;
+}
+.page-weapons .ov-item-list table th:nth-child(10),
+.page-weapons .ov-item-list table td:nth-child(10) {
+  width: 25px;
+}
+#sidePanel.weapons-panel .title {
   margin-top: 10px;
 }
-.page-weapons #infoModal .title .level {
+#sidePanel.weapons-panel .title .level {
   font-size: 1rem;
   font-weight: bold;
   line-height: 2;
   margin-top: 5px;
 }
-.page-weapons #infoModal .title h2 {
+#sidePanel.weapons-panel .title h2 {
   font-size: 1.5rem;
 }
-.page-weapons #infoModal .title h5 {
+#sidePanel.weapons-panel .title h5 {
   font-style: italic;
+  margin-top: 2px;
 }
-.page-weapons #infoModal .title h5 span {
+#sidePanel.weapons-panel .title h5 span {
   background-color: rgba(95, 88, 84, 0.6);
   display: inline-block;
   border-radius: 50%;
   box-shadow: 0 0 4px rgba(95, 88, 84, 0.6);
 }
-.page-weapons #infoModal .title h5 span img {
+#sidePanel.weapons-panel .title h5 span img {
   max-width: 1.4rem;
   height: auto;
 }
-.page-weapons #infoModal .stats-top {
+#sidePanel.weapons-panel .stats-top {
   margin-top: 20px;
 }
-.page-weapons #infoModal .stats-top .basic span {
+#sidePanel.weapons-panel .stats-top .basic span {
   display: inline-block;
   min-width: 75px;
 }
-.page-weapons #infoModal .stats-top .basic b {
+#sidePanel.weapons-panel .stats-top .basic b {
   display: inline-block;
   min-width: 50px;
 }
-.page-weapons #infoModal .stats-top .damage {
+#sidePanel.weapons-panel .stats-top .damage {
+  text-align: center;
   margin-top: 15px;
 }
-.page-weapons #infoModal .stats-top .damage img {
+#sidePanel.weapons-panel .stats-top .damage img {
   width: 40px;
 }
-.page-weapons #infoModal .stats-top .damage b {
+#sidePanel.weapons-panel .stats-top .damage b {
   display: inline-block;
   width: 40px;
   text-align: center;
   font-size: 1.125rem;
 }
-.page-weapons #infoModal .stats-top .damage .damage-race.undead {
+#sidePanel.weapons-panel .stats-top .damage .damage-race.undead b {
   position: relative;
 }
-.page-weapons #infoModal .stats-top .damage .damage-race.undead:after {
+#sidePanel.weapons-panel .stats-top .damage .damage-race.undead b:after {
   content: '\1F480';
   background-color: #fff;
   color: transparent;
@@ -381,84 +541,280 @@ h6 {
   position: absolute;
   text-align: center;
   right: 28px;
-  top: -10px;
+  top: -50px;
   width: 18px;
   height: 18px;
-  border: 1px solid #888;
+  border: 1px solid #7c7672;
   border-radius: 25%;
 }
-.page-weapons #infoModal .stats-top .on-hit {
+#sidePanel.weapons-panel .stats-top .on-hit {
   margin-top: 10px;
 }
-.page-weapons #infoModal .stats-top .on-hit table td:first-child {
+#sidePanel.weapons-panel .stats-top .on-hit table td:first-child {
   width: 60px;
   vertical-align: top;
 }
-.page-weapons #infoModal .stats-top .on-hit table td:last-child {
+#sidePanel.weapons-panel .stats-top .on-hit table td:last-child {
   width: auto;
 }
-.page-weapons #infoModal .stats-bottom span {
+#sidePanel.weapons-panel .stats-bottom span {
   display: inline-block;
   min-width: 60px;
 }
-.page-weapons #infoModal .stats-bottom b {
+#sidePanel.weapons-panel .stats-bottom b {
   display: inline-block;
   min-width: 35px;
 }
-.page-weapons #infoModal .stats-bottom .obsatk {
+#sidePanel.weapons-panel .stats-bottom .obsatk {
   font-size: 0.75rem;
 }
-.page-weapons #infoModal .stats-bottom .obsatk span {
+#sidePanel.weapons-panel .stats-bottom .obsatk span {
   margin-right: 10px;
 }
-.page-weapons #infoModal .stats-extra {
+#sidePanel.weapons-panel .stats-extra {
   font-size: 0.875rem;
   margin-top: 15px;
 }
-.page-weapons #infoModal .stats-extra span {
+#sidePanel.weapons-panel .stats-extra span {
   display: inline-block;
   min-width: 120px;
 }
-.page-weapons #infoModal .stats-extra .itemset b {
+#sidePanel.weapons-panel .stats-extra .itemset b {
   color: #31c631;
 }
-.page-weapons #infoModal .notes table td {
+#sidePanel.weapons-panel .notes table td {
   padding: 0;
 }
-.page-weapons #infoModal .notes table td:first-child {
+#sidePanel.weapons-panel .notes table td:first-child {
   width: 60px;
   vertical-align: top;
 }
-.page-weapons #infoModal .notes table td:last-child {
+#sidePanel.weapons-panel .notes table td:last-child {
   width: auto;
 }
-.page-weapons #infoModal .notes .uk-accordion {
+#sidePanel.weapons-panel .notes .uk-accordion {
   margin-top: 5px;
 }
-.page-weapons #infoModal .notes .uk-accordion > li .uk-accordion-title {
+#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-title {
   background-color: #5f5854;
 }
-.page-weapons #infoModal .notes .uk-accordion > li .uk-accordion-content {
+#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content {
   margin-top: 5px;
 }
-.page-weapons #infoModal .notes .uk-accordion > li .uk-accordion-content li {
+#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content li {
   width: calc(100% - 20px);
 }
-.page-weapons #infoModal .notes .uk-accordion > li .uk-accordion-content li span {
+#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content li span {
   display: inline-block;
   width: calc(100% - 20px);
 }
-.page-weapons #infoModal .notes .uk-accordion > li .uk-accordion-content li b {
+#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content li b {
   display: inline-block;
   width: 20px;
 }
-.page-weapons #infoModal .class {
+#sidePanel.weapons-panel .class {
   margin-top: 10px;
 }
-.page-weapons #infoModal hr {
-  overflow: visible;
-  text-align: inherit;
-  margin: 10px 0;
-  border: 0;
-  border-top: 2px solid #ccc;
+.page-armor .ov-item-list table th:nth-child(2),
+.page-armor .ov-item-list table td:nth-child(2) {
+  width: auto;
+  text-align: left;
+}
+.page-armor .ov-item-list table th:nth-child(3),
+.page-armor .ov-item-list table td:nth-child(3) {
+  width: 40px;
+}
+.page-armor .ov-item-list table th:nth-child(4),
+.page-armor .ov-item-list table td:nth-child(4) {
+  width: 40px;
+}
+.page-armor .ov-item-list table th:nth-child(5),
+.page-armor .ov-item-list table td:nth-child(5) {
+  width: 25px;
+}
+.page-armor .ov-item-list table th:nth-child(6),
+.page-armor .ov-item-list table td:nth-child(6) {
+  width: 30px;
+}
+.page-armor .ov-item-list table td:nth-child(6) {
+  font-size: 0.875rem;
+}
+.page-armor .ov-item-list table th:nth-child(7),
+.page-armor .ov-item-list table td:nth-child(7) {
+  width: 30px;
+}
+.page-armor .ov-item-list table td:nth-child(7) {
+  font-size: 0.875rem;
+}
+.page-armor .ov-item-list table th:nth-child(8),
+.page-armor .ov-item-list table td:nth-child(8) {
+  width: 30px;
+}
+.page-armor .ov-item-list table td:nth-child(8) {
+  font-size: 0.875rem;
+}
+.page-armor .ov-item-list table th:nth-child(9) {
+  width: 14px;
+}
+.page-armor .ov-item-list table td:nth-child(9) {
+  width: 24px;
+  padding: 0;
+}
+.page-armor .ov-item-list table th:nth-child(10),
+.page-armor .ov-item-list table td:nth-child(10) {
+  width: 25px;
+}
+#sidePanel.armor-panel .title {
+  margin-top: 10px;
+}
+#sidePanel.armor-panel .title .level {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 2;
+  margin-top: 5px;
+}
+#sidePanel.armor-panel .title h2 {
+  font-size: 1.5rem;
+}
+#sidePanel.armor-panel .title h5 {
+  margin-top: 2px;
+  font-style: italic;
+}
+#sidePanel.armor-panel .title h5 span {
+  display: inline-block;
+  margin-right: 5px;
+  border-radius: 50%;
+  box-shadow: 0 0 2px #7c7672;
+}
+#sidePanel.armor-panel .title h5 span img {
+  max-width: 2rem;
+  height: auto;
+  border: 1px solid #7c7672;
+  border-radius: 50%;
+}
+#sidePanel.armor-panel .stats-top {
+  margin-top: 20px;
+}
+#sidePanel.armor-panel .stats-top .basic span {
+  display: inline-block;
+  min-width: 75px;
+}
+#sidePanel.armor-panel .stats-top .basic b {
+  display: inline-block;
+  min-width: 50px;
+}
+#sidePanel.armor-panel .stats-top .damage {
+  text-align: center;
+  margin-top: 15px;
+}
+#sidePanel.armor-panel .stats-top .damage img {
+  width: 40px;
+}
+#sidePanel.armor-panel .stats-top .damage b {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+  font-size: 1.125rem;
+}
+#sidePanel.armor-panel .stats-top .damage .damage-race.undead b {
+  position: relative;
+}
+#sidePanel.armor-panel .stats-top .damage .damage-race.undead b:after {
+  content: '\1F480';
+  background-color: #fff;
+  color: transparent;
+  text-shadow: 0 0 0 #da3e3e;
+  font-size: 0.875rem;
+  position: absolute;
+  text-align: center;
+  right: 28px;
+  top: -50px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #7c7672;
+  border-radius: 25%;
+}
+#sidePanel.armor-panel .stats-top .on-hit {
+  margin-top: 10px;
+}
+#sidePanel.armor-panel .stats-top .on-hit table td:first-child {
+  width: 60px;
+  vertical-align: top;
+}
+#sidePanel.armor-panel .stats-top .on-hit table td:last-child {
+  width: auto;
+}
+#sidePanel.armor-panel .stats-bottom span {
+  display: inline-block;
+  min-width: 60px;
+}
+#sidePanel.armor-panel .stats-bottom b {
+  display: inline-block;
+  min-width: 35px;
+}
+#sidePanel.armor-panel .stats-bottom .obsatk {
+  font-size: 0.75rem;
+}
+#sidePanel.armor-panel .stats-bottom .obsatk span {
+  margin-right: 10px;
+}
+#sidePanel.armor-panel .stats-resists {
+  text-align: center;
+}
+#sidePanel.armor-panel .stats-resists .uk-grid {
+  margin-top: 10px;
+  align-content: center;
+}
+#sidePanel.armor-panel .stats-resists img {
+  width: 30px;
+}
+#sidePanel.armor-panel .stats-resists b {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+  font-size: 1rem;
+}
+#sidePanel.armor-panel .stats-extra {
+  font-size: 0.875rem;
+  margin-top: 15px;
+}
+#sidePanel.armor-panel .stats-extra span {
+  display: inline-block;
+  min-width: 120px;
+}
+#sidePanel.armor-panel .stats-extra .itemset b {
+  color: #31c631;
+}
+#sidePanel.armor-panel .notes table td {
+  padding: 0;
+}
+#sidePanel.armor-panel .notes table td:first-child {
+  width: 60px;
+  vertical-align: top;
+}
+#sidePanel.armor-panel .notes table td:last-child {
+  width: auto;
+}
+#sidePanel.armor-panel .notes .uk-accordion {
+  margin-top: 5px;
+}
+#sidePanel.armor-panel .notes .uk-accordion > li .uk-accordion-title {
+  background-color: #5f5854;
+}
+#sidePanel.armor-panel .notes .uk-accordion > li .uk-accordion-content {
+  margin-top: 5px;
+}
+#sidePanel.armor-panel .notes .uk-accordion > li .uk-accordion-content li {
+  width: calc(100% - 20px);
+}
+#sidePanel.armor-panel .notes .uk-accordion > li .uk-accordion-content li span {
+  display: inline-block;
+  width: calc(100% - 20px);
+}
+#sidePanel.armor-panel .notes .uk-accordion > li .uk-accordion-content li b {
+  display: inline-block;
+  width: 20px;
+}
+#sidePanel.armor-panel .class {
+  margin-top: 10px;
 }
