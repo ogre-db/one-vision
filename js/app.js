@@ -7,6 +7,44 @@ document.addEventListener('DOMContentLoaded', function() {
             closePanel(event);
         });
     }
+
+    const acordionButtons = document.querySelectorAll('button.accordion-title');
+    if (acordionButtons) {
+        let duration = 250;
+        acordionButtons.forEach( (element) => {
+            element.addEventListener('click', function (event) {
+                let contentParent = event.target.parentNode;
+                let accordionContent = contentParent.querySelector('.accordion-content');
+                let contentHeight = accordionContent.offsetHeight;
+                if (contentParent.classList.contains('open')) {
+                    contentHeight = accordionContent.offsetHeight;
+                    accordionContent.style.height = contentHeight + 'px';
+                    accordionContent.style.transition = duration + 'ms height ease';
+                    setTimeout(function() {
+                        accordionContent.style.height = '0';
+                        setTimeout(function() {
+                            accordionContent.style.transition = '';
+                            contentParent.classList.toggle('open');
+                        }, duration);
+                    }, 1);
+                } else {
+                    accordionContent.style.height = 'auto';
+                    contentHeight = accordionContent.offsetHeight;
+                    accordionContent.style.height = '0';
+                    accordionContent.style.transition = duration + 'ms height ease';
+                    setTimeout(function() {
+                        contentParent.classList.toggle('open');
+                        accordionContent.style.height = contentHeight + 'px';
+                        setTimeout(function() {
+                            accordionContent.style.height = 'auto';
+                            accordionContent.style.transition = '';
+                        }, duration);
+                    }, 1);
+                }
+            });
+        });
+    }
+
     const sidePanel = document.querySelector('#sidePanel');
     if (sidePanel) {
         sidePanel.addEventListener('animationend', function (event) {
@@ -14,18 +52,37 @@ document.addEventListener('DOMContentLoaded', function() {
             if (event.animationName === 'fadeToRight') sidePanel.classList.remove('open');
         });
     }
+
+    let stickyHeader = document.querySelector('#stickyHeader');
+    if (stickyHeader) {
+        const stickyTrigger = document.querySelector('#stickyTrigger');
+        const itemList = document.querySelector('#itemList');
+
+        let observeStickyTrigger = new IntersectionObserver( toggleSticky, {threshold: 0});
+        observeStickyTrigger.observe(stickyTrigger);
+
+        function toggleSticky() {
+            stickyHeader.classList.toggle('fixed');
+            if (stickyHeader.classList.contains('fixed')) {
+                itemList.style.paddingTop = stickyHeader.clientHeight + 'px';
+            } else {
+                itemList.style.paddingTop = '0px';
+            }
+        }
+    }
+
 });
 
 function openPanel (panel) {
 
     if ( ! panel.classList.contains('open') ) {
-
         panel.classList.add('open', 'fade-from-right');
     }
 }
-
 function closePanel (close) {
+
     close.target.closest('#sidePanel').classList.add('fade-to-right');
+    document.querySelector('tr.selected').classList.remove('selected');
 }
 
 function swapEffectStart ( panel, content ) {
@@ -63,51 +120,255 @@ function capitalize (string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+function getEffectText (ability, effectSet) {
+    let effectProperties = {};
+    let effect1 = 'eff' + effectSet + '1';
+    let effect2 = 'eff' + effectSet + '2';
+    let scaling = 'eff' + effectSet + 'scale';
+    let formula = 'eff' + effectSet + 'form';
+    let power = 'eff' + effectSet + 'pow';
+    let self = 'eff' + effectSet + 'self';
+    let target = 'eff' + effectSet + 'trg';
+    let hit1 = 'eff' + effectSet + 'hitch1';
+    let hit2 = 'eff' + effectSet + 'hitch2';
+    let accuracy = 'eff' + effectSet + 'acc';
+    let damage = 'eff' + effectSet + 'dmgt';
+    let element = 'eff' + effectSet + 'ele';
+
+    let effectText = '';
+    if (ability[effect1] === 1) {
+        if ( ability[scaling] >= 21 && ability[scaling] <= 27 )
+            effectText += 'Spell ';
+        else if (ability[scaling] === 20)
+            effectText += 'Raw ';
+        else if ( ability[scaling] >= 31 && ability[scaling] <= 37 )
+            effectText += 'Attack ';
+        effectText += 'Damage ';
+        if ( ability[scaling] === 31 || ability[scaling] === 33 )
+            effectText += 'STR/DEX';
+        else if ( ability[scaling] === 35 || ability[scaling] === 37 )
+            effectText += 'DEX/STR';
+        if ( ability.typ >= 22 && ability.typ <= 43 && ability[formula] > 1 )
+            effectText += ' +W.Skill';
+        if ( ability[scaling] === 33 || ability[scaling] === 37 )
+            effectText += ' +TP';
+        if (ability[scaling] === 20)
+            effectText += 100 / ability[power] + 'X';
+        else if ( ability[formula] === 0 && ability.eff1form === 16 )
+            effectText += 'for User\'s MaxHP - CurrentHP if Above 50%, or CurrentHP if Below';
+        else if (ability[formula] === 0)
+            effectText += 'for the Amount of Main';
+        else if (ability[formula] === 1)
+            effectText += 'for the Amount of Previous';
+        else if (ability[formula] === 10)
+            effectText += 'for ' + ability[power] + '% of Current HP';
+        else if (ability[formula] === 16)
+            effectText += 'for MaxHP - CurrentHP';
+        else if (ability[power] > 0)
+            effectText += ' +' + (ability[scaling] === 27 ? ability[power] + 40 : ability[power]);
+    } else if (ability[effect1] === 2) {
+        if (ability[scaling] === 1)
+            effectText += 'Spell Heal' + (ability[power] > 0 ? ' +' + ability[power] : '');
+        else {
+            effectText += 'Heal ';
+            if ( ability[formula] === 9 || ability[formula] === 14 )
+                effectText += 'for ' + ability[power] + '% of Max';
+            else if (ability[formula] === 0)
+                effectText += 'for the Amount of Main';
+            else if (ability[formula] === 1)
+                effectText += 'for the Amount of Previous';
+            else
+                effectText += ability[power];
+        }
+    } else if (ability[effect1] === 4) {
+        if ( ability[scaling] >= 21 && ability[scaling] <= 27 )
+            effectText += 'Spell ';
+        else if (ability[scaling] === 20)
+            effectText += 'Raw ';
+        else if ( ability[scaling] >= 31 && ability[scaling] <= 37 )
+            effectText += 'Attack ';
+        effectText += 'MP Damage ';
+        if ( ability[formula] === 17 || ability[formula] === 18 )
+            effectText += 'for ' + ability[power] + '% of Current';
+        else if (ability[formula] === 16)
+            effectText += 'for 100% of Max';
+        else if (ability[power] > 0)
+            effectText += '+' + ability[power];
+    } else if (ability[effect1] === 5) {
+        effectText += 'Charge MP ';
+        if (ability[formula] === 21 )
+            effectText += 'for ' + ability[power] + '% of Max';
+        else if (ability[formula] === 0)
+            effectText += 'for the Amount of Main';
+        else if (ability[formula] === 1)
+            effectText += 'for the Amount of Previous';
+        else
+            effectText += ability[power];
+    } else if (ability[effect1] === 8) {
+        if ( ability[scaling] >= 21 && ability[scaling] <= 27 )
+            effectText += 'Spell ';
+        else if (ability[scaling] === 20)
+            effectText += 'Raw ';
+        else if ( ability[scaling] >= 31 && ability[scaling] <= 37 )
+            effectText += 'Attack ';
+        effectText += 'TP Damage ';
+        if (ability[formula] === 23)
+            effectText += 'for ' + ability[power] + '% of Current';
+        else if (ability[formula] === 16)
+            effectText += 'for 100% of Max';
+        else if (ability[scaling] === 23)
+            effectText += '+' + ability[power];
+        else if (ability[formula] === 5)
+            effectText += ability[power] + ' - ' + ability[power] * 1.5;
+        else
+            effectText += ability[power];
+    } else if (ability[effect1] === 9) {
+        effectText += 'Charge TP ';
+        if (ability[formula] === 10)
+            effectText += 'for ' + ability[power] + '% of Current HP';
+        if (ability[formula] === 23)
+            effectText += 'for ' + ability[power] + '% of Current TP';
+        else if (ability[formula] === 0)
+            effectText += 'for the Amount of Main';
+        else if (ability[formula] === 1)
+            effectText += 'for the Amount of Previous';
+        else
+            effectText += ability[power];
+    } else if (ability[effect1] === 12) {
+        effectText += 'Delay RT by ' + ability[power];
+    } else if (ability[effect1] === 18) {
+        effectText += statusEffects[18][ability[effect2]].name;
+        if (ability[formula] === 6)
+            effectText += ' for ' + ability[power] + ' Turns';
+        else if (ability[formula] === 8)
+            effectText += ' for ' + ability[power] * 10 + ' RT';
+    } else if (ability[effect1] === 19) {
+        effectText += 'Remove ' + statusEffects[18][ability[effect2]].name;
+    } else if (ability[effect1] === 20) {
+        effectText += statusEffects[20][ability[effect2]].name;
+    } else if (ability[effect1] === 65) {
+        effectText += 'Raise ' + baseStats[ability[effect2]].name + ' Permanently by ' + ability[power] / 10 + ' points';
+    } else {
+        effectText += statusEffects[ability[effect1]].name;
+    }
+
+    let restrictText = '';
+    if ( ability[self] || ability[target] ) {
+        if (ability[self])
+            restrictText = 'Self';
+        else
+            restrictText = abilityTargeting[ability[target]];
+    } else
+        restrictText = '—';
+
+    let accuracyText = '';
+    if (ability[hit1] === 1) {
+        accuracyText = '100% if Previous Hits';
+    } else if (ability[hit1] === 2) {
+        accuracyText = ability[hit2] + '%';
+    } else if (ability[hit1] === 3) {
+        accuracyText = ability[hit2] + '% if Main Hits';
+    } else if (ability[hit1] === 4) {
+        accuracyText = '100% if Main Hits';
+    } else if (ability[hit1] === 8) {
+        accuracyText = ability[hit2] + '% + 10%/Skill Rank';
+    } else if (ability[accuracy] === 1) {
+        accuracyText = 'Melee Attack';
+    } else if (ability[accuracy] === 3) {
+        accuracyText = 'Projectile Attack';
+    } else if (ability[accuracy] === 5) {
+        accuracyText = 'Gaze Spell';
+    } else if (ability[accuracy] === 7) {
+        accuracyText = 'Projectile Spell';
+    } else if (ability[accuracy] === 9) {
+        accuracyText = 'Forbidden Spell';
+    } else if (ability[accuracy] === 11) {
+        accuracyText = 'Debuff Spell';
+    } else if (ability[accuracy] === 17) {
+        accuracyText = 'Melee Attack + TP';
+    } else if (ability[accuracy] === 19) {
+        accuracyText = 'Projectile Attack + TP';
+    } else {
+        accuracyText = '—';
+    }
+
+    let damageText = '';
+    if ([1,4,8].includes(ability[effect1])) {
+        if ([10,16,17,18,23].includes(ability[formula]))
+            damageText = damageTypes[4].name;
+        else {
+            if ( ability[scaling] === 20 || ability[formula] === 5 )
+                damageText += damageTypes[5].name;
+            else if ( !ability[damage] && !ability[element] )
+                damageText = damageTypes[6].name;
+            else if (ability[damage])
+                damageText = damageTypes[ability[damage]].name;
+            if (ability[element]) {
+                if (damageText.length > 0)
+                    damageText += ' ';
+                damageText += elements[ability[element]].name;
+            }
+
+        }
+    } else {
+        damageText = '—';
+    }
+
+    effectProperties['effect'] = effectText;
+    effectProperties['restrict'] = restrictText;
+    effectProperties['accuracy'] = accuracyText;
+    effectProperties['damage'] = damageText;
+    return effectProperties;
+}
+
 const elements = {
     '0': {
         'name': 'None',
-        'icon1': 'img/icons/icon-blank.png',
-        'icon2': 'img/icons/icon-blank.png'
+        'icon': 'img/icons/icon-blank.png'
     },
     '1': {
         'name': 'Air',
-        'icon1': 'img/icons/element-air.png',
-        'icon2': 'img/icons/damage-air.png'
+        'icon': 'img/icons/element-air.png'
     },
     '2': {
         'name': 'Earth',
-        'icon1': 'img/icons/element-earth.png',
-        'icon2': 'img/icons/damage-earth.png'
+        'icon': 'img/icons/element-earth.png'
     },
     '3': {
         'name': 'Lightning',
-        'icon1': 'img/icons/element-lightning.png',
-        'icon2': 'img/icons/damage-lightning.png'
+        'icon': 'img/icons/element-lightning.png'
     },
     '4': {
         'name': 'Water',
-        'icon1': 'img/icons/element-water.png',
-        'icon2': 'img/icons/damage-water.png'
+        'icon': 'img/icons/element-water.png'
     },
     '5': {
         'name': 'Fire',
-        'icon1': 'img/icons/element-fire.png',
-        'icon2': 'img/icons/damage-fire.png'
+        'icon': 'img/icons/element-fire.png'
     },
     '6': {
         'name': 'Ice',
-        'icon1': 'img/icons/element-ice.png',
-        'icon2': 'img/icons/damage-ice.png'
+        'icon': 'img/icons/element-ice.png'
     },
     '7': {
         'name': 'Light',
-        'icon1': 'img/icons/element-light.png',
-        'icon2': 'img/icons/damage-light.png'
+        'icon': 'img/icons/element-light.png'
     },
     '8': {
         'name': 'Dark',
-        'icon1': 'img/icons/element-dark.png',
-        'icon2': 'img/icons/damage-dark.png'
+        'icon': 'img/icons/element-dark.png'
+    },
+    '9': {
+        'name': 'Draconic',
+        'icon': 'img/icons/element-dark.png'
+    },
+    '10': {
+        'name': 'Necromancy',
+        'icon': 'img/icons/element-dark.png'
+    },
+    '12': {
+        'name': 'Art Of War',
+        'icon': 'img/icons/element-dark.png'
     },
 };
 
@@ -170,10 +431,43 @@ const damageTypes = {
     '3': {
         'name': 'Piercing',
         'icon': 'img/icons/damage-pierce.png'
+    },
+    '4': {
+        'name': 'Percentage'
+    },
+    '5': {
+        'name': 'Raw'
+    },
+    '6': {
+        'name': 'Void'
     }
 };
 
 const types = {
+    '32': {
+        'name': 'Consumables',
+        'icon': 'img/icons/item-consumable.png'
+    },
+    '33': {
+        'name': 'Treasure',
+        'icon': 'img/icons/item-treasure.png'
+    },
+    '34': {
+        'name': 'Arcana',
+        'icon': 'img/icons/item-arcana.png'
+    },
+    '35': {
+        'name': 'Classmarks',
+        'icon': 'img/icons/item-classmark.png'
+    },
+    '36': {
+        'name': 'Ingredients',
+        'icon': 'img/icons/item-material.png'
+    },
+    '37': {
+        'name': 'Recipes',
+        'icon': 'img/icons/item-recipe.png'
+    },
     '161': {
         'name': 'Fists',
         'icon1': 'img/icons/equip-claw.png',
@@ -265,14 +559,19 @@ const types = {
         'icon2': 'img/icons/equip-lobber.png'
     },
     '261': {
-        'name': 'Monster Melee',
-        'icon1': 'img/icons/equip-armheavy.png',
-        'icon2': 'img/icons/equip-armheavy.png'
+        'name': 'Innate Melee',
+        'icon1': 'img/icons/equip-unarmed.png',
+        'icon2': 'img/icons/equip-unarmed.png'
+    },
+    '277': {
+        'name': 'Innate Ranged',
+        'icon1': 'img/icons/equip-throw.png',
+        'icon2': 'img/icons/equip-throw.png'
     },
     '290': {
         'name': 'Innate Melee',
-        'icon1': 'img/icons/equip-armheavy.png',
-        'icon2': 'img/icons/equip-armheavy.png'
+        'icon1': 'img/icons/equip-unarmed.png',
+        'icon2': 'img/icons/equip-unarmed.png'
     },
     '291': {
         'name': 'Innate Ranged',
@@ -286,6 +585,7 @@ const types = {
     },
     '182': {
         'name': 'Shields',
+        'iconc': 'img/icons/equip-shieldcloth.png',
         'iconl': 'img/icons/equip-shieldlight.png',
         'iconh': 'img/icons/equip-shieldheavy.png'
     },
@@ -299,10 +599,10 @@ const types = {
     },
     '24': {
         'name': 'Body Armor',
-        'iconc': 'img/icons/equip-armorlight.png',
+        'iconc': 'img/icons/equip-armorcloth.png',
         'iconl': 'img/icons/equip-armorlight.png',
         'iconh': 'img/icons/equip-armorheavy.png',
-        'iconm': 'img/icons/equip-armorcloth.png',
+        'iconm': 'img/icons/equip-armormage.png',
         'icona': 'img/icons/equip-armorlight.png'
     },
     '25': {
@@ -316,7 +616,7 @@ const types = {
     },
     '27': {
         'name': 'Legguards',
-        'iconc': 'img/icons/equip-leglight.png',
+        'iconc': 'img/icons/equip-legcloth.png',
         'iconl': 'img/icons/equip-leglight.png',
         'iconh': 'img/icons/equip-legheavy.png',
         'iconm': 'img/icons/equip-legmage.png',
@@ -378,6 +678,9 @@ const accuracyFormula = {
     '3': {
         'name': 'Ranged'
     },
+    '7': {
+        'name': 'Ranged'
+    },
     '9': {
         'name': 'Melee'
     },
@@ -425,6 +728,48 @@ const itemSets = {
     }
 };
 
+const abilityRangeType = {
+    '0': {
+        'name': '—'
+    },
+    '1': {
+        'name': 'Direct'
+    },
+    '2': {
+        'name': 'Line'
+    },
+    '3': {
+        'name': 'Indirect'
+    },
+    '4': {
+        'name': 'Indirect'
+    },
+    '5': {
+        'name': 'Indirect'
+    },
+    '6': {
+        'name': 'Self'
+    },
+    '7': {
+        'name': 'Special'
+    },
+    '10': {
+        'name': 'Self AoE'
+    },
+    '11': {
+        'name': 'Cone'
+    },
+    '12': {
+        'name': 'Indirect'
+    },
+    '14': {
+        'name': 'All Enemies'
+    },
+    '16': {
+        'name': 'Ground'
+    }
+};
+
 const abilityTargeting = {
     '0': '—',
     '1': 'Self, Enemies',
@@ -438,7 +783,7 @@ const abilityTargeting = {
     '9': 'Floating Units',
     '10': 'Undead',
     '11': 'Stilled Undead',
-    '12': 'Front-Facing Foes',
+    '12': 'Front-Facing Foes with Clear Line of Sight and no Shield Equipped',
     '13': 'Humans',
     '14': 'Beasts',
     '15': 'Reptiles',
@@ -1088,41 +1433,62 @@ const statusEffects = {
 };
 
 const abilityType = {
+    '0': {
+        'name': 'Item Effect',
+        'icon': 'img/icons/ability-item.png'
+    },
     '1': {
-        'name': 'Air Magic'
+        'name': 'Air Magic',
+        'icon': 'img/icons/element-air.png'
     },
     '2': {
-        'name': 'Earth Magic'
+        'name': 'Earth Magic',
+        'icon': 'img/icons/element-earth.png'
     },
     '3': {
-        'name': 'Lightning Magic'
+        'name': 'Lightning Magic',
+        'icon': 'img/icons/element-lightning.png'
     },
     '4': {
-        'name': 'Water Magic'
+        'name': 'Water Magic',
+        'icon': 'img/icons/element-water.png'
     },
     '5': {
-        'name': 'Fire Magic'
+        'name': 'Fire Magic',
+        'icon': 'img/icons/element-fire.png'
     },
     '6': {
-        'name': 'Ice Magic'
+        'name': 'Ice Magic',
+        'icon': 'img/icons/element-ice.png'
     },
     '7': {
-        'name': 'Divine Magic'
+        'name': 'Divine Magic',
+        'icon': 'img/icons/element-light.png'
     },
     '8': {
-        'name': 'Dark Magic'
+        'name': 'Dark Magic',
+        'icon': 'img/icons/element-dark.png'
     },
     '9': {
-        'name': 'Draconic Magic'
+        'name': 'Draconic Magic',
+        'icon': 'img/icons/ability-draconic.png'
     },
     '10': {
-        'name': 'Necromancy'
+        'name': 'Necromancy',
+        'icon': 'img/icons/ability-necromancy.png'
     },
     '11': {
         'name': '—'
     },
     '12': {
-        'name': 'Art of War'
+        'name': 'Art of War',
+        'icon': 'img/icons/ability-artofwar.png',
+        'iconn': 'img/icons/ability-ninjutsu.png',
+        'icond': 'img/icons/ability-wardance.png',
+        'icons': 'img/icons/ability-song.png',
+        'iconb': 'img/icons/ability-bomb.png',
+        'icong': 'img/icons/ability-geomancy.png'
+
     },
     '13': {
         'name': '—'
@@ -1134,16 +1500,19 @@ const abilityType = {
         'name': '—'
     },
     '16': {
-        'name': 'Item Effect'
+        'name': 'Item Effect',
+        'icon': 'img/icons/ability-item.png'
     },
     '17': {
-        'name': 'Trap Effect'
+        'name': 'Trap'
     },
     '18': {
-        'name': 'Special Ability'
+        'name': 'Special Ability',
+        'icon': 'img/icons/ability-special.png'
     },
     '19': {
-        'name': 'Action Ability'
+        'name': 'Action Ability',
+        'icon': 'img/icons/ability-action.png'
     },
     '20': {
         'name': 'Event Effect'
@@ -1241,3 +1610,95 @@ const storyPoints = {
     '204': 'when the class is acquired (Deneb has to be recruited)',
     '205': 'when the class is acquired (Deneb has to be recruited)'
 };
+
+const baseStats = {
+    '0': {
+        'name': 'HP'
+    },
+    '1': {
+        'name': 'MP'
+    },
+    '2': {
+        'name': 'Strength'
+    },
+    '3': {
+        'name': 'Vitality'
+    },
+    '4': {
+        'name': 'Dexterity'
+    },
+    '5': {
+        'name': 'Agility'
+    },
+    '6': {
+        'name': 'Avoidance'
+    },
+    '7': {
+        'name': 'Intelligence'
+    },
+    '8': {
+        'name': 'Mind'
+    },
+    '9': {
+        'name': 'Resistance'
+    },
+    '10': {
+        'name': 'Luck'
+    }
+};
+
+const movementType = {
+    '1': '2/3',
+    '2': '3/4',
+    '3': '1/2',
+    '4': 'Warp',
+    '5': 'Fly'
+};
+
+const movementPerk = {
+    '7': 'Wade',
+    '8': 'Swim',
+    '10': 'Lava'
+};
+
+const classChangeSets = [
+    {'ccset': '0', 'name': 'All'},
+    {'ccset': '1', 'name': 'Human'},
+    {'ccset': '14', 'name': 'Special Human'},
+    {'ccset': '2', 'name': 'Hawkman'},
+    {'ccset': '3', 'name': 'Lizardman'},
+    {'ccset': '4', 'name': 'Lamia'},
+    {'ccset': '5', 'name': 'Orc'},
+    {'ccset': '9', 'name': 'Gremlin'},
+    {'ccset': '8', 'name': 'Fairy'},
+    {'ccset': '10', 'name': 'Pumpkinhead'},
+    {'ccset': '6', 'name': 'Skeleton'},
+    {'ccset': '7', 'name': 'Ghost'},
+    {'ccset': '11', 'name': 'Dragon'},
+    {'ccset': '-', 'name': '-'},
+    {'ccset': '16', 'name': 'Denam'},
+    {'ccset': '17', 'name': 'Vyce'},
+    {'ccset': '18', 'name': 'Catiua'},
+    {'ccset': '19', 'name': 'Lanselot'},
+    {'ccset': '20', 'name': 'Warren'},
+    {'ccset': '21', 'name': 'Canopus'},
+    {'ccset': '22', 'name': 'Mirdyn'},
+    {'ccset': '23', 'name': 'Gildas'},
+    {'ccset': '24', 'name': 'Cerya'},
+    {'ccset': '25', 'name': 'Sherri'},
+    {'ccset': '26', 'name': 'Cistina'},
+    {'ccset': '27', 'name': 'Olivya'},
+    {'ccset': '28', 'name': 'Deneb'},
+    {'ccset': '29', 'name': 'Iuria'},
+    {'ccset': '30', 'name': 'Ozma'},
+    {'ccset': '38', 'name': 'Lindl'},
+    {'ccset': '31', 'name': 'Leonar'},
+    {'ccset': '32', 'name': 'Ravness'},
+    {'ccset': '33', 'name': 'Azelstan'},
+    {'ccset': '35', 'name': 'Hobyrim'},
+    {'ccset': '13', 'name': 'Oelias'},
+    {'ccset': '15', 'name': 'Cressida'},
+    {'ccset': '37', 'name': 'Ganpp'},
+    {'ccset': '12', 'name': 'Ocionne'},
+    {'ccset': '34', 'name': 'Tamuz'}
+];

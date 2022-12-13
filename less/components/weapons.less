@@ -46,193 +46,124 @@
 
 #sidePanel.weapons-panel {
 
-  .title {
-    margin-top: 10px;
+  .panel {
 
-    .level {
-      font-size: 1rem;
-      font-weight: bold;
-      line-height: 2;
-      margin-top: 5px;
-    }
+    .content {
 
-    h2 {
-      font-size: 1.5rem;
-    }
+      .title {
 
-    h5 {
-      font-style: italic;
-      margin-top: 2px;
+        .subtitle {
 
-      span {
-        background-color: @highlight-dark;
-        display: inline-block;
-        border-radius: 50%;
-        box-shadow: 0 0 4px @highlight-dark;
+          .icon {
+            position: relative;
+            padding-right: 15px;
 
-        img {
-          max-width: 1.4rem;
-          height: auto;
+            &:after {
+              content: '';
+              display: inline-block;
+              position: absolute;
+              width: 20px;
+              height: 20px;
+              bottom: -8px;
+              right: -4px;
+              background-size: cover;
+            }
+
+            &.oneh:after {
+              background-image: url("../img/icons/icon-hands1.png");
+              right: -3px;
+            }
+            &.twoh:after {
+              background-image: url("../img/icons/icon-hands2.png");
+            }
+          }
         }
       }
-    }
-  }
 
-  .stats-top {
-    margin-top: 20px;
+      .stats-top {
+        margin-top: 20px;
 
-    .basic {
+        .basic {
+          display: flex;
+          flex-wrap: wrap;
 
-      span {
-        display: inline-block;
-        min-width: 75px;
+          &>div {
+            width: 50%;
+          }
+
+          span {
+            display: inline-block;
+            min-width: 75px;
+          }
+
+          b {
+            display: inline-block;
+            min-width: 50px;
+          }
+        }
+
+        .on-hit {
+          margin-top: 10px;
+
+          table {
+
+            td:first-child {
+              width: 60px;
+              vertical-align: top;
+            }
+            td:last-child {
+              width: auto;
+            }
+          }
+        }
       }
 
-      b {
-        display: inline-block;
-        min-width: 50px;
-      }
-    }
+      .stats-bottom {
 
-    .damage {
-      text-align: center;
-      margin-top: 15px;
+        &>div {
+          display: flex;
+          flex-wrap: wrap;
 
-      img {
-        width: 40px;
-      }
-      b {
-        display: inline-block;
-        width: 40px;
-        text-align: center;
-        font-size: 1.125rem;
-      }
+          &>div {
+            width: 50%;
+          }
+        }
 
-      .damage-race.undead {
+        span {
+          display: inline-block;
+          min-width: 60px;
+        }
 
         b {
-          position: relative;
+          display: inline-block;
+          min-width: 35px;
+        }
 
-          &:after {
-            content: '\1F480';
-            background-color: #fff;
-            color: transparent;
-            text-shadow: 0 0 0 @color-red;
-            font-size: 0.875rem;
-            position: absolute;
-            text-align: center;
-            right: 28px;
-            top: -50px;
-            width: 18px;
-            height: 18px;
-            border: 1px solid @border-dark;
-            border-radius: 25%;
+        .obsatk {
+          font-size: 0.75rem;
+
+          span {
+            margin-right: 10px;
+          }
+        }
+      }
+
+      .stats-extra {
+        font-size: 0.875rem;
+        margin-top: 15px;
+
+        span {
+          display: inline-block;
+          min-width: 120px;
+        }
+
+        .itemset {
+
+          b{
+            color: @color-green;
           }
         }
       }
     }
-
-    .on-hit {
-      margin-top: 10px;
-
-      table {
-
-        td:first-child {
-          width: 60px;
-          vertical-align: top;
-        }
-        td:last-child {
-          width: auto;
-        }
-      }
-    }
-  }
-
-  .stats-bottom {
-
-    span {
-      display: inline-block;
-      min-width: 60px;
-    }
-
-    b {
-      display: inline-block;
-      min-width: 35px;
-    }
-
-    .obsatk {
-      font-size: 0.75rem;
-
-      span {
-        margin-right: 10px;
-      }
-    }
-  }
-
-  .stats-extra {
-    font-size: 0.875rem;
-    margin-top: 15px;
-
-    span {
-      display: inline-block;
-      min-width: 120px;
-    }
-
-    .itemset {
-
-      b{
-        color: @color-green;
-      }
-    }
-  }
-
-  .notes {
-
-    table {
-
-      td {
-        padding: 0;
-      }
-
-      td:first-child {
-        width: 60px;
-        vertical-align: top;
-      }
-      td:last-child {
-        width: auto;
-      }
-    }
-
-    .uk-accordion {
-      margin-top: 5px;
-
-      &>li {
-
-        .uk-accordion-title {
-          background-color: @background-dark;
-        }
-
-        .uk-accordion-content {
-          margin-top: 5px;
-
-          li {
-            width: calc(100% - 20px);
-
-            span {
-              display: inline-block;
-              width: calc(100% - 20px);
-            }
-            b {
-              display: inline-block;
-              width: 20px;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .class {
-    margin-top: 10px;
   }
 }

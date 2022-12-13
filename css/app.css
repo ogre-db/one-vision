@@ -1,35 +1,64 @@
 @font-face {
-  font-family: 'roslindale-regular';
-  src: url('../fonts/roslindale-regular.eot');
-  src: local('☺'), url('../fonts/roslindale-regular.woff') format('woff'), url('../fonts/roslindale-regular.ttf') format('truetype');
+  font-family: 'JupiterPro-Condensed';
+  src: url('../fonts/JupiterPro-Condensed.woff2') format('woff2'), url('../fonts/JupiterPro-Condensed.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
-  font-family: 'roslindale-condensed';
-  src: url('../fonts/roslindale-condensed.eot');
-  src: local('☺'), url('../fonts/roslindale-condensed.woff') format('woff'), url('../fonts/roslindale-condensed.ttf') format('truetype');
+  font-family: 'JupiterPro';
+  src: url('../fonts/JupiterPro.woff2') format('woff2'), url('../fonts/JupiterPro.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 html {
-  font-family: roslindale-regular, serif;
+  font-family: JupiterPro-Condensed, serif;
   background-color: #333;
   color: #333;
-  font-size: 15px;
-  line-height: 1.4;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
 }
 body {
   min-height: 100vh;
   margin: 0;
   animation: fadeIn ease 1s;
 }
+.container {
+  display: flow-root;
+  box-sizing: border-box;
+}
 .ov-main-container {
   background: url('../img/background.png');
+  position: relative;
   min-height: 100vh;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 15px;
   margin: 0 auto;
+  max-width: 960px;
+}
+.ov-main-container h1 {
+  text-align: center;
+  margin: 40px 0;
+  text-transform: uppercase;
+}
+@media only screen and (min-width: 640px) {
+  .ov-main-container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 960px) {
+  .ov-main-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
 }
 h1,
 h2,
@@ -37,7 +66,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: roslindale-regular, serif;
   margin: 0;
 }
 h1 {
@@ -59,21 +87,29 @@ h5 {
 h6 {
   font-size: 0.875rem;
 }
-.uk-link-toggle:focus .uk-link,
-.uk-link-toggle:hover .uk-link,
-.uk-link:hover,
+a:focus,
 a:hover {
   color: #0f6ecd;
   text-decoration: none;
 }
-.condensed {
-  font-family: roslindale-condensed, serif;
+.text-right {
+  text-align: right;
+}
+b,
+.bold {
+  font-weight: bold;
+}
+small {
+  font-size: 0.85em;
 }
 .neg {
   color: #da3e3e;
 }
 .red {
   color: #da3e3e;
+}
+.pink {
+  color: #f676a1;
 }
 .green {
   color: #31c631;
@@ -87,6 +123,35 @@ a:hover {
 button {
   background: transparent;
   border: none;
+  cursor: pointer;
+}
+canvas,
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+.icon {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  font: inherit;
+  line-height: inherit;
+  color: inherit;
+  text-transform: none;
+  padding: 0;
+  background-color: transparent;
+  display: inline-block;
+  fill: currentcolor;
+  line-height: 0;
+}
+.hidden {
+  display: none !important;
+}
+.margin-small-top {
+  margin-top: 10px;
 }
 .ov-button-pad {
   background: linear-gradient(to bottom right, #555, #666), #555;
@@ -159,6 +224,9 @@ button {
   table-layout: fixed;
   border-collapse: separate;
   border-radius: 5px;
+  border-spacing: 0;
+  box-sizing: border-box;
+  line-height: 1;
 }
 .ov-item-list table#itemList {
   margin-top: 0;
@@ -177,6 +245,7 @@ button {
   text-align: center;
   border-radius: 500px;
   text-shadow: 0 0 5px #000;
+  padding: 3px 0;
 }
 .ov-item-list table tr:not(.separator) {
   cursor: pointer;
@@ -205,6 +274,22 @@ button {
   padding-bottom: 4px;
   text-shadow: 0 0 5px #000;
 }
+.ov-item-list table.sticky.fixed {
+  position: fixed;
+  top: 0;
+  z-index: 980;
+  max-width: calc(960px - 15px * 2);
+}
+@media only screen and (min-width: 640px) {
+  .ov-item-list table.sticky.fixed {
+    max-width: calc(960px - 30px * 2);
+  }
+}
+@media only screen and (min-width: 960px) {
+  .ov-item-list table.sticky.fixed {
+    max-width: calc(960px - 40px * 2);
+  }
+}
 .ov-item-list table td,
 .ov-item-list table th {
   padding: 1px 5px;
@@ -214,22 +299,24 @@ button {
 }
 .ov-item-list table th:first-child,
 .ov-item-list table td:first-child {
-  width: 14px;
+  width: 16px;
   text-align: left;
   border-top-left-radius: 500px;
   border-bottom-left-radius: 500px;
 }
 .ov-item-list table td:first-child {
-  width: 24px;
   padding: 0;
 }
-.ov-item-list table td:first-child .type-icon {
+.ov-item-list table td:first-child img {
+  background-color: #E7E2D6;
+  display: block;
   border: 1px solid #7c7672;
   border-radius: 50%;
+  box-shadow: 0 1px 0 #7c7672, inset 0 2px 0 #fff;
 }
-.ov-item-list table td:first-child .type-icon.uni {
+.ov-item-list table td:first-child img.uni {
   border-color: #ffa500;
-  box-shadow: 0 0 2px #ffa500;
+  box-shadow: 0 0 3px #ffa500;
 }
 .ov-item-list table th:last-child,
 .ov-item-list table td:last-child {
@@ -288,13 +375,13 @@ button {
   background-color: #e8e3de;
   position: relative;
   box-sizing: border-box;
-  width: calc 70%;
+  width: calc(100% - 30px);
   max-width: 360px !important;
   margin: 35px 15px;
   padding: 30px;
   border: 2px solid #5f5854;
   border-radius: 20px;
-  box-shadow: 2px 2px 8px #5f5854;
+  box-shadow: 2px 2px 8px rgba(95, 88, 84, 0.6);
 }
 #sidePanel .panel .content table {
   width: 100%;
@@ -306,41 +393,176 @@ button {
   padding: 0;
   margin: 0;
 }
-#sidePanel .panel .content .uk-accordion > li .uk-accordion-title {
+#sidePanel .panel .content .title .level {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 2;
+  margin-top: 5px;
+}
+#sidePanel .panel .content .title h2 {
+  font-size: 1.5rem;
+}
+#sidePanel .panel .content .title .subtitle {
+  font-style: italic;
+  margin-top: 2px;
+  display: table;
+}
+#sidePanel .panel .content .title .subtitle span {
+  display: table-cell;
+  vertical-align: middle;
+}
+#sidePanel .panel .content .title .subtitle span img {
+  max-width: 28px;
+  height: auto;
+  border: 1px solid #7c7672;
+  border-radius: 50%;
+  box-shadow: 0 0 2px #7c7672;
+}
+#sidePanel .panel .content .title .subtitle span img.uni {
+  border-color: #ffa500;
+  box-shadow: 0 0 3px #ffa500;
+}
+#sidePanel .panel .content .title .subtitle span:not(.icon) {
+  padding: 2px 0 0 5px;
+}
+#sidePanel .panel .content .damage {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-top: 15px;
+}
+#sidePanel .panel .content .damage > div {
+  width: calc(100% * 1 / 3.001);
+}
+#sidePanel .panel .content .damage img {
+  background-color: #D1BEA5;
+  width: 40px;
+  border: 1px solid #5f5854;
+  border-radius: 8px;
+  box-shadow: inset 0 0 5px rgba(60, 50, 45, 0.6), 0 0 2px rgba(95, 88, 84, 0.6);
+}
+#sidePanel .panel .content .damage b {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+  font-size: 1.125rem;
+}
+#sidePanel .panel .content .damage .damage-race.undead b {
+  position: relative;
+}
+#sidePanel .panel .content .damage .damage-race.undead b:after {
+  content: '\2671';
+  background-color: #fff;
+  color: transparent;
+  text-shadow: 0 0 0 #da3e3e;
+  font-size: 1.4rem;
+  line-height: 16px;
+  position: absolute;
+  text-align: center;
+  right: 28px;
+  top: -50px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #7c7672;
+  border-radius: 25%;
+}
+#sidePanel .panel .content .ov-accordion {
+  background-color: #f2f0ed;
+  position: relative;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+#sidePanel .panel .content .ov-accordion > li .accordion-title {
   background-color: #5f5854;
   color: #eee;
+  font-family: JupiterPro-Condensed, serif;
+  display: block;
   font-size: 1rem;
+  text-align: left;
+  width: 100%;
   padding: 1px 10px;
   text-shadow: 0 0 5px #000;
   border-radius: 5px;
   transition: all 200ms ease-in-out;
 }
-#sidePanel .panel .content .uk-accordion > li .uk-accordion-title:before {
+#sidePanel .panel .content .ov-accordion > li .accordion-title:after {
   content: '[show]';
   font-size: 0.875rem;
   line-height: 1.6;
+  float: right;
   text-align: right;
   width: 50px;
   background: transparent;
 }
-#sidePanel .panel .content .uk-accordion > li .uk-accordion-title:hover {
+#sidePanel .panel .content .ov-accordion > li .accordion-title:hover {
   color: #ffa500;
 }
-#sidePanel .panel .content .uk-accordion > li .uk-accordion-content {
-  margin-top: 5px;
+#sidePanel .panel .content .ov-accordion > li .accordion-content {
+  display: flow-root;
+  position: absolute;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
 }
-#sidePanel .panel .content .uk-accordion > li .uk-accordion-content li {
-  display: inline-block;
-  float: left;
-  font-size: 0.75rem;
+#sidePanel .panel .content .ov-accordion > li .accordion-content > * {
+  padding: 5px 0;
+}
+#sidePanel .panel .content .ov-accordion > li .accordion-content ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel .panel .content .ov-accordion > li .accordion-content ul li {
+  font-size: 0.7rem;
   width: calc(50% - 20px);
   padding: 0 10px;
 }
-#sidePanel .panel .content .uk-accordion > li.uk-open .uk-accordion-title {
+#sidePanel .panel .content .ov-accordion > li.open .accordion-title {
   color: #ffa500;
 }
-#sidePanel .panel .content .uk-accordion > li.uk-open .uk-accordion-title:before {
+#sidePanel .panel .content .ov-accordion > li.open .accordion-title:after {
   content: '[hide]';
+}
+#sidePanel .panel .content .ov-accordion > li.open .accordion-content {
+  position: relative;
+  opacity: 1;
+}
+#sidePanel .panel .content .ingredients .ov-accordion > li .accordion-content li {
+  width: calc(100% - 20px);
+}
+#sidePanel .panel .content .ingredients .ov-accordion > li .accordion-content li span {
+  display: inline-block;
+  width: calc(100% - 20px);
+}
+#sidePanel .panel .content .ingredients .ov-accordion > li .accordion-content li b {
+  display: inline-block;
+  width: 20px;
+  float: right;
+}
+#sidePanel .panel .content .obtain table,
+#sidePanel .panel .content .notes table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  margin: -10px 0 -10px;
+}
+#sidePanel .panel .content .obtain table td,
+#sidePanel .panel .content .notes table td {
+  padding: 0;
+}
+#sidePanel .panel .content .obtain table td:first-child,
+#sidePanel .panel .content .notes table td:first-child {
+  width: 60px;
+  vertical-align: top;
+}
+#sidePanel .panel .content .obtain table td:last-child,
+#sidePanel .panel .content .notes table td:last-child {
+  width: auto;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+#sidePanel .panel .content .class,
+#sidePanel .panel .content .notes {
+  margin-top: 10px;
 }
 #sidePanel .panel hr {
   overflow: visible;
@@ -479,141 +701,86 @@ button {
 .page-weapons .ov-item-list table td:nth-child(10) {
   width: 25px;
 }
-#sidePanel.weapons-panel .title {
-  margin-top: 10px;
+#sidePanel.weapons-panel .panel .content .title .subtitle .icon {
+  position: relative;
+  padding-right: 15px;
 }
-#sidePanel.weapons-panel .title .level {
-  font-size: 1rem;
-  font-weight: bold;
-  line-height: 2;
-  margin-top: 5px;
-}
-#sidePanel.weapons-panel .title h2 {
-  font-size: 1.5rem;
-}
-#sidePanel.weapons-panel .title h5 {
-  font-style: italic;
-  margin-top: 2px;
-}
-#sidePanel.weapons-panel .title h5 span {
-  background-color: rgba(95, 88, 84, 0.6);
+#sidePanel.weapons-panel .panel .content .title .subtitle .icon:after {
+  content: '';
   display: inline-block;
-  border-radius: 50%;
-  box-shadow: 0 0 4px rgba(95, 88, 84, 0.6);
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: -8px;
+  right: -4px;
+  background-size: cover;
 }
-#sidePanel.weapons-panel .title h5 span img {
-  max-width: 1.4rem;
-  height: auto;
+#sidePanel.weapons-panel .panel .content .title .subtitle .icon.oneh:after {
+  background-image: url("../img/icons/icon-hands1.png");
+  right: -3px;
 }
-#sidePanel.weapons-panel .stats-top {
+#sidePanel.weapons-panel .panel .content .title .subtitle .icon.twoh:after {
+  background-image: url("../img/icons/icon-hands2.png");
+}
+#sidePanel.weapons-panel .panel .content .stats-top {
   margin-top: 20px;
 }
-#sidePanel.weapons-panel .stats-top .basic span {
+#sidePanel.weapons-panel .panel .content .stats-top .basic {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel.weapons-panel .panel .content .stats-top .basic > div {
+  width: 50%;
+}
+#sidePanel.weapons-panel .panel .content .stats-top .basic span {
   display: inline-block;
   min-width: 75px;
 }
-#sidePanel.weapons-panel .stats-top .basic b {
+#sidePanel.weapons-panel .panel .content .stats-top .basic b {
   display: inline-block;
   min-width: 50px;
 }
-#sidePanel.weapons-panel .stats-top .damage {
-  text-align: center;
-  margin-top: 15px;
-}
-#sidePanel.weapons-panel .stats-top .damage img {
-  width: 40px;
-}
-#sidePanel.weapons-panel .stats-top .damage b {
-  display: inline-block;
-  width: 40px;
-  text-align: center;
-  font-size: 1.125rem;
-}
-#sidePanel.weapons-panel .stats-top .damage .damage-race.undead b {
-  position: relative;
-}
-#sidePanel.weapons-panel .stats-top .damage .damage-race.undead b:after {
-  content: '\1F480';
-  background-color: #fff;
-  color: transparent;
-  text-shadow: 0 0 0 #da3e3e;
-  font-size: 0.875rem;
-  position: absolute;
-  text-align: center;
-  right: 28px;
-  top: -50px;
-  width: 18px;
-  height: 18px;
-  border: 1px solid #7c7672;
-  border-radius: 25%;
-}
-#sidePanel.weapons-panel .stats-top .on-hit {
+#sidePanel.weapons-panel .panel .content .stats-top .on-hit {
   margin-top: 10px;
 }
-#sidePanel.weapons-panel .stats-top .on-hit table td:first-child {
+#sidePanel.weapons-panel .panel .content .stats-top .on-hit table td:first-child {
   width: 60px;
   vertical-align: top;
 }
-#sidePanel.weapons-panel .stats-top .on-hit table td:last-child {
+#sidePanel.weapons-panel .panel .content .stats-top .on-hit table td:last-child {
   width: auto;
 }
-#sidePanel.weapons-panel .stats-bottom span {
+#sidePanel.weapons-panel .panel .content .stats-bottom > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel.weapons-panel .panel .content .stats-bottom > div > div {
+  width: 50%;
+}
+#sidePanel.weapons-panel .panel .content .stats-bottom span {
   display: inline-block;
   min-width: 60px;
 }
-#sidePanel.weapons-panel .stats-bottom b {
+#sidePanel.weapons-panel .panel .content .stats-bottom b {
   display: inline-block;
   min-width: 35px;
 }
-#sidePanel.weapons-panel .stats-bottom .obsatk {
+#sidePanel.weapons-panel .panel .content .stats-bottom .obsatk {
   font-size: 0.75rem;
 }
-#sidePanel.weapons-panel .stats-bottom .obsatk span {
+#sidePanel.weapons-panel .panel .content .stats-bottom .obsatk span {
   margin-right: 10px;
 }
-#sidePanel.weapons-panel .stats-extra {
+#sidePanel.weapons-panel .panel .content .stats-extra {
   font-size: 0.875rem;
   margin-top: 15px;
 }
-#sidePanel.weapons-panel .stats-extra span {
+#sidePanel.weapons-panel .panel .content .stats-extra span {
   display: inline-block;
   min-width: 120px;
 }
-#sidePanel.weapons-panel .stats-extra .itemset b {
+#sidePanel.weapons-panel .panel .content .stats-extra .itemset b {
   color: #31c631;
-}
-#sidePanel.weapons-panel .notes table td {
-  padding: 0;
-}
-#sidePanel.weapons-panel .notes table td:first-child {
-  width: 60px;
-  vertical-align: top;
-}
-#sidePanel.weapons-panel .notes table td:last-child {
-  width: auto;
-}
-#sidePanel.weapons-panel .notes .uk-accordion {
-  margin-top: 5px;
-}
-#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-title {
-  background-color: #5f5854;
-}
-#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content {
-  margin-top: 5px;
-}
-#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content li {
-  width: calc(100% - 20px);
-}
-#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content li span {
-  display: inline-block;
-  width: calc(100% - 20px);
-}
-#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content li b {
-  display: inline-block;
-  width: 20px;
-}
-#sidePanel.weapons-panel .class {
-  margin-top: 10px;
 }
 .page-armor .ov-item-list table th:nth-child(2),
 .page-armor .ov-item-list table td:nth-child(2) {
@@ -664,157 +831,664 @@ button {
 .page-armor .ov-item-list table td:nth-child(10) {
   width: 25px;
 }
-#sidePanel.armor-panel .title {
-  margin-top: 10px;
-}
-#sidePanel.armor-panel .title .level {
-  font-size: 1rem;
-  font-weight: bold;
-  line-height: 2;
-  margin-top: 5px;
-}
-#sidePanel.armor-panel .title h2 {
-  font-size: 1.5rem;
-}
-#sidePanel.armor-panel .title h5 {
-  margin-top: 2px;
-  font-style: italic;
-}
-#sidePanel.armor-panel .title h5 span {
-  display: inline-block;
-  margin-right: 5px;
-  border-radius: 50%;
-  box-shadow: 0 0 2px #7c7672;
-}
-#sidePanel.armor-panel .title h5 span img {
-  max-width: 2rem;
-  height: auto;
-  border: 1px solid #7c7672;
-  border-radius: 50%;
-}
-#sidePanel.armor-panel .stats-top {
+#sidePanel.armor-panel .panel .content .stats-top {
   margin-top: 20px;
 }
-#sidePanel.armor-panel .stats-top .basic span {
+#sidePanel.armor-panel .panel .content .stats-top .basic {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel.armor-panel .panel .content .stats-top .basic > div {
+  width: 50%;
+}
+#sidePanel.armor-panel .panel .content .stats-top .basic span {
   display: inline-block;
   min-width: 75px;
 }
-#sidePanel.armor-panel .stats-top .basic b {
+#sidePanel.armor-panel .panel .content .stats-top .basic b {
   display: inline-block;
   min-width: 50px;
 }
-#sidePanel.armor-panel .stats-top .damage {
-  text-align: center;
-  margin-top: 15px;
-}
-#sidePanel.armor-panel .stats-top .damage img {
-  width: 40px;
-}
-#sidePanel.armor-panel .stats-top .damage b {
-  display: inline-block;
-  width: 40px;
-  text-align: center;
-  font-size: 1.125rem;
-}
-#sidePanel.armor-panel .stats-top .damage .damage-race.undead b {
-  position: relative;
-}
-#sidePanel.armor-panel .stats-top .damage .damage-race.undead b:after {
-  content: '\1F480';
-  background-color: #fff;
-  color: transparent;
-  text-shadow: 0 0 0 #da3e3e;
-  font-size: 0.875rem;
-  position: absolute;
-  text-align: center;
-  right: 28px;
-  top: -50px;
-  width: 18px;
-  height: 18px;
-  border: 1px solid #7c7672;
-  border-radius: 25%;
-}
-#sidePanel.armor-panel .stats-top .on-hit {
+#sidePanel.armor-panel .panel .content .stats-top .on-hit {
   margin-top: 10px;
 }
-#sidePanel.armor-panel .stats-top .on-hit table td:first-child {
+#sidePanel.armor-panel .panel .content .stats-top .on-hit table td:first-child {
   width: 60px;
   vertical-align: top;
 }
-#sidePanel.armor-panel .stats-top .on-hit table td:last-child {
+#sidePanel.armor-panel .panel .content .stats-top .on-hit table td:last-child {
   width: auto;
 }
-#sidePanel.armor-panel .stats-bottom span {
+#sidePanel.armor-panel .panel .content .stats-bottom > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel.armor-panel .panel .content .stats-bottom > div > div {
+  width: 50%;
+}
+#sidePanel.armor-panel .panel .content .stats-bottom span {
   display: inline-block;
   min-width: 60px;
 }
-#sidePanel.armor-panel .stats-bottom b {
+#sidePanel.armor-panel .panel .content .stats-bottom b {
   display: inline-block;
   min-width: 35px;
 }
-#sidePanel.armor-panel .stats-bottom .obsatk {
+#sidePanel.armor-panel .panel .content .stats-bottom .obsatk {
   font-size: 0.75rem;
 }
-#sidePanel.armor-panel .stats-bottom .obsatk span {
+#sidePanel.armor-panel .panel .content .stats-bottom .obsatk span {
   margin-right: 10px;
 }
-#sidePanel.armor-panel .stats-resists {
+#sidePanel.armor-panel .panel .content .stats-resists > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+#sidePanel.armor-panel .panel .content .stats-resists > div > div {
+  width: 20%;
   text-align: center;
 }
-#sidePanel.armor-panel .stats-resists .uk-grid {
-  margin-top: 10px;
-  align-content: center;
-}
-#sidePanel.armor-panel .stats-resists img {
+#sidePanel.armor-panel .panel .content .stats-resists img {
+  background-color: #D1BEA5;
   width: 30px;
+  border: 1px solid #5f5854;
+  border-radius: 6px;
+  box-shadow: inset 0 0 3px rgba(60, 50, 45, 0.6), 0 0 2px rgba(95, 88, 84, 0.6);
 }
-#sidePanel.armor-panel .stats-resists b {
+#sidePanel.armor-panel .panel .content .stats-resists b {
   display: inline-block;
   width: 30px;
   text-align: center;
   font-size: 1rem;
 }
-#sidePanel.armor-panel .stats-extra {
+#sidePanel.armor-panel .panel .content .stats-extra {
   font-size: 0.875rem;
   margin-top: 15px;
 }
-#sidePanel.armor-panel .stats-extra span {
+#sidePanel.armor-panel .panel .content .stats-extra span {
   display: inline-block;
   min-width: 120px;
 }
-#sidePanel.armor-panel .stats-extra .itemset b {
+#sidePanel.armor-panel .panel .content .stats-extra .itemset b {
   color: #31c631;
 }
-#sidePanel.armor-panel .notes table td {
+.page-sundries .ov-item-list table img.mark-basic {
+  border-color: #8B4513;
+  box-shadow: 0 0 1px rgba(139, 69, 19, 0.6);
+}
+.page-sundries .ov-item-list table img.mark-advanced {
+  border-color: #4682B4;
+  box-shadow: 0 0 1px rgba(70, 130, 180, 0.6);
+}
+.page-sundries .ov-item-list table img.mark-demi {
+  border-color: #008000;
+  box-shadow: 0 0 1px rgba(0, 128, 0, 0.6);
+}
+.page-sundries .ov-item-list table img.mark-monster {
+  border-color: #B22222;
+  box-shadow: 0 0 1px rgba(178, 34, 34, 0.6);
+}
+.page-sundries .ov-item-list table img.mark-special {
+  border-color: #ffa500;
+  box-shadow: 0 0 1px #ffa500;
+}
+.page-sundries .ov-item-list table th:nth-child(2),
+.page-sundries .ov-item-list table td:nth-child(2) {
+  width: auto;
+  text-align: left;
+}
+.page-sundries .ov-item-list table th:nth-child(3),
+.page-sundries .ov-item-list table td:nth-child(3) {
+  width: 160px;
+  text-align: left;
+}
+.page-sundries .ov-item-list table th:nth-child(3) img,
+.page-sundries .ov-item-list table td:nth-child(3) img {
+  background-color: rgba(95, 88, 84, 0.4);
+  position: relative;
+  top: 1px;
+  max-width: 18px;
+  margin-right: 4px;
+  border-radius: 50%;
+}
+.page-sundries .ov-item-list table th:nth-child(3) span,
+.page-sundries .ov-item-list table td:nth-child(3) span {
+  position: relative;
+  top: -3px;
+}
+.page-sundries .ov-item-list table th:nth-child(3) b,
+.page-sundries .ov-item-list table td:nth-child(3) b {
+  font-size: 0.85em;
+  position: relative;
+  bottom: 1px;
+}
+.page-sundries .ov-item-list table th:nth-child(4),
+.page-sundries .ov-item-list table td:nth-child(4) {
+  width: 40px;
+}
+.page-sundries .ov-item-list table th:nth-child(5),
+.page-sundries .ov-item-list table td:nth-child(5) {
+  width: 80px;
+}
+#sidePanel.sundries-panel .panel .content .title img.mark-basic {
+  border-color: #8B4513;
+  box-shadow: 0 0 3px rgba(139, 69, 19, 0.6);
+}
+#sidePanel.sundries-panel .panel .content .title img.mark-advanced {
+  border-color: #4682B4;
+  box-shadow: 0 0 3px rgba(70, 130, 180, 0.6);
+}
+#sidePanel.sundries-panel .panel .content .title img.mark-demi {
+  border-color: #008000;
+  box-shadow: 0 0 3px rgba(0, 128, 0, 0.6);
+}
+#sidePanel.sundries-panel .panel .content .title img.mark-monster {
+  border-color: #B22222;
+  box-shadow: 0 0 3px rgba(178, 34, 34, 0.6);
+}
+#sidePanel.sundries-panel .panel .content .title img.mark-special {
+  border-color: #ffa500;
+  box-shadow: 0 0 3px #ffa500;
+}
+#sidePanel.sundries-panel .panel .content .stats-top {
+  margin-top: 20px;
+}
+#sidePanel.sundries-panel .panel .content .stats-top .basic {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel.sundries-panel .panel .content .stats-top .basic > div {
+  width: 100%;
+}
+#sidePanel.sundries-panel .panel .content .stats-top .basic span {
+  display: inline-block;
+  min-width: 60px;
+}
+#sidePanel.sundries-panel .panel .content .stats-top .basic .price small {
+  font-weight: normal;
+}
+#sidePanel.sundries-panel .panel .content .stats-top .basic .falch span,
+#sidePanel.sundries-panel .panel .content .stats-top .basic .usedfor span {
+  margin-right: 5px;
+}
+#sidePanel.sundries-panel .panel .content .stats-reagent table td:first-child {
+  vertical-align: top;
+  width: 75px;
   padding: 0;
 }
-#sidePanel.armor-panel .notes table td:first-child {
+#sidePanel.sundries-panel .panel .content .stats-reagent table b b {
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+#sidePanel.sundries-panel .panel .content .stats-reagent table b b b {
+  font-weight: bold;
+}
+#sidePanel.sundries-panel .panel .content .stats-classmark table td:first-child {
+  vertical-align: top;
+  width: 50px;
+  padding: 0;
+}
+#sidePanel.sundries-panel .panel .content .stats-crafting table td:first-child {
+  vertical-align: top;
+  width: 60px;
+  padding: 0;
+}
+#sidePanel.sundries-panel .panel .content .stats-crafting table li {
+  font-size: 0.85em;
+  font-weight: bold;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect span {
+  display: inline-block;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect b {
+  display: inline-block;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect b b {
+  margin-left: 5px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect > div > div {
+  width: 50%;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect > div > div:nth-child(2n + 1) span {
+  min-width: 60px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect > div > div:nth-child(2n) b {
+  min-width: 35px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .ability > div {
+  width: 100%;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .ability .name b {
+  font-size: 1.2rem;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .ability .type b {
+  font-size: 0.85em;
+  position: relative;
+  top: -1px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .ability .type img {
+  display: inline-block;
+  background-color: rgba(95, 88, 84, 0.4);
+  position: relative;
+  height: 16px;
+  margin-right: 4px;
+  border-radius: 50%;
+  top: 2px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .main {
+  margin-top: 10px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .main > div:first-child {
+  width: 45%;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .main > div:first-child span {
+  min-width: 65px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(2) {
+  width: 55%;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(2) b {
+  min-width: 35px;
+  margin-left: 5px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(3) {
+  width: 70%;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(3) span {
+  min-width: 65px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(4) {
+  width: 30%;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(4) b {
+  min-width: 40px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .main > div .reagent b {
+  font-size: 0.75em;
+  position: relative;
+  top: -1px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div {
+  width: 100%;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div li > span {
+  min-width: 80px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div .effect span,
+#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div .restrict span {
+  float: left;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div .effect b,
+#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div .restrict b {
+  width: calc(100% - 80px);
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .divider-text {
+  display: block;
+  font-size: 0.75em;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0 5px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .divider-text:before,
+#sidePanel.sundries-panel .panel .content .stats-effect .divider-text:after {
+  content: '';
+  background-color: #ccc;
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  vertical-align: middle;
+  bottom: 2px;
+  width: 10%;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .divider-text:before {
+  margin-right: 5px;
+}
+#sidePanel.sundries-panel .panel .content .stats-effect .divider-text:after {
+  margin-left: 5px;
+}
+#sidePanel.sundries-panel .panel .content .stats-extra {
+  font-size: 0.875rem;
+  margin-top: 15px;
+}
+#sidePanel.sundries-panel .panel .content .stats-extra span {
+  display: inline-block;
+  min-width: 120px;
+}
+#sidePanel.sundries-panel .panel .content .stats-extra .itemset b {
+  color: #31c631;
+}
+#sidePanel.sundries-panel .panel .content .obtain table td:first-child,
+#sidePanel.sundries-panel .panel .content .notes table td:first-child {
+  width: 50px;
+}
+.page-abilities .ov-item-list table td:first-child img.mark-basic {
+  border-color: #8B4513;
+  box-shadow: 0 0 1px rgba(139, 69, 19, 0.6);
+}
+.page-abilities .ov-item-list table td:first-child img.mark-advanced {
+  border-color: #4682B4;
+  box-shadow: 0 0 1px rgba(70, 130, 180, 0.6);
+}
+.page-abilities .ov-item-list table td:first-child img.mark-demi {
+  border-color: #008000;
+  box-shadow: 0 0 1px rgba(0, 128, 0, 0.6);
+}
+.page-abilities .ov-item-list table td:first-child img.mark-monster {
+  border-color: #B22222;
+  box-shadow: 0 0 1px rgba(178, 34, 34, 0.6);
+}
+.page-abilities .ov-item-list table td:first-child img.mark-special {
+  border-color: #ffa500;
+  box-shadow: 0 0 1px #ffa500;
+}
+.page-abilities .ov-item-list table th:nth-child(2),
+.page-abilities .ov-item-list table td:nth-child(2) {
+  width: auto;
+  text-align: left;
+}
+.page-abilities .ov-item-list table th:nth-child(3),
+.page-abilities .ov-item-list table td:nth-child(3) {
+  text-align: left;
+}
+.page-abilities .ov-item-list table th:nth-child(3) img,
+.page-abilities .ov-item-list table td:nth-child(3) img {
+  background-color: rgba(95, 88, 84, 0.4);
+  position: relative;
+  top: 1px;
+  max-width: 18px;
+  margin-right: 4px;
+  border-radius: 50%;
+}
+.page-abilities .ov-item-list table th:nth-child(3) span,
+.page-abilities .ov-item-list table td:nth-child(3) span {
+  position: relative;
+  top: -3px;
+}
+.page-abilities .ov-item-list table th:nth-child(3) b,
+.page-abilities .ov-item-list table td:nth-child(3) b {
+  font-size: 0.85em;
+  position: relative;
+  bottom: 1px;
+}
+#sidePanel.abilities-panel .panel .content .stats-top {
+  margin-top: 20px;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div {
+  width: 100%;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic span {
+  display: inline-block;
+  min-width: 60px;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic .price small {
+  font-weight: normal;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic .falch span,
+#sidePanel.abilities-panel .panel .content .stats-top .basic .usedfor span {
+  margin-right: 5px;
+}
+#sidePanel.abilities-panel .panel .content .stats-reagent table td:first-child {
+  vertical-align: top;
+  width: 75px;
+}
+#sidePanel.abilities-panel .panel .content .stats-reagent table b b {
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+#sidePanel.abilities-panel .panel .content .stats-reagent table b b b {
+  font-weight: bold;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect span {
+  display: inline-block;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect b {
+  display: inline-block;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect b b {
+  margin-left: 5px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect > div > div {
+  width: 50%;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect > div > div:nth-child(2n + 1) span {
+  min-width: 60px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect > div > div:nth-child(2n) b {
+  min-width: 35px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .ability > div {
+  width: 100%;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .ability .name b {
+  font-size: 1.2rem;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .ability .type b {
+  font-size: 0.85em;
+  position: relative;
+  top: -1px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .ability .type img {
+  display: inline-block;
+  background-color: rgba(95, 88, 84, 0.4);
+  position: relative;
+  height: 16px;
+  margin-right: 4px;
+  border-radius: 50%;
+  top: 2px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .main {
+  margin-top: 10px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .main > div:first-child {
+  width: 45%;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .main > div:first-child span {
+  min-width: 65px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(2) {
+  width: 55%;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(2) b {
+  min-width: 35px;
+  margin-left: 5px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(3) {
+  width: 70%;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(3) span {
+  min-width: 65px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(4) {
+  width: 30%;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(4) b {
+  min-width: 40px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .main > div .reagent b {
+  font-size: 0.75em;
+  position: relative;
+  top: -1px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect [class^='effect-'] > div {
+  width: 100%;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect [class^='effect-'] > div li > span {
+  min-width: 80px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .divider-text {
+  display: block;
+  font-size: 0.75em;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0 5px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .divider-text:before,
+#sidePanel.abilities-panel .panel .content .stats-effect .divider-text:after {
+  content: '';
+  background-color: #ccc;
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  vertical-align: middle;
+  bottom: 2px;
+  width: 10%;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .divider-text:before {
+  margin-right: 5px;
+}
+#sidePanel.abilities-panel .panel .content .stats-effect .divider-text:after {
+  margin-left: 5px;
+}
+#sidePanel.abilities-panel .panel .content .stats-extra {
+  font-size: 0.875rem;
+  margin-top: 15px;
+}
+#sidePanel.abilities-panel .panel .content .stats-extra span {
+  display: inline-block;
+  min-width: 120px;
+}
+#sidePanel.abilities-panel .panel .content .stats-extra .itemset b {
+  color: #31c631;
+}
+#sidePanel.abilities-panel .panel .content .obtain table td:first-child,
+#sidePanel.abilities-panel .panel .content .notes table td:first-child {
+  width: 50px;
+}
+.page-classes .ov-item-list table th:nth-child(1),
+.page-classes .ov-item-list table td:nth-child(1) {
+  width: auto;
+  text-align: left;
+}
+.page-classes .ov-item-list table th:nth-child(2),
+.page-classes .ov-item-list table td:nth-child(2) {
+  width: 35px;
+}
+.page-classes .ov-item-list table th:nth-child(3),
+.page-classes .ov-item-list table td:nth-child(3) {
+  width: 45px;
+}
+.page-classes .ov-item-list table th:nth-child(4),
+.page-classes .ov-item-list table td:nth-child(4) {
+  width: 35px;
+}
+.page-classes .ov-item-list table td:nth-child(4) {
+  font-size: 0.875rem;
+}
+.page-classes .ov-item-list table th:nth-child(5),
+.page-classes .ov-item-list table td:nth-child(5) {
+  width: 30px;
+}
+.page-classes .ov-item-list table td:nth-child(5) {
+  width: 30px;
+}
+.page-classes .ov-item-list table th:nth-child(6),
+.page-classes .ov-item-list table td:nth-child(6) {
+  width: 45px;
+}
+.page-classes .ov-item-list table td:nth-child(6) {
+  font-size: 0.875rem;
+}
+.page-classes .ov-item-list table th:nth-child(7),
+.page-classes .ov-item-list table td:nth-child(7) {
+  width: 45px;
+}
+.page-classes .ov-item-list table td:nth-child(7) {
+  font-size: 0.875rem;
+}
+#sidePanel.weapons-panel .stats-top {
+  margin-top: 20px;
+}
+#sidePanel.weapons-panel .stats-top .basic span {
+  display: inline-block;
+  min-width: 75px;
+}
+#sidePanel.weapons-panel .stats-top .basic b {
+  display: inline-block;
+  min-width: 50px;
+}
+#sidePanel.weapons-panel .stats-top .basic .movecost span {
+  font-size: 0.875rem;
+}
+#sidePanel.weapons-panel .stats-top .basic .movecost b {
+  min-width: unset;
+  margin-left: 10px;
+}
+#sidePanel.weapons-panel .stats-bottom p {
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+#sidePanel.weapons-panel .stats-bottom span {
+  display: inline-block;
+  min-width: 60px;
+}
+#sidePanel.weapons-panel .stats-bottom b {
+  display: inline-block;
+  min-width: 35px;
+}
+#sidePanel.weapons-panel .stats-extra {
+  font-size: 0.875rem;
+  margin-top: 15px;
+}
+#sidePanel.weapons-panel .stats-extra span {
+  display: inline-block;
+  min-width: 120px;
+}
+#sidePanel.weapons-panel .notes table td {
+  padding: 0;
+}
+#sidePanel.weapons-panel .notes table td:first-child {
   width: 60px;
   vertical-align: top;
 }
-#sidePanel.armor-panel .notes table td:last-child {
+#sidePanel.weapons-panel .notes table td:last-child {
   width: auto;
 }
-#sidePanel.armor-panel .notes .uk-accordion {
+#sidePanel.weapons-panel .notes .uk-accordion {
   margin-top: 5px;
 }
-#sidePanel.armor-panel .notes .uk-accordion > li .uk-accordion-title {
+#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-title {
   background-color: #5f5854;
 }
-#sidePanel.armor-panel .notes .uk-accordion > li .uk-accordion-content {
+#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content {
   margin-top: 5px;
 }
-#sidePanel.armor-panel .notes .uk-accordion > li .uk-accordion-content li {
+#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content li {
   width: calc(100% - 20px);
 }
-#sidePanel.armor-panel .notes .uk-accordion > li .uk-accordion-content li span {
+#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content li span {
   display: inline-block;
   width: calc(100% - 20px);
 }
-#sidePanel.armor-panel .notes .uk-accordion > li .uk-accordion-content li b {
+#sidePanel.weapons-panel .notes .uk-accordion > li .uk-accordion-content li b {
   display: inline-block;
   width: 20px;
 }
-#sidePanel.armor-panel .class {
+#sidePanel.weapons-panel .races {
+  margin-top: 10px;
+}
+#sidePanel.weapons-panel .races li.spacer {
+  width: calc(100% - 40px) !important;
+  margin: 2px 10px;
+  border-bottom: 1px solid #ccc;
+}
+#sidePanel.weapons-panel .equip {
+  margin-top: 10px;
+}
+#sidePanel.weapons-panel .spells {
   margin-top: 10px;
 }

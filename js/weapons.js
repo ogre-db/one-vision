@@ -4,33 +4,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const tableItemsJson = 'data/weapons.json',
         skillsJson = 'data/skills.json',
         abilitiesJson = 'data/abilities.json',
-        classesJson = 'data/classes.json',
-        shopJson = 'data/shop.json',
-        armorJson = 'data/armor.json',
-        sundriesJson = 'data/sundries.json';
+        jobsJson = 'data/jobs.json',
+        obtainsJson = 'data/obtains.json';
     let items = [],
         skills = [],
         abilities = [],
-        classes = [],
-        shop = [],
-        armor = [],
-        sundries = [];
+        jobs = [],
+        obtains = [];
 
-    let innate;
+    let innate,
+        categoryName;
 
     const itemList = document.getElementById('itemList'),
         sidePanel = document.getElementById('sidePanel'),
         panelContent = sidePanel.querySelector('.content'),
         infoTitle = sidePanel.querySelector('.title h2'),
         infoLevel = sidePanel.querySelector('.title .level'),
-        infoType = sidePanel.querySelector('.title h5 i'),
-        infoHands = sidePanel.querySelector('.title h5 img'),
-        infoScaling = sidePanel.querySelector('.stats-top b.scaling'),
-        infoAttack = sidePanel.querySelector('.stats-top b.attack'),
-        infoAccuracy = sidePanel.querySelector('.stats-top b.accuracy'),
-        infoWeight = sidePanel.querySelector('.stats-top b.weight'),
-        infoRtCost = sidePanel.querySelector('.stats-top b.rtcost'),
-        infoRange = sidePanel.querySelector('.stats-top b.range'),
+        infoType = sidePanel.querySelector('.title .subtitle i'),
+        infoTypeIcon = sidePanel.querySelector('.title .subtitle img'),
+        infoScaling = sidePanel.querySelector('.stats-top li.scaling b'),
+        infoAttack = sidePanel.querySelector('.stats-top li.attack b'),
+        infoAccuracy = sidePanel.querySelector('.stats-top li.accuracy b'),
+        infoWeight = sidePanel.querySelector('.stats-top li.weight b'),
+        infoRtCost = sidePanel.querySelector('.stats-top li.rtcost b'),
+        infoRange = sidePanel.querySelector('.stats-top li.range b'),
         infoDamagePanel = sidePanel.querySelector('.damage'),
         infoDamageType = sidePanel.querySelector('.damage .damage-type'),
         infoDamageElement = sidePanel.querySelector('.damage .damage-element'),
@@ -38,15 +35,18 @@ document.addEventListener('DOMContentLoaded', function() {
         infoOnhit = sidePanel.querySelector('.on-hit .on-hit-eff'),
         statsDefPanel = sidePanel.querySelector('.stats-bottom .defense'),
         infoStatsBottom = sidePanel.querySelectorAll('.stats-bottom b'),
-        infoSkillBon = sidePanel.querySelector('.stats-extra .skillbon'),
-        infoPassive = sidePanel.querySelector('.stats-extra .passive'),
-        infoAbility = sidePanel.querySelector('.stats-extra .ability'),
+        infoSkillBon = sidePanel.querySelector('.stats-extra .skillbon b'),
+        infoPassive = sidePanel.querySelector('.stats-extra .passive b'),
+        infoAbility = sidePanel.querySelector('.stats-extra .ability b'),
         infoSet = sidePanel.querySelector('.stats-extra .itemset'),
-        infoLocation = sidePanel.querySelector('.notes .location'),
-        infoNotes = sidePanel.querySelector('.notes .note'),
-        infoIngredientPanel = sidePanel.querySelector('.notes .ingredients'),
-        infoIngredients = sidePanel.querySelector('.notes .uk-accordion-content ul'),
-        infoClass = sidePanel.querySelector('.class .uk-accordion-content ul');
+        infoGet = sidePanel.querySelector('.obtain .get'),
+        infoBuy = sidePanel.querySelector('.obtain .buy'),
+        infoDrop = sidePanel.querySelector('.obtain .drop'),
+        infoSteal = sidePanel.querySelector('.obtain .steal'),
+        infoCraft = sidePanel.querySelector('.obtain .craft'),
+        infoIngredients = sidePanel.querySelector('.ingredients .accordion-content ul'),
+        infoClass = sidePanel.querySelector('.class .accordion-content ul'),
+        infoNotes = sidePanel.querySelector('.notes');
 
     // const progress = document.getElementById('progress');
     // UIkit.modal(loading).show();
@@ -65,7 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             innate = element.price === 0 ? 100 : 0;
 
-            if ( index === 0 || (element.typ) !== items[index - 1].typ ) {
+            if ( index === 0 || (types[element.typ + innate]['name']) !== categoryName ) {
+                categoryName = types[element.typ + innate]['name'];
                 let tr = document.createElement('tr');
                     tr.className = 'separator';
                     let category = document.createElement('td');
@@ -79,8 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tr.id = index;
                 let type = document.createElement('td');
                     let classImg = document.createElement('img');
-                        classImg.setAttribute('src', ( element.hnd === 1 || (element.typ === 177 && element.wght > 2)) ? types[element.typ + innate]['icon2'] : types[element.typ + innate]['icon1']);
-                        classImg.classList.add('type-icon');
+                        classImg.src = (element.hnd === 1 || (element.typ === 177 && element.wght > 2)) ? types[element.typ + innate]['icon2'] : types[element.typ + innate]['icon1'];
                         if (element.skillbonamt >= 8) classImg.classList.add('uni');
                     type.appendChild(classImg);
                 let name = document.createElement('td');
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let ele = document.createElement('td');
                 if (element.ele > 0) {
                     let eleImg = document.createElement('img');
-                    eleImg.setAttribute('src', elements[element.ele]['icon1']);
+                    eleImg.src = elements[element.ele]['icon'];
                     ele.appendChild(eleImg);
                 }
                 let range = document.createElement('td');
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // progress.style.width = (index + 1) * 100 / total + '%';
         });
 
-        document.querySelectorAll('#itemList tr:not(.spacer)').forEach( (element) => {
+        document.querySelectorAll('#itemList tr:not(.separator)').forEach( (element) => {
 
             element.addEventListener( 'click', function (event) {
 
@@ -153,7 +153,10 @@ document.addEventListener('DOMContentLoaded', function() {
         infoTitle.textContent = item.name;
         infoLevel.textContent = 'Lv ' + item.lvlreq;
         infoType.textContent = types[item.typ + innate]['name'];
-        infoHands.setAttribute('data-src', item.hnd === 1 ? 'img/icons/icon-hands2.png' : 'img/icons/icon-hands1.png');
+        infoTypeIcon.src = (item.hnd === 1 || (item.typ === 177 && item.wght > 2)) ? types[item.typ + innate]['icon2'] : types[item.typ + innate]['icon1'];
+        infoTypeIcon.parentNode.classList.remove('oneh', 'twoh');
+        infoTypeIcon.parentNode.classList.add(item.hnd === 0 ? 'oneh' : 'twoh');
+        if (item.skillbonamt >= 8) infoTypeIcon.classList.add('uni'); else infoTypeIcon.classList.remove('uni');
         infoScaling.innerHTML = scalingFormula[item.frm]['name'];
         infoAttack.textContent = attackType[ item.rntyp + (item.proj === 1 ? 10 : 0) + item.arc ]['name'];
         infoAccuracy.textContent = accuracyFormula[ item.acc ]['name'];
@@ -166,23 +169,22 @@ document.addEventListener('DOMContentLoaded', function() {
         if ( item.dmgt || item.ele || item.rcbon ) {
 
             if ( item.dmgt > 0 ) {
-                infoDamageType.innerHTML = '<img data-src="' + damageTypes[item.dmgt]['icon'] + '"  uk-img>';
+                infoDamageType.innerHTML = '<img src="' + damageTypes[item.dmgt]['icon'] + '">';
                 if (item.dmgtamt > 0) infoDamageType.innerHTML += '<br><b>' + item.dmgtamt + '%</b>';
             } else infoDamageType.innerHTML = '';
-
             if ( item.ele > 0 ) {
-                infoDamageElement.innerHTML = '<img data-src="' + elements[item.ele]['icon2'] + '"  width="40" height="40" uk-img>';
+                infoDamageElement.innerHTML = '<img src="' + elements[item.ele]['icon'] + '"  width="40" height="40">';
                 if (item.eleamt > 0) infoDamageElement.innerHTML += '<br><b>' + item.eleamt + '%</b>';
             } else infoDamageElement.innerHTML = '';
 
             if ( item.rcbon > 0 ) {
-                infoDamageRace.innerHTML = '<img data-src="' + races[isOdd(item.rcbon) ? (item.rcbon - 1) : item.rcbon]['icon'] + '"  width="40" height="40" uk-img>';
+                infoDamageRace.innerHTML = '<img src="' + races[isOdd(item.rcbon) ? (item.rcbon - 1) : item.rcbon]['icon'] + '"  width="40" height="40">';
                 if (item.rcamt > 0) infoDamageRace.innerHTML += '<br><b>' + item.rcamt + '%</b>';
                 if (isOdd(item.rcbon)) infoDamageRace.classList.add('undead');
             } else infoDamageRace.innerHTML = '';
 
-            infoDamagePanel.classList.remove('uk-hidden');
-        } else infoDamagePanel.classList.add('uk-hidden');
+            infoDamagePanel.classList.remove('hidden');
+        } else infoDamagePanel.classList.add('hidden');
 
         if ( item.onhit ) {
             infoOnhit.textContent = item.onhitch === 100 ? '' : (item.onhitch + '% to ');
@@ -229,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
             stat.textContent = (statList[index] > 120 && index > 2) ? (statList[index] - 256) : (statList[index] === 0 ? '—' : statList[index]);
             (statList[index] > 120 && index > 1) ? stat.classList.add('neg') : stat.classList.remove('neg');
         });
-        item.def ? statsDefPanel.classList.remove('uk-hidden') : statsDefPanel.classList.add('uk-hidden');
+        item.def ? statsDefPanel.classList.remove('hidden') : statsDefPanel.classList.add('hidden');
 
         if ( item.skillbon ) {
             let skill = skills.find((row) => row['id'] === item.skillbon);
@@ -245,26 +247,71 @@ document.addEventListener('DOMContentLoaded', function() {
         } else infoAbility.textContent = '—';
         if ( item.set ) {
             infoSet.querySelector('b').textContent = itemSets[item.set]['name'];
-            infoSet.classList.remove('uk-hidden');
-        } else infoSet.classList.add('uk-hidden');
+            infoSet.classList.remove('hidden');
+        } else infoSet.classList.add('hidden');
 
-        let inSets = [];
-        let infoClasses = [];
-        if ( innate === 0 ) {
-            infoLocation.innerHTML = '';
-            let shopArticle = shop.find((row) => row['id'] === item.id);
-            if (shopArticle) {
-                infoLocation.innerHTML += 'Buy in ' +
-                    ( shopArticle.common ? 'Common' : '' ) +
-                    ( shopArticle.deneb ? (( shopArticle.common ? '|' : '' ) + "Deneb's") : '' ) +
-                    ( shopArticle.potd ? (( shopArticle.common || shopArticle.deneb ? '|' : '' ) + 'PotD') : '' ) + ' shop ' +
-                    storyPoints[Math.max(shopArticle.common, shopArticle.deneb, shopArticle.potd)];
-            }
+        infoGet.classList.add('hidden');
+        infoBuy.classList.add('hidden');
+        infoDrop.classList.add('hidden');
+        infoSteal.classList.add('hidden');
+        infoCraft.classList.add('hidden');
+        infoIngredients.closest('.ingredients').classList.add('hidden');
+        sidePanel.querySelector('.obtain').classList.add('hidden');
+        sidePanel.querySelectorAll('.obtain ul:not(.ov-accordion) li').forEach(e => e.remove());
+        let obtain = obtains.find((row) => row['id'] === item.id).obtained;
+        if (obtain !== 0) {
+            let obtainWays = obtain.split(' | ');
+            obtainWays.forEach((obt) => {
+                if ( obt.indexOf('Obtained in ') >= 0 ) {
+                    console.log(obt);
+                    obt = obt.replace('Obtained in ','');
+                    let locations = obt.split(', ');
+                    locations.forEach( (obt) => {
+                        let get = document.createElement('li');
+                        get.innerText = obt;
+                        infoGet.querySelector('ul').appendChild(get);
+                        infoGet.classList.remove('hidden');
+                    });
+                } else if (obt.indexOf('Buy in ') >= 0) {
+                    obt = obt.replace('Buy in ','');
+                    let locations = obt.split(', ');
+                    locations.forEach( (obt) => {
+                        let buy = document.createElement('li');
+                        buy.innerText = obt;
+                        infoBuy.querySelector('ul').appendChild(buy);
+                        infoBuy.classList.remove('hidden');
+                    });
+                } else if (obt.indexOf('Dropped by ') >= 0) {
+                    obt = obt.replace('Dropped by ','');
+                    let locations = obt.split(', ');
+                    locations.forEach( (obt) => {
+                        let drop = document.createElement('li');
+                        drop.innerText = obt;
+                        infoDrop.querySelector('ul').appendChild(drop);
+                        infoDrop.classList.remove('hidden');
+                    });
+                } else if (obt.indexOf('Stolen from ') >= 0) {
+                    obt = obt.replace('Stolen from ','');
+                    let locations = obt.split(', ');
+                    locations.forEach( (obt) => {
+                        let steal = document.createElement('li');
+                        steal.innerText = obt;
+                        infoSteal.querySelector('ul').appendChild(steal);
+                        infoSteal.classList.remove('hidden');
+                    });
+                } else if (obt.indexOf('Craft with ') >= 0) {
+                    obt = obt.replace('Craft with ','');
+                    let locations = obt.split(', ');
+                    locations.forEach( (obt) => {
+                        let craft = document.createElement('li');
+                        craft.innerText = obt;
+                        infoCraft.querySelector('ul').appendChild(craft);
+                        infoCraft.classList.remove('hidden');
+                    });
+                }
+            });
+
             if ( item.craftbk ) {
-                infoLocation.innerHTML += shopArticle ? '<br>' : '';
-                let craftBook = sundries.find((row) => row['id'] === item.craftbk);
-                infoLocation.innerHTML += 'Craft with ' + craftBook.name;
-
                 let ingredients = [];
                 let ingNum = 0;
                 for (let i = 1; i < 4; i++) {
@@ -282,47 +329,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 if ( ingredients ) {
                     infoIngredients.innerHTML = '';
-                    ingredients.forEach( function( ing ) {
-                        let ingredient = items.find((row) => row['id'] === ing.id);
-                        if ( ! ingredient ) ingredient = armor.find((row) => row['id'] === ing.id);
-                        if ( ! ingredient ) ingredient = sundries.find((row) => row['id'] === ing.id);
+                    ingredients.forEach( (ing) => {
+                        let ingredient = obtains.find((row) => row['id'] === ing.id);
                         infoIngredients.innerHTML += '<li><span>' + ingredient.name + '</span><b>x' + ing.amt + '</b></li>';
                     })
                 }
-                infoIngredientPanel.classList.remove('uk-hidden');
-            } else infoIngredientPanel.classList.add('uk-hidden');
-            if ( item.loc && item.loc !== '???' ) {
-                infoLocation.innerHTML += ( shopArticle || item.craftbk ) ? '<br>' : '';
-                infoLocation.innerHTML += item.loc;
-            } else if ( !shopArticle && !item.craftbk ) {
-                infoLocation.innerHTML += '???';
+                infoIngredients.closest('.ingredients').classList.remove('hidden');
             }
+            sidePanel.querySelector('.obtain').classList.remove('hidden');
+        } else {
+            let get = document.createElement('li');
+            get.innerText = '???';
+            infoGet.querySelector('ul').appendChild(get);
+            infoGet.classList.remove('hidden');
+        }
 
+        let infoClasses = [];
+        if (innate) {
+            jobs.forEach( (job) => {
+                if ( job.innml === item.id || job.innrng === item.id )
+                    infoClasses.push(job);
+            });
+        } else {
+            let inSets = [];
             for (let i = 0; i < 56; i++) {
                 if (item['eq' + i] === 1) inSets.push(i);
             }
-            infoClasses = classes.filter((rows) => inSets.includes(rows['eqset']));
-
-        } else {
-            infoClasses = classes.filter((rows) => (item.id === rows['innml'] || item.id === rows['innrng']));
-            inSets = [1];
-            infoLocation.textContent = '—';
+            infoClasses = jobs.filter((rows) => inSets.includes(rows['eqset']));
         }
-
-        if (item.notes) {
-            infoNotes.querySelector('b').textContent = item.notes;
-            infoNotes.classList.remove('uk-hidden');
-        } else infoNotes.classList.add('uk-hidden');
-
-        let setCount = inSets.length;
-        if ( setCount === 0 )
+        let classCount = infoClasses.length;
+        if ( classCount === 0 )
             infoClass.innerHTML = '<li>None</li>';
-        else if ( setCount < 56 ) {
+        else if ( classCount < jobs.length ) {
             infoClass.innerHTML = '';
-            infoClasses.forEach( function(el) {
+            infoClasses.forEach( (el) => {
                 infoClass.innerHTML += '<li>' + el.name + '</li>';
             });
         } else infoClass.innerHTML = '<li>All</li>';
+
+        if (item.notes) {
+            infoNotes.querySelector('b').textContent = item.notes;
+            infoNotes.classList.remove('hidden');
+        } else infoNotes.classList.add('hidden');
 
         swapEffectRemove( sidePanel, panelContent );
 
@@ -337,17 +385,11 @@ document.addEventListener('DOMContentLoaded', function() {
         fetchJSON(abilitiesJson).then(
             data => abilities = data
         );
-        fetchJSON(classesJson).then(
-            data => classes = data
+        fetchJSON(jobsJson).then(
+            data => jobs = data
         );
-        fetchJSON(shopJson).then(
-            data => shop = data
-        );
-        fetchJSON(armorJson).then(
-            data => armor = data
-        );
-        fetchJSON(sundriesJson).then(
-            data => sundries = data
+        fetchJSON(obtainsJson).then(
+            data => obtains = data
         );
     }
 });

@@ -1,0 +1,168 @@
+
+.page-classes {
+
+  .ov-item-list {
+
+    table {
+
+      th:nth-child(1), td:nth-child(1) {
+        width: auto;
+        text-align: left;
+      }
+      th:nth-child(2), td:nth-child(2) {
+        width: 35px;
+      }
+      th:nth-child(3), td:nth-child(3) {
+        width: 45px;
+      }
+      th:nth-child(4), td:nth-child(4) {
+        width: 35px;
+      }
+      td:nth-child(4) {
+        font-size: 0.875rem;
+      }
+      th:nth-child(5), td:nth-child(5) {
+        width: 30px;
+      }
+      td:nth-child(5) {
+        width: 30px;
+      }
+      th:nth-child(6), td:nth-child(6) {
+        width: 45px;
+      }
+      td:nth-child(6) {
+        font-size: 0.875rem;
+      }
+      th:nth-child(7), td:nth-child(7) {
+        width: 45px;
+      }
+      td:nth-child(7) {
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+#sidePanel.weapons-panel {
+
+  .stats-top {
+    margin-top: 20px;
+
+    .basic {
+
+      span {
+        display: inline-block;
+        min-width: 75px;
+      }
+
+      b {
+        display: inline-block;
+        min-width: 50px;
+      }
+
+      .movecost {
+
+        span {
+          font-size: 0.875rem;
+        }
+
+        b {
+          min-width: unset;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .stats-bottom {
+
+    p {
+      font-size: 0.875rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    span {
+      display: inline-block;
+      min-width: 60px;
+    }
+
+    b {
+      display: inline-block;
+      min-width: 35px;
+    }
+  }
+
+  .stats-extra {
+    font-size: 0.875rem;
+    margin-top: 15px;
+
+    span {
+      display: inline-block;
+      min-width: 120px;
+    }
+  }
+
+  .notes {
+
+    table {
+
+      td {
+        padding: 0;
+      }
+
+      td:first-child {
+        width: 60px;
+        vertical-align: top;
+      }
+      td:last-child {
+        width: auto;
+      }
+    }
+
+    .uk-accordion {
+      margin-top: 5px;
+
+      &>li {
+
+        .uk-accordion-title {
+          background-color: @background-dark;
+        }
+
+        .uk-accordion-content {
+          margin-top: 5px;
+
+          li {
+            width: calc(100% - 20px);
+
+            span {
+              display: inline-block;
+              width: calc(100% - 20px);
+            }
+            b {
+              display: inline-block;
+              width: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .races {
+    margin-top: 10px;
+
+    li.spacer {
+      width: calc(100% - 40px) !important;
+      margin: 2px 10px;
+      border-bottom: 1px solid @border-light;
+    }
+  }
+
+  .equip {
+    margin-top: 10px;
+  }
+  .spells {
+    margin-top: 10px;
+  }
+}
