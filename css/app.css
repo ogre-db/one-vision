@@ -20,6 +20,11 @@ html {
   font-weight: 400;
   line-height: 1.2;
 }
+html *,
+html *::before,
+html *::after {
+  box-sizing: border-box;
+}
 body {
   min-height: 100vh;
   margin: 0;
@@ -238,7 +243,7 @@ video {
 .ov-item-list table tr.separator td {
   background-color: rgba(95, 88, 84, 0.6);
   color: #eee;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 5px;
   font-weight: bold;
@@ -278,17 +283,7 @@ video {
   position: fixed;
   top: 0;
   z-index: 980;
-  max-width: calc(960px - 15px * 2);
-}
-@media only screen and (min-width: 640px) {
-  .ov-item-list table.sticky.fixed {
-    max-width: calc(960px - 30px * 2);
-  }
-}
-@media only screen and (min-width: 960px) {
-  .ov-item-list table.sticky.fixed {
-    max-width: calc(960px - 40px * 2);
-  }
+  max-width: calc(100% - 15px * 2);
 }
 .ov-item-list table td,
 .ov-item-list table th {
@@ -299,7 +294,7 @@ video {
 }
 .ov-item-list table th:first-child,
 .ov-item-list table td:first-child {
-  width: 16px;
+  width: 18px;
   text-align: left;
   border-top-left-radius: 500px;
   border-bottom-left-radius: 500px;
@@ -334,12 +329,27 @@ video {
     font-size: 1rem;
   }
 }
+@media only screen and (min-width: 480px) {
+  .ov-item-list table th:first-child,
+  .ov-item-list table td:first-child {
+    width: 26px;
+  }
+}
+@media only screen and (min-width: 640px) {
+  .ov-item-list table.sticky.fixed {
+    max-width: calc(100% - 30px * 2);
+  }
+}
+@media only screen and (min-width: 960px) {
+  .ov-item-list table.sticky.fixed {
+    max-width: calc(960px - 40px * 2);
+  }
+}
 #sidePanel {
   display: none;
   position: fixed;
   right: 0;
   top: 0;
-  bottom: 0;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -349,6 +359,7 @@ video {
 }
 #sidePanel.open {
   display: block;
+  z-index: 981;
 }
 #sidePanel.uni #panelClose {
   border-left-color: #ffa500;
@@ -514,8 +525,9 @@ video {
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-content ul li {
   font-size: 0.7rem;
-  width: calc(50% - 20px);
+  width: 50%;
   padding: 0 10px;
+  white-space: nowrap;
 }
 #sidePanel .panel .content .ov-accordion > li.open .accordion-title {
   color: #ffa500;
@@ -528,11 +540,11 @@ video {
   opacity: 1;
 }
 #sidePanel .panel .content .ingredients .ov-accordion > li .accordion-content li {
-  width: calc(100% - 20px);
+  width: 100%;
 }
 #sidePanel .panel .content .ingredients .ov-accordion > li .accordion-content li span {
   display: inline-block;
-  width: calc(100% - 20px);
+  width: 100%;
 }
 #sidePanel .panel .content .ingredients .ov-accordion > li .accordion-content li b {
   display: inline-block;
@@ -665,7 +677,10 @@ video {
 }
 .page-weapons .ov-item-list table th:nth-child(3),
 .page-weapons .ov-item-list table td:nth-child(3) {
-  width: 40px;
+  width: 30px;
+}
+.page-weapons .ov-item-list table td:nth-child(3) {
+  font-weight: bold;
 }
 .page-weapons .ov-item-list table th:nth-child(4),
 .page-weapons .ov-item-list table td:nth-child(4) {
@@ -684,13 +699,13 @@ video {
 }
 .page-weapons .ov-item-list table th:nth-child(7),
 .page-weapons .ov-item-list table td:nth-child(7) {
-  width: 30px;
+  width: 25px;
 }
 .page-weapons .ov-item-list table th:nth-child(8) {
-  width: 14px;
+  width: 16px;
 }
 .page-weapons .ov-item-list table td:nth-child(8) {
-  width: 24px;
+  width: 16px;
   padding: 0;
 }
 .page-weapons .ov-item-list table th:nth-child(9),
@@ -700,6 +715,40 @@ video {
 .page-weapons .ov-item-list table th:nth-child(10),
 .page-weapons .ov-item-list table td:nth-child(10) {
   width: 25px;
+}
+@media only screen and (min-width: 480px) {
+  .page-weapons .ov-item-list table th:nth-child(3),
+  .page-weapons .ov-item-list table td:nth-child(3) {
+    width: 50px;
+  }
+  .page-weapons .ov-item-list table th:nth-child(4),
+  .page-weapons .ov-item-list table td:nth-child(4) {
+    width: 50px;
+  }
+  .page-weapons .ov-item-list table th:nth-child(5),
+  .page-weapons .ov-item-list table td:nth-child(5) {
+    width: 40px;
+  }
+  .page-weapons .ov-item-list table th:nth-child(6),
+  .page-weapons .ov-item-list table td:nth-child(6) {
+    width: 40px;
+  }
+  .page-weapons .ov-item-list table th:nth-child(7),
+  .page-weapons .ov-item-list table td:nth-child(7) {
+    width: 50px;
+  }
+  .page-weapons .ov-item-list table th:nth-child(8),
+  .page-weapons .ov-item-list table td:nth-child(8) {
+    width: 26px;
+  }
+  .page-weapons .ov-item-list table th:nth-child(9),
+  .page-weapons .ov-item-list table td:nth-child(9) {
+    width: 30px;
+  }
+  .page-weapons .ov-item-list table th:nth-child(10),
+  .page-weapons .ov-item-list table td:nth-child(10) {
+    width: 40px;
+  }
 }
 #sidePanel.weapons-panel .panel .content .title .subtitle .icon {
   position: relative;
@@ -789,47 +838,93 @@ video {
 }
 .page-armor .ov-item-list table th:nth-child(3),
 .page-armor .ov-item-list table td:nth-child(3) {
-  width: 40px;
+  width: 25px;
 }
 .page-armor .ov-item-list table th:nth-child(4),
 .page-armor .ov-item-list table td:nth-child(4) {
-  width: 40px;
+  width: 25px;
+}
+.page-armor .ov-item-list table td:nth-child(4) {
+  font-weight: bold;
 }
 .page-armor .ov-item-list table th:nth-child(5),
 .page-armor .ov-item-list table td:nth-child(5) {
-  width: 25px;
+  width: 20px;
 }
 .page-armor .ov-item-list table th:nth-child(6),
 .page-armor .ov-item-list table td:nth-child(6) {
-  width: 30px;
+  width: 25px;
 }
 .page-armor .ov-item-list table td:nth-child(6) {
-  font-size: 0.875rem;
+  font-size: 0.7rem;
 }
 .page-armor .ov-item-list table th:nth-child(7),
 .page-armor .ov-item-list table td:nth-child(7) {
-  width: 30px;
+  width: 25px;
 }
 .page-armor .ov-item-list table td:nth-child(7) {
-  font-size: 0.875rem;
+  font-size: 0.7rem;
 }
 .page-armor .ov-item-list table th:nth-child(8),
 .page-armor .ov-item-list table td:nth-child(8) {
-  width: 30px;
+  width: 25px;
 }
 .page-armor .ov-item-list table td:nth-child(8) {
-  font-size: 0.875rem;
+  font-size: 0.7rem;
 }
 .page-armor .ov-item-list table th:nth-child(9) {
-  width: 14px;
+  width: 18px;
 }
 .page-armor .ov-item-list table td:nth-child(9) {
-  width: 24px;
+  width: 18px;
   padding: 0;
 }
 .page-armor .ov-item-list table th:nth-child(10),
 .page-armor .ov-item-list table td:nth-child(10) {
   width: 25px;
+}
+@media only screen and (min-width: 480px) {
+  .page-armor .ov-item-list table th:nth-child(3),
+  .page-armor .ov-item-list table td:nth-child(3) {
+    width: 50px;
+  }
+  .page-armor .ov-item-list table th:nth-child(4),
+  .page-armor .ov-item-list table td:nth-child(4) {
+    width: 50px;
+  }
+  .page-armor .ov-item-list table th:nth-child(5),
+  .page-armor .ov-item-list table td:nth-child(5) {
+    width: 25px;
+  }
+  .page-armor .ov-item-list table th:nth-child(6),
+  .page-armor .ov-item-list table td:nth-child(6) {
+    width: 50px;
+  }
+  .page-armor .ov-item-list table td:nth-child(6) {
+    font-size: 0.875rem;
+  }
+  .page-armor .ov-item-list table th:nth-child(7),
+  .page-armor .ov-item-list table td:nth-child(7) {
+    width: 50px;
+  }
+  .page-armor .ov-item-list table td:nth-child(7) {
+    font-size: 0.875rem;
+  }
+  .page-armor .ov-item-list table th:nth-child(8),
+  .page-armor .ov-item-list table td:nth-child(8) {
+    width: 50px;
+  }
+  .page-armor .ov-item-list table td:nth-child(8) {
+    font-size: 0.875rem;
+  }
+  .page-armor .ov-item-list table th:nth-child(9),
+  .page-armor .ov-item-list table td:nth-child(9) {
+    width: 26px;
+  }
+  .page-armor .ov-item-list table th:nth-child(10),
+  .page-armor .ov-item-list table td:nth-child(10) {
+    width: 40px;
+  }
 }
 #sidePanel.armor-panel .panel .content .stats-top {
   margin-top: 20px;
@@ -941,7 +1036,7 @@ video {
 }
 .page-sundries .ov-item-list table th:nth-child(3),
 .page-sundries .ov-item-list table td:nth-child(3) {
-  width: 160px;
+  width: 130px;
   text-align: left;
 }
 .page-sundries .ov-item-list table th:nth-child(3) img,
@@ -966,11 +1061,25 @@ video {
 }
 .page-sundries .ov-item-list table th:nth-child(4),
 .page-sundries .ov-item-list table td:nth-child(4) {
-  width: 40px;
+  width: 25px;
 }
 .page-sundries .ov-item-list table th:nth-child(5),
 .page-sundries .ov-item-list table td:nth-child(5) {
-  width: 80px;
+  width: 40px;
+}
+@media only screen and (min-width: 480px) {
+  .page-sundries .ov-item-list table th:nth-child(3),
+  .page-sundries .ov-item-list table td:nth-child(3) {
+    width: 160px;
+  }
+  .page-sundries .ov-item-list table th:nth-child(4),
+  .page-sundries .ov-item-list table td:nth-child(4) {
+    width: 40px;
+  }
+  .page-sundries .ov-item-list table th:nth-child(5),
+  .page-sundries .ov-item-list table td:nth-child(5) {
+    width: 80px;
+  }
 }
 #sidePanel.sundries-panel .panel .content .title img.mark-basic {
   border-color: #8B4513;
@@ -1167,26 +1276,6 @@ video {
 #sidePanel.sundries-panel .panel .content .notes table td:first-child {
   width: 50px;
 }
-.page-abilities .ov-item-list table td:first-child img.mark-basic {
-  border-color: #8B4513;
-  box-shadow: 0 0 1px rgba(139, 69, 19, 0.6);
-}
-.page-abilities .ov-item-list table td:first-child img.mark-advanced {
-  border-color: #4682B4;
-  box-shadow: 0 0 1px rgba(70, 130, 180, 0.6);
-}
-.page-abilities .ov-item-list table td:first-child img.mark-demi {
-  border-color: #008000;
-  box-shadow: 0 0 1px rgba(0, 128, 0, 0.6);
-}
-.page-abilities .ov-item-list table td:first-child img.mark-monster {
-  border-color: #B22222;
-  box-shadow: 0 0 1px rgba(178, 34, 34, 0.6);
-}
-.page-abilities .ov-item-list table td:first-child img.mark-special {
-  border-color: #ffa500;
-  box-shadow: 0 0 1px #ffa500;
-}
 .page-abilities .ov-item-list table th:nth-child(2),
 .page-abilities .ov-item-list table td:nth-child(2) {
   width: auto;
@@ -1194,27 +1283,51 @@ video {
 }
 .page-abilities .ov-item-list table th:nth-child(3),
 .page-abilities .ov-item-list table td:nth-child(3) {
-  text-align: left;
+  width: 45px;
 }
-.page-abilities .ov-item-list table th:nth-child(3) img,
-.page-abilities .ov-item-list table td:nth-child(3) img {
-  background-color: rgba(95, 88, 84, 0.4);
-  position: relative;
-  top: 1px;
-  max-width: 18px;
-  margin-right: 4px;
-  border-radius: 50%;
+.page-abilities .ov-item-list table th:nth-child(4),
+.page-abilities .ov-item-list table td:nth-child(4) {
+  width: 30px;
 }
-.page-abilities .ov-item-list table th:nth-child(3) span,
-.page-abilities .ov-item-list table td:nth-child(3) span {
-  position: relative;
-  top: -3px;
+.page-abilities .ov-item-list table th:nth-child(5),
+.page-abilities .ov-item-list table td:nth-child(5) {
+  width: 32px;
 }
-.page-abilities .ov-item-list table th:nth-child(3) b,
-.page-abilities .ov-item-list table td:nth-child(3) b {
-  font-size: 0.85em;
-  position: relative;
-  bottom: 1px;
+.page-abilities .ov-item-list table td:nth-child(5) {
+  padding: 0;
+}
+.page-abilities .ov-item-list table td:nth-child(5) img {
+  width: 50%;
+}
+.page-abilities .ov-item-list table th:nth-child(6),
+.page-abilities .ov-item-list table td:nth-child(6) {
+  width: 40px;
+}
+.page-abilities .ov-item-list table th:nth-child(7),
+.page-abilities .ov-item-list table td:nth-child(7) {
+  width: 30px;
+}
+@media only screen and (min-width: 480px) {
+  .page-abilities .ov-item-list table th:nth-child(3),
+  .page-abilities .ov-item-list table td:nth-child(3) {
+    width: 60px;
+  }
+  .page-abilities .ov-item-list table th:nth-child(4),
+  .page-abilities .ov-item-list table td:nth-child(4) {
+    width: 40px;
+  }
+  .page-abilities .ov-item-list table th:nth-child(5),
+  .page-abilities .ov-item-list table td:nth-child(5) {
+    width: 48px;
+  }
+  .page-abilities .ov-item-list table th:nth-child(6),
+  .page-abilities .ov-item-list table td:nth-child(6) {
+    width: 60px;
+  }
+  .page-abilities .ov-item-list table th:nth-child(7),
+  .page-abilities .ov-item-list table td:nth-child(7) {
+    width: 40px;
+  }
 }
 #sidePanel.abilities-panel .panel .content .stats-top {
   margin-top: 20px;

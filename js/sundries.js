@@ -308,13 +308,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 infoEffect.querySelector('.hits b').innerText = '—';
 
             if (ability.eff11) {
+                let effect1 = getEffectText(ability, 1);
                 if (item.name.indexOf('Palace Guide') >= 0)
                     infoEffect.querySelector('.effect-1 .effect b').innerText = 'Teleports the party to a different section of the Palace of the Dead';
                 else
-                    infoEffect.querySelector('.effect-1 .effect b').innerText = getEffectText(ability, 1).effect;
-                infoEffect.querySelector('.effect-1 .restrict b').innerText = getEffectText(ability, 1).restrict;
-                infoEffect.querySelector('.effect-1 .acc b').innerText = getEffectText(ability, 1).accuracy;
-                infoEffect.querySelector('.effect-1 .profile b').innerText = getEffectText(ability, 1).damage;
+                    infoEffect.querySelector('.effect-1 .effect b').innerText = effect1.effect;
+                infoEffect.querySelector('.effect-1 .restrict b').innerText = effect1.restrict;
+                infoEffect.querySelector('.effect-1 .acc b').innerText = effect1.accuracy;
+                let damageProfile = '';
+                if (effect1.damage.length > 0) {
+                    effect1.damage.forEach( (dmg, i) => {
+                        if (i > 0) damageProfile += ' ';
+                        damageProfile += dmg.name;
+                    });
+                } else damageProfile = '—';
+                infoEffect.querySelector('.effect-1 .profile b').innerText = damageProfile;
                 infoEffect.querySelector('.effect-1').classList.remove('hidden');
                 infoEffect.querySelector('.divider-1').classList.remove('hidden');
             } else {
@@ -322,10 +330,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 infoEffect.querySelector('.divider-1').classList.add('hidden');
             }
             if (ability.eff21) {
-                infoEffect.querySelector('.effect-2 .effect b').innerText = getEffectText(ability, 2).effect;
-                infoEffect.querySelector('.effect-2 .restrict b').innerText = getEffectText(ability, 2).restrict;
-                infoEffect.querySelector('.effect-2 .acc b').innerText = getEffectText(ability, 2).accuracy;
-                infoEffect.querySelector('.effect-2 .profile b').innerText = getEffectText(ability, 2).damage;
+                let effect2 = getEffectText(ability, 2);
+                infoEffect.querySelector('.effect-2 .effect b').innerText = effect2.effect;
+                infoEffect.querySelector('.effect-2 .restrict b').innerText = effect2.restrict;
+                infoEffect.querySelector('.effect-2 .acc b').innerText = effect2.accuracy;
+                let damageProfile = '';
+                if (effect2.damage.length > 0) {
+                    effect2.damage.forEach( (dmg, i) => {
+                        if (i > 0) damageProfile += ' ';
+                        damageProfile += dmg.name;
+                    });
+                } else damageProfile = '—';
+                infoEffect.querySelector('.effect-2 .profile b').innerText = damageProfile;
                 infoEffect.querySelector('.effect-2').classList.remove('hidden');
                 infoEffect.querySelector('.divider-2').classList.remove('hidden');
             } else {
@@ -333,10 +349,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 infoEffect.querySelector('.divider-2').classList.add('hidden');
             }
             if (ability.eff31) {
-                infoEffect.querySelector('.effect-3 .effect b').innerText = getEffectText(ability, 3).effect;
-                infoEffect.querySelector('.effect-3 .restrict b').innerText = getEffectText(ability, 3).restrict;
-                infoEffect.querySelector('.effect-3 .acc b').innerText = getEffectText(ability, 3).accuracy;
-                infoEffect.querySelector('.effect-3 .profile b').innerText = getEffectText(ability, 3).damage;
+                let effect3 = getEffectText(ability, 3);
+                infoEffect.querySelector('.effect-3 .effect b').innerText = effect3.effect;
+                infoEffect.querySelector('.effect-3 .restrict b').innerText = effect3.restrict;
+                infoEffect.querySelector('.effect-3 .acc b').innerText = effect3.accuracy;
+                let damageProfile = '';
+                if (effect3.damage.length > 0) {
+                    effect3.damage.forEach( (dmg, i) => {
+                        if (i > 0) damageProfile += ' ';
+                        damageProfile += dmg.name;
+                    });
+                } else damageProfile = '—';
+                infoEffect.querySelector('.effect-3 .profile b').innerText = damageProfile;
                 infoEffect.querySelector('.effect-3').classList.remove('hidden');
                 infoEffect.querySelector('.divider-3').classList.remove('hidden');
             } else {

@@ -292,32 +292,41 @@ function getEffectText (ability, effectSet) {
         accuracyText = '—';
     }
 
-    let damageText = '';
+    let damageProps = [];
     if ([1,4,8].includes(ability[effect1])) {
-        if ([10,16,17,18,23].includes(ability[formula]))
-            damageText = damageTypes[4].name;
-        else {
-            if ( ability[scaling] === 20 || ability[formula] === 5 )
-                damageText += damageTypes[5].name;
-            else if ( !ability[damage] && !ability[element] )
-                damageText = damageTypes[6].name;
-            else if (ability[damage])
-                damageText = damageTypes[ability[damage]].name;
-            if (ability[element]) {
-                if (damageText.length > 0)
-                    damageText += ' ';
-                damageText += elements[ability[element]].name;
+        if ([10, 16, 17, 18, 23].includes(ability[formula])) {
+            let damageProp = {};
+            damageProp['name'] = damageTypes[4].name;
+            damageProp['icon'] = damageTypes[4].icon;
+            damageProps.push(damageProp);
+        } else {
+            let damageProp = {};
+            if ( ability[scaling] === 20 || ability[formula] === 5 ) {
+                damageProp['name'] = damageTypes[5].name;
+                damageProp['icon'] = damageTypes[5].icon;
+            } else if ( !ability[damage] && !ability[element] ) {
+                damageProp['name'] = damageTypes[6].name;
+                damageProp['icon'] = damageTypes[6].icon;
+            } else if (ability[damage]) {
+                damageProp['name'] = damageTypes[ability[damage]].name;
+                damageProp['icon'] = damageTypes[ability[damage]].icon;
             }
-
+            if (damageProp.name) {
+                damageProps.push(damageProp);
+                damageProp = {};
+            }
+            if (ability[element]) {
+                damageProp['name'] = elements[ability[element]].name;
+                damageProp['icon'] = elements[ability[element]].icon;
+                damageProps.push(damageProp);
+            }
         }
-    } else {
-        damageText = '—';
     }
 
     effectProperties['effect'] = effectText;
     effectProperties['restrict'] = restrictText;
     effectProperties['accuracy'] = accuracyText;
-    effectProperties['damage'] = damageText;
+    effectProperties['damage'] = damageProps;
     return effectProperties;
 }
 
@@ -433,13 +442,16 @@ const damageTypes = {
         'icon': 'img/icons/damage-pierce.png'
     },
     '4': {
-        'name': 'Percentage'
+        'name': 'Percentage',
+        'icon': 'img/icons/damage-pierce.png'
     },
     '5': {
-        'name': 'Raw'
+        'name': 'Raw',
+        'icon': 'img/icons/damage-pierce.png'
     },
     '6': {
-        'name': 'Void'
+        'name': 'Void',
+        'icon': 'img/icons/damage-pierce.png'
     }
 };
 

@@ -43,38 +43,90 @@ document.addEventListener('DOMContentLoaded', function() {
     async function listItems() {
 
         items = await fetchJSON(tableItemsJson);
+        sundries = await fetchJSON(sundriesJson);
 
         // let total = items.length;
         items.forEach( (ability, index) => {
-            // if ( index === 0 || types[element.typ]['name'] !== categoryName ) {
-            //     categoryName = types[element.typ]['name'];
-            //     let tr = document.createElement('tr');
-            //         tr.className = 'separator';
-            //         let category = document.createElement('td');
-            //             category.textContent = types[element.typ]['name'];
-            //             category.colSpan = document.querySelectorAll('#itemList th').length;
-            //         tr.appendChild(category);
-            //     itemList.appendChild(tr);
-            // }
+            if ( index === 0 || abilityType[ability.typ]['name'] !== categoryName ) {
+                categoryName = abilityType[ability.typ]['name'];
+                let tr = document.createElement('tr');
+                    tr.className = 'separator';
+                    let category = document.createElement('td');
+                        category.textContent = abilityType[ability.typ]['name'];
+                        category.colSpan = document.querySelectorAll('#itemList th').length;
+                    tr.appendChild(category);
+                itemList.appendChild(tr);
+            }
 
             let tr = document.createElement('tr');
-            tr.id = index;
-            let type = document.createElement('td');
-
-            let name = document.createElement('td');
+                tr.id = index;
+                let type = document.createElement('td');
+                let classImg = document.createElement('img');
+                classImg.src = abilityType[ability.typ]['icon'];
+                if ( ability.unique === 1 ) classImg.classList.add('uni');
+                let item = sundries.find((row) => row['effect'] === ability.id);
+                if (ability.typ === 12) {
+                    if ( item.name.indexOf(' Scroll') >= 0 ) {
+                        classImg.src = abilityType[ability.typ].iconn;
+                    }
+                    else if ( item.name.indexOf('Treatise on ') >= 0 ) {
+                        classImg.src = abilityType[ability.typ].icond;
+                    }
+                    else if ( item.name.indexOf(' Score') >= 0 ) {
+                        classImg.src = abilityType[ability.typ].icons;
+                    }
+                    else if ( item.name.indexOf(' Manual') >= 0 ) {
+                        classImg.src = abilityType[ability.typ].iconb;
+                    }
+                    else if ( item.name.indexOf(' Primer') >= 0 ) {
+                        classImg.src = abilityType[ability.typ].icong;
+                    }
+                }
+                type.appendChild(classImg);
+                let name = document.createElement('td');
                 name.textContent = ability.name;
 
-            let ef1 = document.createElement('td');
-            if (ability.eff11)
-                ef1.innerText = getEffectText(ability, 1);
-            let ef2 = document.createElement('td');
-            if (ability.eff21)
-                ef2.innerText = getEffectText(ability, 2);
-            let ef3 = document.createElement('td');
-            if (ability.eff31)
-                ef3.innerText = getEffectText(ability, 3);
+                let cost = document.createElement('td');
+                let costText = '';
+                if ( ability.rescost > 0 )  {
+                    if ( ability.res === 1 )
+                        costText = ability.rescost + ' <b class="blue">HP</b>';
+                    else if ( ability.res === 2 )
+                        costText = ability.rescost + ' <b class="pink">MP</b>';
+                    else if ( ability.res === 3 )
+                        costText = ability.rescost + ' <b class="orange">TP</b>';
+                    else if ( ability.res === 4 )
+                        costText = ability.rescost + '+ <b class="orange">TP</b>';
+                }
+                cost.innerHTML = costText;
+                let rtcost = document.createElement('td');
+                rtcost.textContent = ability.rtcost;
+                let profile = document.createElement('td');
+                let damageProfile = getEffectText(ability, 1).damage;
+                if ((damageProfile.length === 0 || ability.eff1self) && ability.eff21)
+                    damageProfile = getEffectText(ability, 2).damage;
+                if ((damageProfile.length === 0 || ability.eff2self) && ability.eff31)
+                    damageProfile = getEffectText(ability, 3).damage;
+                if (damageProfile.length > 0) {
+                    damageProfile.forEach( (dmg) => {
+                        profile.innerHTML += '<img src="' + dmg.icon + '">';
+                    });
+                }
+                let range = document.createElement('td');
+                if (ability.maxr) {
+                    if (ability.minr === ability.maxr)
+                        range.innerText = ability.maxr;
+                    else
+                        range.innerText = ability.minr + ' - ' + ability.maxr;
+                } else
+                    range.innerText = '—';
+                let area = document.createElement('td');
+                if (ability.aoe)
+                    area.innerText = ability.aoe;
+                else
+                    area.innerText = '—';
 
-            tr.append(type, name, ef1, ef2, ef3);
+            tr.append(type, name, cost, rtcost, profile, range, area);
             itemList.appendChild(tr);
 
             // progress.style.width = (index + 1) * 100 / total + '%';
@@ -373,9 +425,6 @@ document.addEventListener('DOMContentLoaded', function() {
         );
         fetchJSON(skillsJson).then(
             data => skills = data
-        );
-        fetchJSON(sundriesJson).then(
-            data => sundries = data
         );
     }
 });

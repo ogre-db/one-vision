@@ -32,6 +32,10 @@ html {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 }
 
 body {
@@ -289,7 +293,7 @@ canvas, img, video {
         td {
           background-color: @highlight-dark;
           color: @text-light;
-          font-size: 0.75rem;
+          font-size: 0.7rem;
           text-transform: uppercase;
           letter-spacing: 5px;
           font-weight: bold;
@@ -340,14 +344,7 @@ canvas, img, video {
         position: fixed;
         top: 0;
         z-index: 980;
-        max-width: calc(@content-width - @content-padding-s * 2);
-
-        @media only screen and (min-width: 640px) {
-          max-width: calc(@content-width - @content-padding-m * 2);
-        }
-        @media only screen and (min-width: 960px) {
-          max-width: calc(@content-width - @content-padding-l * 2);
-        }
+        max-width: calc(100% - @content-padding-s * 2);
       }
     }
 
@@ -359,7 +356,7 @@ canvas, img, video {
     }
 
     th:first-child, td:first-child {
-      width: 16px;
+      width: 18px;
       text-align: left;
       border-top-left-radius: 500px;
       border-bottom-left-radius: 500px;
@@ -398,6 +395,32 @@ canvas, img, video {
       }
     }
   }
+
+  @media only screen and (min-width: 480px) {
+    table {
+      th:first-child, td:first-child {
+        width: 26px;
+      }
+    }
+  }
+  @media only screen and (min-width: 640px) {
+    table {
+      &.sticky {
+        &.fixed {
+          max-width: calc(100% - @content-padding-m * 2);
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: 960px) {
+    table {
+      &.sticky {
+        &.fixed {
+          max-width: calc(@content-width - @content-padding-l * 2);
+        }
+      }
+    }
+  }
 }
 
 #sidePanel {
@@ -405,7 +428,6 @@ canvas, img, video {
   position: fixed;
   right: 0;
   top: 0;
-  bottom: 0;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -415,6 +437,7 @@ canvas, img, video {
 
   &.open {
     display: block;
+    z-index: 981;
   }
 
   &.uni {
@@ -613,8 +636,9 @@ canvas, img, video {
 
               li {
                 font-size: 0.7rem;
-                width: calc(50% - 20px);
+                width: 50%;
                 padding: 0 10px;
+                white-space: nowrap;
               }
             }
           }
@@ -646,11 +670,11 @@ canvas, img, video {
             .accordion-content {
 
               li {
-                width: calc(100% - 20px);
+                width: 100%;
 
                 span {
                   display: inline-block;
-                  width: calc(100% - 20px);
+                  width: 100%;
                 }
                 b {
                   display: inline-block;

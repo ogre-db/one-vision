@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let name = document.createElement('td');
             name.textContent = element.name;
             let atk = document.createElement('td');
-            element.atk > 0 ? atk.textContent = element.atk : atk.textContent = '—';
+            element.atk > 0 ? atk.textContent = element.atk : atk.textContent = '';
             let def = document.createElement('td');
             element.def > 0 ? def.textContent = element.def : def.textContent = '—';
             let wt = document.createElement('td');
@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             let level = document.createElement('td');
             level.textContent = element.lvlreq;
+            // noinspection JSCheckFunctionSignatures
             tr.append(type, name, atk, def, wt, resph, resel, resrc, ele, level);
             itemList.appendChild(tr);
 

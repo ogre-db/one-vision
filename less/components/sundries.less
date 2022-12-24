@@ -33,7 +33,7 @@
         text-align: left;
       }
       th:nth-child(3), td:nth-child(3) {
-        width: 160px;
+        width: 130px;
         text-align: left;
 
         img {
@@ -57,10 +57,26 @@
         }
       }
       th:nth-child(4), td:nth-child(4) {
-        width: 40px;
+        width: 25px;
       }
       th:nth-child(5), td:nth-child(5) {
-        width: 80px;
+        width: 40px;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 480px) {
+    .ov-item-list {
+      table {
+        th:nth-child(3), td:nth-child(3) {
+          width: 160px;
+        }
+        th:nth-child(4), td:nth-child(4) {
+          width: 40px;
+        }
+        th:nth-child(5), td:nth-child(5) {
+          width: 80px;
+        }
       }
     }
   }
