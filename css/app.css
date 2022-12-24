@@ -348,8 +348,12 @@ video {
 #sidePanel {
   display: none;
   position: fixed;
-  right: 0;
+  right: 15px;
   top: 0;
+  width: calc(100% - 30px);
+  max-width: 360px;
+  max-height: 100vh;
+  padding: 30px 0 15px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -386,9 +390,6 @@ video {
   background-color: #e8e3de;
   position: relative;
   box-sizing: border-box;
-  width: calc(100% - 30px);
-  max-width: 360px !important;
-  margin: 35px 15px;
   padding: 30px;
   border: 2px solid #5f5854;
   border-radius: 20px;
@@ -544,7 +545,6 @@ video {
 }
 #sidePanel .panel .content .ingredients .ov-accordion > li .accordion-content li span {
   display: inline-block;
-  width: 100%;
 }
 #sidePanel .panel .content .ingredients .ov-accordion > li .accordion-content li b {
   display: inline-block;
@@ -1044,7 +1044,7 @@ video {
   background-color: rgba(95, 88, 84, 0.4);
   position: relative;
   top: 1px;
-  max-width: 18px;
+  max-width: 14px;
   margin-right: 4px;
   border-radius: 50%;
 }
@@ -1071,6 +1071,10 @@ video {
   .page-sundries .ov-item-list table th:nth-child(3),
   .page-sundries .ov-item-list table td:nth-child(3) {
     width: 160px;
+  }
+  .page-sundries .ov-item-list table th:nth-child(3) img,
+  .page-sundries .ov-item-list table td:nth-child(3) img {
+    max-width: 18px;
   }
   .page-sundries .ov-item-list table th:nth-child(4),
   .page-sundries .ov-item-list table td:nth-child(4) {
