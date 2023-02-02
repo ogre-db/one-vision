@@ -108,10 +108,10 @@ small {
   font-size: 0.85em;
 }
 .neg {
-  color: #da3e3e;
+  color: #ff4630;
 }
 .red {
-  color: #da3e3e;
+  color: #ff4630;
 }
 .pink {
   color: #f676a1;
@@ -311,7 +311,11 @@ video {
 }
 .ov-item-list table td:first-child img.uni {
   border-color: #ffa500;
-  box-shadow: 0 0 3px #ffa500;
+  box-shadow: 0 0 2px #ffa500;
+}
+.ov-item-list table td:first-child img.ban {
+  border-color: #ff4630;
+  box-shadow: 0 0 2px #ff4630;
 }
 .ov-item-list table th:last-child,
 .ov-item-list table td:last-child {
@@ -348,7 +352,7 @@ video {
 #sidePanel {
   display: none;
   position: fixed;
-  right: 15px;
+  right: max(15px, 50% - 860px);
   top: 0;
   width: calc(100% - 30px);
   max-width: 360px;
@@ -370,7 +374,12 @@ video {
 }
 #sidePanel.uni .panel {
   border-color: #ffa500;
-  box-shadow: 0 0 8px #ffa500;
+}
+#sidePanel.ban #panelClose {
+  border-left-color: #ff4630;
+}
+#sidePanel.ban .panel {
+  border-color: #ff4630;
 }
 #sidePanel #panelClose {
   position: absolute;
@@ -393,7 +402,6 @@ video {
   padding: 30px;
   border: 2px solid #5f5854;
   border-radius: 20px;
-  box-shadow: 2px 2px 8px rgba(95, 88, 84, 0.6);
 }
 #sidePanel .panel .content table {
   width: 100%;
@@ -434,6 +442,10 @@ video {
   border-color: #ffa500;
   box-shadow: 0 0 3px #ffa500;
 }
+#sidePanel .panel .content .title .subtitle span img.ban {
+  border-color: #ff4630;
+  box-shadow: 0 0 3px #ff4630;
+}
 #sidePanel .panel .content .title .subtitle span:not(.icon) {
   padding: 2px 0 0 5px;
 }
@@ -463,20 +475,137 @@ video {
   position: relative;
 }
 #sidePanel .panel .content .damage .damage-race.undead b:after {
-  content: '\2671';
-  background-color: #fff;
-  color: transparent;
-  text-shadow: 0 0 0 #da3e3e;
-  font-size: 1.4rem;
-  line-height: 16px;
+  content: '';
+  background: #fff url('../img/icons/damage-sacred.png') no-repeat center;
   position: absolute;
-  text-align: center;
   right: 28px;
   top: -50px;
   width: 18px;
   height: 18px;
   border: 1px solid #7c7672;
   border-radius: 25%;
+}
+#sidePanel .panel .content .stats-effect span {
+  display: inline-block;
+}
+#sidePanel .panel .content .stats-effect b {
+  display: inline-block;
+}
+#sidePanel .panel .content .stats-effect b b {
+  margin-left: 5px;
+}
+#sidePanel .panel .content .stats-effect > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel .panel .content .stats-effect > div > div {
+  width: 50%;
+}
+#sidePanel .panel .content .stats-effect > div > div:nth-child(2n + 1) span {
+  min-width: 60px;
+}
+#sidePanel .panel .content .stats-effect > div > div:nth-child(2n) b {
+  min-width: 35px;
+}
+#sidePanel .panel .content .stats-effect .ability > div {
+  width: 100%;
+}
+#sidePanel .panel .content .stats-effect .ability .name b {
+  font-size: 1.2rem;
+}
+#sidePanel .panel .content .stats-effect .ability .type b {
+  font-size: 0.85em;
+  position: relative;
+  top: -1px;
+}
+#sidePanel .panel .content .stats-effect .ability .type img {
+  display: inline-block;
+  background-color: rgba(95, 88, 84, 0.4);
+  position: relative;
+  height: 16px;
+  margin-right: 4px;
+  border-radius: 50%;
+  top: 2px;
+}
+#sidePanel .panel .content .stats-effect .main {
+  margin-top: 10px;
+}
+#sidePanel .panel .content .stats-effect .main > div:first-child {
+  width: 45%;
+}
+#sidePanel .panel .content .stats-effect .main > div:first-child span {
+  min-width: 65px;
+}
+#sidePanel .panel .content .stats-effect .main > div:nth-child(2) {
+  width: 55%;
+}
+#sidePanel .panel .content .stats-effect .main > div:nth-child(2) b {
+  min-width: 35px;
+  margin-left: 5px;
+}
+#sidePanel .panel .content .stats-effect .main > div:nth-child(3) {
+  width: 70%;
+}
+#sidePanel .panel .content .stats-effect .main > div:nth-child(3) span {
+  min-width: 65px;
+}
+#sidePanel .panel .content .stats-effect .main > div:nth-child(4) {
+  width: 30%;
+}
+#sidePanel .panel .content .stats-effect .main > div:nth-child(4) b {
+  min-width: 40px;
+}
+#sidePanel .panel .content .stats-effect .main > div .reagent b {
+  font-size: 0.75em;
+  position: relative;
+  top: -1px;
+}
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div {
+  width: 100%;
+}
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div li > span {
+  min-width: 80px;
+}
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div .effect span,
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div .restrict span {
+  float: left;
+}
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div .effect b,
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div .restrict b {
+  width: calc(100% - 80px);
+}
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div .profile b img {
+  display: inline-block;
+  background-color: rgba(95, 88, 84, 0.4);
+  position: relative;
+  height: 16px;
+  margin-right: 4px;
+  border-radius: 50%;
+  top: 2px;
+}
+#sidePanel .panel .content .stats-effect .divider-text {
+  display: block;
+  font-size: 0.75em;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0 5px;
+}
+#sidePanel .panel .content .stats-effect .divider-text:before,
+#sidePanel .panel .content .stats-effect .divider-text:after {
+  content: '';
+  background-color: #ccc;
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  vertical-align: middle;
+  bottom: 2px;
+  width: 10%;
+}
+#sidePanel .panel .content .stats-effect .divider-text:before {
+  margin-right: 5px;
+}
+#sidePanel .panel .content .stats-effect .divider-text:after {
+  margin-left: 5px;
 }
 #sidePanel .panel .content .ov-accordion {
   background-color: #f2f0ed;
@@ -518,17 +647,20 @@ video {
   opacity: 0;
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-content > * {
-  padding: 5px 0;
+  margin: 5px 10px;
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-content ul {
   display: flex;
   flex-wrap: wrap;
+  font-size: 0.85rem;
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-content ul li {
-  font-size: 0.7rem;
-  width: 50%;
-  padding: 0 10px;
-  white-space: nowrap;
+  font-size: 0.85em;
+}
+#sidePanel .panel .content .ov-accordion > li .accordion-content ul li.spacer {
+  width: 100% !important;
+  margin: 3px 0;
+  border-bottom: 1px solid #ccc;
 }
 #sidePanel .panel .content .ov-accordion > li.open .accordion-title {
   color: #ffa500;
@@ -540,33 +672,107 @@ video {
   position: relative;
   opacity: 1;
 }
-#sidePanel .panel .content .ingredients .ov-accordion > li .accordion-content li {
+#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul li {
   width: 100%;
+  margin-left: 10px;
 }
-#sidePanel .panel .content .ingredients .ov-accordion > li .accordion-content li span {
+#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.drop,
+#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.steal {
+  list-style: circle;
+}
+#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.drop li,
+#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.steal li {
+  margin-left: 15px;
+}
+#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.craft li span {
   display: inline-block;
 }
-#sidePanel .panel .content .ingredients .ov-accordion > li .accordion-content li b {
+#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.craft li b {
   display: inline-block;
   width: 20px;
   float: right;
 }
-#sidePanel .panel .content .obtain table,
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul {
+  list-style: circle;
+}
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul li {
+  width: 100%;
+  margin-left: 15px;
+}
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.item li span {
+  display: inline-block;
+}
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.item li b {
+  display: inline-block;
+  width: 40px;
+  float: right;
+  text-align: right;
+}
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.item li b small {
+  font-weight: normal;
+}
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear {
+  list-style: none;
+}
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li {
+  margin-left: 5px;
+}
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li img {
+  display: inline-block;
+  position: relative;
+  height: 12px;
+  margin-right: 4px;
+  border-radius: 50%;
+  top: 2px;
+}
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li span {
+  display: inline-block;
+}
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li b {
+  display: inline-block;
+  width: 40px;
+  float: right;
+  text-align: right;
+}
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li b small {
+  font-weight: normal;
+}
+#sidePanel .panel .content .class .ov-accordion > li .accordion-content ul {
+  gap: 0 6px;
+}
+#sidePanel .panel .content .class .ov-accordion > li .accordion-content ul li {
+  width: calc(50% - 3px);
+  white-space: nowrap;
+}
+#sidePanel .panel .content .magic .ov-accordion > li .accordion-content ul li {
+  width: 100%;
+  white-space: nowrap;
+  margin: 0;
+}
+#sidePanel .panel .content .magic .ov-accordion > li .accordion-content ul li span {
+  display: inline-block;
+}
+#sidePanel .panel .content .magic .ov-accordion > li .accordion-content ul li b {
+  display: inline-block;
+  width: 30px;
+  float: right;
+  text-align: right;
+}
+#sidePanel .panel .content .magic .ov-accordion > li .accordion-content ul li b small {
+  font-weight: normal;
+}
 #sidePanel .panel .content .notes table {
   border-collapse: separate;
   border-spacing: 0 10px;
   margin: -10px 0 -10px;
 }
-#sidePanel .panel .content .obtain table td,
 #sidePanel .panel .content .notes table td {
   padding: 0;
 }
-#sidePanel .panel .content .obtain table td:first-child,
 #sidePanel .panel .content .notes table td:first-child {
   width: 60px;
   vertical-align: top;
 }
-#sidePanel .panel .content .obtain table td:last-child,
 #sidePanel .panel .content .notes table td:last-child {
   width: auto;
   font-size: 0.85em;
@@ -1152,119 +1358,6 @@ video {
   font-size: 0.85em;
   font-weight: bold;
 }
-#sidePanel.sundries-panel .panel .content .stats-effect span {
-  display: inline-block;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect b {
-  display: inline-block;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect b b {
-  margin-left: 5px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect > div {
-  display: flex;
-  flex-wrap: wrap;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect > div > div {
-  width: 50%;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect > div > div:nth-child(2n + 1) span {
-  min-width: 60px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect > div > div:nth-child(2n) b {
-  min-width: 35px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .ability > div {
-  width: 100%;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .ability .name b {
-  font-size: 1.2rem;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .ability .type b {
-  font-size: 0.85em;
-  position: relative;
-  top: -1px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .ability .type img {
-  display: inline-block;
-  background-color: rgba(95, 88, 84, 0.4);
-  position: relative;
-  height: 16px;
-  margin-right: 4px;
-  border-radius: 50%;
-  top: 2px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .main {
-  margin-top: 10px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .main > div:first-child {
-  width: 45%;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .main > div:first-child span {
-  min-width: 65px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(2) {
-  width: 55%;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(2) b {
-  min-width: 35px;
-  margin-left: 5px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(3) {
-  width: 70%;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(3) span {
-  min-width: 65px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(4) {
-  width: 30%;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .main > div:nth-child(4) b {
-  min-width: 40px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .main > div .reagent b {
-  font-size: 0.75em;
-  position: relative;
-  top: -1px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div {
-  width: 100%;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div li > span {
-  min-width: 80px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div .effect span,
-#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div .restrict span {
-  float: left;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div .effect b,
-#sidePanel.sundries-panel .panel .content .stats-effect [class^='effect-'] > div .restrict b {
-  width: calc(100% - 80px);
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .divider-text {
-  display: block;
-  font-size: 0.75em;
-  font-weight: bold;
-  text-align: center;
-  margin: 10px 0 5px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .divider-text:before,
-#sidePanel.sundries-panel .panel .content .stats-effect .divider-text:after {
-  content: '';
-  background-color: #ccc;
-  display: inline-block;
-  height: 2px;
-  position: relative;
-  vertical-align: middle;
-  bottom: 2px;
-  width: 10%;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .divider-text:before {
-  margin-right: 5px;
-}
-#sidePanel.sundries-panel .panel .content .stats-effect .divider-text:after {
-  margin-left: 5px;
-}
 #sidePanel.sundries-panel .panel .content .stats-extra {
   font-size: 0.875rem;
   margin-top: 15px;
@@ -1275,10 +1368,6 @@ video {
 }
 #sidePanel.sundries-panel .panel .content .stats-extra .itemset b {
   color: #31c631;
-}
-#sidePanel.sundries-panel .panel .content .obtain table td:first-child,
-#sidePanel.sundries-panel .panel .content .notes table td:first-child {
-  width: 50px;
 }
 .page-abilities .ov-item-list table th:nth-child(2),
 .page-abilities .ov-item-list table td:nth-child(2) {
@@ -1333,6 +1422,28 @@ video {
     width: 40px;
   }
 }
+#sidePanel.abilities-panel .panel .content .stats-top span {
+  display: inline-block;
+}
+#sidePanel.abilities-panel .panel .content .stats-top b {
+  display: inline-block;
+}
+#sidePanel.abilities-panel .panel .content .stats-top b b {
+  margin-left: 5px;
+}
+#sidePanel.abilities-panel .panel .content .stats-top > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel.abilities-panel .panel .content .stats-top > div > div {
+  width: 50%;
+}
+#sidePanel.abilities-panel .panel .content .stats-top > div > div:nth-child(2n + 1) span {
+  min-width: 60px;
+}
+#sidePanel.abilities-panel .panel .content .stats-top > div > div:nth-child(2n) b {
+  min-width: 35px;
+}
 #sidePanel.abilities-panel .panel .content .stats-top {
   margin-top: 20px;
 }
@@ -1340,149 +1451,47 @@ video {
   display: flex;
   flex-wrap: wrap;
 }
-#sidePanel.abilities-panel .panel .content .stats-top .basic > div {
-  width: 100%;
-}
-#sidePanel.abilities-panel .panel .content .stats-top .basic span {
-  display: inline-block;
-  min-width: 60px;
-}
-#sidePanel.abilities-panel .panel .content .stats-top .basic .price small {
-  font-weight: normal;
-}
-#sidePanel.abilities-panel .panel .content .stats-top .basic .falch span,
-#sidePanel.abilities-panel .panel .content .stats-top .basic .usedfor span {
-  margin-right: 5px;
-}
-#sidePanel.abilities-panel .panel .content .stats-reagent table td:first-child {
-  vertical-align: top;
-  width: 75px;
-}
-#sidePanel.abilities-panel .panel .content .stats-reagent table b b {
-  font-size: 0.75rem;
-  font-weight: normal;
-}
-#sidePanel.abilities-panel .panel .content .stats-reagent table b b b {
-  font-weight: bold;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect span {
-  display: inline-block;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect b {
-  display: inline-block;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect b b {
-  margin-left: 5px;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect > div {
-  display: flex;
-  flex-wrap: wrap;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect > div > div {
-  width: 50%;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect > div > div:nth-child(2n + 1) span {
-  min-width: 60px;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect > div > div:nth-child(2n) b {
-  min-width: 35px;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect .ability > div {
-  width: 100%;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect .ability .name b {
-  font-size: 1.2rem;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect .ability .type b {
-  font-size: 0.85em;
-  position: relative;
-  top: -1px;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect .ability .type img {
-  display: inline-block;
-  background-color: rgba(95, 88, 84, 0.4);
-  position: relative;
-  height: 16px;
-  margin-right: 4px;
-  border-radius: 50%;
-  top: 2px;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect .main {
-  margin-top: 10px;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect .main > div:first-child {
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div:first-child {
   width: 45%;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect .main > div:first-child span {
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div:first-child span {
   min-width: 65px;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(2) {
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(2) {
   width: 55%;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(2) b {
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(2) b {
   min-width: 35px;
   margin-left: 5px;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(3) {
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(3) {
   width: 70%;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(3) span {
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(3) span {
   min-width: 65px;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(4) {
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(4) {
   width: 30%;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect .main > div:nth-child(4) b {
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(4) b {
   min-width: 40px;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect .main > div .reagent b {
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div .reagent b {
   font-size: 0.75em;
   position: relative;
   top: -1px;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect [class^='effect-'] > div {
-  width: 100%;
+#sidePanel.abilities-panel .panel .content .arcana table tr td:first-child {
+  width: 60px;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect [class^='effect-'] > div li > span {
-  min-width: 80px;
+#sidePanel.abilities-panel .panel .content .consumable table tr td:first-child {
+  width: 95px;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect .divider-text {
-  display: block;
-  font-size: 0.75em;
-  font-weight: bold;
-  text-align: center;
-  margin: 10px 0 5px;
+#sidePanel.abilities-panel .panel .content .skills table tr td:first-child {
+  width: 50px;
+  vertical-align: top;
 }
-#sidePanel.abilities-panel .panel .content .stats-effect .divider-text:before,
-#sidePanel.abilities-panel .panel .content .stats-effect .divider-text:after {
-  content: '';
-  background-color: #ccc;
-  display: inline-block;
-  height: 2px;
-  position: relative;
-  vertical-align: middle;
-  bottom: 2px;
-  width: 10%;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect .divider-text:before {
-  margin-right: 5px;
-}
-#sidePanel.abilities-panel .panel .content .stats-effect .divider-text:after {
-  margin-left: 5px;
-}
-#sidePanel.abilities-panel .panel .content .stats-extra {
-  font-size: 0.875rem;
-  margin-top: 15px;
-}
-#sidePanel.abilities-panel .panel .content .stats-extra span {
-  display: inline-block;
-  min-width: 120px;
-}
-#sidePanel.abilities-panel .panel .content .stats-extra .itemset b {
-  color: #31c631;
-}
-#sidePanel.abilities-panel .panel .content .obtain table td:first-child,
-#sidePanel.abilities-panel .panel .content .notes table td:first-child {
+#sidePanel.abilities-panel .panel .content .notes table tr td:first-child {
   width: 50px;
 }
 .page-classes .ov-item-list table th:nth-child(1),

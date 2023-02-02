@@ -58,12 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
         infoPassive = sidePanel.querySelector('.stats-extra .passive b'),
         infoAbility = sidePanel.querySelector('.stats-extra .ability b'),
         infoSet = sidePanel.querySelector('.stats-extra .itemset'),
+        infoObtain = sidePanel.querySelector('.obtain'),
         infoGet = sidePanel.querySelector('.obtain .get'),
         infoBuy = sidePanel.querySelector('.obtain .buy'),
         infoDrop = sidePanel.querySelector('.obtain .drop'),
         infoSteal = sidePanel.querySelector('.obtain .steal'),
         infoCraft = sidePanel.querySelector('.obtain .craft'),
-        infoIngredients = sidePanel.querySelector('.ingredients .accordion-content ul'),
         infoClass = sidePanel.querySelector('.class .accordion-content ul'),
         infoNotes = sidePanel.querySelector('.notes');
 
@@ -300,103 +300,93 @@ document.addEventListener('DOMContentLoaded', function() {
             infoAbility.textContent = item.abltyuse + 'x ' + ability.name;
         } else infoAbility.textContent = '—';
         if ( item.set ) {
-            infoSet.querySelector('b').textContent = itemSets[item.set]['name'];
+            infoSet.querySelector('b').textContent = itemSets.find((row) => row['id'] === item.set).name;
             infoSet.classList.remove('hidden');
         } else infoSet.classList.add('hidden');
 
-        infoGet.classList.add('hidden');
-        infoBuy.classList.add('hidden');
-        infoDrop.classList.add('hidden');
-        infoSteal.classList.add('hidden');
-        infoCraft.classList.add('hidden');
-        infoIngredients.closest('.ingredients').classList.add('hidden');
-        sidePanel.querySelector('.obtain').classList.add('hidden');
-        sidePanel.querySelectorAll('.obtain ul:not(.ov-accordion) li').forEach(e => e.remove());
         let obtain = obtains.find((row) => row['id'] === item.id).obtained;
         if (obtain !== 0) {
+            infoGet.classList.add('hidden');
+            infoBuy.classList.add('hidden');
+            infoDrop.classList.add('hidden');
+            infoSteal.classList.add('hidden');
+            infoCraft.classList.add('hidden');
+            sidePanel.querySelectorAll('.obtain ul:not(.ov-accordion)').forEach(e => e.innerHTML = '');
             let obtainWays = obtain.split(' | ');
             obtainWays.forEach((obt) => {
-                if ( obt.indexOf('Obtained in ') >= 0 ) {
-                    console.log(obt);
-                    obt = obt.replace('Obtained in ','');
+                if ( obt.indexOf('Obtained ') >= 0 ) {
+                    obt = obt.replace('Obtained ','');
                     let locations = obt.split(', ');
+                    infoGet.innerHTML = '<b>Received</b>';
                     locations.forEach( (obt) => {
                         let get = document.createElement('li');
                         get.innerText = obt;
-                        infoGet.querySelector('ul').appendChild(get);
-                        infoGet.classList.remove('hidden');
+                        infoGet.appendChild(get);
                     });
-                } else if (obt.indexOf('Buy in ') >= 0) {
+                    infoGet.classList.remove('hidden');
+                }
+                if (obt.indexOf('Buy in ') >= 0) {
                     obt = obt.replace('Buy in ','');
                     let locations = obt.split(', ');
+                    infoBuy.innerHTML = '<b>Buy in</b>';
                     locations.forEach( (obt) => {
                         let buy = document.createElement('li');
                         buy.innerText = obt;
-                        infoBuy.querySelector('ul').appendChild(buy);
-                        infoBuy.classList.remove('hidden');
+                        infoBuy.appendChild(buy);
                     });
-                } else if (obt.indexOf('Dropped by ') >= 0) {
+                    infoBuy.classList.remove('hidden');
+                }
+                if (obt.indexOf('Dropped by ') >= 0) {
                     obt = obt.replace('Dropped by ','');
                     let locations = obt.split(', ');
+                    infoDrop.innerHTML = '<b>Dropped by</b>';
                     locations.forEach( (obt) => {
                         let drop = document.createElement('li');
                         drop.innerText = obt;
-                        infoDrop.querySelector('ul').appendChild(drop);
-                        infoDrop.classList.remove('hidden');
+                        infoDrop.appendChild(drop);
                     });
-                } else if (obt.indexOf('Stolen from ') >= 0) {
+                    infoDrop.classList.remove('hidden');
+                }
+                if (obt.indexOf('Stolen from ') >= 0) {
                     obt = obt.replace('Stolen from ','');
                     let locations = obt.split(', ');
+                    infoSteal.innerHTML = '<b>Stolen from</b>';
                     locations.forEach( (obt) => {
                         let steal = document.createElement('li');
                         steal.innerText = obt;
-                        infoSteal.querySelector('ul').appendChild(steal);
-                        infoSteal.classList.remove('hidden');
+                        infoSteal.appendChild(steal);
                     });
-                } else if (obt.indexOf('Craft with ') >= 0) {
-                    obt = obt.replace('Craft with ','');
-                    let locations = obt.split(', ');
-                    locations.forEach( (obt) => {
-                        let craft = document.createElement('li');
-                        craft.innerText = obt;
-                        infoCraft.querySelector('ul').appendChild(craft);
-                        infoCraft.classList.remove('hidden');
-                    });
+                    infoSteal.classList.remove('hidden');
                 }
-            });
-
-            if ( item.craftbk ) {
-                let ingredients = [];
-                let ingNum = 0;
-                for (let i = 1; i < 4; i++) {
-                    if ( item['ing' + i] ) {
-                        if ( i > 1 && item['ing' + (i - 1)] === item['ing' + i] ) {
-                            ingredients[ingNum - 1]['amt']++;
-                        } else {
-                            ingredients.push({
-                                'id': item['ing' + i],
-                                'amt': 1
-                            });
-                            ingNum++;
+                if (obt.indexOf('Craft with ') >= 0) {
+                    obt = obt.replace('Craft with ','');
+                    infoCraft.innerHTML = '<b>Craft with <span class="green">' + obt + '</span></b>';
+                    let ingredients = [];
+                    let ingNum = 0;
+                    for (let i = 1; i <= 4; i++) {
+                        if ( item['ing' + i] ) {
+                            if ( i > 1 && item['ing' + (i - 1)] === item['ing' + i] ) {
+                                ingredients[ingNum - 1]['amt']++;
+                            } else {
+                                ingredients.push({
+                                    'id': item['ing' + i],
+                                    'amt': 1
+                                });
+                                ingNum++;
+                            }
                         }
                     }
-                }
-                if ( ingredients ) {
-                    infoIngredients.innerHTML = '';
                     ingredients.forEach( (ing) => {
                         let ingredient = obtains.find((row) => row['id'] === ing.id);
-                        infoIngredients.innerHTML += '<li><span>' + ingredient.name + '</span><b>x' + ing.amt + '</b></li>';
-                    })
+                        let craft = document.createElement('li');
+                        craft.innerHTML = '<span>' + ingredient.name + '</span><b>x' + ing.amt + '</b>';
+                        infoCraft.appendChild(craft);
+                    });
+                    infoCraft.classList.remove('hidden');
                 }
-                infoIngredients.closest('.ingredients').classList.remove('hidden');
-            }
-            sidePanel.querySelector('.obtain').classList.remove('hidden');
-        } else {
-            let get = document.createElement('li');
-            get.innerText = '???';
-            infoGet.querySelector('ul').appendChild(get);
-            infoGet.classList.remove('hidden');
-        }
+            });
+            infoObtain.classList.remove('hidden');
+        } else infoObtain.classList.add('hidden');
 
         let inSets = [];
         for (let i = 0; i < 56; i++) {

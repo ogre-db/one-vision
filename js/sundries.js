@@ -34,12 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
         infoClassmark = sidePanel.querySelector('.stats-classmark'),
         infoYield = sidePanel.querySelector('.stats-crafting'),
         infoEffect = sidePanel.querySelector('.stats-effect'),
+        infoObtain = sidePanel.querySelector('.obtain'),
         infoGet = sidePanel.querySelector('.obtain .get'),
         infoBuy = sidePanel.querySelector('.obtain .buy'),
         infoDrop = sidePanel.querySelector('.obtain .drop'),
         infoSteal = sidePanel.querySelector('.obtain .steal'),
         infoCraft = sidePanel.querySelector('.obtain .craft'),
-        infoIngredients = sidePanel.querySelector('.ingredients .accordion-content ul'),
         infoClass = sidePanel.querySelector('.class .accordion-content ul'),
         infoNotes = sidePanel.querySelector('.notes');
 
@@ -237,7 +237,6 @@ document.addEventListener('DOMContentLoaded', function() {
             craftedItems.forEach( (el) => {
                 yieldList.innerHTML += '<li>' + el.name + '</li>';
             });
-            console.log(craftedItems);
             infoYield.classList.remove('hidden');
         } else
             infoYield.classList.add('hidden');
@@ -248,27 +247,9 @@ document.addEventListener('DOMContentLoaded', function() {
             infoEffect.querySelector('.name b').innerText = ability.name;
             let typeIcon = abilityType[ability.typ].icon;
             let abilityGroup = abilityType[ability.typ].name;
-            if (ability.typ === 12) {
-                if ( item.name.indexOf(' Scroll') >= 0 ) {
-                    typeIcon = abilityType[ability.typ].iconn;
-                    abilityGroup += " - Ninjutsu";
-                }
-                else if ( item.name.indexOf('Treatise on ') >= 0 ) {
-                    typeIcon = abilityType[ability.typ].icond;
-                    abilityGroup += " - Dances";
-                }
-                else if ( item.name.indexOf(' Score') >= 0 ) {
-                    typeIcon = abilityType[ability.typ].icons;
-                    abilityGroup += " - Songs";
-                }
-                else if ( item.name.indexOf(' Manual') >= 0 ) {
-                    typeIcon = abilityType[ability.typ].iconb;
-                    abilityGroup += " - Grenades";
-                }
-                else if ( item.name.indexOf(' Primer') >= 0 ) {
-                    typeIcon = abilityType[ability.typ].icong;
-                    abilityGroup += " - Geomancy";
-                }
+            if ( ability.typvar ) {
+                typeIcon = abilityType[ability.typ + ability.typvar].icon;
+                abilityGroup = abilityType[ability.typ + ability.typvar].name;
             }
             infoEffect.querySelector('.type img').src = typeIcon;
             infoEffect.querySelector('.type b').innerText = abilityGroup;
@@ -318,11 +299,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 let damageProfile = '';
                 if (effect1.damage.length > 0) {
                     effect1.damage.forEach( (dmg, i) => {
-                        if (i > 0) damageProfile += ' ';
-                        damageProfile += dmg.name;
+                        if (i > 0) damageProfile += ' &#8226 ';
+                        damageProfile += '<img src="' + dmg.icon + '">' + dmg.name;
                     });
                 } else damageProfile = '—';
-                infoEffect.querySelector('.effect-1 .profile b').innerText = damageProfile;
+                infoEffect.querySelector('.effect-1 .profile b').innerHTML = damageProfile;
                 infoEffect.querySelector('.effect-1').classList.remove('hidden');
                 infoEffect.querySelector('.divider-1').classList.remove('hidden');
             } else {
@@ -337,11 +318,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 let damageProfile = '';
                 if (effect2.damage.length > 0) {
                     effect2.damage.forEach( (dmg, i) => {
-                        if (i > 0) damageProfile += ' ';
-                        damageProfile += dmg.name;
+                        if (i > 0) damageProfile += ' &#8226 ';
+                        damageProfile += '<img src="' + dmg.icon + '">' + dmg.name;
                     });
                 } else damageProfile = '—';
-                infoEffect.querySelector('.effect-2 .profile b').innerText = damageProfile;
+                infoEffect.querySelector('.effect-2 .profile b').innerHTML = damageProfile;
                 infoEffect.querySelector('.effect-2').classList.remove('hidden');
                 infoEffect.querySelector('.divider-2').classList.remove('hidden');
             } else {
@@ -356,11 +337,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 let damageProfile = '';
                 if (effect3.damage.length > 0) {
                     effect3.damage.forEach( (dmg, i) => {
-                        if (i > 0) damageProfile += ' ';
-                        damageProfile += dmg.name;
+                        if (i > 0) damageProfile += ' &#8226 ';
+                        damageProfile += '<img src="' + dmg.icon + '">' + dmg.name;
                     });
                 } else damageProfile = '—';
-                infoEffect.querySelector('.effect-3 .profile b').innerText = damageProfile;
+                infoEffect.querySelector('.effect-3 .profile b').innerHTML = damageProfile;
                 infoEffect.querySelector('.effect-3').classList.remove('hidden');
                 infoEffect.querySelector('.divider-3').classList.remove('hidden');
             } else {
@@ -373,97 +354,89 @@ document.addEventListener('DOMContentLoaded', function() {
             infoEffect.classList.add('hidden');
         }
 
-        infoGet.classList.add('hidden');
-        infoBuy.classList.add('hidden');
-        infoDrop.classList.add('hidden');
-        infoSteal.classList.add('hidden');
-        infoCraft.classList.add('hidden');
-        infoIngredients.closest('.ingredients').classList.add('hidden');
-        sidePanel.querySelectorAll('.obtain ul:not(.ov-accordion) li').forEach(e => e.remove());
         let obtain = obtains.find((row) => row['id'] === item.id).obtained;
-        if (obtain !== 0) {
+        if (obtain) {
+            infoGet.classList.add('hidden');
+            infoBuy.classList.add('hidden');
+            infoDrop.classList.add('hidden');
+            infoSteal.classList.add('hidden');
+            infoCraft.classList.add('hidden');
+            sidePanel.querySelectorAll('.obtain ul:not(.ov-accordion)').forEach(e => e.innerHTML = '');
             let obtainWays = obtain.split(' | ');
             obtainWays.forEach((obt) => {
-                if ( obt.indexOf('Obtained in ') >= 0 ) {
-                    console.log(obt);
-                    obt = obt.replace('Obtained in ','');
+                if ( obt.indexOf('Obtained ') >= 0 ) {
+                    obt = obt.replace('Obtained ','');
                     let locations = obt.split(', ');
+                    infoGet.innerHTML = '<b>Received</b>';
                     locations.forEach( (obt) => {
                         let get = document.createElement('li');
-                            get.innerText = obt;
-                        infoGet.querySelector('ul').appendChild(get);
-                        infoGet.classList.remove('hidden');
+                        get.innerText = obt;
+                        infoGet.appendChild(get);
                     });
-                } else if (obt.indexOf('Buy in ') >= 0) {
+                    infoGet.classList.remove('hidden');
+                }
+                if (obt.indexOf('Buy in ') >= 0) {
                     obt = obt.replace('Buy in ','');
                     let locations = obt.split(', ');
+                    infoBuy.innerHTML = '<b>Buy in</b>';
                     locations.forEach( (obt) => {
                         let buy = document.createElement('li');
-                            buy.innerText = obt;
-                        infoBuy.querySelector('ul').appendChild(buy);
-                        infoBuy.classList.remove('hidden');
+                        buy.innerText = obt;
+                        infoBuy.appendChild(buy);
                     });
-                } else if (obt.indexOf('Dropped by ') >= 0) {
+                    infoBuy.classList.remove('hidden');
+                }
+                if (obt.indexOf('Dropped by ') >= 0) {
                     obt = obt.replace('Dropped by ','');
                     let locations = obt.split(', ');
+                    infoDrop.innerHTML = '<b>Dropped by</b>';
                     locations.forEach( (obt) => {
                         let drop = document.createElement('li');
                         drop.innerText = obt;
-                        infoDrop.querySelector('ul').appendChild(drop);
-                        infoDrop.classList.remove('hidden');
+                        infoDrop.appendChild(drop);
                     });
-                } else if (obt.indexOf('Stolen from ') >= 0) {
+                    infoDrop.classList.remove('hidden');
+                }
+                if (obt.indexOf('Stolen from ') >= 0) {
                     obt = obt.replace('Stolen from ','');
                     let locations = obt.split(', ');
+                    infoSteal.innerHTML = '<b>Stolen from</b>';
                     locations.forEach( (obt) => {
                         let steal = document.createElement('li');
                         steal.innerText = obt;
-                        infoSteal.querySelector('ul').appendChild(steal);
-                        infoSteal.classList.remove('hidden');
+                        infoSteal.appendChild(steal);
                     });
-                } else if (obt.indexOf('Craft with ') >= 0) {
-                    obt = obt.replace('Craft with ','');
-                    let locations = obt.split(', ');
-                    locations.forEach( (obt) => {
-                        let craft = document.createElement('li');
-                        craft.innerText = obt;
-                        infoCraft.querySelector('ul').appendChild(craft);
-                        infoCraft.classList.remove('hidden');
-                    });
+                    infoSteal.classList.remove('hidden');
                 }
-            });
-
-            if ( item.craftbk ) {
-                let ingredients = [];
-                let ingNum = 0;
-                for (let i = 1; i < 4; i++) {
-                    if ( item['ing' + i] ) {
-                        if ( i > 1 && item['ing' + (i - 1)] === item['ing' + i] ) {
-                            ingredients[ingNum - 1]['amt']++;
-                        } else {
-                            ingredients.push({
-                                'id': item['ing' + i],
-                                'amt': 1
-                            });
-                            ingNum++;
+                if (obt.indexOf('Craft with ') >= 0) {
+                    obt = obt.replace('Craft with ','');
+                    infoCraft.innerHTML = '<b>Craft with <span class="green">' + obt + '</span></b>';
+                    let ingredients = [];
+                    let ingNum = 0;
+                    for (let i = 1; i <= 4; i++) {
+                        if ( item['ing' + i] ) {
+                            if ( i > 1 && item['ing' + (i - 1)] === item['ing' + i] ) {
+                                ingredients[ingNum - 1]['amt']++;
+                            } else {
+                                ingredients.push({
+                                    'id': item['ing' + i],
+                                    'amt': 1
+                                });
+                                ingNum++;
+                            }
                         }
                     }
-                }
-                if ( ingredients ) {
-                    infoIngredients.innerHTML = '';
                     ingredients.forEach( (ing) => {
                         let ingredient = obtains.find((row) => row['id'] === ing.id);
-                        infoIngredients.innerHTML += '<li><span>' + ingredient.name + '</span><b>x' + ing.amt + '</b></li>';
-                    })
+                        let craft = document.createElement('li');
+                        craft.innerHTML = '<span>' + ingredient.name + '</span><b>x' + ing.amt + '</b>';
+                        infoCraft.appendChild(craft);
+                    });
+                    infoCraft.classList.remove('hidden');
                 }
-                infoIngredients.closest('.ingredients').classList.remove('hidden');
-            }
-        } else {
-            let get = document.createElement('li');
-                get.innerText = '???';
-            infoGet.querySelector('ul').appendChild(get);
-            infoGet.classList.remove('hidden');
-        }
+            });
+            infoObtain.classList.remove('hidden');
+        } else infoObtain.classList.add('hidden');
 
         if (item.effect || item.typ === 35) {
             let infoClasses = [];

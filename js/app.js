@@ -443,15 +443,15 @@ const damageTypes = {
     },
     '4': {
         'name': 'Percentage',
-        'icon': 'img/icons/damage-pierce.png'
+        'icon': 'img/icons/damage-percentage.png'
     },
     '5': {
         'name': 'Raw',
-        'icon': 'img/icons/damage-pierce.png'
+        'icon': 'img/icons/damage-raw.png'
     },
     '6': {
         'name': 'Void',
-        'icon': 'img/icons/damage-pierce.png'
+        'icon': 'img/icons/damage-void.png'
     }
 };
 
@@ -722,23 +722,38 @@ const attackType = {
     }
 };
 
-const itemSets = {
-    '1': {
-        'name': 'Legion'
+const itemSets = [
+    {
+        'id': 1,
+        'name': 'Legion',
+        'active': 0,
+        'passive': 195
     },
-    '2': {
-        'name': 'Ogre'
+    {
+        'id': 2,
+        'name': 'Ogre',
+        'active': 0,
+        'passive': 0
     },
-    '3': {
-        'name': 'Shadowmaster'
+    {
+        'id': 3,
+        'name': 'Shadowmaster',
+        'active': 277,
+        'passive': 0
     },
-    '4': {
-        'name': "Ji'ygla"
+    {
+        'id': 4,
+        'name': "Ji'ygla",
+        'active': 0,
+        'passive': 200
     },
-    '5': {
-        'name': 'Dragonslayer'
+    {
+        'id': 5,
+        'name': 'Dragonslayer',
+        'active': 312,
+        'passive': 0
     }
-};
+];
 
 const abilityRangeType = {
     '0': {
@@ -1494,13 +1509,27 @@ const abilityType = {
     },
     '12': {
         'name': 'Art of War',
-        'icon': 'img/icons/ability-artofwar.png',
-        'iconn': 'img/icons/ability-ninjutsu.png',
-        'icond': 'img/icons/ability-wardance.png',
-        'icons': 'img/icons/ability-song.png',
-        'iconb': 'img/icons/ability-bomb.png',
-        'icong': 'img/icons/ability-geomancy.png'
-
+        'icon': 'img/icons/ability-artofwar.png'
+    },
+    '12n': {
+        'name': 'Art of War - Ninjutsu',
+        'icon': 'img/icons/ability-ninjutsu.png'
+    },
+    '12d': {
+        'name': 'Art of War - Dances',
+        'icon': 'img/icons/ability-wardance.png'
+    },
+    '12s': {
+        'name': 'Art of War - Songs',
+        'icon': 'img/icons/ability-song.png'
+    },
+    '12b': {
+        'name': 'Art of War - Grenades',
+        'icon': 'img/icons/ability-bomb.png'
+    },
+    '12g': {
+        'name': 'Art of War - Geomancy',
+        'icon': 'img/icons/ability-geomancy.png'
     },
     '13': {
         'name': '—'
@@ -1516,7 +1545,8 @@ const abilityType = {
         'icon': 'img/icons/ability-item.png'
     },
     '17': {
-        'name': 'Trap'
+        'name': 'Trap',
+        'icon': 'img/icons/ability-trap.png'
     },
     '18': {
         'name': 'Special Ability',
@@ -1533,52 +1563,65 @@ const abilityType = {
         'name': '—'
     },
     '22': {
-        'name': 'Finisher'
+        'name': 'Fist Finisher',
+        'icon': 'img/icons/equip-claw.png'
     },
     '23': {
-        'name': 'Finisher'
+        'name': 'Dagger Finisher',
+        'icon': 'img/icons/equip-dagger.png'
     },
     '24': {
-        'name': 'Finisher'
+        'name': '1H Sword Finisher',
+        'icon': 'img/icons/equip-sword1h.png'
     },
     '25': {
-        'name': 'Finisher'
+        'name': '2H Sword Finisher',
+        'icon': 'img/icons/equip-sword2h.png'
     },
     '26': {
-        'name': 'Finisher'
+        'name': 'Axe Finisher',
+        'icon': 'img/icons/equip-axe1h.png'
     },
     '27': {
         'name': 'Finisher'
     },
     '28': {
-        'name': 'Finisher'
+        'name': 'Spear Finisher',
+        'icon': 'img/icons/equip-spear2h.png'
     },
     '29': {
-        'name': 'Finisher'
+        'name': 'Hammer Finisher',
+        'icon': 'img/icons/equip-hammer2h.png'
     },
     '30': {
         'name': 'Finisher'
     },
     '31': {
-        'name': 'Finisher'
+        'name': '1H Katana Finisher',
+        'icon': 'img/icons/equip-sword2h.png'
     },
     '32': {
-        'name': 'Finisher'
+        'name': '2H Katana Finisher',
+        'icon': 'img/icons/equip-sword2h.png'
     },
     '33': {
-        'name': 'Finisher'
+        'name': 'Cudgel Finisher',
+        'icon': 'img/icons/equip-cudgel2h.png'
     },
     '34': {
         'name': 'Finisher'
     },
     '35': {
-        'name': 'Finisher'
+        'name': 'Whip Finisher',
+        'icon': 'img/icons/equip-whip.png'
     },
     '36': {
-        'name': 'Finisher'
+        'name': 'Spellbook Finisher',
+        'icon': 'img/icons/equip-spellbook.png'
     },
     '37': {
-        'name': 'Finisher'
+        'name': 'Instrument Finisher',
+        'icon': 'img/icons/equip-instrument.png'
     },
     '38': {
         'name': 'Finisher'
@@ -1587,16 +1630,41 @@ const abilityType = {
         'name': 'Finisher'
     },
     '40': {
-        'name': 'Finisher'
+        'name': 'Sidearm Finisher',
+        'icon': 'img/icons/equip-sidearm.png'
     },
     '41': {
-        'name': 'Finisher'
+        'name': 'Bow Finisher',
+        'icon': 'img/icons/equip-bow2h.png'
     },
     '42': {
-        'name': 'Finisher'
+        'name': 'Crossbow Finisher',
+        'icon': 'img/icons/equip-crossbow2h.png'
     },
     '43': {
-        'name': 'Finisher'
+        'name': 'Fusil Finisher',
+        'icon': 'img/icons/equip-fusil2h.png'
+    }
+};
+
+const npcClasses = {
+    '71': {
+        'name': 'NPC Knight Commander'
+    },
+    '72': {
+        'name': 'Death Templar'
+    },
+    '73': {
+        'name': 'Dark Bishop'
+    },
+    '76': {
+        'name': 'Dark Lord (Dorgalua)'
+    },
+    '77': {
+        'name': 'Dark Lord (Ogre)'
+    },
+    '78': {
+        'name': 'Revenant (Rodrick)'
     }
 };
 

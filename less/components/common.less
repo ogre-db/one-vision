@@ -12,7 +12,7 @@
 @background-card: #e8e3de;
 
 @background-dark: #5f5854;
-@color-red: #da3e3e;
+@color-red: #ff4630 ;
 @color-pink: #f676a1;
 @color-green: #31c631;
 @color-blue: #0e6dcd;
@@ -374,7 +374,11 @@ canvas, img, video {
 
         &.uni {
           border-color: @color-orange;
-          box-shadow: 0 0 3px @color-orange;
+          box-shadow: 0 0 2px @color-orange;
+        }
+        &.ban {
+          border-color: @color-red;
+          box-shadow: 0 0 2px @color-red;
         }
       }
     }
@@ -426,7 +430,7 @@ canvas, img, video {
 #sidePanel {
   display: none;
   position: fixed;
-  right: 15px;
+  right: e('max(15px, 50% - 860px)');
   top: 0;
   width: calc(100% - 30px);
   max-width: 360px;
@@ -450,7 +454,17 @@ canvas, img, video {
     }
     .panel {
       border-color: @color-orange;
-      box-shadow: 0 0 8px @color-orange;
+      //box-shadow: 0 0 8px @color-orange;
+    }
+  }
+
+  &.ban {
+    #panelClose {
+      border-left-color: @color-red;
+    }
+    .panel {
+      border-color: @color-red;
+      //box-shadow: 0 0 8px @color-orange;
     }
   }
 
@@ -476,7 +490,7 @@ canvas, img, video {
     padding: 30px;
     border: 2px solid @background-dark;
     border-radius: 20px;
-    box-shadow: 2px 2px 8px fade(@background-dark, 60%);
+    //box-shadow: 2px 2px 8px fade(@background-dark, 60%);
 
     .content {
 
@@ -525,6 +539,11 @@ canvas, img, video {
                 border-color: @color-orange;
                 box-shadow: 0 0 3px @color-orange;
               }
+
+              &.ban {
+                border-color: @color-red;
+                box-shadow: 0 0 3px @color-red;
+              }
             }
           }
 
@@ -564,14 +583,9 @@ canvas, img, video {
             position: relative;
 
             &:after {
-              content: '\2671';
-              background-color: #fff;
-              color: transparent;
-              text-shadow: 0 0 0 @color-red;
-              font-size: 1.4rem;
-              line-height: 16px;
+              content: '';
+              background: #fff url('../img/icons/damage-sacred.png') no-repeat center;
               position: absolute;
-              text-align: center;
               right: 28px;
               top: -50px;
               width: 18px;
@@ -579,6 +593,180 @@ canvas, img, video {
               border: 1px solid @border-dark;
               border-radius: 25%;
             }
+          }
+        }
+      }
+
+      .stats-effect {
+
+        span {
+          display: inline-block;
+        }
+
+        b {
+          display: inline-block;
+
+          b {
+            margin-left: 5px;
+          }
+        }
+
+        &>div {
+          display: flex;
+          flex-wrap: wrap;
+
+          &>div {
+            width: 50%;
+
+            &:nth-child(2n + 1) {
+
+              span {
+                min-width: 60px;
+              }
+            }
+            &:nth-child(2n) {
+
+              b {
+                min-width: 35px;
+              }
+            }
+          }
+        }
+
+        .ability>div {
+          width: 100%;
+        }
+
+        .ability {
+
+          .name b {
+            font-size: 1.2rem;
+          }
+
+          .type b {
+            font-size: 0.85em;
+            position: relative;
+            top: -1px;
+          }
+
+          .type img {
+            display: inline-block;
+            background-color: rgba(95, 88, 84, 0.4);
+            position: relative;
+            height: 16px;
+            margin-right: 4px;
+            border-radius: 50%;
+            top: 2px;
+          }
+        }
+
+        .main {
+          margin-top: 10px;
+
+          &>div {
+
+            &:first-child {
+              width: 45%;
+
+              span {
+                min-width: 65px;
+              }
+            }
+            &:nth-child(2) {
+              width: 55%;
+
+              b {
+                min-width: 35px;
+                margin-left: 5px;
+              }
+            }
+            &:nth-child(3) {
+              width: 70%;
+
+              span {
+                min-width: 65px;
+              }
+            }
+            &:nth-child(4) {
+              width: 30%;
+
+              b {
+                min-width: 40px;
+              }
+            }
+
+            .reagent {
+
+              b {
+                font-size: 0.75em;
+                position: relative;
+                top: -1px;
+              }
+            }
+          }
+        }
+
+        [class^='effect-'] {
+
+          &>div {
+            width: 100%;
+
+            li > span {
+              min-width: 80px;
+            }
+
+            .effect, .restrict {
+
+              span {
+                float: left;
+              }
+
+              b {
+                width: calc(100% - 80px);
+              }
+            }
+
+            .profile {
+
+              b {
+
+                img {
+                  display: inline-block;
+                  background-color: rgba(95, 88, 84, 0.4);
+                  position: relative;
+                  height: 16px;
+                  margin-right: 4px;
+                  border-radius: 50%;
+                  top: 2px;
+                }
+              }
+            }
+          }
+        }
+
+        .divider-text {
+          display: block;
+          font-size: 0.75em;
+          font-weight: bold;
+          text-align: center;
+          margin: 10px 0 5px;
+
+          &:before,
+          &:after {
+            content: '';
+            background-color: #ccc;
+            display: inline-block;
+            height: 2px;
+            position: relative;
+            vertical-align: middle;
+            bottom: 2px;
+            width: 10%;
+          }
+          &:before {
+            margin-right: 5px;
+          }
+          &:after {
+            margin-left: 5px;
           }
         }
       }
@@ -628,18 +816,22 @@ canvas, img, video {
             opacity: 0;
 
             &>* {
-              padding: 5px 0;
+              margin: 5px 10px;
             }
 
             ul {
               display: flex;
               flex-wrap: wrap;
+              font-size: 0.85rem;
 
               li {
-                font-size: 0.7rem;
-                width: 50%;
-                padding: 0 10px;
-                white-space: nowrap;
+                font-size: 0.85em;
+
+                &.spacer {
+                  width: 100% !important;
+                  margin: 3px 0;
+                  border-bottom: 1px solid @border-light;
+                }
               }
             }
           }
@@ -662,24 +854,39 @@ canvas, img, video {
         }
       }
 
-      .ingredients {
+      .obtain {
 
         .ov-accordion {
 
-          &>li {
+          .accordion-content {
 
-            .accordion-content {
+            ul {
 
               li {
                 width: 100%;
+                margin-left: 10px;
+              }
 
-                span {
-                  display: inline-block;
+              &.drop, &.steal {
+                list-style: circle;
+
+                li {
+                  margin-left: 15px;
                 }
-                b {
-                  display: inline-block;
-                  width: 20px;
-                  float: right;
+              }
+
+              &.craft {
+
+                li {
+
+                  span {
+                    display: inline-block;
+                  }
+                  b {
+                    display: inline-block;
+                    width: 20px;
+                    float: right;
+                  }
                 }
               }
             }
@@ -687,7 +894,131 @@ canvas, img, video {
         }
       }
 
-      .obtain, .notes {
+      .usable {
+
+        .ov-accordion {
+
+          .accordion-content {
+
+            ul {
+              list-style: circle;
+
+              li {
+                width: 100%;
+                margin-left: 15px;
+              }
+
+              &.item {
+
+                li {
+
+                  span {
+                    display: inline-block;
+                  }
+                  b {
+                    display: inline-block;
+                    width: 40px;
+                    float: right;
+                    text-align: right;
+
+                    small {
+                      font-weight: normal;
+                    }
+                  }
+                }
+              }
+
+              &.gear {
+                list-style: none;
+
+                li {
+                  margin-left: 5px;
+
+                  img {
+                    display: inline-block;
+                    position: relative;
+                    height: 12px;
+                    margin-right: 4px;
+                    border-radius: 50%;
+                    top: 2px;
+                  }
+                  span {
+                    display: inline-block;
+                  }
+                  b {
+                    display: inline-block;
+                    width: 40px;
+                    float: right;
+                    text-align: right;
+
+                    small {
+                      font-weight: normal;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .class {
+
+        .ov-accordion {
+
+          &>li {
+
+            .accordion-content {
+
+              ul {
+                gap: 0 6px;
+
+                li {
+                  width: calc(50% - 3px);
+                  white-space: nowrap;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .magic {
+
+        .ov-accordion {
+
+          &>li {
+
+            .accordion-content {
+
+              ul {
+
+                li {
+                  width: 100%;
+                  white-space: nowrap;
+                  margin: 0;
+
+                  span {
+                    display: inline-block;
+                  }
+                  b {
+                    display: inline-block;
+                    width: 30px;
+                    float: right;
+                    text-align: right;
+
+                    small {
+                      font-weight: normal;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .notes {
 
         table {
           border-collapse: separate;
