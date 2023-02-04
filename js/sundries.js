@@ -464,7 +464,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 infoClasses = jobs.filter((rows) => (inSkillsets.includes(rows['sklset']) && (rows['id'] < 27 || rows['id'] > 42 || [37,38,39].includes(rows['id']))));
             }
-
             let classCount = infoClasses.length;
             if ( classCount === 0 )
                 infoClass.innerHTML = '<li>None</li>';

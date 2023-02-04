@@ -117,13 +117,13 @@ small {
   color: #f676a1;
 }
 .green {
-  color: #31c631;
+  color: #29a329;
 }
 .blue {
   color: #0e6dcd;
 }
 .orange {
-  color: #ffa500;
+  color: #ee9500;
 }
 button {
   background: transparent;
@@ -310,8 +310,8 @@ video {
   box-shadow: 0 1px 0 #7c7672, inset 0 2px 0 #fff;
 }
 .ov-item-list table td:first-child img.uni {
-  border-color: #ffa500;
-  box-shadow: 0 0 2px #ffa500;
+  border-color: #ee9500;
+  box-shadow: 0 0 2px #ee9500;
 }
 .ov-item-list table td:first-child img.ban {
   border-color: #ff4630;
@@ -370,10 +370,10 @@ video {
   z-index: 981;
 }
 #sidePanel.uni #panelClose {
-  border-left-color: #ffa500;
+  border-left-color: #ee9500;
 }
 #sidePanel.uni .panel {
-  border-color: #ffa500;
+  border-color: #ee9500;
 }
 #sidePanel.ban #panelClose {
   border-left-color: #ff4630;
@@ -439,8 +439,8 @@ video {
   box-shadow: 0 0 2px #7c7672;
 }
 #sidePanel .panel .content .title .subtitle span img.uni {
-  border-color: #ffa500;
-  box-shadow: 0 0 3px #ffa500;
+  border-color: #ee9500;
+  box-shadow: 0 0 3px #ee9500;
 }
 #sidePanel .panel .content .title .subtitle span img.ban {
   border-color: #ff4630;
@@ -574,6 +574,10 @@ video {
 #sidePanel .panel .content .stats-effect [class^='effect-'] > div .restrict b {
   width: calc(100% - 80px);
 }
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div .acc b,
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div .restrict b {
+  font-size: 0.85rem;
+}
 #sidePanel .panel .content .stats-effect [class^='effect-'] > div .profile b img {
   display: inline-block;
   background-color: rgba(95, 88, 84, 0.4);
@@ -636,7 +640,7 @@ video {
   background: transparent;
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-title:hover {
-  color: #ffa500;
+  color: #ee9500;
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-content {
   display: flow-root;
@@ -663,7 +667,7 @@ video {
   border-bottom: 1px solid #ccc;
 }
 #sidePanel .panel .content .ov-accordion > li.open .accordion-title {
-  color: #ffa500;
+  color: #ee9500;
 }
 #sidePanel .panel .content .ov-accordion > li.open .accordion-title:after {
   content: '[hide]';
@@ -754,12 +758,15 @@ video {
 }
 #sidePanel .panel .content .magic .ov-accordion > li .accordion-content ul li b {
   display: inline-block;
-  width: 30px;
+  width: 40px;
   float: right;
   text-align: right;
 }
 #sidePanel .panel .content .magic .ov-accordion > li .accordion-content ul li b small {
   font-weight: normal;
+}
+#sidePanel .panel .content .magic.spells .ov-accordion > li .accordion-content ul li b {
+  width: 50px;
 }
 #sidePanel .panel .content .notes table {
   border-collapse: separate;
@@ -1035,7 +1042,7 @@ video {
   min-width: 120px;
 }
 #sidePanel.weapons-panel .panel .content .stats-extra .itemset b {
-  color: #31c631;
+  color: #29a329;
 }
 .page-armor .ov-item-list table th:nth-child(2),
 .page-armor .ov-item-list table td:nth-child(2) {
@@ -1213,7 +1220,7 @@ video {
   min-width: 120px;
 }
 #sidePanel.armor-panel .panel .content .stats-extra .itemset b {
-  color: #31c631;
+  color: #29a329;
 }
 .page-sundries .ov-item-list table img.mark-basic {
   border-color: #8B4513;
@@ -1232,8 +1239,8 @@ video {
   box-shadow: 0 0 1px rgba(178, 34, 34, 0.6);
 }
 .page-sundries .ov-item-list table img.mark-special {
-  border-color: #ffa500;
-  box-shadow: 0 0 1px #ffa500;
+  border-color: #ee9500;
+  box-shadow: 0 0 1px #ee9500;
 }
 .page-sundries .ov-item-list table th:nth-child(2),
 .page-sundries .ov-item-list table td:nth-child(2) {
@@ -1308,8 +1315,8 @@ video {
   box-shadow: 0 0 3px rgba(178, 34, 34, 0.6);
 }
 #sidePanel.sundries-panel .panel .content .title img.mark-special {
-  border-color: #ffa500;
-  box-shadow: 0 0 3px #ffa500;
+  border-color: #ee9500;
+  box-shadow: 0 0 3px #ee9500;
 }
 #sidePanel.sundries-panel .panel .content .stats-top {
   margin-top: 20px;
@@ -1367,7 +1374,7 @@ video {
   min-width: 120px;
 }
 #sidePanel.sundries-panel .panel .content .stats-extra .itemset b {
-  color: #31c631;
+  color: #29a329;
 }
 .page-abilities .ov-item-list table th:nth-child(2),
 .page-abilities .ov-item-list table td:nth-child(2) {
@@ -1422,34 +1429,27 @@ video {
     width: 40px;
   }
 }
-#sidePanel.abilities-panel .panel .content .stats-top span {
-  display: inline-block;
-}
-#sidePanel.abilities-panel .panel .content .stats-top b {
-  display: inline-block;
-}
-#sidePanel.abilities-panel .panel .content .stats-top b b {
-  margin-left: 5px;
-}
-#sidePanel.abilities-panel .panel .content .stats-top > div {
-  display: flex;
-  flex-wrap: wrap;
-}
-#sidePanel.abilities-panel .panel .content .stats-top > div > div {
-  width: 50%;
-}
-#sidePanel.abilities-panel .panel .content .stats-top > div > div:nth-child(2n + 1) span {
-  min-width: 60px;
-}
-#sidePanel.abilities-panel .panel .content .stats-top > div > div:nth-child(2n) b {
-  min-width: 35px;
-}
 #sidePanel.abilities-panel .panel .content .stats-top {
   margin-top: 20px;
 }
 #sidePanel.abilities-panel .panel .content .stats-top .basic {
   display: flex;
   flex-wrap: wrap;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic span {
+  display: inline-block;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic b {
+  display: inline-block;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic b b {
+  margin-left: 5px;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(2n + 1) span {
+  min-width: 60px;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(2n) b {
+  min-width: 35px;
 }
 #sidePanel.abilities-panel .panel .content .stats-top .basic > div:first-child {
   width: 45%;
@@ -1492,6 +1492,120 @@ video {
   vertical-align: top;
 }
 #sidePanel.abilities-panel .panel .content .notes table tr td:first-child {
+  width: 50px;
+}
+.page-skills .ov-item-list table {
+  table-layout: fixed;
+}
+.page-skills .ov-item-list table th:nth-child(2),
+.page-skills .ov-item-list table td:nth-child(2) {
+  width: auto;
+  text-align: left;
+}
+.page-skills .ov-item-list table th:nth-child(3),
+.page-skills .ov-item-list table td:nth-child(3) {
+  width: 40px;
+}
+.page-skills .ov-item-list table th:nth-child(4),
+.page-skills .ov-item-list table td:nth-child(4) {
+  width: 40px;
+}
+.page-skills .ov-item-list table th:nth-child(5),
+.page-skills .ov-item-list table td:nth-child(5) {
+  width: 40px;
+}
+.page-skills .ov-item-list table td:nth-child(5) {
+  font-size: 0.7rem;
+}
+.page-skills .ov-item-list table th:nth-child(6),
+.page-skills .ov-item-list table td:nth-child(6) {
+  width: 35px;
+}
+.page-skills .ov-item-list table th:nth-child(7),
+.page-skills .ov-item-list table td:nth-child(7) {
+  width: 35px;
+}
+@media only screen and (min-width: 380px) {
+  .page-skills .ov-item-list table th:nth-child(3),
+  .page-skills .ov-item-list table td:nth-child(3) {
+    width: 50px;
+  }
+  .page-skills .ov-item-list table th:nth-child(4),
+  .page-skills .ov-item-list table td:nth-child(4) {
+    width: 50px;
+  }
+  .page-skills .ov-item-list table th:nth-child(5),
+  .page-skills .ov-item-list table td:nth-child(5) {
+    width: 50px;
+  }
+  .page-skills .ov-item-list table th:nth-child(6),
+  .page-skills .ov-item-list table td:nth-child(6) {
+    width: 40px;
+  }
+  .page-skills .ov-item-list table th:nth-child(7),
+  .page-skills .ov-item-list table td:nth-child(7) {
+    width: 40px;
+  }
+}
+@media only screen and (min-width: 480px) {
+  .page-skills .ov-item-list table th:nth-child(3),
+  .page-skills .ov-item-list table td:nth-child(3) {
+    width: 60px;
+  }
+  .page-skills .ov-item-list table th:nth-child(4),
+  .page-skills .ov-item-list table td:nth-child(4) {
+    width: 60px;
+  }
+  .page-skills .ov-item-list table th:nth-child(5),
+  .page-skills .ov-item-list table td:nth-child(5) {
+    width: 60px;
+  }
+  .page-skills .ov-item-list table td:nth-child(5) {
+    font-size: 0.85rem;
+  }
+  .page-skills .ov-item-list table th:nth-child(6),
+  .page-skills .ov-item-list table td:nth-child(6) {
+    width: 50px;
+  }
+  .page-skills .ov-item-list table th:nth-child(7),
+  .page-skills .ov-item-list table td:nth-child(7) {
+    width: 50px;
+  }
+}
+#sidePanel.skills-panel .panel .content .stats-top {
+  margin-top: 20px;
+}
+#sidePanel.skills-panel .panel .content .stats-top .basic {
+  display: flex;
+  flex-wrap: wrap;
+}
+#sidePanel.skills-panel .panel .content .stats-top .basic > div {
+  width: 50%;
+}
+#sidePanel.skills-panel .panel .content .stats-top .basic > div span {
+  display: inline-block;
+  min-width: 100px;
+}
+#sidePanel.skills-panel .panel .content .stats-top .basic > div b {
+  display: inline-block;
+}
+#sidePanel.skills-panel .panel .content .stats-top .basic > div:nth-child(2) span {
+  min-width: unset;
+}
+#sidePanel.skills-panel .panel .content .stats-top .basic > div:nth-child(2) b {
+  min-width: 45px;
+}
+#sidePanel.skills-panel .panel .content .stats-top .basic > div.group,
+#sidePanel.skills-panel .panel .content .stats-top .basic > div.prereq {
+  width: 100%;
+}
+#sidePanel.skills-panel .panel .content .stats-passive ul {
+  list-style: disc;
+}
+#sidePanel.skills-panel .panel .content .stats-passive ul li {
+  margin-left: 20px;
+}
+#sidePanel.skills-panel .panel .content .notes table tr td:first-child {
   width: 50px;
 }
 .page-classes .ov-item-list table th:nth-child(1),

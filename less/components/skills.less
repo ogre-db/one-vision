@@ -1,0 +1,152 @@
+
+.page-skills {
+
+  .ov-item-list {
+
+    table {
+      table-layout: fixed;
+
+      th:nth-child(2), td:nth-child(2) {
+        width: auto;
+        text-align: left;
+      }
+      th:nth-child(3), td:nth-child(3) {
+        width: 40px;
+      }
+      th:nth-child(4), td:nth-child(4) {
+        width: 40px;
+      }
+      th:nth-child(5), td:nth-child(5) {
+        width: 40px;
+      }
+      td:nth-child(5) {
+        font-size: 0.7rem;
+      }
+      th:nth-child(6), td:nth-child(6) {
+        width: 35px;
+      }
+      th:nth-child(7), td:nth-child(7) {
+        width: 35px;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 380px) {
+    .ov-item-list {
+      table {
+
+        th:nth-child(3), td:nth-child(3) {
+          width: 50px;
+        }
+        th:nth-child(4), td:nth-child(4) {
+          width: 50px;
+        }
+        th:nth-child(5), td:nth-child(5) {
+          width: 50px;
+        }
+        th:nth-child(6), td:nth-child(6) {
+          width: 40px;
+        }
+        th:nth-child(7), td:nth-child(7) {
+          width: 40px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (min-width: 480px) {
+    .ov-item-list {
+      table {
+
+        th:nth-child(3), td:nth-child(3) {
+          width: 60px;
+        }
+        th:nth-child(4), td:nth-child(4) {
+          width: 60px;
+        }
+        th:nth-child(5), td:nth-child(5) {
+          width: 60px;
+        }
+        td:nth-child(5) {
+          font-size: 0.85rem;
+        }
+        th:nth-child(6), td:nth-child(6) {
+          width: 50px;
+        }
+        th:nth-child(7), td:nth-child(7) {
+          width: 50px;
+        }
+      }
+    }
+  }
+}
+
+#sidePanel.skills-panel {
+
+  .panel {
+
+    .content {
+
+      .stats-top {
+        margin-top: 20px;
+
+        .basic {
+          display: flex;
+          flex-wrap: wrap;
+
+          &>div {
+            width: 50%;
+
+            span {
+              display: inline-block;
+              min-width: 100px;
+            }
+
+            b {
+              display: inline-block;
+            }
+          }
+
+          &>div:nth-child(2) {
+
+            span {
+              min-width: unset;
+            }
+
+            b {
+              min-width: 45px;
+            }
+          }
+
+          &>div.group, &>div.prereq {
+            width: 100%;
+          }
+        }
+      }
+
+      .stats-passive {
+
+        ul {
+          list-style: disc;
+
+          li {
+            margin-left: 20px;
+          }
+        }
+      }
+
+      .notes {
+
+        table {
+
+          tr {
+
+            td:first-child {
+              width: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

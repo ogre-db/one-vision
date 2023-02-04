@@ -65,13 +65,13 @@ document.addEventListener('DOMContentLoaded', function() {
         trap = items[480];
 
         // let total = items.length;
-        items.forEach( (ability, index) => {
-            if ( index === 0 || abilityType[ability.typ]['name'] !== categoryName ) {
-                categoryName = abilityType[ability.typ]['name'];
+        items.forEach( (element, index) => {
+            if ( index === 0 || abilityType[element.typ]['name'] !== categoryName ) {
+                categoryName = abilityType[element.typ]['name'];
                 let tr = document.createElement('tr');
                     tr.className = 'separator';
                     let category = document.createElement('td');
-                        category.textContent = abilityType[ability.typ]['name'];
+                        category.textContent = abilityType[element.typ]['name'];
                         category.colSpan = document.querySelectorAll('#itemList th').length;
                     tr.appendChild(category);
                 itemList.appendChild(tr);
@@ -81,23 +81,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 tr.id = index;
                 let type = document.createElement('td');
                 let classImg = document.createElement('img');
-                classImg.src = abilityType[ability.typ]['icon'];
-                if ( ability.unique === 1 ) classImg.classList.add('uni');
-                if ( ability.npconly ) {
+                classImg.src = abilityType[element.typ]['icon'];
+                if ( element.unique === 1 ) classImg.classList.add('uni');
+                if ( element.npconly ) {
                     classImg.classList.remove('uni');
                     classImg.classList.add('ban');
                 }
-                if ( ability.typvar )
-                    classImg.src = abilityType[ability.typ + ability.typvar].icon;
+                if ( element.typvar )
+                    classImg.src = abilityType[element.typ + element.typvar].icon;
                 type.appendChild(classImg);
                 let name = document.createElement('td');
-                name.textContent = ability.name;
+                name.textContent = element.name;
                 let cost = document.createElement('td');
                 let costText = '';
-                if ( ability.rescost > 0 || ability.typ === 17 )  {
-                    let rescost = ability.rescost;
-                    let res = ability.res;
-                    if ( ability.typ === 17 ) {
+                if ( element.rescost > 0 || element.typ === 17 )  {
+                    let rescost = element.rescost;
+                    let res = element.res;
+                    if ( element.typ === 17 ) {
                         rescost = trap.rescost;
                         res = trap.res;
                     }
@@ -117,32 +117,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 cost.innerHTML = costText;
                 let rtcost = document.createElement('td');
-                if ( ability.typ !== 17 )
-                    rtcost.textContent = ability.rtcost;
+                if ( element.typ !== 17 )
+                    rtcost.textContent = element.rtcost;
                 else
                     rtcost.textContent = trap.rtcost;
                 let profile = document.createElement('td');
-                let damageProfile = getEffectText(ability, 1).damage;
-                if ((damageProfile.length === 0 || ability.eff1self) && ability.eff21)
-                    damageProfile = getEffectText(ability, 2).damage;
-                if ((damageProfile.length === 0 || ability.eff2self) && ability.eff31)
-                    damageProfile = getEffectText(ability, 3).damage;
+                let damageProfile = getEffectText(element, 1).damage;
+                if ((damageProfile.length === 0 || element.eff1self) && element.eff21)
+                    damageProfile = getEffectText(element, 2).damage;
+                if ((damageProfile.length === 0 || element.eff2self) && element.eff31)
+                    damageProfile = getEffectText(element, 3).damage;
                 if (damageProfile.length > 0) {
                     damageProfile.forEach( (dmg) => {
                         profile.innerHTML += '<img src="' + dmg.icon + '">';
                     });
                 }
                 let range = document.createElement('td');
-                if (ability.maxr) {
-                    if (ability.minr === ability.maxr)
-                        range.innerText = ability.maxr;
+                if (element.maxr) {
+                    if (element.minr === element.maxr)
+                        range.innerText = element.maxr;
                     else
-                        range.innerText = ability.minr + ' - ' + ability.maxr;
+                        range.innerText = element.minr + ' - ' + element.maxr;
                 } else
                     range.innerText = '—';
                 let area = document.createElement('td');
-                if (ability.aoe)
-                    area.innerText = ability.aoe;
+                if (element.aoe)
+                    area.innerText = element.aoe;
                 else
                     area.innerText = '—';
 

@@ -64,25 +64,25 @@
     .content {
 
       .stats-top {
+        margin-top: 20px;
 
-        span {
-          display: inline-block;
-        }
-
-        b {
-          display: inline-block;
-
-          b {
-            margin-left: 5px;
-          }
-        }
-
-        &>div {
+        .basic {
           display: flex;
           flex-wrap: wrap;
 
+          span {
+            display: inline-block;
+          }
+
+          b {
+            display: inline-block;
+
+            b {
+              margin-left: 5px;
+            }
+          }
+
           &>div {
-            width: 50%;
 
             &:nth-child(2n + 1) {
 
@@ -96,18 +96,6 @@
                 min-width: 35px;
               }
             }
-          }
-        }
-      }
-
-      .stats-top {
-        margin-top: 20px;
-
-        .basic {
-          display: flex;
-          flex-wrap: wrap;
-
-          &>div {
 
             &:first-child {
               width: 45%;

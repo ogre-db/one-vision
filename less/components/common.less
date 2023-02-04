@@ -14,9 +14,9 @@
 @background-dark: #5f5854;
 @color-red: #ff4630 ;
 @color-pink: #f676a1;
-@color-green: #31c631;
+@color-green: #29a329;
 @color-blue: #0e6dcd;
-@color-orange: #ffa500;
+@color-orange: #ee9500;
 @color-unique: #af6025;
 @highlight-white: rgba(255, 255, 255, 0.4);
 @highlight-dark: rgba(95, 88, 84, 0.6);
@@ -726,6 +726,13 @@ canvas, img, video {
               }
             }
 
+            .acc, .restrict {
+
+              b {
+                font-size: 0.85rem;
+              }
+            }
+
             .profile {
 
               b {
@@ -1003,12 +1010,34 @@ canvas, img, video {
                   }
                   b {
                     display: inline-block;
-                    width: 30px;
+                    width: 40px;
                     float: right;
                     text-align: right;
 
                     small {
                       font-weight: normal;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &.spells {
+
+          .ov-accordion {
+
+            &>li {
+
+              .accordion-content {
+
+                ul {
+
+                  li {
+
+                    b {
+                      width: 50px;
                     }
                   }
                 }

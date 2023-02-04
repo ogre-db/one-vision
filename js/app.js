@@ -173,6 +173,8 @@ function getEffectText (ability, effectSet) {
             effectText += 'Heal ';
             if ( ability[formula] === 9 || ability[formula] === 14 )
                 effectText += 'for ' + ability[power] + '% of Max';
+            else if (ability[formula] === 10)
+                effectText += 'for ' + ability[power] + '% of Current';
             else if (ability[formula] === 0)
                 effectText += 'for the Amount of Main';
             else if (ability[formula] === 1)
@@ -727,13 +729,13 @@ const itemSets = [
         'id': 1,
         'name': 'Legion',
         'active': 0,
-        'passive': 195
+        'passive': 190
     },
     {
         'id': 2,
         'name': 'Ogre',
         'active': 0,
-        'passive': 0
+        'passive': 195
     },
     {
         'id': 3,
@@ -1644,6 +1646,486 @@ const abilityType = {
     '43': {
         'name': 'Fusil Finisher',
         'icon': 'img/icons/equip-fusil2h.png'
+    }
+};
+
+const skillType = {
+    '1': {
+        'name': 'Support',
+        'icon': 'img/icons/skill-support.png'
+    },
+    '1w': {
+        'name': 'Weapon Skill'
+    },
+    '1ma': {
+        'name': 'Mastery'
+    },
+    '1mr': {
+        'name': 'Mastery'
+    },
+    '1md': {
+        'name': 'Mastery'
+    },
+    '1mo': {
+        'name': 'Mastery'
+    },
+    '1ar': {
+        'name': 'Support'
+    },
+    '1as': {
+        'name': 'Support'
+    },
+    '2': {
+        'name': 'Action',
+        'icon': 'img/icons/skill-action.png'
+    },
+    '2ie': {
+        'name': 'Action'
+    },
+    '3': {
+        'name': 'Command',
+        'icon': 'img/icons/skill-command.png'
+    },
+    '4': {
+        'name': 'Special',
+        'icon': 'img/icons/skill-special.png'
+    }
+};
+
+const skillGroup = {
+    '1': {
+        'name': 'Defense Mastery',
+        'symbol': 'DM'
+    },
+    '3': {
+        'name': 'Aura',
+        'symbol': 'A'
+    },
+    '4': {
+        'name': 'Counterhit',
+        'symbol': 'CH'
+    },
+    '5': {
+        'name': 'Bash',
+        'symbol': 'B'
+    },
+    '6': {
+        'name': 'Golem Core',
+        'symbol': 'GC'
+    },
+    '18': {
+        'name': 'Clarity',
+        'symbol': 'CL'
+    },
+    '19': {
+        'name': 'Efficacy',
+        'symbol': 'EF'
+    },
+    '21': {
+        'name': 'Jump',
+        'symbol': 'J'
+    },
+    '22': {
+        'name': 'Wade',
+        'symbol': 'WD'
+    },
+    '24': {
+        'name': 'Field Alchemy',
+        'symbol': 'FA'
+    },
+    '25': {
+        'name': 'Max TP',
+        'symbol': 'TP'
+    },
+    '27': {
+        'name': 'Tactician',
+        'symbol': 'T'
+    },
+    '31': {
+        'name': 'Mirror Instill',
+        'symbol': 'MI'
+    },
+    '32': {
+        'name': 'Mirror Mastery',
+        'symbol': 'MM'
+    },
+    '33': {
+        'name': 'Mirror',
+        'symbol': 'M'
+    },
+    '34': {
+        'name': 'Ward',
+        'symbol': 'W'
+    },
+    '35': {
+        'name': 'Mirror Resonance',
+        'symbol': 'MR'
+    }
+};
+
+const skillPassives = {
+    'var-w': {
+        'text': 'Adds <b>4 Base Damage</b> and <b>10% Hit Chance</b> per <b>Rank</b> to <b>[insert1]</b> Attacks and Finishers'
+    },
+    '1': {
+        'insert1': 'Fist'
+    },
+    '2': {
+        'insert1': 'Dagger'
+    },
+    '3': {
+        'insert1': '1H Sword'
+    },
+    '4': {
+        'insert1': '2H Sword'
+    },
+    '5': {
+        'insert1': 'Axe'
+    },
+    '7': {
+        'insert1': 'Spear'
+    },
+    '8': {
+        'insert1': 'Hammer'
+    },
+    '10': {
+        'insert1': '1H Katana'
+    },
+    '11': {
+        'insert1': '2H Katana'
+    },
+    '12': {
+        'insert1': 'Cudgel'
+    },
+    '14': {
+        'insert1': 'Whip'
+    },
+    '15': {
+        'insert1': 'Spellbook'
+    },
+    '16': {
+        'insert1': 'Instrument'
+    },
+    '17': {
+        'insert1': 'Sidearm'
+    },
+    '18': {
+        'insert1': 'Bow'
+    },
+    '19': {
+        'insert1': 'Crossbow'
+    },
+    '20': {
+        'insert1': 'Fusil'
+    },
+    'var-mr': {
+        'text': 'Adds <b>5 Base Damage</b> per <b>Rank</b> to any hits delivered against <b>[insert1]</b> units'
+    },
+    '22': {
+        'insert1': 'Human'
+    },
+    '23': {
+        'insert1': 'Beast'
+    },
+    '24': {
+        'insert1': 'Reptile'
+    },
+    '25': {
+        'insert1': 'Dragon'
+    },
+    '26': {
+        'insert1': 'Divine'
+    },
+    '27': {
+        'insert1': 'Umbra'
+    },
+    '28': {
+        'insert1': 'Faeries'
+    },
+    '29': {
+        'insert1': 'Phantom'
+    },
+    '30': {
+        'insert1': 'Golem'
+    },
+    'var-ma': {
+        'text': 'Adds <b>4 Base Damage</b> per <b>Rank</b> to any <b>[insert1]</b> Element hits | Reduces <b>Base Damage</b> of any incoming <b>[insert1]</b> Element hits by <b>3</b> per <b>Rank</b>'
+    },
+    '31': {
+        'insert1': 'Air'
+    },
+    '32': {
+        'insert1': 'Earth'
+    },
+    '33': {
+        'insert1': 'Lightning'
+    },
+    '34': {
+        'insert1': 'Water'
+    },
+    '35': {
+        'insert1': 'Fire'
+    },
+    '36': {
+        'insert1': 'Ice'
+    },
+    '37': {
+        'insert1': 'Divine'
+    },
+    '38': {
+        'insert1': 'Dark'
+    },
+    '39': {
+        'text': 'Adds a separate chance of <b>5%</b>(?) per <b>Rank</b> to <b>Parry</b> a <b>Melee</b> Basic Attack, if Avoiding it fails'
+    },
+    '40': {
+        'text': 'Adds a separate chance of <b>5%</b>(?) per <b>Rank</b> to <b>Parry</b> a <b>Ranged</b> Basic Attack, if Avoiding it fails'
+    },
+    '41': {
+        'text': 'Reduces the target\'s <b>Parry</b> chance by <b>4%</b>(?) per <b>Rank</b>'
+    },
+    'var-ie': {
+        'text': 'If <b>Augment [insert1]</b> is also equipped, this skill will reduce the <b>Final Damage</b> of the same element by <b>4%</b> per <b>Augment Rank</b>'
+    },
+    '71': {
+        'insert1': 'Air'
+    },
+    '72': {
+        'insert1': 'Earth'
+    },
+    '73': {
+        'insert1': 'Lightning'
+    },
+    '74': {
+        'insert1': 'Water'
+    },
+    '75': {
+        'insert1': 'Fire'
+    },
+    '76': {
+        'insert1': 'Ice'
+    },
+    '77': {
+        'insert1': 'Light'
+    },
+    '78': {
+        'insert1': 'Darkness'
+    },
+    'var-ar': {
+        'text': 'Stops the <b>Enemy</b> unit movement in an area of [insert1]'
+    },
+    '80': {
+        'insert1': '<b>1</b> tile to the front, side and rear'
+    },
+    '81': {
+        'insert1': '<b>1</b> tile to the front or rear and <b>2</b> to the side'
+    },
+    '82': {
+        'insert1': '<b>1</b> tile to the front, front-left, front-right or rear and <b>3</b> to the side'
+    },
+    '83': {
+        'insert1': '<b>2</b> tiles to the front or rear, <b>1</b> tiles to the front-left or front-right and <b>3</b> to the side'
+    },
+    '84': {
+        'insert1': '<b>3</b> tiles to the front or rear, <b>2</b> tiles to the front-left or front-right and <b>4</b> to the side'
+    },
+    'group-4': {
+        'text': 'Counters a <b>Melee</b> Basic Attack if the attacker is within range, dealing <b>[insert1]%</b> of normal damage'
+    },
+    '87': {
+        'insert1': '50'
+    },
+    '88': {
+        'insert1': '75'
+    },
+    '89': {
+        'insert1': '100'
+    },
+    'group-5': {
+        'text': 'Grants a <b>[insert1]%</b> chance to knock the target back with a Basic Attack.'
+    },
+    '92': {
+        'insert1': '50'
+    },
+    '93': {
+        'insert1': '75'
+    },
+    '94': {
+        'insert1': '100'
+    },
+    '96': {
+        'text': 'Adds 25% to <b>Attack Damage Bonus</b>'
+    },
+    '102': {
+        'text': 'Adds 50% to <b>Attack Damage Resistance</b>'
+    },
+    '111': {
+        'text': 'Adds 25% to <b>Spell Damage Resistance</b>'
+    },
+    '112': {
+        'text': 'Adds 50% to <b>Spell Damage Resistance</b>'
+    },
+    '117': {
+        'text': 'Adds 50% to <b>Melee Attack Hit Chance</b>'
+    },
+    '141': {
+        'text': 'Adds <b>25%</b> to <b>Status Spell Evasion</b>'
+    },
+    'group-18': {
+        'text': 'Increases the rate of natural <b class="pink">MP</b> restoration by <b>[insert1]%</b>'
+    },
+    '156': {
+        'insert1': '25'
+    },
+    '157': {
+        'insert1': '50'
+    },
+    '158': {
+        'insert1': '75'
+    },
+    '159': {
+        'insert1': '100'
+    },
+    'group-19': {
+        'text': 'Reduces the amount of spent <b class="pink">MP</b> by <b>[insert1]%</b>'
+    },
+    '162': {
+        'insert1': '10'
+    },
+    '163': {
+        'insert1': '15'
+    },
+    '164': {
+        'insert1': '20'
+    },
+    'group-34': {
+        'text': 'Grants immunity to [insert1]'
+    },
+    '166': {
+        'insert1': '<b>Petrify</b>'
+    },
+    '167': {
+        'insert1': '<b>Stun</b>'
+    },
+    '168': {
+        'insert1': '<b>Sleep</b>'
+    },
+    '169': {
+        'insert1': '<b>Charm</b> and <b>Bewitch</b>'
+    },
+    '170': {
+        'insert1': '<b>Spendthrift</b> and <b>Paranoia</b>'
+    },
+    '172': {
+        'insert1': '<b>Silence</b>'
+    },
+    '173': {
+        'insert1': '<b>Slow</b>'
+    },
+    '174': {
+        'insert1': '<b>Bind</b>, <b>Shackle</b> and <b>Stop</b>'
+    },
+    '175': {
+        'insert1': '<b>Leaden</b>'
+    },
+    '176': {
+        'insert1': '<b>Frighten</b>'
+    },
+    '177': {
+        'insert1': '<b>Poison</b>'
+    },
+    '178': {
+        'insert1': '<b>Wither</b> and <b>Curse</b>'
+    },
+    '179': {
+        'insert1': '<b>Most Status Effects</b>'
+    },
+    '181': {
+        'text': 'Increases the <b>Movement Range</b> by <b>1</b>'
+    },
+    'group-21': {
+        'text': 'Increases the Up/Down <b>Jump Range</b> by <b>[insert1]</b>'
+    },
+    '183': {
+        'insert1': '1'
+    },
+    '184': {
+        'insert1': '2'
+    },
+    'group-22': {
+        'text': 'Allows moving through <b>Water</b> tiles at a movement cost of <b>[insert1]</b>'
+    },
+    '185': {
+        'insert1': '2'
+    },
+    '186': {
+        'insert1': '1'
+    },
+    'var-as': {
+        'text': 'Prevents <b>Undead</b> units from entering the area of [insert1]'
+    },
+    '188': {
+        'insert1': '<b>1</b> tile to the front, side and rear'
+    },
+    '189': {
+        'insert1': '<b>2</b> tiles to the front, side or rear and <b>1</b> tile diagonally'
+    },
+    '190': {
+        'text': 'The unit is ignored by enemies unless it\'s the last one standing'
+    },
+    '191': {
+        'text': 'Grants immunity to <b>Knockback</b>'
+    },
+    '192': {
+        'text': 'Enables the <b>Double Attack</b> command when two <b>Melee</b> weapons are equipped'
+    },
+    '193': {
+        'text': 'Shows the <b>Trajectory</b> of <b>Ranged Attacks</b>'
+    },
+    '194': {
+        'text': 'Grants immunity to <b>Rampart Aura</b> | Reduces the <b>Movement Range</b> by <b class="red">1</b>'
+    },
+    '195': {
+        'text': 'Greatly increases the unit\'s <b>Offense</b>, <b>Power</b>, <b>Toughness</b> and <b>Resilience</b>'
+    },
+    '196': {
+        'text': 'Allows the use of advanced consumable items'
+    },
+    '197': {
+        'text': 'Allows the use of all consumable items'
+    },
+    '200': {
+        'text': 'Greatly increases the unit\'s <b>Ranged Attack</b>'
+    },
+    'group-25': {
+        'text': 'Increases the unit\'s <b>Max</b> <b class="orange">TP</b> by <b>[insert1]</b>'
+    },
+    '202': {
+        'insert1': '50'
+    },
+    '204': {
+        'insert1': '100'
+    },
+    '207': {
+        'text': 'Improves the <b>Buried Treasure</b> found'
+    },
+    'group-27': {
+        'text': 'Increases the rate of natural <b class="orange">TP</b> restoration by <b>[insert1]%</b>'
+    },
+    '209': {
+        'insert1': '10'
+    },
+    '210': {
+        'insert1': '40'
+    },
+    '213': {
+        'text': 'Reflects <b>20%</b> of <b>Attack</b> Damage taken back to the attacker'
+    },
+    '216': {
+        'text': 'Reflects <b>20%</b> of <b>Spell</b> Damage taken back to the caster'
+    },
+    '219': {
+        'text': 'Absorbs <b>40%</b> of the <b class="pink">MP</b> Cost when hit by a <b>Damage Spell</b>'
     }
 };
 
