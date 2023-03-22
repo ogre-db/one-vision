@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     let classImg = document.createElement('img');
                     if ( element.typ === 3 )
                         classImg.src = abilityType[element.abilitygrp]['icon'];
-                    else if ( [5,7,8,12].includes(element.id) )
+                    else if ( [5,7,8,12,18,19,20].includes(element.id) )
                         classImg.src = types[element.id + 160]['icon2'];
                     else if ( element.id <= 20 )
                         classImg.src = types[element.id + 160]['icon1'];
@@ -337,9 +337,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     let spellName = el.name;
                     if (el.unique)
-                        spellName = '<span class="orange">' + el.name + '</span>';
+                        spellName = '<span class="bold orange">' + el.name + '</span>';
                     if (el.npconly)
-                        spellName = '<span class="red">' + el.name + '</span>';
+                        spellName = '<span class="bold red">' + el.name + '</span>';
                     infoSpells.innerHTML += '<li>' + spellName + '<b><small>Def. Lv.&nbsp</small>' + spellLevel + '</b></li>';
                 });
                 infoSpells.closest('.spells').classList.remove('hidden');
@@ -347,22 +347,19 @@ document.addEventListener('DOMContentLoaded', function() {
         } else infoSpells.closest('.spells').classList.add('hidden');
 
         let inSkillsets = [];
-        let learnable = 0;
         for (let i = 1; i < 64; i++) {
             if (item['ss' + i] !== 255) {
                 inSkillsets.push(i);
-                if (item['ss' + i] > 0)
-                    learnable++;
             }
         }
         let infoClasses = jobs.filter((rows) => inSkillsets.includes(rows['sklset']));
         let classCount = infoClasses.length;
-        if ( classCount > 0 && learnable ) {
+        if ( classCount > 0 && item.learnable ) {
             infoClass.innerHTML = '';
             infoClasses.forEach((el) => {
                 let skillLevel = item['ss' + el.sklset];
-                infoClass.innerHTML += '<li>' + el.name + ( el.id === 40 && item['ss' + el.sklset] === 0 ? '  (Berda/Obda)' : '') +
-                    '<b>' + ( skillLevel > 0 ? '<small>Lv.&nbsp</small>' + skillLevel : '<span class="blue">&#9711;</span>' ) + '</b></li>';
+                infoClass.innerHTML += '<li><span' + ((el.typ === 'U' || el.typ === 'S') ? ' class="bold orange"' : '') + '>' + el.name + ( el.id === 40 && item['ss' + el.sklset] === 0 ? '  (Berda/Obda)' : '') +
+                    '</span><b>' + ( skillLevel > 0 ? '<small>Lv.&nbsp</small>' + skillLevel : '<span class="blue">&#9711;</span>' ) + '</b></li>';
             });
             infoClass.closest('.class').classList.remove('hidden');
         } else {
@@ -412,6 +409,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             infoUsable.classList.remove('hidden');
         } else infoUsable.classList.add('hidden');
+
 
 
         let noteText;

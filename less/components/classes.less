@@ -5,164 +5,259 @@
 
     table {
 
-      th:nth-child(1), td:nth-child(1) {
+      td {
+
+        img {
+          &.mark-basic {
+            border-color: #8B4513;
+            box-shadow: 0 0 1px fade(#8B4513, 60%);
+          }
+          &.mark-advanced {
+            border-color: #4682B4;
+            box-shadow: 0 0 1px fade(#4682B4, 60%);
+          }
+          &.mark-demi {
+            border-color: #008000;
+            box-shadow: 0 0 1px fade(#008000, 60%);
+          }
+          &.mark-monster {
+            border-color: #B22222;
+            box-shadow: 0 0 1px fade(#B22222, 60%);
+          }
+          &.mark-special {
+            border-color: @color-orange;
+            box-shadow: 0 0 1px @color-orange;
+          }
+        }
+      }
+
+      th:nth-child(2), td:nth-child(2) {
         width: auto;
         text-align: left;
       }
-      th:nth-child(2), td:nth-child(2) {
-        width: 35px;
-      }
       th:nth-child(3), td:nth-child(3) {
-        width: 45px;
+        width: 35px;
       }
       th:nth-child(4), td:nth-child(4) {
         width: 35px;
       }
-      td:nth-child(4) {
-        font-size: 0.875rem;
-      }
       th:nth-child(5), td:nth-child(5) {
-        width: 30px;
-      }
-      td:nth-child(5) {
-        width: 30px;
+        width: 20px;
       }
       th:nth-child(6), td:nth-child(6) {
-        width: 45px;
-      }
-      td:nth-child(6) {
-        font-size: 0.875rem;
+        width: 40px;
       }
       th:nth-child(7), td:nth-child(7) {
         width: 45px;
       }
       td:nth-child(7) {
-        font-size: 0.875rem;
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 480px) {
+    .ov-item-list {
+
+      table {
+
+        th:nth-child(3), td:nth-child(3) {
+          width: 50px;
+        }
+        th:nth-child(4), td:nth-child(4) {
+          width: 50px;
+        }
+        th:nth-child(5), td:nth-child(5) {
+          width: 40px;
+        }
+        th:nth-child(6), td:nth-child(6) {
+          width: 60px;
+        }
+        th:nth-child(7), td:nth-child(7) {
+          width: 60px;
+        }
+        td:nth-child(7) {
+          font-size: 0.875rem;
+        }
       }
     }
   }
 }
 
-#sidePanel.weapons-panel {
+#sidePanel.classes-panel {
 
-  .stats-top {
-    margin-top: 20px;
+  .panel {
 
-    .basic {
+    .content {
 
-      span {
-        display: inline-block;
-        min-width: 75px;
+      .title {
+
+        img {
+          &.basic {
+            border-color: #8B4513;
+            box-shadow: 0 0 3px fade(#8B4513, 60%);
+          }
+          &.advanced {
+            border-color: #4682B4;
+            box-shadow: 0 0 3px fade(#4682B4, 60%);
+          }
+          &.demi {
+            border-color: #008000;
+            box-shadow: 0 0 3px fade(#008000, 60%);
+          }
+          &.monster {
+            border-color: #B22222;
+            box-shadow: 0 0 3px fade(#B22222, 60%);
+          }
+          &.special {
+            border-color: @color-orange;
+            box-shadow: 0 0 3px @color-orange;
+          }
+        }
       }
 
-      b {
-        display: inline-block;
-        min-width: 50px;
+      .stats-top {
+        margin-top: 20px;
+
+        .basic {
+          display: flex;
+          flex-wrap: wrap;
+
+          span {
+            display: inline-block;
+            min-width: 60px;
+          }
+
+          b {
+            display: inline-block;
+            min-width: 50px;
+
+            &.jump b {
+              display: inline;
+              position: relative;
+              font-size: 0.875em;
+              bottom: 1px;
+            }
+          }
+
+          &>div {
+            width: 50%;
+
+            &:nth-child(3) {
+              width: 100%;
+              margin-top: 10px;
+
+              span {
+                min-width: 185px;
+              }
+            }
+          }
+        }
       }
 
-      .movecost {
+      .stats-bottom {
 
-        span {
-          font-size: 0.875rem;
+        &>span {
+          font-weight: bold;
         }
 
-        b {
-          min-width: unset;
-          margin-left: 10px;
-        }
-      }
-    }
-  }
+        &>div {
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: 10px;
 
-  .stats-bottom {
+          &>div {
 
-    p {
-      font-size: 0.875rem;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    span {
-      display: inline-block;
-      min-width: 60px;
-    }
-
-    b {
-      display: inline-block;
-      min-width: 35px;
-    }
-  }
-
-  .stats-extra {
-    font-size: 0.875rem;
-    margin-top: 15px;
-
-    span {
-      display: inline-block;
-      min-width: 120px;
-    }
-  }
-
-  .notes {
-
-    table {
-
-      td {
-        padding: 0;
-      }
-
-      td:first-child {
-        width: 60px;
-        vertical-align: top;
-      }
-      td:last-child {
-        width: auto;
-      }
-    }
-
-    .uk-accordion {
-      margin-top: 5px;
-
-      &>li {
-
-        .uk-accordion-title {
-          background-color: @background-dark;
-        }
-
-        .uk-accordion-content {
-          margin-top: 5px;
-
-          li {
-            width: calc(100% - 20px);
+            &:nth-child(1) {
+              width: 65%;
+            }
+            &:nth-child(2) {
+              width: 35%;
+            }
 
             span {
               display: inline-block;
-              width: calc(100% - 20px);
+              min-width: 50px;
             }
+
             b {
               display: inline-block;
-              width: 20px;
+              min-width: 40px;
+            }
+          }
+        }
+      }
+
+      .stats-extra {
+
+        .equipment {
+
+          table {
+            margin-top: 5px;
+
+            tr {
+
+              td {
+
+                ul {
+
+                  li {
+                    font-size: 0.875rem;
+                  }
+                }
+              }
+
+              td:first-child {
+                width: 70px;
+                vertical-align: top;
+              }
+            }
+          }
+        }
+
+        &>span {
+          font-weight: bold;
+        }
+
+        &>ul {
+          margin-top: 10px;
+
+          li {
+            font-size: 0.875rem;
+
+            span {
+              display: inline-block;
+              min-width: 110px;
+            }
+          }
+        }
+      }
+
+      .spells, .skills {
+
+        .ov-accordion {
+
+          .accordion-content {
+
+            ul {
+              list-style: none;
+
+              li {
+                width: 100%;
+
+                img {
+                  display: inline-block;
+                  position: relative;
+                  height: 12px;
+                  margin-right: 4px;
+                  border-radius: 50%;
+                  top: 2px;
+                }
+              }
             }
           }
         }
       }
     }
-  }
-
-  .races {
-    margin-top: 10px;
-
-    li.spacer {
-      width: calc(100% - 40px) !important;
-      margin: 2px 10px;
-      border-bottom: 1px solid @border-light;
-    }
-  }
-
-  .equip {
-    margin-top: 10px;
-  }
-  .spells {
-    margin-top: 10px;
   }
 }

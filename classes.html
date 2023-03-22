@@ -13,26 +13,28 @@
 <body>
 
     <div class="page-classes">
-        <div class="ov-main-container uk-container uk-container-small uk-position-relative uk-height-viewport">
-            <div>
-                <h1 class="uk-text-center uk-text-bold uk-text-uppercase uk-margin-large-top uk-margin-large-bottom">Class List</h1>
+        <div class="ov-main-container container">
+            <div class="ov-banner">
+                <h1>Classes</h1>
             </div>
-            <div class="ov-item-list">
-                <table class="sticky uk-table" uk-sticky>
-                    <thead>
+            <div class="ov-content">
+                <div class="ov-item-list">
+                    <div id="stickyTrigger"></div>
+                    <table id="stickyHeader" class="sticky fixed">
+                        <thead>
                         <tr>
                             <th>Class</th>
+                            <th></th>
                             <th>Move</th>
                             <th>Jump</th>
-                            <th>Perk</th>
                             <th>RT</th>
                             <th>Armor</th>
                             <th>Magic</th>
                         </tr>
-                    </thead>
-                </table>
-                <table id="itemList" class="uk-table uk-margin-remove-top">
-                    <thead>
+                        </thead>
+                    </table>
+                    <table id="itemList">
+                        <thead>
                         <tr class="divide-header">
                             <th></th>
                             <th></th>
@@ -42,59 +44,84 @@
                             <th></th>
                             <th></th>
                         </tr>
-                    </thead>
-                </table>
+                        </thead>
+                    </table>
 
-                <!--<div id="loading" uk-modal>-->
-                    <!--<div class="frame uk-position-center">-->
-                        <!--<span id="progress"></span>-->
+                    <!--<div id="loading">-->
+                    <!--<div class="frame">-->
+                    <!--<span id="progress"></span>-->
                     <!--</div>-->
-                <!--</div>-->
+                    <!--</div>-->
+                </div>
             </div>
         </div>
 
-        <div id="sidePanel" class="weapons-panel">
+        <div id="sidePanel" class="classes-panel">
             <div class="panel">
                 <button id="panelClose"></button>
                 <div class="content">
-                    <div class="title uk-width-1-1">
+                    <div class="title">
                         <h2>—</h2>
+                        <div class="subtitle">
+                            <span class="icon"><img src=""></span><span><i>—</i></span>
+                        </div>
                     </div>
-                    <div class="stats-top uk-width-1-1">
-                        <div class="basic uk-grid-collapse" uk-grid>
-                            <div class="uk-width-1-2">
+                    <div class="stats-top">
+                        <div class="basic">
+                            <div>
                                 <ul>
                                     <li><span>Move: </span><b class="move">—</b></li>
                                     <li><span>Jump: </span><b class="jump">—</b></li>
                                 </ul>
                             </div>
-                            <div class="uk-width-1-2 uk-text-right">
+                            <div class="text-right">
                                 <ul>
                                     <li><span>Perk: </span><b class="perk">—</b></li>
-                                    <li><span>RT: </span><b class="rtpenalty">—</b></li>
+                                    <li><span>Class RT: </span><b class="rtpenalty">—</b></li>
                                 </ul>
                             </div>
-                            <div class="uk-width-1-1">
+                            <div>
                                 <ul>
-                                    <li class="movecost"><span>Move RT Cost per Tile: </span><b>—</b></li>
+                                    <li class="movecost"><span>RT Cost per Tile Moved: </span><b>—</b></li>
+                                    <li class="spellreq"><span>Spell Level Requirement: </span><b>—</b></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <hr>
-                    <div class="stats-bottom uk-width-1-1">
-                        <p>Stat Growth per 10 Levels:</p>
-                        <div class="uk-grid-collapse" uk-grid>
-                            <div class="uk-width-1-2">
-                                <ul>
+                    <div class="stats-bottom">
+                        <span>Stat Growth per 10 Levels:</span>
+                        <div>
+                            <div>
+                                <ul class="stats">
                                     <li><span>ATK: </span><b>—</b></li>
                                     <li class="defense"><span>DEF: </span><b>—</b></li>
-                                    <li><span class="uk-margin-small-top">HP: </span><b>—</b></li>
+                                    <li><span>HP: </span><b>—</b></li>
                                     <li><span>MP: </span><b>—</b></li>
                                 </ul>
+                                <ul class="ov-accordion info">
+                                    <li>
+                                        <button class="accordion-title">Derived</button>
+                                        <div class="accordion-content">
+                                            <ul>
+                                                <li>Offense STR<b></b></li>
+                                                <li>Offense DEX<b></b></li>
+                                                <li>Toughness<b></b></li>
+                                                <li>Accuracy<b></b></li>
+                                                <li>Evasion<b></b></li>
+                                                <li class="spacer"></li>
+                                                <li>Spell Power<b></b></li>
+                                                <li>Resilience<b></b></li>
+                                                <li>Spell Accuracy<b></b></li>
+                                                <li>Status Spell Evasion<b></b></li>
+                                                <li>Projectile Spell Evasion<b></b></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="uk-width-1-2 uk-text-right">
-                                <ul>
+                            <div class="text-right">
+                                <ul class="stats">
                                     <li><span>STR: </span><b>—</b></li>
                                     <li><span>VIT: </span><b>—</b></li>
                                     <li><span>DEX: </span><b>—</b></li>
@@ -107,65 +134,124 @@
                             </div>
                         </div>
                     </div>
-                    <div class="stats-extra uk-width-1-1">
-                        <ul>
+                    <hr>
+                    <div class="stats-extra">
+                        <span>Equipment:</span>
+                        <div class="equipment">
+                            <table class="melee">
+                                <tr>
+                                    <td>
+                                        <span>Melee: </span>
+                                    </td>
+                                    <td>
+                                        <ul></ul>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="ranged">
+                                <tr>
+                                    <td>
+                                        <span>Ranged: </span>
+                                    </td>
+                                    <td>
+                                        <ul></ul>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="shield">
+                                <tr>
+                                    <td>
+                                        <span>Shield: </span>
+                                    </td>
+                                    <td>
+                                        <ul></ul>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="armor">
+                                <tr>
+                                    <td>
+                                        <span>Armor: </span>
+                                    </td>
+                                    <td>
+                                        <ul></ul>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="accessory">
+                                <tr>
+                                    <td>
+                                        <span>Gear: </span>
+                                    </td>
+                                    <td>
+                                        <ul></ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <ul class="restriction">
+                        </ul>
+                        <ul class="innate">
                             <li><span>Innate Melee: </span><b class="innmelee">—</b></li>
                             <li><span>Innate Ranged: </span><b class="innranged">—</b></li>
                         </ul>
-                        <div class="races uk-width-1-1">
-                            <ul uk-accordion>
-                                <li>
-                                    <a class="uk-accordion-title" href="#">Available to</a>
-                                    <div class="uk-accordion-content">
-                                        <ul>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                     <hr>
-                    <div class="notes uk-width-1-1">
+                    <div class="spells magic">
+                        <ul class="ov-accordion">
+                            <li>
+                                <button class="accordion-title">Spell List</button>
+                                <div class="accordion-content">
+                                    <ul>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="skills magic">
+                        <ul class="ov-accordion">
+                            <li>
+                                <button class="accordion-title">Skill List</button>
+                                <div class="accordion-content">
+                                    <ul>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="race class">
+                        <ul class="ov-accordion">
+                            <li>
+                                <button class="accordion-title">Availability</button>
+                                <div class="accordion-content">
+                                    <ul>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="auction magic">
+                        <ul class="ov-accordion">
+                            <li>
+                                <button class="accordion-title">Auction Items</button>
+                                <div class="accordion-content">
+                                    <ul>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="notes">
                         <table>
                             <tr>
-                                <td>
-                                    <span>Mark: </span>
-                                </td>
-                                <td>
-                                    <small><b class="mark">—</b></small>
-                                </td>
-                            </tr>
-                            <tr class="note">
                                 <td>
                                     <span>Notes: </span>
                                 </td>
                                 <td>
-                                    <small><b>—</b></small>
+                                    <small><i><b>—</b></i></small>
                                 </td>
                             </tr>
                         </table>
-                    </div>
-                    <div class="equip uk-width-1-1">
-                        <ul uk-accordion>
-                            <li>
-                                <a class="uk-accordion-title" href="#">Equipment</a>
-                                <div class="uk-accordion-content">
-                                    <ul>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="spells uk-width-1-1">
-                        <ul uk-accordion>
-                            <li>
-                                <a class="uk-accordion-title" href="#">Spells</a>
-                                <div class="uk-accordion-content">
-                                    <ul>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -176,4 +262,3 @@
 
 </body>
 </html>
-

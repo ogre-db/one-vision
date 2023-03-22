@@ -247,8 +247,24 @@ document.addEventListener('DOMContentLoaded', function() {
             infoArea.innerText = item.aoe;
         else
             infoArea.innerText = '—';
+
+        let hitCount = 0;
+        let hitTarget = 0;
+        if ( item.eff11 === 1 && !item.eff1self ) {
+            hitCount++;
+            hitTarget = item.eff1trg;
+        }
+        if ( item.eff21 === 1 && !item.eff2self && ( !hitCount || hitCount && item.eff2trg === hitTarget ) ) {
+            hitCount++;
+            hitTarget = item.eff2trg;
+        }
+        if ( item.eff31 === 1 && !item.eff3self && ( !hitCount || hitCount && item.eff3trg === hitTarget ) ) {
+            hitCount++;
+        }
         if (item.hits)
             infoHits.innerText = '1 - ' + parseInt(item.hits + 1);
+        else if (hitCount > 0)
+            infoHits.innerText = hitCount;
         else
             infoHits.innerText = '—';
 
@@ -496,17 +512,19 @@ document.addEventListener('DOMContentLoaded', function() {
         let classCount = infoClasses.length;
         if ( classCount > 0 && classCount < jobs.length) {
             infoClass.innerHTML = '';
-            infoClasses.forEach( (el) => {
+            infoClasses.forEach( (el, i) => {
                 if (item.typ <= 12) {
                     infoClass.closest('.class').classList.add('magic');
                     let spellLevel = spell['sset' + el.magset];
-                    infoClass.innerHTML += '<li><span>' + el.name + '</span><b><small>Lv.&nbsp</small>' + spellLevel + '</b></li>';
+                    infoClass.innerHTML += '<li><span' + ((el.typ === 'U' || el.typ === 'S') ? ' class="bold orange"' : '') + '>' + el.name + '</span><b><small>Lv.&nbsp</small>' + spellLevel + '</b></li>';
                 } else {
                     infoClass.closest('.class').classList.remove('magic');
                     if ( el.id === 40 && infoUsablesSkill[0]['ss' + el.sklset] === 0 )
-                        infoClass.innerHTML += '<li>' + el.name + '  (Berda/Obda)</li>';
+                        infoClass.innerHTML += '<li>' + ((el.typ === 'U' || el.typ === 'S') ? '<b class="orange">' + el.name + '</b>' : el.name) + '  (Berda/Obda)</li>';
                     else
-                        infoClass.innerHTML += '<li>' + el.name + '</li>';
+                        infoClass.innerHTML += '<li>' + ((el.typ === 'U' || el.typ === 'S') ? '<b class="orange">' + el.name + '</b>' : el.name) + '</li>';
+                    if ( infoClasses[i + 1] && infoClasses[i + 1].typ !== infoClasses[i].typ )
+                        infoClass.innerHTML += '<li class="spacer"></li>';
                 }
             });
             infoClass.closest('.class').classList.remove('hidden');

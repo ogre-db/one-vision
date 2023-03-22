@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const tableItemsJson = 'data/sundries.json',
         abilitiesJson = 'data/abilities.json',
         jobsJson = 'data/jobs.json',
-        racesJson = 'data/races.json',
+        templatesJson = 'data/templates.json',
         skillsJson = 'data/skills.json',
         magicJson = 'data/magic.json',
         weaponsJson = 'data/weapons.json',
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let items = [],
         abilities = [],
         jobs = [],
-        races = [],
+        templates = [],
         skills = [],
         magic = [],
         weapons = [],
@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         infoReagent = sidePanel.querySelector('.stats-reagent'),
         infoClassmark = sidePanel.querySelector('.stats-classmark'),
         infoYield = sidePanel.querySelector('.stats-crafting'),
+        infoIngredient = sidePanel.querySelector('.stats-ingredient'),
         infoEffect = sidePanel.querySelector('.stats-effect'),
         infoObtain = sidePanel.querySelector('.obtain'),
         infoGet = sidePanel.querySelector('.obtain .get'),
@@ -231,15 +232,35 @@ document.addEventListener('DOMContentLoaded', function() {
             let yieldList = infoYield.querySelector('.craftyield ul');
             yieldList.innerHTML = '';
             let craftedItems = [];
-            craftedItems = craftedItems.concat(weapons.filter((rows) => (rows['craftbk'] === item.id)));
-            craftedItems = craftedItems.concat(armor.filter((rows) => (rows['craftbk'] === item.id)));
-            craftedItems = craftedItems.concat(items.filter((rows) => (rows['craftbk'] === item.id)));
+            craftedItems = craftedItems.concat(weapons.filter((rows) => rows['craftbk'] === item.id));
+            craftedItems = craftedItems.concat(armor.filter((rows) => rows['craftbk'] === item.id));
+            craftedItems = craftedItems.concat(items.filter((rows) => rows['craftbk'] === item.id));
             craftedItems.forEach( (el) => {
                 yieldList.innerHTML += '<li>' + el.name + '</li>';
             });
             infoYield.classList.remove('hidden');
         } else
             infoYield.classList.add('hidden');
+
+        if (item.typ === 36) {
+            let yieldList = infoIngredient.querySelector('.ingredientyield ul');
+            yieldList.innerHTML = '';
+            let craftedItems = [];
+            craftedItems = craftedItems.concat(weapons.filter((rows) => [rows['ing1'],rows['ing2'],rows['ing3'],rows['ing4']].includes(item.id)));
+            craftedItems = craftedItems.concat(armor.filter((rows) => [rows['ing1'],rows['ing2'],rows['ing3'],rows['ing4']].includes(item.id)));
+            craftedItems = craftedItems.concat(items.filter((rows) => [rows['ing1'],rows['ing2'],rows['ing3'],rows['ing4']].includes(item.id)));
+            craftedItems.forEach( (el) => {
+                let ingNum = 0;
+                for (let i = 1; i <= 4; i++) {
+                    if ( el['ing' + i] === item.id ) {
+                        ingNum++;
+                    }
+                }
+                yieldList.innerHTML += '<li><span>' + el.name + '</span><b>x' + ingNum + '</b></li>';
+            });
+            infoIngredient.classList.remove('hidden');
+        } else
+            infoIngredient.classList.add('hidden');
 
         let ability;
         if ( item.effect ) {
@@ -283,8 +304,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 infoEffect.querySelector('.area b').innerText = ability.aoe;
             else
                 infoEffect.querySelector('.area b').innerText = '—';
+
+            let hitCount = 0;
+            let hitTarget = 0;
+            if ( ability.eff11 === 1 && !ability.eff1self ) {
+                hitCount++;
+                hitTarget = ability.eff1trg;
+            }
+            if ( ability.eff21 === 1 && !ability.eff2self && ( !hitCount || hitCount && ability.eff2trg === hitTarget ) ) {
+                hitCount++;
+                hitTarget = ability.eff2trg;
+            }
+            if ( ability.eff31 === 1 && !ability.eff3self && ( !hitCount || hitCount && ability.eff3trg === hitTarget ) ) {
+                hitCount++;
+            }
             if (ability.hits)
                 infoEffect.querySelector('.hits b').innerText = '1 - ' + parseInt(ability.hits + 1);
+            else if (hitCount > 0)
+                infoEffect.querySelector('.hits b').innerText = hitCount;
             else
                 infoEffect.querySelector('.hits b').innerText = '—';
 
@@ -439,20 +476,20 @@ document.addEventListener('DOMContentLoaded', function() {
         } else infoObtain.classList.add('hidden');
 
         if (item.effect || item.typ === 35) {
-            let infoClasses = [];
+            let infoClassList = [];
             if (item.typ === 34) {
                 let inSpellsets = [];
                 let spell = magic.find((row) => row['id'] === ability.id);
                 for (let i = 0; i < 64; i++) {
                     if (spell['sset' + i] !== 255) inSpellsets.push(i);
                 }
-                infoClasses = jobs.filter((rows) => (inSpellsets.includes(rows['magset'])));
+                infoClassList = jobs.filter((rows) => (inSpellsets.includes(rows['magset'])));
             } else if (item.typ === 35) {
                 let inJobsets = [];
                 for (let i = 0; i < 48; i++) {
                     if (job['ccset' + i] === 1) inJobsets.push(i);
                 }
-                infoClasses = races.filter((rows) => (inJobsets.includes(rows['ccset'])));
+                infoClassList = templates.filter((rows) => (inJobsets.includes(rows['ccset'])));
             } else {
                 let inSkillsets = [];
                 let alchSkill = skills.find((row) => row['id'] === (item.alch === 1 ? 196 : 197));
@@ -462,16 +499,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     else if ( item.alch <= 2 )
                         if (alchSkill['ss' + i] !== 255) inSkillsets.push(i);
                 }
-                infoClasses = jobs.filter((rows) => (inSkillsets.includes(rows['sklset']) && (rows['id'] < 27 || rows['id'] > 42 || [37,38,39].includes(rows['id']))));
+                infoClassList = jobs.filter((rows) => (inSkillsets.includes(rows['sklset']) && (rows['id'] < 27 || rows['id'] > 42 || [37,38,39].includes(rows['id']))));
             }
-            let classCount = infoClasses.length;
-            if ( classCount === 0 )
+            if ( infoClassList.length === 0 )
                 infoClass.innerHTML = '<li>None</li>';
-            else if ( classCount < jobs.length ) {
+            else if ( infoClassList.length < jobs.length ) {
                 infoClass.innerHTML = '';
-                infoClasses.forEach( (el, i) => {
-                    infoClass.innerHTML += '<li>' + el.name + '</li>';
-                    if ( item.typ === 35 && el.typ === 'G' && infoClasses[i + 1] && infoClasses[i + 1].typ !== 'G')
+                infoClassList.forEach( (el, i) => {
+                    infoClass.innerHTML += '<li>' + ((el.typ === 'U' || el.typ === 'S' || (item.typ === 35 && el.typ === 'D')) ? '<b class="orange">' + el.name + '</b>' : el.name) + '</li>';
+                    if ( infoClassList[i + 1] && infoClassList[i + 1].typ !== infoClassList[i].typ )
                         infoClass.innerHTML += '<li class="spacer"></li>';
                 });
             } else infoClass.innerHTML = '<li>All</li>';
@@ -493,8 +529,8 @@ document.addEventListener('DOMContentLoaded', function() {
         fetchJSON(skillsJson).then(
             data => skills = data
         );
-        fetchJSON(racesJson).then(
-            data => races = data
+        fetchJSON(templatesJson).then(
+            data => templates = data
         );
         fetchJSON(magicJson).then(
             data => magic = data

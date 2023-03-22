@@ -1,0 +1,290 @@
+
+.page-characters {
+
+  .ov-item-list {
+
+    table {
+
+      th:nth-child(2), td:nth-child(2) {
+        width: auto;
+        text-align: left;
+      }
+      th:nth-child(3), td:nth-child(3) {
+        width: 35px;
+      }
+      th:nth-child(4), td:nth-child(4) {
+        width: 35px;
+      }
+      th:nth-child(5), td:nth-child(5) {
+        width: 35px;
+      }
+      th:nth-child(6), td:nth-child(6) {
+        width: 40px;
+      }
+      th:nth-child(7), td:nth-child(7) {
+        width: 35px;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 480px) {
+    .ov-item-list {
+
+      table {
+
+        th:nth-child(3), td:nth-child(3) {
+          width: 50px;
+        }
+        th:nth-child(4), td:nth-child(4) {
+          width: 50px;
+        }
+        th:nth-child(5), td:nth-child(5) {
+          width: 50px;
+        }
+        th:nth-child(6), td:nth-child(6) {
+          width: 60px;
+        }
+        th:nth-child(7), td:nth-child(7) {
+          width: 50px;
+        }
+      }
+    }
+  }
+}
+
+#sidePanel.characters-panel {
+
+  .panel {
+
+    .content {
+
+      .stats-top {
+        margin-top: 20px;
+
+        .basic {
+          display: flex;
+          flex-wrap: wrap;
+
+          li {
+
+            span {
+              display: inline-block;
+              font-size: 0.875rem;
+            }
+
+            &>b {
+              display: inline-block;
+              min-width: 50px;
+            }
+          }
+
+          &>div {
+
+            &:nth-child(1) {
+              width: 60%;
+
+              span {
+                display: inline-block;
+                min-width: 75px;
+              }
+            }
+            &:nth-child(2) {
+              width: 40%;
+            }
+          }
+
+          .align, .clan {
+
+          }
+        }
+
+        .recruited {
+          margin-top: 10px;
+
+          table {
+
+            td:nth-child(1) {
+              font-size: 0.875rem;
+              vertical-align: top;
+              width: 90px;
+              padding-top: 3px;
+            }
+            td:nth-child(2) {
+              width: auto;
+
+              ul {
+
+                li {
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .stats-bottom {
+
+        &>div {
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: 10px;
+
+          &>div {
+
+            span {
+              display: inline-block;
+              font-size: 0.875rem;
+            }
+
+            b {
+              display: inline-block;
+            }
+          }
+        }
+
+        &.special {
+
+          &>div {
+
+            &>div {
+
+              .ov-accordion.info {
+                margin-top: 0;
+              }
+
+              &:nth-child(1) {
+                width: 35%;
+              }
+              &:nth-child(2) {
+                width: 65%;
+              }
+
+              ul.stats {
+
+                li {
+
+                  &:nth-child(3) {
+                    margin-top: 5px;
+                  }
+
+                  span {
+                    min-width: 50px;
+                  }
+
+                  b {
+                    display: inline-block;
+                    min-width: 40px;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &.generic {
+
+          &>div {
+
+            &>div {
+              width: 36%;
+
+              >span {
+                font-size: 0.7rem;
+              }
+
+              li {
+                font-size: 1rem;
+
+                &:first-child {
+                  margin-top: 5px;
+                }
+
+                &:nth-child(3) {
+                  margin-top: 5px;
+                }
+              }
+            }
+
+            &>div:not(:nth-child(1)) {
+              width: 16%;
+              text-align: center;
+            }
+          }
+
+          .ov-accordion.info {
+            margin-top: 0;
+            width: 100%;
+
+            .accordion-content {
+
+              &>div {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0;
+
+                li {
+
+                  b {
+                    float: none;
+                  }
+                }
+
+                &>div:nth-child(1) {
+                  width: 36%;
+
+                  ul {
+                    margin-right: 0;
+                  }
+                }
+                &>div:not(:nth-child(1)) {
+                  width: 16%;
+                  text-align: center;
+
+                  ul {
+                    margin-left: 0;
+                    margin-right: 0;
+
+                    li:not(.spacer) {
+                      text-align: center;
+                      margin: 0 10px;
+                    }
+                  }
+                }
+                &>div:last-child {
+
+                  ul {
+
+                    li.spacer {
+                      margin-right: 10px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .recruitment {
+
+        .ov-accordion {
+
+          .accordion-content {
+
+            ul {
+              list-style: circle;
+              font-size: 0.875rem;
+
+              li {
+                width: 100%;
+                margin-top: 5px;
+                margin-left: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -44,7 +44,6 @@ body {
   animation: fadeIn ease 1s;
 }
 
-
 .container {
   display: flow-root;
   box-sizing: border-box;
@@ -54,23 +53,125 @@ body {
   background: url('../img/background.png');
   position: relative;
   min-height: 100vh;
-  padding: 20px @content-padding-s;
   margin: 0 auto;
   max-width: @content-width;
 
-  h1 {
-    text-align: center;
-    margin: 40px 0;
-    text-transform: uppercase;
+  .ov-banner {
+
+    h1 {
+      text-align: center;
+      margin: 40px 0 20px;
+      text-transform: uppercase;
+      color: #f6f6f6;
+      text-shadow: 1px 1px 2px #000,
+        1px -1px 2px #000,
+      -1px 1px 2px #000,
+        -1px -1px 2px #000,
+      0 0 10px #000;
+    }
   }
 
-  @media only screen and (min-width: 640px) {
-    padding-left: @content-padding-m;
-    padding-right: @content-padding-m;
+  .ov-content {
+    padding: 20px @content-padding-s;
+
+    @media only screen and (min-width: 640px) {
+      padding-left: @content-padding-m;
+      padding-right: @content-padding-m;
+    }
+    @media only screen and (min-width: 960px) {
+      padding-left: @content-padding-l;
+      padding-right: @content-padding-l;
+    }
   }
-  @media only screen and (min-width: 960px) {
-    padding-left: @content-padding-l;
-    padding-right: @content-padding-l;
+}
+
+.page-home {
+
+  .ov-main-container {
+
+    .ov-banner {
+
+      img {
+        display: block;
+        border-bottom: 2px solid #20180F;
+        box-shadow: 0 5px 10px -5px black;
+      }
+    }
+  }
+}
+
+.ov-menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  @grid-gap: 15px;
+  gap: @grid-gap;
+
+  &>div {
+    height: 65px;
+
+    &.width-1-3 {
+      width: calc( (100% - @grid-gap * 2) / 3);
+    }
+    &.width-1-4 {
+      width: calc( (100% - @grid-gap) / 2);
+    }
+
+    a {
+      color: #f6f6f6;
+      background: linear-gradient(fade(#fff, 40%), transparent 60%, fade(#166238, 50%)), #16374f;
+      display: block;
+      font-size: 1rem;
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      border: 1px solid #3d3d3d;
+      border-radius: 10px;
+      box-shadow: inset 2px 2px 5px fade(#dedede, 80%),
+        inset -2px -2px 5px fade(#3d3d3d, 80%),
+        0 2px 4px #3d3d3d;
+      text-shadow: 0 0 5px #000;
+
+      img {
+        display: block;
+        width: 30px;
+        margin: 5px auto;
+        filter: drop-shadow(1px 1px 1px #f6f6f6)
+          drop-shadow(1px -1px 1px #f6f6f6)
+          drop-shadow(-1px 1px 1px #f6f6f6)
+          drop-shadow(-1px -1px 1px #f6f6f6);
+        transition: filter 0.2s;
+      }
+
+      &:hover {
+        color: @color-orange;
+
+        img {
+          filter: drop-shadow(5px 0 5px @color-orange) drop-shadow(-5px 0 5px @color-orange);
+        }
+      }
+    }
+  }
+
+
+  @media only screen and (min-width: 560px) {
+
+    &>div {
+      height: 80px;
+
+      &.width-1-4 {
+        width: calc( (100% - @grid-gap * 3) / 4);
+      }
+
+      a {
+        font-size: 1.15rem;
+
+        img {
+          width: 40px;
+          margin: 5px auto;
+        }
+      }
+    }
   }
 }
 
@@ -109,12 +210,11 @@ p {
 
 }
 
-
 a {
-
+  text-decoration: none;
+  transition: all 0.2s;
 }
 a:focus, a:hover {
-  color: #0f6ecd;
   text-decoration: none;
 }
 
@@ -829,10 +929,9 @@ canvas, img, video {
             ul {
               display: flex;
               flex-wrap: wrap;
-              font-size: 0.85rem;
+              font-size: 0.7rem;
 
               li {
-                font-size: 0.85em;
 
                 &.spacer {
                   width: 100% !important;
@@ -856,6 +955,38 @@ canvas, img, video {
             .accordion-content {
               position: relative;
               opacity: 1;
+            }
+          }
+        }
+
+        &.info {
+          margin-top: 20px;
+          border-radius: 12px;
+          box-shadow: inset 0 0 3px @highlight-dark;
+
+          button {
+            background-color: transparent;
+            color: @text-dark;
+            padding: 2px 10px 2px;
+            border-radius: 12px;
+            text-shadow: none;
+          }
+
+          .accordion-content {
+
+            ul {
+              font-size: 0.875rem;
+              margin: 5px 10px 10px;
+
+              li {
+                width: 100%;
+
+                b {
+                  float: right;
+                  text-align: right;
+                  min-width: unset;
+                }
+              }
             }
           }
         }
@@ -1008,7 +1139,8 @@ canvas, img, video {
                   span {
                     display: inline-block;
                   }
-                  b {
+
+                  &>b {
                     display: inline-block;
                     width: 40px;
                     float: right;
@@ -1116,7 +1248,6 @@ canvas, img, video {
   50%  {filter: blur(4px) brightness(0.5);}
   100% {filter: none;}
 }
-
 @keyframes fadeFromRight {
   0%    {
     opacity:0;

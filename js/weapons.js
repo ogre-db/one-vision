@@ -334,26 +334,27 @@ document.addEventListener('DOMContentLoaded', function() {
             infoObtain.classList.remove('hidden');
         } else infoObtain.classList.add('hidden');
 
-        let infoClasses = [];
+        let infoClassList = [];
         if (innate) {
             jobs.forEach( (job) => {
                 if ( job.innml === item.id || job.innrng === item.id )
-                    infoClasses.push(job);
+                    infoClassList.push(job);
             });
         } else {
             let inSets = [];
             for (let i = 0; i < 56; i++) {
                 if (item['eq' + i] === 1) inSets.push(i);
             }
-            infoClasses = jobs.filter((rows) => inSets.includes(rows['eqset']));
+            infoClassList = jobs.filter((rows) => inSets.includes(rows['eqset']));
         }
-        let classCount = infoClasses.length;
-        if ( classCount === 0 )
+        if ( infoClassList.length === 0 )
             infoClass.innerHTML = '<li>None</li>';
-        else if ( classCount < jobs.length ) {
+        else if ( infoClassList.length < jobs.length ) {
             infoClass.innerHTML = '';
-            infoClasses.forEach( (el) => {
-                infoClass.innerHTML += '<li>' + el.name + '</li>';
+            infoClassList.forEach( (el, i) => {
+                infoClass.innerHTML += '<li>' + ((el.typ === 'U' || el.typ === 'S') ? '<b class="orange">' + el.name + '</b>' : el.name) + '</li>';
+                if ( infoClassList[i + 1] && infoClassList[i + 1].typ !== infoClassList[i].typ )
+                    infoClass.innerHTML += '<li class="spacer"></li>';
             });
         } else infoClass.innerHTML = '<li>All</li>';
 

@@ -120,6 +120,43 @@ function capitalize (string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+function unmaskBits (integer) {
+
+    let unmaskedBits = [0,0,0,0,0,0,0,0];
+    if (integer >= 128) {
+        unmaskedBits[7] = 1;
+        integer = integer - 128;
+    }
+    if (integer >= 64) {
+        unmaskedBits[6] = 1;
+        integer = integer - 64;
+    }
+    if (integer >= 32) {
+        unmaskedBits[5] = 1;
+        integer = integer - 32;
+    }
+    if (integer >= 16) {
+        unmaskedBits[4] = 1;
+        integer = integer - 16;
+    }
+    if (integer >= 8) {
+        unmaskedBits[3] = 1;
+        integer = integer - 8;
+    }
+    if (integer >= 4) {
+        unmaskedBits[2] = 1;
+        integer = integer - 4;
+    }
+    if (integer >= 2) {
+        unmaskedBits[1] = 1;
+        integer = integer - 2;
+    }
+    if (integer >= 1) {
+        unmaskedBits[0] = 1;
+    }
+    return unmaskedBits;
+}
+
 function getEffectText (ability, effectSet) {
     let effectProperties = {};
     let effect1 = 'eff' + effectSet + '1';
@@ -383,6 +420,33 @@ const elements = {
     },
 };
 
+const classTypes = {
+    'B': {
+        'name': 'Basic Humanoid',
+        'class': 'basic'
+    },
+    'A': {
+        'name': 'Advanced Humanoid',
+        'class': 'advanced'
+    },
+    'S': {
+        'name': 'Special Humanoid',
+        'class': 'special'
+    },
+    'D': {
+        'name': 'Demihuman',
+        'class': 'demi'
+    },
+    'M': {
+        'name': 'Monster',
+        'class': 'monster'
+    },
+    'U': {
+        'name': 'Unique',
+        'class': 'special'
+    }
+};
+
 const races = {
     '0': {
         'name': 'None',
@@ -424,6 +488,119 @@ const races = {
         'name': 'Golem',
         'icon': 'img/icons/damage-golem.png'
     },
+    '38': {
+        'name': 'Unknown',
+        'icon': 'img/icons/icon-unknown.png'
+    }
+};
+
+const alignments = {
+    '0': 'Unknown',
+    '1': 'Lawful',
+    '2': 'Neutral',
+    '3': 'Chaotic'
+};
+
+const clans = {
+    '0': {
+        'name': 'Unknown'
+    },
+    '1': {
+        'name': 'Walister'
+    },
+    '2': {
+        'name': 'Galgastan'
+    },
+    '3': {
+        'name': 'Bakram'
+    },
+    '4': {
+        'name': 'Xenobia'
+    },
+    '5': {
+        'name': 'Lodis'
+    },
+    '6': {
+        'name': 'Bolmocca'
+    },
+    '7': {
+        'name': 'Balboede'
+    }
+};
+
+const statBonusGeneric = {
+    'human1': {
+        'hp': 8,
+        'mp': -8,
+        'str': 4,
+        'vit': 4,
+        'dex': 0,
+        'agi': 0,
+        'avd': 0,
+        'int': -4,
+        'mnd': -4,
+        'res': -2
+    },
+    'human2': {
+        'hp': 0,
+        'mp': -8,
+        'str': 0,
+        'vit': 0,
+        'dex': 4,
+        'agi': 4,
+        'avd': 4,
+        'int': -4,
+        'mnd': -4,
+        'res': -2
+    },
+    'human3': {
+        'hp': -8,
+        'mp': 8,
+        'str': -2,
+        'vit': -2,
+        'dex': -2,
+        'agi': -2,
+        'avd': 0,
+        'int': 4,
+        'mnd': 4,
+        'res': 2
+    },
+    'monster1': {
+        'hp': 0,
+        'mp': 0,
+        'str': 4,
+        'vit': -2,
+        'dex': 4,
+        'agi': -2,
+        'avd': -2,
+        'int': 0,
+        'mnd': 0,
+        'res': -2
+    },
+    'monster2': {
+        'hp': 12,
+        'mp': 0,
+        'str': -2,
+        'vit': 4,
+        'dex': -4,
+        'agi': -2,
+        'avd': -4,
+        'int': 0,
+        'mnd': 0,
+        'res': 2
+    },
+    'monster3': {
+        'hp': -12,
+        'mp': 0,
+        'str': -2,
+        'vit': -2,
+        'dex': 2,
+        'agi': 4,
+        'avd': 4,
+        'int': 0,
+        'mnd': 0,
+        'res': 0
+    }
 };
 
 const damageTypes = {
@@ -1765,7 +1942,7 @@ const skillGroup = {
 
 const skillPassives = {
     'var-w': {
-        'text': 'Adds <b>4 Base Damage</b> and <b>10% Hit Chance</b> per <b>Rank</b> to <b>[insert1]</b> Attacks and Finishers'
+        'text': 'Adds <b>4 Offense</b> and <b>10% Hit Chance</b> per <b>Rank</b> to <b>[insert1]</b> Attacks and Finishers'
     },
     '1': {
         'insert1': 'Fist'
@@ -1819,7 +1996,7 @@ const skillPassives = {
         'insert1': 'Fusil'
     },
     'var-mr': {
-        'text': 'Adds <b>5 Base Damage</b> per <b>Rank</b> to any hits delivered against <b>[insert1]</b> units'
+        'text': 'Adds <b>5 Offense</b> per <b>Rank</b> to any hits delivered against <b>[insert1]</b> units'
     },
     '22': {
         'insert1': 'Human'
@@ -1840,7 +2017,7 @@ const skillPassives = {
         'insert1': 'Umbra'
     },
     '28': {
-        'insert1': 'Faeries'
+        'insert1': 'Faerie'
     },
     '29': {
         'insert1': 'Phantom'
@@ -1849,7 +2026,7 @@ const skillPassives = {
         'insert1': 'Golem'
     },
     'var-ma': {
-        'text': 'Adds <b>4 Base Damage</b> per <b>Rank</b> to any <b>[insert1]</b> Element hits | Reduces <b>Base Damage</b> of any incoming <b>[insert1]</b> Element hits by <b>3</b> per <b>Rank</b>'
+        'text': 'Adds <b>4 Offense/Power</b> per <b>Rank</b> to any <b>[insert1]</b> Element hits | Adds <b>Toughness/Resilience</b> against any incoming <b>[insert1]</b> Element hits by <b>3</b> per <b>Rank</b>'
     },
     '31': {
         'insert1': 'Air'
@@ -2214,7 +2391,8 @@ const movementType = {
     '2': '3/4',
     '3': '1/2',
     '4': 'Warp',
-    '5': 'Fly'
+    '5': 'Fly',
+    '6': 'Float'
 };
 
 const movementPerk = {

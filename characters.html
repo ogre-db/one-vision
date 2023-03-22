@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Tactics Ogre - One Vision</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="img/icon-shortcut.png" />
+    <link rel="stylesheet" href="css/app.css" type="text/css" />
+    <script src="js/app.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <div class="page-characters">
+        <div class="ov-main-container container">
+            <div class="ov-banner">
+                <h1>Characters</h1>
+            </div>
+            <div class="ov-content">
+                <div class="ov-item-list">
+                    <div id="stickyTrigger"></div>
+                    <table id="stickyHeader" class="sticky fixed">
+                        <thead>
+                        <tr>
+                            <th>Character</th>
+                            <th></th>
+                            <th>Ch.L</th>
+                            <th>Ch.N</th>
+                            <th>CH.C</th>
+                            <th>Move</th>
+                            <th>RT</th>
+                        </tr>
+                        </thead>
+                    </table>
+                    <table id="itemList">
+                        <thead>
+                        <tr class="divide-header">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+
+                    <!--<div id="loading">-->
+                    <!--<div class="frame">-->
+                    <!--<span id="progress"></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+
+        <div id="sidePanel" class="characters-panel">
+            <div class="panel">
+                <button id="panelClose"></button>
+                <div class="content">
+                    <div class="title">
+                        <h2>—</h2>
+                        <div class="subtitle">
+                            <span class="icon"><img src=""></span><span><i>—</i></span>
+                        </div>
+                    </div>
+                    <div class="stats-top">
+                        <div class="basic">
+                            <div>
+                                <ul>
+                                    <li><span>Race: </span><b class="race">—</b></li>
+                                    <li><span>Alignment: </span><b class="align">—</b></li>
+                                    <li><span>Clan: </span><b class="clan">—</b></li>
+                                </ul>
+                            </div>
+                            <div class="text-right">
+                                <ul>
+                                    <li><span>Move: </span><b class="perk">—</b></li>
+                                    <li><span>Base RT: </span><b class="rtpenalty">—</b></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="recruited">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span>Recruited in: </span>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="stats-bottom special">
+                        <div>
+                            <div>
+                                <ul class="stats">
+                                    <li><span>HP: </span><b>—</b></li>
+                                    <li><span>MP: </span><b>—</b></li>
+                                    <li><span>STR: </span><b>—</b></li>
+                                    <li><span>VIT: </span><b>—</b></li>
+                                    <li><span>DEX: </span><b>—</b></li>
+                                    <li><span>AGI: </span><b>—</b></li>
+                                    <li><span>AVD: </span><b>—</b></li>
+                                    <li><span>INT: </span><b>—</b></li>
+                                    <li><span>MND: </span><b>—</b></li>
+                                    <li><span>RES: </span><b>—</b></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="ov-accordion info">
+                                    <li>
+                                        <button class="accordion-title">Derived</button>
+                                        <div class="accordion-content">
+                                            <ul>
+                                                <li>Offense STR<b></b></li>
+                                                <li>Offense DEX<b></b></li>
+                                                <li>Toughness<b></b></li>
+                                                <li>Accuracy<b></b></li>
+                                                <li>Evasion<b></b></li>
+                                                <li class="spacer"></li>
+                                                <li>Spell Power<b></b></li>
+                                                <li>Resilience<b></b></li>
+                                                <li>Spell Accuracy<b></b></li>
+                                                <li>Status Spell Evade<b></b></li>
+                                                <li>Projectile Spell Evade<b></b></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stats-bottom generic">
+                        <div class ="basic">
+                            <div>
+                                <span>&nbsp;</span>
+                                <ul class="stats">
+                                    <li><span>HP:</span></li>
+                                    <li><span>MP:</span></li>
+                                    <li><span>STR:</span></li>
+                                    <li><span>VIT:</span></li>
+                                    <li><span>DEX:</span></li>
+                                    <li><span>AGI:</span></li>
+                                    <li><span>AVD:</span></li>
+                                    <li><span>INT:</span></li>
+                                    <li><span>MND:</span></li>
+                                    <li><span>RES:</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <span>Warrior</span>
+                                <ul class="set1">
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <span>Rogue</span>
+                                <ul class="set2">
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <span>Mage</span>
+                                <ul class="set3">
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <span>Default</span>
+                                <ul class="set4">
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                    <li><b>—</b></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class ="derived">
+                            <ul class="ov-accordion info">
+                                <li>
+                                    <button class="accordion-title">Derived</button>
+                                    <div class="accordion-content">
+                                        <div>
+                                            <div>
+                                                <ul>
+                                                    <li>Offense STR</li>
+                                                    <li>Offense DEX</li>
+                                                    <li>Toughness</li>
+                                                    <li>Accuracy</li>
+                                                    <li>Evasion</li>
+                                                    <li class="spacer"></li>
+                                                    <li>Spell Power<b></b></li>
+                                                    <li>Resilience<b></b></li>
+                                                    <li>Spell Acc<b></b></li>
+                                                    <li>Status Sp. Eva<b></b></li>
+                                                    <li>Proj. Sp. Eva<b></b></li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <ul class="set1">
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li class="spacer"></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <ul class="set2">
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li class="spacer"></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <ul class="set3">
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li class="spacer"></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <ul class="set4">
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li class="spacer"></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="class">
+                        <ul class="ov-accordion">
+                            <li>
+                                <button class="accordion-title">Class List</button>
+                                <div class="accordion-content">
+                                    <ul>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="recruitment">
+                        <ul class="ov-accordion">
+                            <li>
+                                <button class="accordion-title">Recruitment</button>
+                                <div class="accordion-content">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="notes">
+                        <table>
+                            <tr>
+                                <td>
+                                    <span>Notes: </span>
+                                </td>
+                                <td>
+                                    <small><i><b>—</b></i></small>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="js/characters.js" type="text/javascript"></script>
+
+</body>
+</html>
