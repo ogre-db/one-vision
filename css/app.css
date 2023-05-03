@@ -63,6 +63,10 @@ body {
     padding-right: 40px;
   }
 }
+.page-home .ov-main-container .ov-banner h1 {
+  font-size: 3rem;
+  margin: 60px 0 40px;
+}
 .page-home .ov-main-container .ov-banner img {
   display: block;
   border-bottom: 2px solid #20180F;
@@ -72,6 +76,9 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+}
+.ov-menu-grid:not(:first-child) {
+  margin-top: 50px;
 }
 .ov-menu-grid > div {
   height: 65px;
@@ -157,6 +164,9 @@ h5 {
 h6 {
   font-size: 0.875rem;
 }
+p {
+  margin: 0;
+}
 a {
   text-decoration: none;
   transition: all 0.2s;
@@ -167,6 +177,9 @@ a:hover {
 }
 .text-right {
   text-align: right;
+}
+.text-center {
+  text-align: center;
 }
 b,
 .bold {
@@ -225,6 +238,11 @@ video {
 }
 .margin-small-top {
   margin-top: 10px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 .ov-button-pad {
   background: linear-gradient(to bottom right, #555, #666), #555;
@@ -417,6 +435,38 @@ video {
     max-width: calc(960px - 40px * 2);
   }
 }
+.ov-accordion {
+  position: relative;
+}
+.ov-accordion > li .accordion-title {
+  font-family: JupiterPro-Condensed, serif;
+  display: block;
+  width: 100%;
+  transition: all 200ms ease-in-out;
+}
+.ov-accordion > li .accordion-title:after {
+  content: '[show]';
+  background: transparent;
+  position: absolute;
+  text-align: right;
+  right: 10px;
+}
+.ov-accordion > li .accordion-content {
+  display: flow-root;
+  position: absolute;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.ov-accordion > li.open .accordion-title:after {
+  content: '[hide]';
+}
+.ov-accordion > li.open .accordion-content {
+  position: relative;
+  opacity: 1;
+  height: auto;
+}
 #sidePanel {
   display: none;
   position: fixed;
@@ -475,11 +525,6 @@ video {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
-}
-#sidePanel .panel .content ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
 }
 #sidePanel .panel .content .title .level {
   font-size: 1rem;
@@ -681,42 +726,25 @@ video {
 }
 #sidePanel .panel .content .ov-accordion {
   background-color: #f2f0ed;
-  position: relative;
   border-radius: 5px;
   margin-top: 10px;
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-title {
   background-color: #5f5854;
   color: #eee;
-  font-family: JupiterPro-Condensed, serif;
-  display: block;
   font-size: 1rem;
   text-align: left;
-  width: 100%;
   padding: 1px 10px;
   text-shadow: 0 0 5px #000;
   border-radius: 5px;
-  transition: all 200ms ease-in-out;
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-title:after {
-  content: '[show]';
   font-size: 0.875rem;
   line-height: 1.6;
-  float: right;
-  text-align: right;
   width: 50px;
-  background: transparent;
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-title:hover {
   color: #ee9500;
-}
-#sidePanel .panel .content .ov-accordion > li .accordion-content {
-  display: flow-root;
-  position: absolute;
-  width: 100%;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-content > * {
   margin: 5px 10px;
@@ -733,13 +761,6 @@ video {
 }
 #sidePanel .panel .content .ov-accordion > li.open .accordion-title {
   color: #ee9500;
-}
-#sidePanel .panel .content .ov-accordion > li.open .accordion-title:after {
-  content: '[hide]';
-}
-#sidePanel .panel .content .ov-accordion > li.open .accordion-content {
-  position: relative;
-  opacity: 1;
 }
 #sidePanel .panel .content .ov-accordion.info {
   margin-top: 20px;
@@ -2067,4 +2088,202 @@ video {
   width: 100%;
   margin-top: 5px;
   margin-left: 15px;
+}
+.page-cheats .ov-accordion {
+  background-color: #e8e3de;
+  border-radius: 5px;
+}
+.page-cheats .ov-accordion:not(:first-child) {
+  margin-top: 5px;
+}
+.page-cheats .ov-accordion > li .accordion-title {
+  background-color: #5f5854;
+  color: #eee;
+  font-size: 1rem;
+  text-align: left;
+  padding: 3px 15px;
+  text-shadow: 0 0 5px #000;
+  border-radius: 4px;
+}
+.page-cheats .ov-accordion > li .accordion-title:after {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.page-cheats .ov-accordion > li .accordion-title:hover {
+  color: #ee9500;
+}
+.page-cheats .ov-accordion > li .accordion-content > div {
+  margin: 20px 20px 15px;
+}
+.page-cheats .ov-accordion > li .accordion-content label {
+  display: block;
+}
+.page-cheats .ov-accordion > li .accordion-content select {
+  background-color: #f2f0ed;
+  font-family: sans-serif;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #5f5854;
+  border-radius: 4px;
+  outline: none;
+}
+.page-cheats .ov-accordion > li .accordion-content select option {
+  background-color: #f2f0ed;
+  font-family: sans-serif;
+}
+.page-cheats .ov-accordion > li .accordion-content input[type=text],
+.page-cheats .ov-accordion > li .accordion-content input[type=number] {
+  background-color: #f2f0ed;
+  font-family: sans-serif;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #5f5854;
+  border-radius: 4px;
+  outline: none;
+}
+.page-cheats .ov-accordion > li .accordion-content p.info {
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  font-style: italic;
+  margin: 10px 0;
+}
+.page-cheats .ov-accordion > li .accordion-content p.info.red {
+  font-size: 1rem;
+}
+.page-cheats .ov-accordion > li .accordion-content p.info.monospace {
+  font-family: monospace;
+  font-style: normal;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator {
+  margin-bottom: 30px;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator p.info {
+  font-size: 0.7rem;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator p.info.red,
+.page-cheats .ov-accordion > li .accordion-content .generator p.info.monospace {
+  font-size: 0.875rem;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator p.info.monospace {
+  background-color: #f2f0ed;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator p.result {
+  background-color: #f2f0ed;
+  font-family: monospace;
+  width: 100%;
+  border: 1px solid #5f5854;
+  border-radius: 4px;
+  padding: 20px;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator .input-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator .input-group:not(:first-child) {
+  margin-top: 15px;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator .input-group > div {
+  width: 100%;
+  padding: 10px 20px;
+}
+.page-cheats .ov-accordion > li.open .accordion-title {
+  color: #ee9500;
+}
+.page-cheats .ov-accordion#spellTeacher .input-group {
+  flex-direction: column-reverse;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset {
+  position: relative;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset:not(:first-child) {
+  margin-top: 10px;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset legend img {
+  height: 20px;
+  width: auto;
+  background-color: #E7E2D6;
+  border: 1px solid #7c7672;
+  border-radius: 50%;
+  box-shadow: 0 1px 0 #7c7672, inset 0 2px 0 #fff;
+  vertical-align: middle;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset legend span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 5px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset legend label {
+  background-color: #f2f0ed;
+  position: absolute;
+  font-size: 0.7rem;
+  line-height: 14px;
+  border-radius: 500px;
+  right: 10px;
+  top: -20px;
+  padding: 2px 8px;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset legend label input[type=checkbox] {
+  margin: 0 0 0 5px;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset input[type=checkbox] {
+  margin: 2px 10px 2px 0;
+  cursor: pointer;
+}
+.page-cheats .ov-accordion#spellTeacher #spTeachSpells label {
+  display: inline-block;
+  padding-left: 5px;
+  cursor: pointer;
+}
+.page-cheats .ov-accordion#spellTeacher #spTeachSpells label:hover {
+  color: #ee9500;
+}
+.page-cheats .ov-accordion#spellTeacher #spTeachSpells label.orange:hover {
+  color: #ffac22;
+}
+.page-cheats .ov-accordion#spellTeacher #spTeachSpells label.red:hover {
+  color: #ff7463;
+}
+.page-cheats .ov-accordion#spellTeacher label[for=spTeachResult] {
+  margin-top: 60px;
+}
+@media only screen and (min-width: 480px) {
+  .page-cheats .ov-accordion > li .accordion-title {
+    font-size: 1.2rem;
+    padding: 5px 20px;
+    border-radius: 5px;
+  }
+  .page-cheats .ov-accordion > li .accordion-title:after {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-3 {
+    width: calc(100% / 3);
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-4 {
+    width: calc(100% / 2);
+  }
+}
+@media only screen and (min-width: 768px) {
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-2 {
+    width: calc(100% / 2);
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-3 {
+    width: calc(100% / 3);
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-4 {
+    width: calc(100% / 4);
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-3-4 {
+    width: calc(100% * 3 / 4);
+  }
+  .page-cheats .ov-accordion#spellTeacher .input-group {
+    flex-direction: row;
+  }
 }

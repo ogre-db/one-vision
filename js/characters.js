@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         infoNotes = sidePanel.querySelector('.notes');
 
     // const progress = document.getElementById('progress');
-    // UIkit.modal(loading).show();
+    // showProgress();
 
     listItems();
 
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         raceType += 'Monster';
                     break;
                 case 'D':
-                    raceType += 'Special';
+                    raceType += 'Notable';
                     break;
                 case 'S':
                     raceType += 'Champion';

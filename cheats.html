@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Tactics Ogre - One Vision</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="img/icon-shortcut.png" />
+    <link rel="stylesheet" href="css/app.css" type="text/css" />
+    <script src="js/app.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <div class="page-cheats">
+        <div class="ov-main-container container">
+            <div class="ov-banner">
+                <h1>CWCheat Code Generator</h1>
+            </div>
+            <div class="ov-content">
+                <ul id ="templateTweaker" class="ov-accordion">
+                    <li class="open">
+                        <button class="accordion-title">Character Template Tweaker</button>
+                        <div class="accordion-content">
+                            <div>
+                                <div class="generator">
+                                    <div class="input-group">
+                                        <div class="width-1-2">
+                                            <label for="tempTwTemplate">Pick a character template to modify</label>
+                                            <select id="tempTwTemplate">
+                                                <option value="" selected></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="width-1-4">
+                                            <label for="tempTwSprite">Sprite</label>
+                                            <select id="tempTwSprite">
+                                                <option value="" selected></option>
+                                            </select>
+                                            <p class="info">
+                                                Do not use monster sprites for humanoids, as they lack animations and will crash the game if you swing a weapon. Dorgalua's sprite lacks some animations too, notably finishers as he wasn't supposed to use them.
+                                            </p>
+                                            <p class="info">
+                                                Sprite/portrait change for Denam, Catiua and Vyce has additional codes, as their endgame appearances override the default ones and have to be changed too.
+                                            </p>
+                                        </div>
+                                        <div class="width-1-4">
+                                            <label for="tempTwColor">Sprite Color</label>
+                                            <select id="tempTwColor">
+                                                <option value="" selected></option>
+                                            </select>
+                                            <p class="info">
+                                                These color descriptions are somewhat arbitrary, they can differ a lot, depending on sprite.
+                                            </p>
+                                        </div>
+                                        <div class="width-1-4">
+                                            <label for="tempTwPortrait">Portrait</label>
+                                            <select id="tempTwPortrait">
+                                                <option value="" selected></option>
+                                            </select>
+                                        </div>
+                                        <div class="width-1-4">
+                                            <label for="tempTwCcset">Class change set</label>
+                                            <select id="tempTwCcset">
+                                                <option value="" selected></option>
+                                            </select>
+                                            <p class="info">
+                                                If you use this one in vanilla game, keep in mind that some class sets won't be defined, might have different classes available or apply to a different race.
+                                            </p>
+                                            <p class="info">
+                                                If that happens, and you see that a humanoid has monster classes listed or vice versa just try a different set.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="width-1-2">
+                                            <label for="tempTwResult">Result</label>
+                                            <p id="tempTwResult" class="result"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="info">
+                                    To see the sprite/portrait changes, either change the character's class, or save and reload (hard save, not a saved state).
+                                </p>
+                                <p class="info">
+                                    Once the code is active, you can turn it off, it will persist as long as you save/load the game using saved states. If you turn the game off and then load a hard save you will have to run the code again as the game will reload the template defaults.
+                                </p>
+                                <p class="info">
+                                    These codes are intended for customizing special characters and can't be directly used on generics because their templates are shared. To customize a generic character you can use a template change code that will turn them into a special, which you can then customize at will. It's best to use a special character that you do not intend to recruit.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul id ="classLevelSetter" class="ov-accordion">
+                    <li class="">
+                        <button class="accordion-title">Single Class Level</button>
+                        <div class="accordion-content">
+                            <div>
+                                <div class="generator">
+                                    <div class="input-group">
+                                        <div class="width-1-2">
+                                            <label for="classLvClass">Choose a class</label>
+                                            <select id="classLvClass">
+                                                <option value="" selected></option>
+                                            </select>
+                                        </div>
+                                        <div class="width-1-4">
+                                            <label for="classLvLevel">Set Level</label>
+                                            <input id="classLvLevel" type="number" step="1" min="1" max="50" value=""/>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="width-3-4">
+                                            <label for="classLvResult">Result</label>
+                                            <p id="classLvResult" class="result"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="info">
+                                    These codes will set the level and experience of a single class to the desired value.
+                                </p>
+                                <p class="info red">
+                                    <b>After running this code it should be turned off or the class level and experience will stay at these values.</b>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul id ="characterRenamer" class="ov-accordion">
+                    <li class="">
+                        <button class="accordion-title">Character Renamer</button>
+                        <div class="accordion-content">
+                            <div>
+                                <div class="generator">
+                                    <div class="input-group">
+                                        <div class="width-1-4">
+                                            <label for="chRenameRoster">Unit Roster Number</label>
+                                            <input id="chRenameRoster" type="number" step="1" min="1" max="50" value=""/>
+                                        </div>
+                                        <div class="width-1-2">
+                                            <p class="info red">
+                                                <b>Do not use the numbers you're seeing on the character roster.</b>
+                                            </p>
+                                            <p class="info">
+                                                To find the unit's real position use the code below, once you run it the number will be shown as its current MP.
+                                            </p>
+                                            <p class="info monospace">
+                                                _C0 MP Shows Real Order<br>
+                                                _L 0x802D84B6 0x00320246<br>
+                                                _L 0x10000001 0x00000001
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="width-1-2">
+                                            <label for="chRenameName">New Name</label>
+                                            <input id="chRenameName" class="text-center" type="text" maxlength="20" value=""/>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="width-3-4">
+                                            <label for="chRenameResult">Result</label>
+                                            <p id="chRenameResult" class="result"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="info">
+                                    You can use up to 20 characters, but the name might be too long if you have a lot of wide letters and not be fully visible on the character screen. This is just a cosmetic issue but if you're bothered by it you will have to use a shorter name.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul id ="spellTeacher" class="ov-accordion">
+                    <li class="">
+                        <button class="accordion-title">Spell Teacher</button>
+                        <div class="accordion-content">
+                            <div>
+                                <div class="generator">
+                                    <div class="input-group">
+                                        <div class="width-1-2">
+                                            <div id="spTeachSpells">
+                                            </div>
+                                        </div>
+                                        <div class="width-1-2">
+                                            <label for="spTeachRoster">Unit Roster Number</label>
+                                            <input id="spTeachRoster" type="number" step="1" min="1" max="50" value=""/>
+                                            <p class="info red">
+                                                <b>Do not use the numbers you're seeing on the character roster.</b>
+                                            </p>
+                                            <p class="info">
+                                                To find the unit's real position use the code below, once you run it the number will be shown as its current MP.
+                                            </p>
+                                            <p class="info monospace">
+                                                _C0 MP Shows Real Order<br>
+                                                _L 0x802D84B6 0x00320246<br>
+                                                _L 0x10000001 0x00000001
+                                            </p>
+                                            <label for="spTeachResult">Result</label>
+                                            <p id="spTeachResult" class="result"></p>
+                                            <p class="info">
+                                                These codes will set the unit's learned spells to those you pick on the left. If none are selected, the unit's spell list will be wiped clean. Exit the formation screen and reenter to see the changes.
+                                            </p>
+                                            <p class="info">
+                                                The effect is permanent, once the code has been activated, it can be turned off.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+<script src="js/cheats.js" type="text/javascript"></script>
+
+</body>
+</html>
+

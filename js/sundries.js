@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         infoNotes = sidePanel.querySelector('.notes');
 
     // const progress = document.getElementById('progress');
-    // UIkit.modal(loading).show();
+    // showProgress();
 
     listItems();
 

@@ -100,12 +100,6 @@ function swapEffectRemove ( panel, content ) {
     }
 }
 
-function forEach (array, callback, scope) {
-    for (let i = 0; i < array.length; i++) {
-        callback.call(scope, i, array[i]);
-    }
-}
-
 async function fetchJSON (url) {
 
     let response = await fetch(url);
@@ -2400,45 +2394,3 @@ const movementPerk = {
     '8': 'Swim',
     '10': 'Lava'
 };
-
-const classChangeSets = [
-    {'ccset': '0', 'name': 'All'},
-    {'ccset': '1', 'name': 'Human'},
-    {'ccset': '14', 'name': 'Special Human'},
-    {'ccset': '2', 'name': 'Hawkman'},
-    {'ccset': '3', 'name': 'Lizardman'},
-    {'ccset': '4', 'name': 'Lamia'},
-    {'ccset': '5', 'name': 'Orc'},
-    {'ccset': '9', 'name': 'Gremlin'},
-    {'ccset': '8', 'name': 'Fairy'},
-    {'ccset': '10', 'name': 'Pumpkinhead'},
-    {'ccset': '6', 'name': 'Skeleton'},
-    {'ccset': '7', 'name': 'Ghost'},
-    {'ccset': '11', 'name': 'Dragon'},
-    {'ccset': '-', 'name': '-'},
-    {'ccset': '16', 'name': 'Denam'},
-    {'ccset': '17', 'name': 'Vyce'},
-    {'ccset': '18', 'name': 'Catiua'},
-    {'ccset': '19', 'name': 'Lanselot'},
-    {'ccset': '20', 'name': 'Warren'},
-    {'ccset': '21', 'name': 'Canopus'},
-    {'ccset': '22', 'name': 'Mirdyn'},
-    {'ccset': '23', 'name': 'Gildas'},
-    {'ccset': '24', 'name': 'Cerya'},
-    {'ccset': '25', 'name': 'Sherri'},
-    {'ccset': '26', 'name': 'Cistina'},
-    {'ccset': '27', 'name': 'Olivya'},
-    {'ccset': '28', 'name': 'Deneb'},
-    {'ccset': '29', 'name': 'Iuria'},
-    {'ccset': '30', 'name': 'Ozma'},
-    {'ccset': '38', 'name': 'Lindl'},
-    {'ccset': '31', 'name': 'Leonar'},
-    {'ccset': '32', 'name': 'Ravness'},
-    {'ccset': '33', 'name': 'Azelstan'},
-    {'ccset': '35', 'name': 'Hobyrim'},
-    {'ccset': '13', 'name': 'Oelias'},
-    {'ccset': '15', 'name': 'Cressida'},
-    {'ccset': '37', 'name': 'Ganpp'},
-    {'ccset': '12', 'name': 'Ocionne'},
-    {'ccset': '34', 'name': 'Tamuz'}
-];
