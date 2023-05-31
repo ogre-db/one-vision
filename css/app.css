@@ -6,17 +6,17 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'JupiterPro';
-  src: url('../fonts/JupiterPro.woff2') format('woff2'), url('../fonts/JupiterPro.woff') format('woff');
+  font-family: 'BenguiatITC-Condensed';
+  src: url('../fonts/BenguiatITC-Condensed.woff2') format('woff2'), url('../fonts/BenguiatITC-Condensed.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 html {
-  font-family: JupiterPro-Condensed, serif;
+  font-family: BenguiatITC-Condensed, serif;
   background-color: #333;
   color: #333;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.2;
 }
@@ -42,6 +42,7 @@ body {
   max-width: 960px;
 }
 .ov-main-container .ov-banner h1 {
+  font-family: JupiterPro-Condensed, serif;
   text-align: center;
   margin: 40px 0 20px;
   text-transform: uppercase;
@@ -63,7 +64,12 @@ body {
     padding-right: 40px;
   }
 }
+.page-home .ov-main-container {
+  position: relative;
+  padding-bottom: 40px;
+}
 .page-home .ov-main-container .ov-banner h1 {
+  font-family: JupiterPro-Condensed, serif;
   font-size: 3rem;
   margin: 60px 0 40px;
 }
@@ -71,6 +77,13 @@ body {
   display: block;
   border-bottom: 2px solid #20180F;
   box-shadow: 0 5px 10px -5px black;
+}
+.page-home .ov-main-container footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 15px;
 }
 .ov-menu-grid {
   display: flex;
@@ -439,8 +452,9 @@ ul {
   position: relative;
 }
 .ov-accordion > li .accordion-title {
-  font-family: JupiterPro-Condensed, serif;
+  font-family: BenguiatITC-Condensed, serif;
   display: block;
+  position: relative;
   width: 100%;
   transition: all 200ms ease-in-out;
 }
@@ -459,10 +473,10 @@ ul {
   overflow: hidden;
   opacity: 0;
 }
-.ov-accordion > li.open .accordion-title:after {
+.ov-accordion > li.open > .accordion-title:after {
   content: '[hide]';
 }
-.ov-accordion > li.open .accordion-content {
+.ov-accordion > li.open > .accordion-content {
   position: relative;
   opacity: 1;
   height: auto;
@@ -657,13 +671,13 @@ ul {
   margin-left: 5px;
 }
 #sidePanel .panel .content .stats-effect .main > div:nth-child(3) {
-  width: 70%;
+  width: 65%;
 }
 #sidePanel .panel .content .stats-effect .main > div:nth-child(3) span {
   min-width: 65px;
 }
 #sidePanel .panel .content .stats-effect .main > div:nth-child(4) {
-  width: 30%;
+  width: 35%;
 }
 #sidePanel .panel .content .stats-effect .main > div:nth-child(4) b {
   min-width: 40px;
@@ -740,7 +754,6 @@ ul {
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-title:after {
   font-size: 0.875rem;
-  line-height: 1.6;
   width: 50px;
 }
 #sidePanel .panel .content .ov-accordion > li .accordion-title:hover {
@@ -1154,6 +1167,9 @@ ul {
 #sidePanel.weapons-panel .panel .content .stats-extra .itemset b {
   color: #29a329;
 }
+#sidePanel.weapons-panel .panel .content .stats-extra .restriction {
+  margin-top: 10px;
+}
 .page-armor .ov-item-list table th:nth-child(2),
 .page-armor .ov-item-list table td:nth-child(2) {
   width: auto;
@@ -1331,6 +1347,9 @@ ul {
 }
 #sidePanel.armor-panel .panel .content .stats-extra .itemset b {
   color: #29a329;
+}
+#sidePanel.armor-panel .panel .content .stats-extra .restriction {
+  margin-top: 10px;
 }
 .page-sundries .ov-item-list table img.mark-basic {
   border-color: #8B4513;
@@ -1581,13 +1600,13 @@ ul {
   margin-left: 5px;
 }
 #sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(3) {
-  width: 70%;
+  width: 65%;
 }
 #sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(3) span {
   min-width: 65px;
 }
 #sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(4) {
-  width: 30%;
+  width: 35%;
 }
 #sidePanel.abilities-panel .panel .content .stats-top .basic > div:nth-child(4) b {
   min-width: 40px;
@@ -2107,7 +2126,6 @@ ul {
 }
 .page-cheats .ov-accordion > li .accordion-title:after {
   font-size: 0.875rem;
-  line-height: 1.6;
 }
 .page-cheats .ov-accordion > li .accordion-title:hover {
   color: #ee9500;
@@ -2189,6 +2207,25 @@ ul {
   width: 100%;
   padding: 10px 20px;
 }
+.page-cheats .ov-accordion > li .accordion-content .ov-accordion {
+  background-color: #f2f0ed;
+  border-radius: 12px;
+  box-shadow: inset 0 0 3px rgba(95, 88, 84, 0.6);
+}
+.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li .accordion-title {
+  background-color: transparent;
+  color: #333;
+  font-size: 1rem;
+  padding: 2px 10px 2px;
+  border-radius: 12px;
+  text-shadow: none;
+}
+.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li .accordion-title:hover {
+  color: #ee9500;
+}
+.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li.open .accordion-title {
+  color: #ee9500;
+}
 .page-cheats .ov-accordion > li.open .accordion-title {
   color: #ee9500;
 }
@@ -2261,10 +2298,12 @@ ul {
   }
   .page-cheats .ov-accordion > li .accordion-title:after {
     font-size: 1rem;
-    line-height: 1.6;
   }
   .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-3 {
     width: calc(100% / 3);
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-2-3 {
+    width: calc(100% * 2 / 3);
   }
   .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-4 {
     width: calc(100% / 2);
@@ -2285,5 +2324,8 @@ ul {
   }
   .page-cheats .ov-accordion#spellTeacher .input-group {
     flex-direction: row;
+  }
+  .page-cheats .ov-accordion#templateTweaker .ov-accordion {
+    width: 66%;
   }
 }

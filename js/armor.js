@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         infoPassive = sidePanel.querySelector('.stats-extra .passive b'),
         infoAbility = sidePanel.querySelector('.stats-extra .ability b'),
         infoSet = sidePanel.querySelector('.stats-extra .itemset'),
+        infoRestriction = sidePanel.querySelector('.stats-extra .restriction'),
         infoObtain = sidePanel.querySelector('.obtain'),
         infoGet = sidePanel.querySelector('.obtain .get'),
         infoBuy = sidePanel.querySelector('.obtain .buy'),
@@ -303,6 +304,13 @@ document.addEventListener('DOMContentLoaded', function() {
             infoSet.querySelector('b').textContent = itemSets.find((row) => row['id'] === item.set).name;
             infoSet.classList.remove('hidden');
         } else infoSet.classList.add('hidden');
+        infoRestriction.innerHTML = '';
+        if ( item.mlnly > 0 )
+            infoRestriction.innerHTML += '<li class="red">Only usable by male units</li>';
+        if ( item.fmlnly > 0 )
+            infoRestriction.innerHTML += '<li class="red">Only usable by female units</li>';
+        if ( item.id === 535 )
+            infoRestriction.innerHTML += '<li class="red">Only usable by Catiua</li>';
 
         let obtain = obtains.find((row) => row['id'] === item.id).obtained;
         if (obtain !== 0) {

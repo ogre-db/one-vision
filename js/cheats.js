@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
         tempTwPortrait = document.getElementById('tempTwPortrait'),
         tempTwCcset = document.getElementById('tempTwCcset'),
         tempTwResult = document.getElementById('tempTwResult'),
+        tempTwSwitchRoster = document.getElementById('tempTwSwitchRoster'),
+        tempTwSwitchResult = document.getElementById('tempTwSwitchResult'),
         classLevelSetter = document.getElementById('classLevelSetter'),
         classLvClass = document.getElementById('classLvClass'),
         classLvLevel = document.getElementById('classLvLevel'),
@@ -60,10 +62,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         generateTempTwCodes();
+        generateTempTwSwitchCodes();
 
         templateTweaker.querySelectorAll('select').forEach( (element) => {
             element.onchange = function(){
                 generateTempTwCodes();
+                generateTempTwSwitchCodes();
+            };
+        });
+        templateTweaker.querySelectorAll('input').forEach( (element) => {
+            element.oninput = function(){
+                generateTempTwSwitchCodes();
             };
         });
 
@@ -205,6 +214,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 let classSet = parseInt(tempTwCcset.value);
                 tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138A', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(classSet, 1);
             }
+        }
+    }
+
+    function generateTempTwSwitchCodes() {
+
+        tempTwSwitchResult.innerHTML = '';
+        if (tempTwSwitchRoster.value === '') {
+            tempTwSwitchResult.innerHTML = '<span class="red">No roster slot selected</span>';
+        } else if (tempTwTemplate.value === '') {
+            tempTwSwitchResult.innerHTML = '<span class="red">No special character template selected in the tweaker section</span>';
+        } else {
+            let rosterSlot = parseInt(tempTwSwitchRoster.value);
+            let template = parseInt(tempTwTemplate.value);
+            tempTwSwitchResult.innerHTML += '_C0 Change Unit ' + rosterSlot + ' to ' + tempTwTemplate.options[tempTwTemplate.selectedIndex].text;
+            tempTwSwitchResult.innerHTML += '<br>_L 0x10' + decToHex(parseInt('2D84A4', 16) + 1164 * (rosterSlot - 1), 3) + ' 0x0000' + decToHex(template, 2);
         }
     }
 

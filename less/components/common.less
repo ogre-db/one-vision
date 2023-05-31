@@ -1,5 +1,6 @@
 
-@main-font: JupiterPro-Condensed, serif;
+@main-font: BenguiatITC-Condensed, serif;
+@title-font: JupiterPro-Condensed, serif;
 
 @content-width: 960px;
 @content-padding-s: 15px;
@@ -31,7 +32,7 @@ html {
   font-family: @main-font;
   background-color: #333;
   color: #333;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.2;
 
@@ -61,6 +62,7 @@ body {
   .ov-banner {
 
     h1 {
+      font-family: @title-font;
       text-align: center;
       margin: 40px 0 20px;
       text-transform: uppercase;
@@ -90,10 +92,13 @@ body {
 .page-home {
 
   .ov-main-container {
+    position: relative;
+    padding-bottom: 40px;
 
     .ov-banner {
 
       h1 {
+        font-family: @title-font;
         font-size: 3rem;
         margin: 60px 0 40px;
       }
@@ -103,6 +108,14 @@ body {
         border-bottom: 2px solid #20180F;
         box-shadow: 0 5px 10px -5px black;
       }
+    }
+
+    footer {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding: 10px 15px;
     }
   }
 }
@@ -555,6 +568,7 @@ ul {
     .accordion-title {
       font-family: @main-font;
       display: block;
+      position: relative;
       width: 100%;
       transition: all 200ms ease-in-out;
 
@@ -578,14 +592,14 @@ ul {
 
     &.open {
 
-      .accordion-title {
+      &>.accordion-title {
 
         &:after {
           content: '[hide]';
         }
       }
 
-      .accordion-content {
+      &>.accordion-content {
         position: relative;
         opacity: 1;
         height: auto;
@@ -842,14 +856,14 @@ ul {
               }
             }
             &:nth-child(3) {
-              width: 70%;
+              width: 65%;
 
               span {
                 min-width: 65px;
               }
             }
             &:nth-child(4) {
-              width: 30%;
+              width: 35%;
 
               b {
                 min-width: 40px;
@@ -957,7 +971,7 @@ ul {
 
             &:after {
               font-size: 0.875rem;
-              line-height: 1.6;
+              //line-height: 1.6; for title font
               width: 50px;
             }
 

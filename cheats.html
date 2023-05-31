@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="input-group">
                                         <div class="width-1-2">
-                                            <label for="tempTwResult">Result</label>
+                                            <label for="tempTwResult">Codes</label>
                                             <p id="tempTwResult" class="result"></p>
                                         </div>
                                     </div>
@@ -87,8 +87,44 @@
                                     Once the code is active, you can turn it off, it will persist as long as you save/load the game using saved states. If you turn the game off and then load a hard save you will have to run the code again as the game will reload the template defaults.
                                 </p>
                                 <p class="info">
-                                    These codes are intended for customizing special characters and can't be directly used on generics because their templates are shared. To customize a generic character you can use a template change code that will turn them into a special, which you can then customize at will. It's best to use a special character that you do not intend to recruit.
+                                    These codes are intended for customizing special characters and can't be directly used on generics because their templates are shared. To customize a generic character you can use the template switcher below that will turn them into a special, which you can then customize at will. It's best to use a special character that you do not intend to recruit.
                                 </p>
+                                <ul class="ov-accordion">
+                                    <li>
+                                        <button class="accordion-title">Template Switcher</button>
+                                        <div class="accordion-content">
+                                            <div>
+                                                <div class="generator">
+                                                    <div class="input-group">
+                                                        <div class="width-1-3">
+                                                            <label for="tempTwSwitchRoster">Unit Roster Number</label>
+                                                            <input id="tempTwSwitchRoster" type="number" step="1" min="1" max="50" value=""/>
+                                                        </div>
+                                                        <div class="width-2-3">
+                                                            <p class="info red">
+                                                                <b>Do not use the numbers you're seeing on the character roster.</b>
+                                                            </p>
+                                                            <p class="info">
+                                                                To find the unit's real position use the code below, once you run it the number will be shown as its current MP.
+                                                            </p>
+                                                            <p class="info monospace">
+                                                                _C0 MP Shows Real Order<br>
+                                                                _L 0x802D84B6 0x00320246<br>
+                                                                _L 0x10000001 0x00000001
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div>
+                                                            <label for="tempTwSwitchResult">Codes</label>
+                                                            <p id="tempTwSwitchResult" class="result"></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </li>
@@ -113,7 +149,7 @@
                                     </div>
                                     <div class="input-group">
                                         <div class="width-3-4">
-                                            <label for="classLvResult">Result</label>
+                                            <label for="classLvResult">Codes</label>
                                             <p id="classLvResult" class="result"></p>
                                         </div>
                                     </div>
@@ -161,7 +197,7 @@
                                     </div>
                                     <div class="input-group">
                                         <div class="width-3-4">
-                                            <label for="chRenameResult">Result</label>
+                                            <label for="chRenameResult">Codes</label>
                                             <p id="chRenameResult" class="result"></p>
                                         </div>
                                     </div>
@@ -198,7 +234,7 @@
                                                 _L 0x802D84B6 0x00320246<br>
                                                 _L 0x10000001 0x00000001
                                             </p>
-                                            <label for="spTeachResult">Result</label>
+                                            <label for="spTeachResult">Codes</label>
                                             <p id="spTeachResult" class="result"></p>
                                             <p class="info">
                                                 These codes will set the unit's learned spells to those you pick on the left. If none are selected, the unit's spell list will be wiped clean. Exit the formation screen and reenter to see the changes.
@@ -209,7 +245,32 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul id ="" class="ov-accordion">
+                    <li class="">
+                        <button class="accordion-title">Experience Scaling Fix</button>
+                        <div class="accordion-content">
+                            <div>
+                                <div class="generator">
+                                    <div class="input-group">
+                                        <div class="width-1-2">
+                                            <label for="lowLevelResult">Codes</label>
+                                            <p id="lowLevelResult" class="result">
+                                                _C0 Low level EXP scaling fix
+                                                <br>_L 0x0001D1C4 0x00000011
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="info">
+                                    This code isn't a cheat but more of a fix, it takes your total amount of XP earned in a battle and allocates a greater share to lower level classes, making them catch up much faster that they normally do.
+                                </p>
+                                <p class="info">
+                                    This doesn't change the total XP earned and doesn't do anything if everyone is on the same level.
+                                </p>
                             </div>
                         </div>
                     </li>

@@ -70,10 +70,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     raceType += 'Notable';
                     break;
                 case 'S':
-                    raceType += 'Champion';
+                    raceType += 'Special';
                     break;
                 case 'U':
-                    raceType += 'Hero';
+                    raceType += 'Unique';
             }
             if ( raceType !== currentType ) {
                 let tr = document.createElement('tr');
@@ -153,13 +153,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     raceType += 'Monster';
                 break;
             case 'D':
-                raceType += 'Special';
+                raceType += 'Notable';
                 break;
             case 'S':
-                raceType += 'Champion';
+                raceType += 'Special';
                 break;
             case 'U':
-                raceType += 'Hero';
+                raceType += 'Unique';
         }
         infoType.textContent = raceType;
 
