@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         infoDrop = sidePanel.querySelector('.obtain .drop'),
         infoSteal = sidePanel.querySelector('.obtain .steal'),
         infoCraft = sidePanel.querySelector('.obtain .craft'),
+        infoAuction = sidePanel.querySelector('.obtain .auction'),
         infoClass = sidePanel.querySelector('.class .accordion-content ul'),
         infoNotes = sidePanel.querySelector('.notes');
 
@@ -470,6 +471,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         infoCraft.appendChild(craft);
                     });
                     infoCraft.classList.remove('hidden');
+                }
+                if (obt.indexOf('Auctioned from ') >= 0) {
+                    obt = obt.replace('Auctioned from ','');
+                    let locations = obt.split(', ');
+                    infoAuction.innerHTML = '<b>Auctioned from</b>';
+                    locations.forEach( (obt) => {
+                        let auction = document.createElement('li');
+                        auction.innerText = obt;
+                        infoAuction.appendChild(auction);
+                    });
+                    infoAuction.classList.remove('hidden');
                 }
             });
             infoObtain.classList.remove('hidden');

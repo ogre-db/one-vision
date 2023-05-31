@@ -804,11 +804,13 @@ ul {
   margin-left: 10px;
 }
 #sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.drop,
-#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.steal {
+#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.steal,
+#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.auction {
   list-style: circle;
 }
 #sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.drop li,
-#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.steal li {
+#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.steal li,
+#sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.auction li {
   margin-left: 15px;
 }
 #sidePanel .panel .content .obtain .ov-accordion .accordion-content ul.craft li span {
