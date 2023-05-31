@@ -399,6 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
             infoDrop.classList.add('hidden');
             infoSteal.classList.add('hidden');
             infoCraft.classList.add('hidden');
+            infoAuction.classList.add('hidden');
             sidePanel.querySelectorAll('.obtain ul:not(.ov-accordion)').forEach(e => e.innerHTML = '');
             let obtainWays = obtain.split(' | ');
             obtainWays.forEach((obt) => {
