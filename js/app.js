@@ -337,7 +337,10 @@ function getEffectText (ability, effectSet) {
             if ( ability[scaling] === 20 || ability[formula] === 5 ) {
                 damageProp['name'] = damageTypes[5].name;
                 damageProp['icon'] = damageTypes[5].icon;
-            } else if ( !ability[damage] && !ability[element] ) {
+            } else if ( [0,1].includes(ability[formula]) ) {
+                damageProp['name'] = damageTypes[4].name;
+                damageProp['icon'] = damageTypes[4].icon;
+            } else if ( !ability[damage] && !ability[element] && ability[formula] !== 4 ) {
                 damageProp['name'] = damageTypes[6].name;
                 damageProp['icon'] = damageTypes[6].icon;
             } else if (ability[damage]) {

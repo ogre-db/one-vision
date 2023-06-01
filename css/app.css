@@ -714,6 +714,12 @@ ul {
   border-radius: 50%;
   top: 2px;
 }
+#sidePanel .panel .content .stats-effect .effect-obstacle {
+  margin-top: 15px;
+}
+#sidePanel .panel .content .stats-effect .effect-obstacle b {
+  margin-left: 10px;
+}
 #sidePanel .panel .content .stats-effect .divider-text {
   display: block;
   font-size: 0.75em;
@@ -1520,7 +1526,10 @@ ul {
 }
 .page-abilities .ov-item-list table th:nth-child(3),
 .page-abilities .ov-item-list table td:nth-child(3) {
-  width: 45px;
+  width: 50px;
+}
+.page-abilities .ov-item-list table td:nth-child(3) {
+  font-size: 0.7rem;
 }
 .page-abilities .ov-item-list table th:nth-child(4),
 .page-abilities .ov-item-list table td:nth-child(4) {
@@ -1547,7 +1556,10 @@ ul {
 @media only screen and (min-width: 480px) {
   .page-abilities .ov-item-list table th:nth-child(3),
   .page-abilities .ov-item-list table td:nth-child(3) {
-    width: 60px;
+    width: 70px;
+  }
+  .page-abilities .ov-item-list table td:nth-child(3) {
+    font-size: 1rem;
   }
   .page-abilities .ov-item-list table th:nth-child(4),
   .page-abilities .ov-item-list table td:nth-child(4) {

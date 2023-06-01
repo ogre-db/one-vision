@@ -272,6 +272,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 infoEffect.querySelector('.effect-3').classList.add('hidden');
                 infoEffect.querySelector('.divider-3').classList.add('hidden');
             }
+            if (ability.obsdmg > 0) {
+                infoEffect.querySelector('.effect-obstacle b').innerHTML = ability.obsdmg;
+                infoEffect.querySelector('.effect-obstacle').classList.remove('hidden');
+            } else infoEffect.querySelector('.effect-obstacle').classList.add('hidden');
             infoEffect.classList.remove('hidden');
         } else {
             infoEffect.classList.add('hidden');

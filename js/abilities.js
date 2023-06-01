@@ -122,11 +122,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 else
                     rtcost.textContent = trap.rtcost;
                 let profile = document.createElement('td');
-                let damageProfile = getEffectText(element, 1).damage;
-                if ((damageProfile.length === 0 || element.eff1self) && element.eff21)
-                    damageProfile = getEffectText(element, 2).damage;
-                if ((damageProfile.length === 0 || element.eff2self) && element.eff31)
-                    damageProfile = getEffectText(element, 3).damage;
+                let damageProfile = [];
+                if (!element.eff1self)
+                    damageProfile.push.apply(damageProfile, getEffectText(element, 1).damage);
+                if (element.eff21 > 0 && !element.eff2self)
+                    damageProfile.push.apply(damageProfile, getEffectText(element, 2).damage);
+                if (element.eff31 > 0 && !element.eff3self)
+                    damageProfile.push.apply(damageProfile, getEffectText(element, 3).damage);
+                damageProfile = damageProfile.filter((item, index, array) => array.findIndex(it => it.name === item.name) === index);
+                if (damageProfile.length > 2)
+                    damageProfile = damageProfile.slice(0, 2);
                 if (damageProfile.length > 0) {
                     damageProfile.forEach( (dmg) => {
                         profile.innerHTML += '<img src="' + dmg.icon + '">';
@@ -328,6 +333,10 @@ document.addEventListener('DOMContentLoaded', function() {
             infoEffect.querySelector('.effect-3').classList.add('hidden');
             infoEffect.querySelector('.divider-3').classList.add('hidden');
         }
+        if (item.obsdmg > 0) {
+            infoEffect.querySelector('.effect-obstacle b').innerHTML = item.obsdmg;
+            infoEffect.querySelector('.effect-obstacle').classList.remove('hidden');
+        } else infoEffect.querySelector('.effect-obstacle').classList.add('hidden');
 
         let obtain;
         let arcana;
