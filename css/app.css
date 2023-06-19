@@ -2234,6 +2234,9 @@ ul {
   border-radius: 12px;
   text-shadow: none;
 }
+.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li .accordion-title:after {
+  font-size: 0.875rem;
+}
 .page-cheats .ov-accordion > li .accordion-content .ov-accordion > li .accordion-title:hover {
   color: #ee9500;
 }
