@@ -251,11 +251,11 @@ document.addEventListener('DOMContentLoaded', function() {
             infoStatsBottomGeneric.classList.add('hidden');
         } else {
 
-            let raceType = 'human';
-            if (([2, 4, 9].includes(item.race)))
-                raceType = 'monster';
+            let variationType = 'human';
+            if ( ([2, 4, 9].includes(item.race)) && !([210, 234].includes(item.id)) )
+                variationType = 'monster';
 
-            if ( raceType === 'human' || item.id === 234) {
+            if ( variationType === 'human') {
                 infoStatsBottomVariantLabels[1].innerText = 'Warrior';
                 infoStatsBottomVariantLabels[2].innerText = 'Rogue';
                 infoStatsBottomVariantLabels[3].innerText = 'Mage';
@@ -266,40 +266,40 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             let statList1 = [
-                item.hp + statBonusGeneric[raceType + 1].hp,
-                item.mp + statBonusGeneric[raceType + 1].mp,
-                item.str + statBonusGeneric[raceType + 1].str,
-                item.vit + statBonusGeneric[raceType + 1].vit,
-                item.dex + statBonusGeneric[raceType + 1].dex,
-                item.agi + statBonusGeneric[raceType + 1].agi,
-                item.avd + statBonusGeneric[raceType + 1].avd,
-                item.int + statBonusGeneric[raceType + 1].int,
-                item.mnd + statBonusGeneric[raceType + 1].mnd,
-                item.res + statBonusGeneric[raceType + 1].res
+                item.hp + statBonusGeneric[variationType + 1].hp,
+                item.mp + statBonusGeneric[variationType + 1].mp,
+                item.str + statBonusGeneric[variationType + 1].str,
+                item.vit + statBonusGeneric[variationType + 1].vit,
+                item.dex + statBonusGeneric[variationType + 1].dex,
+                item.agi + statBonusGeneric[variationType + 1].agi,
+                item.avd + statBonusGeneric[variationType + 1].avd,
+                item.int + statBonusGeneric[variationType + 1].int,
+                item.mnd + statBonusGeneric[variationType + 1].mnd,
+                item.res + statBonusGeneric[variationType + 1].res
             ];
             let statList2 = [
-                item.hp + statBonusGeneric[raceType + 2].hp,
-                item.mp + statBonusGeneric[raceType + 2].mp,
-                item.str + statBonusGeneric[raceType + 2].str,
-                item.vit + statBonusGeneric[raceType + 2].vit,
-                item.dex + statBonusGeneric[raceType + 2].dex,
-                item.agi + statBonusGeneric[raceType + 2].agi,
-                item.avd + statBonusGeneric[raceType + 2].avd,
-                item.int + statBonusGeneric[raceType + 2].int,
-                item.mnd + statBonusGeneric[raceType + 2].mnd,
-                item.res + statBonusGeneric[raceType + 2].res
+                item.hp + statBonusGeneric[variationType + 2].hp,
+                item.mp + statBonusGeneric[variationType + 2].mp,
+                item.str + statBonusGeneric[variationType + 2].str,
+                item.vit + statBonusGeneric[variationType + 2].vit,
+                item.dex + statBonusGeneric[variationType + 2].dex,
+                item.agi + statBonusGeneric[variationType + 2].agi,
+                item.avd + statBonusGeneric[variationType + 2].avd,
+                item.int + statBonusGeneric[variationType + 2].int,
+                item.mnd + statBonusGeneric[variationType + 2].mnd,
+                item.res + statBonusGeneric[variationType + 2].res
             ];
             let statList3 = [
-                item.hp + statBonusGeneric[raceType + 3].hp,
-                item.mp + statBonusGeneric[raceType + 3].mp,
-                item.str + statBonusGeneric[raceType + 3].str,
-                item.vit + statBonusGeneric[raceType + 3].vit,
-                item.dex + statBonusGeneric[raceType + 3].dex,
-                item.agi + statBonusGeneric[raceType + 3].agi,
-                item.avd + statBonusGeneric[raceType + 3].avd,
-                item.int + statBonusGeneric[raceType + 3].int,
-                item.mnd + statBonusGeneric[raceType + 3].mnd,
-                item.res + statBonusGeneric[raceType + 3].res
+                item.hp + statBonusGeneric[variationType + 3].hp,
+                item.mp + statBonusGeneric[variationType + 3].mp,
+                item.str + statBonusGeneric[variationType + 3].str,
+                item.vit + statBonusGeneric[variationType + 3].vit,
+                item.dex + statBonusGeneric[variationType + 3].dex,
+                item.agi + statBonusGeneric[variationType + 3].agi,
+                item.avd + statBonusGeneric[variationType + 3].avd,
+                item.int + statBonusGeneric[variationType + 3].int,
+                item.mnd + statBonusGeneric[variationType + 3].mnd,
+                item.res + statBonusGeneric[variationType + 3].res
             ];
             let statList4 = [
                 item.hp,
