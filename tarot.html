@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Tactics Ogre - One Vision</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="img/icon-shortcut.png" />
+    <link rel="stylesheet" href="css/app.css" type="text/css" />
+    <script src="js/app.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <div class="page-tarot">
+        <div class="ov-main-container container">
+            <div class="ov-banner">
+                <h1>Tarot Starting Quiz</h1>
+            </div>
+            <div class="ov-content">
+                <div class="tarot-information">
+                    <p>The stats that the main character gets for different answers are always the same, left answer favors the warrior archetype, middle answer is for rogues, and right answer is for mages.</p>
+                    <div class="answer-bonuses">
+                        <div class="width-1-3">
+                            <span class="blue"><b>Warrior</b></span>
+                            <p><b>+4</b> HP<br><b>+1</b> STR<br><b>+1</b> VIT</p>
+                        </div>
+                        <div class="width-1-3">
+                            <span class="green"><b>Rogue</b></span>
+                            <p><b>+1</b> DEX<br><b>+1</b> AGI<br><b>+1</b> AVD</p>
+                        </div>
+                        <div class="width-1-3">
+                            <span class="pink"><b>Mage</b></span>
+                            <p><b>+4</b> MP<br><b>+1</b> INT<br><b>+1</b> MND<br><b>+1</b> RES</p>
+                        </div>
+                    </div>
+                    <p>In addition to that, every card adds a small bonus of its own, as listed in the table below.</p>
+                    <table id="itemList">
+                        <thead>
+                            <tr>
+                                <th>Tarot</th>
+                                <th></th>
+                                <th>HP</th>
+                                <th>MP</th>
+                                <th>STR</th>
+                                <th>VIT</th>
+                                <th>DEX</th>
+                                <th>AGI</th>
+                                <th>AVD</th>
+                                <th>INT</th>
+                                <th>MND</th>
+                                <th>RES</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <ul id ="tarotSimulator" class="ov-accordion">
+                    <li>
+                        <button class="accordion-title">Tarot Simulator</button>
+                        <div class="accordion-content">
+                            <div>
+                                <div id="tarot1" class="ov-tarot-container">
+                                    <div class="width-3-5">
+                                        <div class="tarot-image">
+                                            <img src="img/icons/icon-blank.png"/>
+                                        </div>
+                                        <div class="tarot-info">
+                                            <label for="tarotList1"></label>
+                                            <select id="tarotList1">
+                                                <option value="" selected></option>
+                                            </select>
+                                            <p class="question"></p>
+                                            <div class="answers">
+                                                <div class="width-1-3">
+                                                    <label for="tarot1Answer1">
+                                                        <input type="radio" id="tarot1Answer1" name="tarotanswers1" value="l">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                                <div class="width-1-3">
+                                                    <label for="tarot1Answer2">
+                                                        <input type="radio" id="tarot1Answer2" name="tarotanswers1" value="c">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                                <div class="width-1-3">
+                                                    <label for="tarot1Answer3">
+                                                        <input type="radio" id="tarot1Answer3" name="tarotanswers1" value="r">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="width-2-5">
+                                        <div class="tarot-stats">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>HP</th>
+                                                    <th>MP</th>
+                                                    <th>STR</th>
+                                                    <th>VIT</th>
+                                                    <th>DEX</th>
+                                                    <th>AGI</th>
+                                                    <th>AVD</th>
+                                                    <th>INT</th>
+                                                    <th>MND</th>
+                                                    <th>RES</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tarot2" class="ov-tarot-container">
+                                    <div class="width-3-5">
+                                        <div class="tarot-image">
+                                            <img src="img/icons/icon-blank.png"/>
+                                        </div>
+                                        <div class="tarot-info">
+                                            <label for="tarotList2"></label>
+                                            <select id="tarotList2">
+                                                <option value="" selected></option>
+                                            </select>
+                                            <p class="question"></p>
+                                            <div class="answers">
+                                                <div class="width-1-3">
+                                                    <label for="tarot2Answer1">
+                                                        <input type="radio" id="tarot2Answer1" name="tarotanswers2" value="l">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                                <div class="width-1-3">
+                                                    <label for="tarot2Answer2">
+                                                        <input type="radio" id="tarot2Answer2" name="tarotanswers2" value="c">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                                <div class="width-1-3">
+                                                    <label for="tarot2Answer3">
+                                                        <input type="radio" id="tarot2Answer3" name="tarotanswers2" value="r">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="width-2-5">
+                                        <div class="tarot-stats">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>HP</th>
+                                                    <th>MP</th>
+                                                    <th>STR</th>
+                                                    <th>VIT</th>
+                                                    <th>DEX</th>
+                                                    <th>AGI</th>
+                                                    <th>AVD</th>
+                                                    <th>INT</th>
+                                                    <th>MND</th>
+                                                    <th>RES</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tarot3" class="ov-tarot-container">
+                                    <div class="width-3-5">
+                                        <div class="tarot-image">
+                                            <img src="img/icons/icon-blank.png"/>
+                                        </div>
+                                        <div class="tarot-info">
+                                            <label for="tarotList3"></label>
+                                            <select id="tarotList3">
+                                                <option value="" selected></option>
+                                            </select>
+                                            <p class="question"></p>
+                                            <div class="answers">
+                                                <div class="width-1-3">
+                                                    <label for="tarot3Answer1">
+                                                        <input type="radio" id="tarot3Answer1" name="tarotanswers3" value="l">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                                <div class="width-1-3">
+                                                    <label for="tarot3Answer2">
+                                                        <input type="radio" id="tarot3Answer2" name="tarotanswers3" value="c">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                                <div class="width-1-3">
+                                                    <label for="tarot3Answer3">
+                                                        <input type="radio" id="tarot3Answer3" name="tarotanswers3" value="r">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="width-2-5">
+                                        <div class="tarot-stats">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>HP</th>
+                                                    <th>MP</th>
+                                                    <th>STR</th>
+                                                    <th>VIT</th>
+                                                    <th>DEX</th>
+                                                    <th>AGI</th>
+                                                    <th>AVD</th>
+                                                    <th>INT</th>
+                                                    <th>MND</th>
+                                                    <th>RES</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tarot4" class="ov-tarot-container">
+                                    <div class="width-3-5">
+                                        <div class="tarot-image">
+                                            <img src="img/icons/icon-blank.png"/>
+                                        </div>
+                                        <div class="tarot-info">
+                                            <label for="tarotList4"></label>
+                                            <select id="tarotList4">
+                                                <option value="" selected></option>
+                                            </select>
+                                            <p class="question"></p>
+                                            <div class="answers">
+                                                <div class="width-1-3">
+                                                    <label for="tarot4Answer1">
+                                                        <input type="radio" id="tarot4Answer1" name="tarotanswers4" value="l">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                                <div class="width-1-3">
+                                                    <label for="tarot4Answer2">
+                                                        <input type="radio" id="tarot4Answer2" name="tarotanswers4" value="c">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                                <div class="width-1-3">
+                                                    <label for="tarot4Answer3">
+                                                        <input type="radio" id="tarot4Answer3" name="tarotanswers4" value="r">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="width-2-5">
+                                        <div class="tarot-stats">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>HP</th>
+                                                    <th>MP</th>
+                                                    <th>STR</th>
+                                                    <th>VIT</th>
+                                                    <th>DEX</th>
+                                                    <th>AGI</th>
+                                                    <th>AVD</th>
+                                                    <th>INT</th>
+                                                    <th>MND</th>
+                                                    <th>RES</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tarot5" class="ov-tarot-container">
+                                    <div class="width-3-5">
+                                        <div class="tarot-image">
+                                            <img src="img/icons/icon-blank.png"/>
+                                        </div>
+                                        <div class="tarot-info">
+                                            <label for="tarotList5"></label>
+                                            <select id="tarotList5">
+                                                <option value="" selected></option>
+                                            </select>
+                                            <p class="question"></p>
+                                            <div class="answers">
+                                                <div class="width-1-3">
+                                                    <label for="tarot5Answer1">
+                                                        <input type="radio" id="tarot5Answer1" name="tarotanswers5" value="l">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                                <div class="width-1-3">
+                                                    <label for="tarot5Answer2">
+                                                        <input type="radio" id="tarot5Answer2" name="tarotanswers5" value="c">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                                <div class="width-1-3">
+                                                    <label for="tarot5Answer3">
+                                                        <input type="radio" id="tarot5Answer3" name="tarotanswers5" value="r">
+                                                        <p></p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="width-2-5">
+                                        <div class="tarot-stats">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>HP</th>
+                                                    <th>MP</th>
+                                                    <th>STR</th>
+                                                    <th>VIT</th>
+                                                    <th>DEX</th>
+                                                    <th>AGI</th>
+                                                    <th>AVD</th>
+                                                    <th>INT</th>
+                                                    <th>MND</th>
+                                                    <th>RES</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tarotTotal" class="ov-tarot-container">
+                                    <div class="width-3-5 text-center bold">
+                                        <br>Total:
+                                    </div>
+                                    <div class="width-2-5">
+                                        <div class="tarot-stats">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>HP</th>
+                                                    <th>MP</th>
+                                                    <th>STR</th>
+                                                    <th>VIT</th>
+                                                    <th>DEX</th>
+                                                    <th>AGI</th>
+                                                    <th>AVD</th>
+                                                    <th>INT</th>
+                                                    <th>MND</th>
+                                                    <th>RES</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+<script src="js/tarot.js" type="text/javascript"></script>
+
+</body>
+</html>
+

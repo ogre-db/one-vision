@@ -2346,3 +2346,392 @@ ul {
     width: 66%;
   }
 }
+.page-tarot .tarot-information {
+  padding: 30px 0 15px;
+  margin-bottom: 20px;
+}
+.page-tarot .tarot-information > p {
+  margin: 0 0 15px;
+}
+.page-tarot .tarot-information .answer-bonuses {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.page-tarot .tarot-information .answer-bonuses > div {
+  text-align: center;
+}
+.page-tarot .tarot-information .answer-bonuses > div.width-1-3 {
+  width: calc(100% / 3);
+}
+.page-tarot .tarot-information .answer-bonuses > div span {
+  background-color: rgba(255, 255, 255, 0.4);
+  display: inline-block;
+  width: 80px;
+  padding: 2px 0;
+  margin-bottom: 5px;
+  border-radius: 500px;
+}
+.page-tarot .tarot-information .answer-bonuses > div p {
+  font-size: 0.875rem;
+}
+.page-tarot .tarot-information .answer-bonuses > div p b {
+  font-size: 1rem;
+}
+.page-tarot .tarot-information table {
+  position: relative;
+  width: 100%;
+  font-size: 0.85rem;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-radius: 5px;
+  border-spacing: 0;
+  box-sizing: border-box;
+  line-height: 1;
+}
+.page-tarot .tarot-information table#itemList {
+  margin-top: 0;
+}
+.page-tarot .tarot-information table tr {
+  cursor: default;
+}
+.page-tarot .tarot-information table tr:hover td {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.page-tarot .tarot-information table thead tr {
+  cursor: default;
+  border-radius: 5px;
+}
+.page-tarot .tarot-information table thead tr th {
+  background-color: #5f5854;
+  color: #eee;
+  text-transform: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-shadow: 0 0 5px #000;
+}
+.page-tarot .tarot-information table td,
+.page-tarot .tarot-information table th {
+  padding: 1px 5px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.page-tarot .tarot-information table td {
+  color: rgba(95, 88, 84, 0.6);
+}
+.page-tarot .tarot-information table td.bold {
+  color: #333;
+}
+.page-tarot .tarot-information table th:first-child,
+.page-tarot .tarot-information table td:first-child {
+  width: 18px;
+  text-align: left;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.page-tarot .tarot-information table td:first-child {
+  padding: 0;
+}
+.page-tarot .tarot-information table td:first-child img {
+  background-color: #E7E2D6;
+  display: block;
+  width: auto;
+  height: 28px;
+  border: 1px solid #7c7672;
+  border-radius: 5px;
+}
+.page-tarot .tarot-information table th:last-child,
+.page-tarot .tarot-information table td:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.page-tarot .tarot-information table th {
+  font-size: 0.55rem;
+}
+.page-tarot .tarot-information table th:nth-child(2),
+.page-tarot .tarot-information table td:nth-child(2) {
+  width: auto;
+  text-align: left;
+  color: #333;
+}
+.page-tarot .tarot-information table th:nth-child(3),
+.page-tarot .tarot-information table td:nth-child(3) {
+  width: 20px;
+}
+.page-tarot .tarot-information table th:nth-child(3),
+.page-tarot .tarot-information table td:nth-child(3) {
+  width: 20px;
+}
+.page-tarot .tarot-information table th:nth-child(4),
+.page-tarot .tarot-information table td:nth-child(4) {
+  width: 20px;
+}
+.page-tarot .tarot-information table th:nth-child(5),
+.page-tarot .tarot-information table td:nth-child(5) {
+  width: 20px;
+}
+.page-tarot .tarot-information table th:nth-child(6),
+.page-tarot .tarot-information table td:nth-child(6) {
+  width: 20px;
+}
+.page-tarot .tarot-information table th:nth-child(7),
+.page-tarot .tarot-information table td:nth-child(7) {
+  width: 20px;
+}
+.page-tarot .tarot-information table th:nth-child(8),
+.page-tarot .tarot-information table td:nth-child(8) {
+  width: 20px;
+}
+.page-tarot .tarot-information table th:nth-child(9),
+.page-tarot .tarot-information table td:nth-child(9) {
+  width: 20px;
+}
+.page-tarot .tarot-information table th:nth-child(10),
+.page-tarot .tarot-information table td:nth-child(10) {
+  width: 20px;
+}
+.page-tarot .tarot-information table th:nth-child(11),
+.page-tarot .tarot-information table td:nth-child(11) {
+  width: 20px;
+}
+.page-tarot .tarot-information table th:nth-child(12),
+.page-tarot .tarot-information table td:nth-child(12) {
+  width: 20px;
+}
+@media only screen and (min-width: 480px) {
+  .page-tarot .tarot-information .answer-bonuses > div.width-1-3 {
+    width: calc(100% / 6);
+  }
+  .page-tarot .tarot-information table {
+    font-size: 1rem;
+  }
+  .page-tarot .tarot-information table th {
+    font-size: 0.7rem;
+  }
+  .page-tarot .tarot-information table th:nth-child(3),
+  .page-tarot .tarot-information table td:nth-child(3) {
+    width: 30px;
+  }
+  .page-tarot .tarot-information table th:nth-child(4),
+  .page-tarot .tarot-information table td:nth-child(4) {
+    width: 30px;
+  }
+  .page-tarot .tarot-information table th:nth-child(5),
+  .page-tarot .tarot-information table td:nth-child(5) {
+    width: 30px;
+  }
+  .page-tarot .tarot-information table th:nth-child(6),
+  .page-tarot .tarot-information table td:nth-child(6) {
+    width: 30px;
+  }
+  .page-tarot .tarot-information table th:nth-child(7),
+  .page-tarot .tarot-information table td:nth-child(7) {
+    width: 30px;
+  }
+  .page-tarot .tarot-information table th:nth-child(8),
+  .page-tarot .tarot-information table td:nth-child(8) {
+    width: 30px;
+  }
+  .page-tarot .tarot-information table th:nth-child(9),
+  .page-tarot .tarot-information table td:nth-child(9) {
+    width: 30px;
+  }
+  .page-tarot .tarot-information table th:nth-child(10),
+  .page-tarot .tarot-information table td:nth-child(10) {
+    width: 30px;
+  }
+  .page-tarot .tarot-information table th:nth-child(11),
+  .page-tarot .tarot-information table td:nth-child(11) {
+    width: 30px;
+  }
+  .page-tarot .tarot-information table th:nth-child(12),
+  .page-tarot .tarot-information table td:nth-child(12) {
+    width: 30px;
+  }
+}
+@media only screen and (min-width: 640px) {
+  .page-tarot .tarot-information table {
+    font-size: 1rem;
+  }
+  .page-tarot .tarot-information table th {
+    font-size: 1rem;
+  }
+  .page-tarot .tarot-information table th:nth-child(3),
+  .page-tarot .tarot-information table td:nth-child(3) {
+    width: 40px;
+  }
+  .page-tarot .tarot-information table th:nth-child(4),
+  .page-tarot .tarot-information table td:nth-child(4) {
+    width: 40px;
+  }
+  .page-tarot .tarot-information table th:nth-child(5),
+  .page-tarot .tarot-information table td:nth-child(5) {
+    width: 40px;
+  }
+  .page-tarot .tarot-information table th:nth-child(6),
+  .page-tarot .tarot-information table td:nth-child(6) {
+    width: 40px;
+  }
+  .page-tarot .tarot-information table th:nth-child(7),
+  .page-tarot .tarot-information table td:nth-child(7) {
+    width: 40px;
+  }
+  .page-tarot .tarot-information table th:nth-child(8),
+  .page-tarot .tarot-information table td:nth-child(8) {
+    width: 40px;
+  }
+  .page-tarot .tarot-information table th:nth-child(9),
+  .page-tarot .tarot-information table td:nth-child(9) {
+    width: 40px;
+  }
+  .page-tarot .tarot-information table th:nth-child(10),
+  .page-tarot .tarot-information table td:nth-child(10) {
+    width: 40px;
+  }
+  .page-tarot .tarot-information table th:nth-child(11),
+  .page-tarot .tarot-information table td:nth-child(11) {
+    width: 40px;
+  }
+  .page-tarot .tarot-information table th:nth-child(12),
+  .page-tarot .tarot-information table td:nth-child(12) {
+    width: 40px;
+  }
+}
+.page-tarot #tarotSimulator {
+  background-color: #e8e3de;
+  border-radius: 5px;
+}
+.page-tarot #tarotSimulator:not(:first-child) {
+  margin-top: 5px;
+}
+.page-tarot #tarotSimulator > li .accordion-title {
+  background-color: #5f5854;
+  color: #eee;
+  font-size: 1rem;
+  text-align: left;
+  padding: 3px 15px;
+  text-shadow: 0 0 5px #000;
+  border-radius: 4px;
+}
+.page-tarot #tarotSimulator > li .accordion-title:after {
+  font-size: 0.875rem;
+}
+.page-tarot #tarotSimulator > li .accordion-title:hover {
+  color: #ee9500;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div {
+  margin: 20px 20px 15px;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container {
+  background-color: #e8e3de;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div.width-2-5 {
+  width: 40%;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div.width-3-5 {
+  width: 60%;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div:first-child {
+  border-right: 1px solid #ccc;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-image {
+  float: left;
+  width: 80px;
+  height: 130px;
+  border: 1px solid #7c7672;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-image img {
+  width: 100%;
+  object-fit: cover;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-info {
+  display: inline-block;
+  width: calc(100% - 80px);
+  padding: 0 10px;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-info select {
+  background-color: #f2f0ed;
+  font-family: sans-serif;
+  font-weight: bold;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #5f5854;
+  border-radius: 4px;
+  outline: none;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-info select option {
+  background-color: #f2f0ed;
+  font-family: sans-serif;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-info .question {
+  font-weight: bold;
+  text-align: center;
+  margin: 15px 0 10px;
+  text-shadow: 0 0 2px #29a329;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-info .answers {
+  display: flex;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-info .answers > div {
+  text-align: center;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-info .answers > div.width-1-3 {
+  width: calc(100% / 3);
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-info .answers > div label {
+  cursor: pointer;
+  user-select: none;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-info .answers > div label p {
+  font-size: 0.875rem;
+  font-weight: bold;
+  transition: text-shadow 300ms;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-info .answers > div label input[type="radio"] {
+  display: none;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-info .answers > div label input[type="radio"]:checked ~ p {
+  text-shadow: 0 0 10px #ee9500;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-stats {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 0 0 10px;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-stats table {
+  width: 100%;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-stats table th,
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-stats table td {
+  text-align: center;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-stats table th {
+  font-size: 0.875rem;
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-stats table td {
+  color: rgba(95, 88, 84, 0.6);
+}
+.page-tarot #tarotSimulator > li .accordion-content > div .ov-tarot-container > div .tarot-stats table td.bold {
+  color: #333;
+}
+@media only screen and (min-width: 480px) {
+  .page-tarot #tarotSimulator > li .accordion-title {
+    font-size: 1.2rem;
+    padding: 5px 20px;
+    border-radius: 5px;
+  }
+  .page-tarot #tarotSimulator > li .accordion-title:after {
+    font-size: 1rem;
+  }
+}
