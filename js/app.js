@@ -179,7 +179,7 @@ function getEffectText (ability, effectSet) {
             effectText += 'STR/DEX';
         else if ( ability[scaling] === 35 || ability[scaling] === 37 )
             effectText += 'DEX/STR';
-        if ( ability.typ >= 22 && ability.typ <= 43 && ability[formula] > 1 )
+        if ( ability.typ >= 22 && ability.typ <= 43 && ability[scaling] >= 31 && ability[scaling] <= 37 )
             effectText += ' +W.Skill';
         if ( ability[scaling] === 33 || ability[scaling] === 37 )
             effectText += ' +TP';
@@ -295,14 +295,10 @@ function getEffectText (ability, effectSet) {
         restrictText = '—';
 
     let accuracyText = '';
-    if (ability[hit1] === 1) {
-        accuracyText = '100% if Previous Hits';
-    } else if (ability[hit1] === 2) {
+    if ([2,3].includes(ability[hit1])) {
         accuracyText = ability[hit2] + '%';
-    } else if (ability[hit1] === 3) {
-        accuracyText = ability[hit2] + '% if Main Hits';
     } else if (ability[hit1] === 4) {
-        accuracyText = '100% if Main Hits';
+        accuracyText = '100%';
     } else if (ability[hit1] === 8) {
         accuracyText = ability[hit2] + '% + 10%/Skill Rank';
     } else if (ability[accuracy] === 1) {
@@ -323,6 +319,11 @@ function getEffectText (ability, effectSet) {
         accuracyText = 'Projectile Attack + TP';
     } else {
         accuracyText = '—';
+    }
+    if ([1,3,4].includes(ability[hit1])) {
+        accuracyText += ' if Main Hits';
+    } else if (ability[hit1] === 5) {
+        accuracyText += ' if Previous Hits';
     }
 
     let damageProps = [];
@@ -543,9 +544,9 @@ const statBonusGeneric = {
         'mp': -8,
         'str': 0,
         'vit': 0,
-        'dex': 4,
-        'agi': 4,
-        'avd': 4,
+        'dex': 6,
+        'agi': 6,
+        'avd': 6,
         'int': -4,
         'mnd': -4,
         'res': -2
@@ -556,7 +557,7 @@ const statBonusGeneric = {
         'str': -2,
         'vit': -2,
         'dex': -2,
-        'agi': -2,
+        'agi': -4,
         'avd': 0,
         'int': 4,
         'mnd': 4,
@@ -565,38 +566,38 @@ const statBonusGeneric = {
     'monster1': {
         'hp': 0,
         'mp': 0,
-        'str': 4,
+        'str': 6,
         'vit': -2,
-        'dex': 4,
-        'agi': -2,
-        'avd': -2,
+        'dex': 2,
+        'agi': 0,
+        'avd': -8,
         'int': 0,
         'mnd': 0,
         'res': -2
     },
     'monster2': {
-        'hp': 12,
+        'hp': 8,
         'mp': 0,
-        'str': -2,
-        'vit': 4,
+        'str': 0,
+        'vit': 6,
         'dex': -4,
-        'agi': -2,
-        'avd': -4,
+        'agi': -8,
+        'avd': -8,
         'int': 0,
         'mnd': 0,
         'res': 2
     },
     'monster3': {
-        'hp': -12,
+        'hp': -8,
         'mp': 0,
         'str': -2,
         'vit': -2,
-        'dex': 2,
+        'dex': 6,
         'agi': 4,
         'avd': 4,
         'int': 0,
         'mnd': 0,
-        'res': 0
+        'res': -2
     }
 };
 
@@ -814,6 +815,7 @@ const types = {
     '29': {
         'name': 'Jewelry',
         'icon': 'img/icons/equip-jewelry.png',
+        'icona': 'img/icons/equip-jewelry.png'
     }
 };
 
@@ -890,6 +892,9 @@ const attackType = {
     '12': {
         'name': 'Arc'
     },
+    '15': {
+        'name': 'Line-First'
+    },
     '24': {
         'name': 'Lob Item'
     },
@@ -919,7 +924,7 @@ const itemSets = [
     },
     {
         'id': 4,
-        'name': "Ji'ygla",
+        'name': "Sniper",
         'active': 0,
         'passive': 200
     },

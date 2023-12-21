@@ -1122,8 +1122,11 @@ ul {
   display: flex;
   flex-wrap: wrap;
 }
-#sidePanel.weapons-panel .panel .content .stats-top .basic > div {
-  width: 50%;
+#sidePanel.weapons-panel .panel .content .stats-top .basic > div:first-child {
+  width: 55%;
+}
+#sidePanel.weapons-panel .panel .content .stats-top .basic > div:last-child {
+  width: 45%;
 }
 #sidePanel.weapons-panel .panel .content .stats-top .basic span {
   display: inline-block;

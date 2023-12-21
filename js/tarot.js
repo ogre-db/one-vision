@@ -201,12 +201,12 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         'agi': {
             'l': 0,
-            'c': 1,
+            'c': 2,
             'r': 0
         },
         'avd': {
             'l': 0,
-            'c': 1,
+            'c': 2,
             'r': 0
         },
         'int': {

@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let type = document.createElement('td');
                 let classImg = document.createElement('img');
                     classImg.src = element.var ? types[element.typ]['icon' + element.var] : types[element.typ]['icon'];
+                    console.log();
             if (element.skillbonamt >= 8) classImg.classList.add('uni');
             type.appendChild(classImg);
             let name = document.createElement('td');
