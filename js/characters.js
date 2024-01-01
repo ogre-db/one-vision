@@ -55,15 +55,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // let total = items.length;
 
-        items.forEach( (element, index) => {
+        items.forEach( (item, index) => {
 
             let raceType = '';
-            switch (element.typ) {
+            switch (item.typ) {
                 case 'G':
                     raceType += 'Generic ';
-                    if (([1,3,5,6,7,8].includes(element.race) || element.id === 210))
+                    if (([1,3,5,6,7,8].includes(item.race) || item.id === 210))
                         raceType += 'Humanoid';
-                    else if (([2,4,9].includes(element.race)))
+                    else if (([2,4,9].includes(item.race)))
                         raceType += 'Monster';
                     break;
                 case 'D':
@@ -86,19 +86,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentType = raceType;
             }
 
-            let recruitChapters = String(element.chapter).split(',');
+            let recruitChapters = String(item.chapter).split(',');
             let tr = document.createElement('tr');
                 tr.id = index;
                 let type = document.createElement('td');
                     let raceImg = document.createElement('img');
-                        raceImg.src = races[element.race * 2].icon;
+                        raceImg.src = races[item.race * 2].icon;
                     type.appendChild(raceImg);
                 let name = document.createElement('td');
-                    name.textContent = element.name;
+                    name.textContent = item.name;
                 let chapterL = document.createElement('td');
                 let chapterN = document.createElement('td');
                 let chapterC = document.createElement('td');
-                if (element.typ !== 'G') {
+                if (item.typ !== 'G') {
                     if (recruitChapters.length === 1) {
                         chapterL.textContent = recruitChapters[0] !== '0' ? recruitChapters[0] : '—';
                         chapterN.textContent = recruitChapters[0] !== '0' ? recruitChapters[0] : '—';
@@ -110,9 +110,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 let movement = document.createElement('td');
-                    movement.textContent = movementType[element.mvtype];
+                    movement.textContent = movementType[item.mvtype];
                 let rt = document.createElement('td');
-                    rt.textContent = element.rt;
+                    rt.textContent = item.rt;
 
                 tr.append(type, name, chapterL, chapterN, chapterC, movement, rt);
             itemList.appendChild(tr);

@@ -1,6 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    let obtains = [];
+
     const panelClose = document.querySelector('#panelClose');
     if (panelClose) {
         panelClose.addEventListener('click', function (event) {
@@ -71,28 +73,158 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    let tooltipButtons = document.querySelectorAll('[data-tooltip]');
+    tooltipButtons.forEach( (element) => {
+        element.addEventListener('click', function (event) {
+            event.stopPropagation();
+            if (!document.querySelector('.tooltip')) {
+                event.target.classList.add('open');
+                let tooltip = document.createElement('div');
+                    tooltip.classList.add('tooltip');
+                    let tooltipText = '';
+                    let tooltipData = element.getAttribute('data-tooltip');
+                    if (tooltipData.includes('obtain')) {
+                        tooltipText = listObtains(parseInt(tooltipData.match(/\d+/g)[0]));
+                    } else {
+                        tooltipText = tooltips[tooltipData];
+                    }
+                    tooltip.innerHTML = tooltipText;
+                event.target.appendChild(tooltip);
+            }
+        });
+    });
+    if(tooltipButtons.length) {
+        document.addEventListener('click', function () {
+            let openTooltip = document.querySelector('.tooltip');
+            if(openTooltip) {
+                openTooltip.parentNode.classList.remove('open');
+                fadeOut(openTooltip);
+            }
+        });
+    }
 });
 
-function openPanel (panel) {
+function listObtains (itemId) {
+    let obtainElement = document.createElement('div');
+    let obtain = obtains.find((row) => row['id'] === itemId);
+    let obtainWays = obtain.obtained.split(' | ');
+    obtainWays.forEach((obt) => {
+        if ( obt.indexOf('Obtained ') >= 0 ) {
+            obt = obt.replace('Obtained ','');
+            let locations = obt.split(', ');
+            let infoGet = document.createElement('ul');
+            infoGet.classList.add('get');
+            infoGet.innerHTML = '<b>Received</b>';
+            locations.forEach( (obt) => {
+                let get = document.createElement('li');
+                get.innerText = obt;
+                infoGet.appendChild(get);
+            });
+            obtainElement.appendChild(infoGet);
+        }
+        if (obt.indexOf('Buy in ') >= 0) {
+            obt = obt.replace('Buy in ','');
+            let locations = obt.split(', ');
+            let infoBuy = document.createElement('ul');
+            infoBuy.classList.add('buy');
+            infoBuy.innerHTML = '<b>Buy in</b>';
+            locations.forEach( (obt) => {
+                let buy = document.createElement('li');
+                buy.innerText = obt;
+                infoBuy.appendChild(buy);
+            });
+            obtainElement.appendChild(infoBuy);
+        }
+        if (obt.indexOf('Dropped by ') >= 0) {
+            obt = obt.replace('Dropped by ','');
+            let locations = obt.split(', ');
+            let infoDrop = document.createElement('ul');
+            infoDrop.classList.add('drop');
+            infoDrop.innerHTML = '<b>Dropped by</b>';
+            locations.forEach( (obt) => {
+                let drop = document.createElement('li');
+                drop.innerText = obt;
+                infoDrop.appendChild(drop);
+            });
+            obtainElement.appendChild(infoDrop);
+        }
+        if (obt.indexOf('Stolen from ') >= 0) {
+            obt = obt.replace('Stolen from ','');
+            let locations = obt.split(', ');
+            let infoSteal = document.createElement('ul');
+            infoSteal.classList.add('steal');
+            infoSteal.innerHTML = '<b>Stolen from</b>';
+            locations.forEach( (obt) => {
+                let steal = document.createElement('li');
+                steal.innerText = obt;
+                infoSteal.appendChild(steal);
+            });
+            obtainElement.appendChild(infoSteal);
+        }
+        if (obt.indexOf('Craft with ') >= 0) {
+            obt = obt.replace('Craft with ','');
+            let infoCraft = document.createElement('ul');
+            infoCraft.classList.add('craft');
+            infoCraft.innerHTML = '<b>Craft with <span class="green">' + obt + '</span></b>';
+            let ingredients = [];
+            let ingNum = 0;
+            for (let i = 1; i <= 4; i++) {
+                if ( obtain['ing' + i] ) {
+                    if ( i > 1 && obtain['ing' + (i - 1)] === obtain['ing' + i] ) {
+                        ingredients[ingNum - 1]['amt']++;
+                    } else {
+                        ingredients.push({
+                            'id': obtain['ing' + i],
+                            'amt': 1
+                        });
+                        ingNum++;
+                    }
+                }
+            }
+            ingredients.forEach( (ing) => {
+                let ingredient = obtains.find((row) => row['id'] === ing.id);
+                let craft = document.createElement('li');
+                craft.innerHTML = '<span>' + ingredient.name + '</span><b>x' + ing.amt + '</b>';
+                infoCraft.appendChild(craft);
+            });
+            obtainElement.appendChild(infoCraft);
+        }
+        if (obt.indexOf('Auctioned from ') >= 0) {
+            obt = obt.replace('Auctioned from ','');
+            let locations = obt.split(', ');
+            let infoAuction = document.createElement('ul');
+            infoAuction.classList.add('auction');
+            infoAuction.innerHTML = '<b>Auctioned from</b>';
+            locations.forEach( (obt) => {
+                let auction = document.createElement('li');
+                auction.innerText = obt;
+                infoAuction.appendChild(auction);
+            });
+            obtainElement.appendChild(infoAuction);
+        }
+    });
+    return obtainElement.innerHTML;
+}
 
+function openPanel (panel) {
     if ( ! panel.classList.contains('open') ) {
         panel.classList.add('open', 'fade-from-right');
     }
+    document.querySelectorAll('[data-tooltip]').forEach( (element) => {
+        element.classList.remove('open');
+    });
 }
 function closePanel (close) {
-
     close.target.closest('#sidePanel').classList.add('fade-to-right');
     document.querySelector('tr.selected').classList.remove('selected');
 }
 
 function swapEffectStart ( panel, content ) {
-
     if ( panel.classList.contains('open') ) {
         content.classList.add('blur-cycle');
     }
 }
 function swapEffectRemove ( panel, content ) {
-
     if ( panel.classList.contains('open') ) {
         setTimeout( function () {
             content.classList.remove('blur-cycle');
@@ -100,8 +232,12 @@ function swapEffectRemove ( panel, content ) {
     }
 }
 
-async function fetchJSON (url) {
+function fadeOut (element) {
+    element.style.animation = 'fadeOut 250ms forwards ease';
+    setTimeout(() => element.remove(), 250);
+}
 
+async function fetchJSON (url) {
     let response = await fetch(url);
     return response.json();
 }
@@ -289,6 +425,8 @@ function getEffectText (ability, effectSet) {
     if ( ability[self] || ability[target] ) {
         if (ability[self])
             restrictText = 'Self';
+        else if (ability[target] === 22 && ability[effect1] === 35)
+            restrictText = 'Clones';
         else
             restrictText = abilityTargeting[ability[target]];
     } else
@@ -299,7 +437,7 @@ function getEffectText (ability, effectSet) {
         accuracyText = ability[hit2] + '%';
     } else if (ability[hit1] === 4) {
         accuracyText = '100%';
-    } else if (ability[hit1] === 8) {
+    } else if ([7,8].includes(ability[hit1])) {
         accuracyText = ability[hit2] + '% + 10%/Skill Rank';
     } else if (ability[accuracy] === 1) {
         accuracyText = 'Melee Attack';
@@ -366,6 +504,10 @@ function getEffectText (ability, effectSet) {
     effectProperties['damage'] = damageProps;
     return effectProperties;
 }
+
+const tooltips = {
+
+};
 
 const elements = {
     '0': {
@@ -1779,11 +1921,11 @@ const abilityType = {
     },
     '31': {
         'name': '1H Katana Finisher',
-        'icon': 'img/icons/equip-sword2h.png'
+        'icon': 'img/icons/equip-katana1h.png'
     },
     '32': {
         'name': '2H Katana Finisher',
-        'icon': 'img/icons/equip-sword2h.png'
+        'icon': 'img/icons/equip-katana2h.png'
     },
     '33': {
         'name': 'Cudgel Finisher',

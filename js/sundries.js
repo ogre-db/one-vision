@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         skills = [],
         magic = [],
         weapons = [],
-        armor = [],
-        obtains = [];
+        armor = [];
 
     let categoryName;
 
@@ -36,12 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
         infoIngredient = sidePanel.querySelector('.stats-ingredient'),
         infoEffect = sidePanel.querySelector('.stats-effect'),
         infoObtain = sidePanel.querySelector('.obtain'),
-        infoGet = sidePanel.querySelector('.obtain .get'),
-        infoBuy = sidePanel.querySelector('.obtain .buy'),
-        infoDrop = sidePanel.querySelector('.obtain .drop'),
-        infoSteal = sidePanel.querySelector('.obtain .steal'),
-        infoCraft = sidePanel.querySelector('.obtain .craft'),
-        infoAuction = sidePanel.querySelector('.obtain .auction'),
         infoClass = sidePanel.querySelector('.class .accordion-content ul'),
         infoNotes = sidePanel.querySelector('.notes');
 
@@ -61,13 +54,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // let total = items.length;
 
-        items.forEach( (element, index) => {
-            if ( index === 0 || types[element.typ]['name'] !== categoryName ) {
-                categoryName = types[element.typ]['name'];
+        items.forEach( (item, index) => {
+            if ( index === 0 || types[item.typ]['name'] !== categoryName ) {
+                categoryName = types[item.typ]['name'];
                 let tr = document.createElement('tr');
                     tr.className = 'separator';
                     let category = document.createElement('td');
-                        category.textContent = types[element.typ]['name'];
+                        category.textContent = types[item.typ]['name'];
                         category.colSpan = document.querySelectorAll('#itemList th').length;
                     tr.appendChild(category);
                 itemList.appendChild(tr);
@@ -77,13 +70,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 tr.id = index;
                 let type = document.createElement('td');
                     let classImg = document.createElement('img');
-                        classImg.src = types[element.typ]['icon'];
-                        if ( element.unique === 1 ) classImg.classList.add('uni');
-                        if ( element.typ === 35 ) {
-                            job = jobs.find((row) => row['mark'] === element.id);
-                            if ( element.price === 50 )
+                        classImg.src = types[item.typ]['icon'];
+                        if ( item.unique === 1 ) classImg.classList.add('uni');
+                        if ( item.typ === 35 ) {
+                            job = jobs.find((row) => row['mark'] === item.id);
+                            if ( item.price === 50 )
                                 classImg.classList.add('mark-basic');
-                            else if ( element.price === 100 ) {
+                            else if ( item.price === 100 ) {
                                 if (job.mark >= 1424 && job.mark <= 1431)
                                     classImg.classList.add('mark-advanced');
                                 else if (job.mark >= 1437 && job.mark <= 1444)
@@ -96,11 +89,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     type.appendChild(classImg);
                 let name = document.createElement('td');
-                    name.textContent = element.name;
+                    name.textContent = item.name;
                 let effect = document.createElement('td');
-                    if ( element.effect ) {
-                        let ability = abilities.find((row) => row['id'] === element.effect);
-                        if ( element.typ === 34 ) {
+                    if ( item.effect ) {
+                        let ability = abilities.find((row) => row['id'] === item.effect);
+                        if ( item.typ === 34 ) {
                             let schoolImg = document.createElement('img');
                                 schoolImg.src = abilityType[ability.typ]['icon'];
                             let bold = document.createElement('b');
@@ -114,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             effect.textContent = ability.name;
                         }
                     } else {
-                        if ( element.typ === 35 ) {
+                        if ( item.typ === 35 ) {
                             effect.textContent = 'Mark of ';
                             let bold = document.createElement('b');
                                 bold.textContent = job.name;
@@ -124,19 +117,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                 let falch = document.createElement('td');
-                    if (element.alch > 0 && element.alch < 3) {
-                        if (element.alch === 1)
+                    if (item.alch > 0 && item.alch < 3) {
+                        if (item.alch === 1)
                             falch.textContent = 'I';
                         else
                             falch.textContent = 'II';
                         falch.classList.add('bold');
-                    } else if ( element.typ === 32 && element.effect ) {
+                    } else if ( item.typ === 32 && item.effect ) {
                         falch.textContent = '—';
                     } else {
                         falch.textContent = '';
                     }
                 let price = document.createElement('td');
-                    price.textContent = element.price;
+                    price.textContent = item.price;
                 tr.append(type, name, effect, falch, price);
             itemList.appendChild(tr);
 
@@ -232,10 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (item.typ === 37) {
             let yieldList = infoYield.querySelector('.craftyield ul');
             yieldList.innerHTML = '';
-            let craftedItems = [];
-            craftedItems = craftedItems.concat(weapons.filter((rows) => rows['craftbk'] === item.id));
-            craftedItems = craftedItems.concat(armor.filter((rows) => rows['craftbk'] === item.id));
-            craftedItems = craftedItems.concat(items.filter((rows) => rows['craftbk'] === item.id));
+            let craftedItems = obtains.filter((rows) => rows['craftbk'] === item.id);
             craftedItems.forEach( (el) => {
                 yieldList.innerHTML += '<li>' + el.name + '</li>';
             });
@@ -246,10 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (item.typ === 36) {
             let yieldList = infoIngredient.querySelector('.ingredientyield ul');
             yieldList.innerHTML = '';
-            let craftedItems = [];
-            craftedItems = craftedItems.concat(weapons.filter((rows) => [rows['ing1'],rows['ing2'],rows['ing3'],rows['ing4']].includes(item.id)));
-            craftedItems = craftedItems.concat(armor.filter((rows) => [rows['ing1'],rows['ing2'],rows['ing3'],rows['ing4']].includes(item.id)));
-            craftedItems = craftedItems.concat(items.filter((rows) => [rows['ing1'],rows['ing2'],rows['ing3'],rows['ing4']].includes(item.id)));
+            let craftedItems = obtains.filter((rows) => [rows['ing1'],rows['ing2'],rows['ing3'],rows['ing4']].includes(item.id));
             craftedItems.forEach( (el) => {
                 let ingNum = 0;
                 for (let i = 1; i <= 4; i++) {
@@ -396,99 +383,8 @@ document.addEventListener('DOMContentLoaded', function() {
             infoEffect.classList.add('hidden');
         }
 
-        let obtain = obtains.find((row) => row['id'] === item.id).obtained;
-        if (obtain) {
-            infoGet.classList.add('hidden');
-            infoBuy.classList.add('hidden');
-            infoDrop.classList.add('hidden');
-            infoSteal.classList.add('hidden');
-            infoCraft.classList.add('hidden');
-            infoAuction.classList.add('hidden');
-            sidePanel.querySelectorAll('.obtain ul:not(.ov-accordion)').forEach(e => e.innerHTML = '');
-            let obtainWays = obtain.split(' | ');
-            obtainWays.forEach((obt) => {
-                if ( obt.indexOf('Obtained ') >= 0 ) {
-                    obt = obt.replace('Obtained ','');
-                    let locations = obt.split(', ');
-                    infoGet.innerHTML = '<b>Received</b>';
-                    locations.forEach( (obt) => {
-                        let get = document.createElement('li');
-                        get.innerText = obt;
-                        infoGet.appendChild(get);
-                    });
-                    infoGet.classList.remove('hidden');
-                }
-                if (obt.indexOf('Buy in ') >= 0) {
-                    obt = obt.replace('Buy in ','');
-                    let locations = obt.split(', ');
-                    infoBuy.innerHTML = '<b>Buy in</b>';
-                    locations.forEach( (obt) => {
-                        let buy = document.createElement('li');
-                        buy.innerText = obt;
-                        infoBuy.appendChild(buy);
-                    });
-                    infoBuy.classList.remove('hidden');
-                }
-                if (obt.indexOf('Dropped by ') >= 0) {
-                    obt = obt.replace('Dropped by ','');
-                    let locations = obt.split(', ');
-                    infoDrop.innerHTML = '<b>Dropped by</b>';
-                    locations.forEach( (obt) => {
-                        let drop = document.createElement('li');
-                        drop.innerText = obt;
-                        infoDrop.appendChild(drop);
-                    });
-                    infoDrop.classList.remove('hidden');
-                }
-                if (obt.indexOf('Stolen from ') >= 0) {
-                    obt = obt.replace('Stolen from ','');
-                    let locations = obt.split(', ');
-                    infoSteal.innerHTML = '<b>Stolen from</b>';
-                    locations.forEach( (obt) => {
-                        let steal = document.createElement('li');
-                        steal.innerText = obt;
-                        infoSteal.appendChild(steal);
-                    });
-                    infoSteal.classList.remove('hidden');
-                }
-                if (obt.indexOf('Craft with ') >= 0) {
-                    obt = obt.replace('Craft with ','');
-                    infoCraft.innerHTML = '<b>Craft with <span class="green">' + obt + '</span></b>';
-                    let ingredients = [];
-                    let ingNum = 0;
-                    for (let i = 1; i <= 4; i++) {
-                        if ( item['ing' + i] ) {
-                            if ( i > 1 && item['ing' + (i - 1)] === item['ing' + i] ) {
-                                ingredients[ingNum - 1]['amt']++;
-                            } else {
-                                ingredients.push({
-                                    'id': item['ing' + i],
-                                    'amt': 1
-                                });
-                                ingNum++;
-                            }
-                        }
-                    }
-                    ingredients.forEach( (ing) => {
-                        let ingredient = obtains.find((row) => row['id'] === ing.id);
-                        let craft = document.createElement('li');
-                        craft.innerHTML = '<span>' + ingredient.name + '</span><b>x' + ing.amt + '</b>';
-                        infoCraft.appendChild(craft);
-                    });
-                    infoCraft.classList.remove('hidden');
-                }
-                if (obt.indexOf('Auctioned from ') >= 0) {
-                    obt = obt.replace('Auctioned from ','');
-                    let locations = obt.split(', ');
-                    infoAuction.innerHTML = '<b>Auctioned from</b>';
-                    locations.forEach( (obt) => {
-                        let auction = document.createElement('li');
-                        auction.innerText = obt;
-                        infoAuction.appendChild(auction);
-                    });
-                    infoAuction.classList.remove('hidden');
-                }
-            });
+        if (obtains.find((row) => row['id'] === item.id).obtained) {
+            infoObtain.querySelector('.accordion-content').innerHTML = listObtains(item.id);
             infoObtain.classList.remove('hidden');
         } else infoObtain.classList.add('hidden');
 

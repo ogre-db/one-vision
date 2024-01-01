@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
         weaponsJson = 'data/weapons.json',
         armorJson = 'data/armor.json',
         sundriesJson = 'data/sundries.json',
-        auctionJson = 'data/auction.json';
+        auctionJson = 'data/auction.json',
+        obtainsJson = 'data/obtains.json';
     let items = [],
         skills = [],
         magic = [],
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         infoRestriction = sidePanel.querySelector('.stats-extra .restriction'),
         infoInnMelee = sidePanel.querySelector('.stats-extra .innmelee'),
         infoInnRanged = sidePanel.querySelector('.stats-extra .innranged'),
+        infoClassmark = sidePanel.querySelector('.stats-extra .classmark'),
         infoSpells = sidePanel.querySelector('.spells .accordion-content ul'),
         infoSkills = sidePanel.querySelector('.skills .accordion-content ul'),
         infoRace = sidePanel.querySelector('.race .accordion-content ul'),
@@ -62,35 +64,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // let total = items.length;
 
-        items.forEach( (element, index) => {
+        items.forEach( (item, index) => {
 
             let classImgSrc = '';
 
-            if ( element.typ === 'B' || element.typ === 'A' || element.typ === 'S' || element.typ === 'U' ) {
+            if ( item.typ === 'B' || item.typ === 'A' || item.typ === 'S' || item.typ === 'U' ) {
                 classImgSrc = races[2]['icon'];
-            } else if (element.id >= 19 && element.id <= 21) {
+            } else if (item.id >= 19 && item.id <= 21) {
                 classImgSrc = races[6]['icon'];
-            } else if (element.id === 22) {
+            } else if (item.id === 22) {
                 classImgSrc = races[14]['icon'];
-            } else if (element.id === 37) {
+            } else if (item.id === 37) {
                 classImgSrc = races[12]['icon'];
-            } else if ( element.id === 36 || element.id === 38 ) {
+            } else if ( item.id === 36 || item.id === 38 ) {
                 classImgSrc = races[18]['icon'];
-            } else if (element.id >= 27 && element.id <= 35) {
+            } else if (item.id >= 27 && item.id <= 35) {
                 classImgSrc = races[8]['icon'];
-            } else if (element.id >= 40 && element.id <= 43) {
+            } else if (item.id >= 40 && item.id <= 43) {
                 classImgSrc = races[4]['icon'];
             }
 
-            if ( element.typ !== currentType ) {
+            if ( item.typ !== currentType ) {
                 let tr = document.createElement('tr');
                 tr.className = 'separator';
                 let category = document.createElement('td');
-                category.textContent = classTypes[element.typ].name;
+                category.textContent = classTypes[item.typ].name;
                 category.colSpan = document.querySelectorAll('#itemList th').length;
                 tr.appendChild(category);
                 itemList.appendChild(tr);
-                currentType = element.typ;
+                currentType = item.typ;
             }
 
             let tr = document.createElement('tr');
@@ -98,38 +100,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 let type = document.createElement('td');
                     let classImg = document.createElement('img');
                     classImg.src = classImgSrc;
-                    if (element.typ === 'U')
+                    if (item.typ === 'U')
                         classImg.classList.add('uni');
                     type.appendChild(classImg);
                 let name = document.createElement('td');
-                    name.textContent = element.name;
+                    name.textContent = item.name;
                 let move = document.createElement('td');
-                    move.textContent = Math.floor((element.moveamt - 4)/4);
+                    move.textContent = Math.floor((item.moveamt - 4)/4);
                 let jump = document.createElement('td');
-                    jump.textContent = movementType[element.move];
+                    jump.textContent = movementType[item.move];
                 let rt = document.createElement('td');
-                    rt.textContent = element.rt;
+                    rt.textContent = item.rt;
                 let armor = document.createElement('td');
-                    if (!element.armor && !element.accessory && !element.shield) {
+                    if (!item.armor && !item.accessory && !item.shield) {
                         armor.textContent = '—';
                     } else {
-                        armor.textContent = (element.armor ? element.armor : '—')
+                        armor.textContent = (item.armor ? item.armor : '—')
                             + '/'
-                            + (element.accessory ? element.accessory : '—')
+                            + (item.accessory ? item.accessory : '—')
                             + '/'
-                            + (element.shield ? element.shield : '—');
+                            + (item.shield ? item.shield : '—');
                     }
                 let magic = document.createElement('td');
-                    magic.textContent = element.magic;
+                    magic.textContent = item.magic !== '-' ? item.magic : '—';
                 tr.append(type, name, move, jump, rt, armor, magic);
             itemList.appendChild(tr);
 
             // progress.style.width = (index + 1) * 100 / total + '%';
         });
 
-        document.querySelectorAll('#itemList tr:not(.separator)').forEach( (element) => {
+        document.querySelectorAll('#itemList tr:not(.separator)').forEach( (item) => {
 
-            element.addEventListener( 'click', function (event) {
+            item.addEventListener( 'click', function (event) {
 
                 openInfo(event);
             })
@@ -331,20 +333,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (equipAccessory.length > 0) {
             infoEquipAccessory.innerHTML = '';
-            if (equipAccessory.find((row) => row['id'] === 428))
-                infoEquipAccessory.innerHTML += '<li><b>Heavy Gear</b></li>';
-            else if (equipAccessory.find((row) => row['id'] === 500))
-                infoEquipAccessory.innerHTML += '<li><b>' + equipAccessory.find((row) => row['id'] === 500).name + '</b></li>';
-            if (equipAccessory.find((row) => row['id'] === 430))
-                infoEquipAccessory.innerHTML += '<li><b>Light Gear</b></li>';
-            if (equipAccessory.find((row) => row['id'] === 427))
-                infoEquipAccessory.innerHTML += '<li><b>Cloth Gear</b></li>';
-            if (equipAccessory.find((row) => row['id'] === 429))
-                infoEquipAccessory.innerHTML += '<li><b>Mage Gear</b></li>';
-            if (equipAccessory.find((row) => row['id'] === 502))
-                infoEquipAccessory.innerHTML += '<li><b>Healer Gear</b></li>';
-            if (equipAccessory.find((row) => row['id'] === 435))
-                infoEquipAccessory.innerHTML += '<li><b>Sniper Gear</b></li>';
+            if (item.id === 43)
+                infoEquipAccessory.innerHTML += '<li><b>Circlets</b></li>';
+            else {
+                if (equipAccessory.find((row) => row['id'] === 428))
+                    infoEquipAccessory.innerHTML += '<li><b>Heavy Gear</b></li>';
+                else if (equipAccessory.find((row) => row['id'] === 500))
+                    infoEquipAccessory.innerHTML += '<li><b>' + equipAccessory.find((row) => row['id'] === 500).name + '</b></li>';
+                if (equipAccessory.find((row) => row['id'] === 430))
+                    infoEquipAccessory.innerHTML += '<li><b>Light Gear</b></li>';
+                if (equipAccessory.find((row) => row['id'] === 427))
+                    infoEquipAccessory.innerHTML += '<li><b>Cloth Gear</b></li>';
+                if (equipAccessory.find((row) => row['id'] === 429))
+                    infoEquipAccessory.innerHTML += '<li><b>Mage Gear</b></li>';
+                if (equipAccessory.find((row) => row['id'] === 502))
+                    infoEquipAccessory.innerHTML += '<li><b>Healer Gear</b></li>';
+                if (equipAccessory.find((row) => row['id'] === 435))
+                    infoEquipAccessory.innerHTML += '<li><b>Sniper Gear</b></li>';
+            }
         } else infoEquipAccessory.innerHTML = '<li>—</li>';
 
         if (item.innml) {
@@ -402,6 +408,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         if (item.mark) {
+            let classmark = sundries.find((row) => row['id'] === item.mark);
+            infoClassmark.querySelector('b').textContent = classmark.name;
+            infoClassmark.querySelector('b').setAttribute('data-tooltip', 'obtain-' + classmark.id);
+            infoClassmark.classList.remove('hidden');
+
             let inJobsets = [];
             for (let i = 0; i < 48; i++) {
                 if (item['ccset' + i] === 1) inJobsets.push(i);
@@ -414,6 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     infoRace.innerHTML += '<li class="spacer"></li>';
             });
         } else {
+            infoClassmark.classList.add('hidden');
             infoRace.innerHTML = '<li>' + item.name + '</li>';
         }
 
@@ -458,6 +470,9 @@ document.addEventListener('DOMContentLoaded', function() {
         );
         fetchJSON(auctionJson).then(
             data => auction = data
+        );
+        fetchJSON(obtainsJson).then(
+            data => obtains = data
         );
     }
 });

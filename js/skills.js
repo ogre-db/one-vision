@@ -53,13 +53,13 @@ document.addEventListener('DOMContentLoaded', function() {
         abilities = await fetchJSON(abilitiesJson);
 
         // let total = items.length;
-        items.forEach( (element, index) => {
-            if ( index === 0 || ( element.typvar && skillType[element.typ + element.typvar]['name'] !== categoryName)
-                    || ( !element.typvar && skillType[element.typ]['name'] !== categoryName) ) {
-                if ( element.typvar )
-                    categoryName = skillType[element.typ + element.typvar]['name'];
+        items.forEach( (item, index) => {
+            if ( index === 0 || ( item.typvar && skillType[item.typ + item.typvar]['name'] !== categoryName)
+                    || ( !item.typvar && skillType[item.typ]['name'] !== categoryName) ) {
+                if ( item.typvar )
+                    categoryName = skillType[item.typ + item.typvar]['name'];
                 else
-                    categoryName = skillType[element.typ]['name'];
+                    categoryName = skillType[item.typ]['name'];
                 let tr = document.createElement('tr');
                 tr.className = 'separator';
                 let category = document.createElement('td');
@@ -73,33 +73,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 tr.id = index;
                 let type = document.createElement('td');
                     let classImg = document.createElement('img');
-                    if ( element.typ === 3 )
-                        classImg.src = abilityType[element.abilitygrp]['icon'];
-                    else if ( [5,7,8,12,18,19,20].includes(element.id) )
-                        classImg.src = types[element.id + 160]['icon2'];
-                    else if ( element.id <= 20 )
-                        classImg.src = types[element.id + 160]['icon1'];
+                    if ( item.typ === 3 )
+                        classImg.src = abilityType[item.abilitygrp]['icon'];
+                    else if ( [5,7,8,12,18,19,20].includes(item.id) )
+                        classImg.src = types[item.id + 160]['icon2'];
+                    else if ( item.id <= 20 )
+                        classImg.src = types[item.id + 160]['icon1'];
                     else
-                        classImg.src = skillType[element.typ]['icon'];
-                    if ( element.npconly )
+                        classImg.src = skillType[item.typ]['icon'];
+                    if ( item.npconly )
                         classImg.classList.add('ban');
                     type.appendChild(classImg);
                 let name = document.createElement('td');
-                    name.textContent = element.name;
+                    name.textContent = item.name;
                 let active = document.createElement('td');
-                    if ( element.ability )
+                    if ( item.ability )
                         active.innerHTML = '<span class="red">&#9654;</span>';
                 let passive = document.createElement('td');
-                    if ( (element.id < 42 || element.id > 70 && element.id < 220) && ![121,126,129,151,161].includes(element.id) )
+                    if ( (item.id < 42 || item.id > 70 && item.id < 220) && ![121,126,129,151,161].includes(item.id) )
                         passive.innerHTML = '<span class="blue">&#10010;</span>';
                 let rank = document.createElement('td');
-                    if ( element.rankrate )
-                        rank.innerHTML = '<span class="green"><b>&#9650;' + (element.id <= 20 ? element.rankrate * 2 : element.rankrate) / 100 + '</b></span>';
+                    if ( item.rankrate )
+                        rank.innerHTML = '<span class="green"><b>&#9650;' + (item.id <= 20 ? item.rankrate * 2 : item.rankrate) / 100 + '</b></span>';
                 let group = document.createElement('td');
-                    if ( element.group )
-                        group.innerHTML = '<b><small>' + skillGroup[element.group].symbol + '</small></b>';
+                    if ( item.group )
+                        group.innerHTML = '<b><small>' + skillGroup[item.group].symbol + '</small></b>';
                 let cost = document.createElement('td');
-                    cost.textContent = element.cost;
+                    cost.textContent = item.cost;
             tr.append(type, name, active, passive, rank, group, cost);
             itemList.appendChild(tr);
 
@@ -316,7 +316,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if ( [196,197].includes(item.id) ) {
             let itemList = sundries.filter((rows) => rows['alch'] === ( item.id === 196 ? 1 : 2 ));
-            console.log(itemList);
             infoItems.innerHTML = '';
             itemList.forEach((el) => {
                 infoItems.innerHTML += '<li>' + el.name + '<b>' + el.price + ' <small>G</small></b></li>';

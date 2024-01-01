@@ -163,6 +163,7 @@ body {
   padding: 4px;
 }
 .ov-navigation .accordion-title i {
+  font-family: BenguiatITC-Condensed, serif;
   display: block;
   background-color: #5f5854;
   color: #eee;
@@ -567,15 +568,103 @@ ul {
   opacity: 1;
   height: auto;
 }
+[data-tooltip] {
+  position: relative;
+  cursor: pointer;
+}
+[data-tooltip]:before {
+  content: '';
+  position: absolute;
+  background: linear-gradient(90deg, transparent, #ee9500);
+  left: 0;
+  bottom: 1px;
+  height: 1px;
+  width: calc(100% + 2px);
+}
+[data-tooltip]:after {
+  content: '';
+  position: absolute;
+  background: linear-gradient(transparent, #ee9500);
+  right: -5px;
+  bottom: 1px;
+  height: 100%;
+  max-height: 0;
+  width: 2px;
+  transition: max-height 250ms ease-out;
+}
+[data-tooltip]:hover:after,
+[data-tooltip].open:after {
+  max-height: 100%;
+}
+[data-tooltip] > .tooltip {
+  position: absolute;
+  background-color: #f2f0ed;
+  color: #333;
+  cursor: default;
+  font-weight: normal;
+  max-width: 220px;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 5px;
+  border: 2px solid #ee9500;
+  border-radius: 6px;
+  box-shadow: 1px 1px 4px #5f5854;
+  animation: fadeIn ease 250ms;
+}
+[data-tooltip] > .tooltip:before {
+  content: '';
+  position: absolute;
+  background-color: #ee9500;
+  left: calc(50% - 1.5px);
+  top: calc(100% + 1px);
+  width: 3px;
+  height: 8px;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+  box-shadow: 1px 1px 2px #5f5854;
+}
+[data-tooltip] > .tooltip > ul {
+  display: flex;
+  width: 500px;
+  max-width: 100%;
+  flex-wrap: wrap;
+  font-size: 0.7rem;
+  list-style: none;
+  padding: 0;
+}
+[data-tooltip] > .tooltip > ul li {
+  width: 100%;
+  font-size: 0.7rem !important;
+  margin-left: 10px;
+}
+[data-tooltip] > .tooltip > ul.drop,
+[data-tooltip] > .tooltip > ul.steal,
+[data-tooltip] > .tooltip > ul.auction {
+  list-style: circle;
+}
+[data-tooltip] > .tooltip > ul.drop li,
+[data-tooltip] > .tooltip > ul.steal li,
+[data-tooltip] > .tooltip > ul.auction li {
+  margin-left: 15px;
+}
+[data-tooltip] > .tooltip > ul.craft li span {
+  display: inline-block;
+}
+[data-tooltip] > .tooltip > ul.craft li b {
+  display: inline-block;
+  width: 20px;
+  float: right;
+}
 #sidePanel {
   display: none;
   position: fixed;
-  right: max(15px, 50% - 860px);
+  right: max(10px, 50% - 860px);
   top: 0;
-  width: calc(100% - 30px);
-  max-width: 360px;
+  width: calc(100% - 20px);
+  max-width: 370px;
   max-height: 100vh;
-  padding: 30px 0 15px;
+  padding: 30px 5px 15px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -620,6 +709,7 @@ ul {
   padding: 30px;
   border: 2px solid #5f5854;
   border-radius: 20px;
+  box-shadow: 1px 1px 4px #5f5854;
 }
 #sidePanel .panel .content table {
   width: 100%;

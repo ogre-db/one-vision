@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let items = [],
         skills = [],
         abilities = [],
-        jobs = [],
-        obtains = [];
+        jobs = [];
 
     let innate,
         categoryName;
@@ -41,11 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
         infoSet = sidePanel.querySelector('.stats-extra .itemset'),
         infoRestriction = sidePanel.querySelector('.stats-extra .restriction'),
         infoObtain = sidePanel.querySelector('.obtain'),
-        infoGet = sidePanel.querySelector('.obtain .get'),
-        infoBuy = sidePanel.querySelector('.obtain .buy'),
-        infoDrop = sidePanel.querySelector('.obtain .drop'),
-        infoSteal = sidePanel.querySelector('.obtain .steal'),
-        infoCraft = sidePanel.querySelector('.obtain .craft'),
         infoClass = sidePanel.querySelector('.class .accordion-content ul'),
         infoNotes = sidePanel.querySelector('.notes');
 
@@ -62,16 +56,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // let total = items.length;
 
-        items.forEach( (element, index) => {
+        items.forEach( (item, index) => {
 
-            innate = element.price === 0 ? 100 : 0;
+            innate = item.price === 0 ? 100 : 0;
 
-            if ( index === 0 || (types[element.typ + innate]['name']) !== categoryName ) {
-                categoryName = types[element.typ + innate]['name'];
+            if ( index === 0 || (types[item.typ + innate]['name']) !== categoryName ) {
+                categoryName = types[item.typ + innate]['name'];
                 let tr = document.createElement('tr');
                     tr.className = 'separator';
                     let category = document.createElement('td');
-                        category.textContent = types[element.typ + innate]['name'];
+                        category.textContent = types[item.typ + innate]['name'];
                         category.colSpan = document.querySelectorAll('#itemList th').length;
                     tr.appendChild(category);
                 itemList.appendChild(tr);
@@ -81,31 +75,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 tr.id = index;
                 let type = document.createElement('td');
                     let classImg = document.createElement('img');
-                        classImg.src = (element.hnd === 1 || (element.typ === 177 && element.wght > 2)) ? types[element.typ + innate]['icon2'] : types[element.typ + innate]['icon1'];
-                        if (element.skillbonamt >= 8) classImg.classList.add('uni');
+                        classImg.src = (item.hnd === 1 || (item.typ === 177 && item.wght > 2)) ? types[item.typ + innate]['icon2'] : types[item.typ + innate]['icon1'];
+                        if (item.skillbonamt >= 8) classImg.classList.add('uni');
                     type.appendChild(classImg);
                 let name = document.createElement('td');
-                    name.textContent = element.name;
+                    name.textContent = item.name;
                 let atk = document.createElement('td');
-                    atk.textContent = element.atk;
+                    atk.textContent = item.atk;
                 let dbon = document.createElement('td');
-                    element.dmgtamt > 0 ? dbon.textContent = element.dmgtamt + '%' : dbon.textContent = '—';
+                    item.dmgtamt > 0 ? dbon.textContent = item.dmgtamt + '%' : dbon.textContent = '—';
                 let rt = document.createElement('td');
-                    rt.textContent = element.rtcost;
+                    rt.textContent = item.rtcost;
                 let wt = document.createElement('td');
-                    wt.textContent = element.wght;
+                    wt.textContent = item.wght;
                 let ele = document.createElement('td');
-                if (element.ele > 0) {
+                if (item.ele > 0) {
                     let eleImg = document.createElement('img');
-                    eleImg.src = elements[element.ele]['icon'];
+                    eleImg.src = elements[item.ele]['icon'];
                     ele.appendChild(eleImg);
                 }
                 let range = document.createElement('td');
-                    range.textContent = element.mnr === element.mxr ? element.mnr : (element.mnr + '-' + element.mxr);
+                    range.textContent = item.mnr === item.mxr ? item.mnr : (item.mnr + '-' + item.mxr);
                 let hands = document.createElement('td');
-                    hands.textContent = element.hnd + 1;
+                    hands.textContent = item.hnd + 1;
                 let level = document.createElement('td');
-                    level.textContent = element.lvlreq;
+                    level.textContent = item.lvlreq;
                 tr.append(type, name, atk, dbon, rt, wt, range, ele, hands, level);
             itemList.appendChild(tr);
 
@@ -256,87 +250,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if ( item.fmlnly > 0 )
             infoRestriction.innerHTML += '<li class="red">Only usable by female units</li>';
 
-        let obtain = obtains.find((row) => row['id'] === item.id).obtained;
-        if (obtain !== 0) {
-            infoGet.classList.add('hidden');
-            infoBuy.classList.add('hidden');
-            infoDrop.classList.add('hidden');
-            infoSteal.classList.add('hidden');
-            infoCraft.classList.add('hidden');
-            sidePanel.querySelectorAll('.obtain ul:not(.ov-accordion)').forEach(e => e.innerHTML = '');
-            let obtainWays = obtain.split(' | ');
-            obtainWays.forEach((obt) => {
-                if ( obt.indexOf('Obtained ') >= 0 ) {
-                    obt = obt.replace('Obtained ','');
-                    let locations = obt.split(', ');
-                    infoGet.innerHTML = '<b>Received</b>';
-                    locations.forEach( (obt) => {
-                        let get = document.createElement('li');
-                        get.innerText = obt;
-                        infoGet.appendChild(get);
-                    });
-                    infoGet.classList.remove('hidden');
-                }
-                if (obt.indexOf('Buy in ') >= 0) {
-                    obt = obt.replace('Buy in ','');
-                    let locations = obt.split(', ');
-                    infoBuy.innerHTML = '<b>Buy in</b>';
-                    locations.forEach( (obt) => {
-                        let buy = document.createElement('li');
-                        buy.innerText = obt;
-                        infoBuy.appendChild(buy);
-                    });
-                    infoBuy.classList.remove('hidden');
-                }
-                if (obt.indexOf('Dropped by ') >= 0) {
-                    obt = obt.replace('Dropped by ','');
-                    let locations = obt.split(', ');
-                    infoDrop.innerHTML = '<b>Dropped by</b>';
-                    locations.forEach( (obt) => {
-                        let drop = document.createElement('li');
-                        drop.innerText = obt;
-                        infoDrop.appendChild(drop);
-                    });
-                    infoDrop.classList.remove('hidden');
-                }
-                if (obt.indexOf('Stolen from ') >= 0) {
-                    obt = obt.replace('Stolen from ','');
-                    let locations = obt.split(', ');
-                    infoSteal.innerHTML = '<b>Stolen from</b>';
-                    locations.forEach( (obt) => {
-                        let steal = document.createElement('li');
-                        steal.innerText = obt;
-                        infoSteal.appendChild(steal);
-                    });
-                    infoSteal.classList.remove('hidden');
-                }
-                if (obt.indexOf('Craft with ') >= 0) {
-                    obt = obt.replace('Craft with ','');
-                    infoCraft.innerHTML = '<b>Craft with <span class="green">' + obt + '</span></b>';
-                    let ingredients = [];
-                    let ingNum = 0;
-                    for (let i = 1; i <= 4; i++) {
-                        if ( item['ing' + i] ) {
-                            if ( i > 1 && item['ing' + (i - 1)] === item['ing' + i] ) {
-                                ingredients[ingNum - 1]['amt']++;
-                            } else {
-                                ingredients.push({
-                                    'id': item['ing' + i],
-                                    'amt': 1
-                                });
-                                ingNum++;
-                            }
-                        }
-                    }
-                    ingredients.forEach( (ing) => {
-                        let ingredient = obtains.find((row) => row['id'] === ing.id);
-                        let craft = document.createElement('li');
-                        craft.innerHTML = '<span>' + ingredient.name + '</span><b>x' + ing.amt + '</b>';
-                        infoCraft.appendChild(craft);
-                    });
-                    infoCraft.classList.remove('hidden');
-                }
-            });
+        if (obtains.find((row) => row['id'] === item.id).obtained !== 0) {
+            infoObtain.querySelector('.accordion-content').innerHTML = listObtains(item.id);
             infoObtain.classList.remove('hidden');
         } else infoObtain.classList.add('hidden');
 
