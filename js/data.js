@@ -1226,11 +1226,11 @@ const statusEffects = {
         },
         '44': {
             'name': 'Instinct',
-            'effect': 'Next Movement will have 3 extra Range'
+            'effect': 'Next Special skill will hit with 100% accuracy<p><small><i>This also guarantees the skill on hit effect, if any</i></small></p>'
         },
         '45': {
             'name': 'Spike Skin',
-            'effect': 'Next Special skill will hit with 100% accuracy<p><small><i>This also guarantees the skill on hit effect, if any</i></small></p>'
+            'effect': 'Damage taken is reduced by 80% until next turn and reflected to the attacker<br>Disables Counterhit'
         },
         '46': {
             'name': 'Feint',
