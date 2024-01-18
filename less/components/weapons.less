@@ -191,14 +191,18 @@
         font-size: 0.875rem;
         margin-top: 15px;
 
-        span {
-          display: inline-block;
-          min-width: 120px;
+        ul {
+          li {
+            &>span {
+              display: inline-block;
+              min-width: 120px;
+            }
+          }
         }
 
         .itemset {
 
-          b{
+          &>b {
             color: @color-green;
           }
         }

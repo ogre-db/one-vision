@@ -270,11 +270,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (item.eff11) {
             let effect1 = getEffectText(item, 1);
             if (item.name.indexOf('Palace Guide') >= 0)
-                infoEffect.querySelector('.effect-1 .effect b').innerText = 'Teleports the party to a different section of the Palace of the Dead';
+                infoEffect.querySelector('.effect-1 .effect b').innerHTML = 'Teleports the party to a different section of the Palace of the Dead';
             else
-                infoEffect.querySelector('.effect-1 .effect b').innerText = effect1.effect;
-            infoEffect.querySelector('.effect-1 .restrict b').innerText = effect1.restrict;
-            infoEffect.querySelector('.effect-1 .acc b').innerText = effect1.accuracy;
+                infoEffect.querySelector('.effect-1 .effect b').innerHTML = effect1.effect;
+            infoEffect.querySelector('.effect-1 .restrict b').innerHTML = effect1.restrict;
+            infoEffect.querySelector('.effect-1 .acc b').innerHTML = effect1.accuracy;
             let damageProfile = '';
             if (effect1.damage.length > 0) {
                 effect1.damage.forEach( (dmg, i) => {
@@ -291,9 +291,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (item.eff21) {
             let effect2 = getEffectText(item, 2);
-            infoEffect.querySelector('.effect-2 .effect b').innerText = effect2.effect;
-            infoEffect.querySelector('.effect-2 .restrict b').innerText = effect2.restrict;
-            infoEffect.querySelector('.effect-2 .acc b').innerText = effect2.accuracy;
+            infoEffect.querySelector('.effect-2 .effect b').innerHTML = effect2.effect;
+            infoEffect.querySelector('.effect-2 .restrict b').innerHTML = effect2.restrict;
+            infoEffect.querySelector('.effect-2 .acc b').innerHTML = effect2.accuracy;
             let damageProfile = '';
             if (effect2.damage.length > 0) {
                 effect2.damage.forEach( (dmg, i) => {
@@ -310,9 +310,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (item.eff31) {
             let effect3 = getEffectText(item, 3);
-            infoEffect.querySelector('.effect-3 .effect b').innerText = effect3.effect;
-            infoEffect.querySelector('.effect-3 .restrict b').innerText = effect3.restrict;
-            infoEffect.querySelector('.effect-3 .acc b').innerText = effect3.accuracy;
+            infoEffect.querySelector('.effect-3 .effect b').innerHTML = effect3.effect;
+            infoEffect.querySelector('.effect-3 .restrict b').innerHTML = effect3.restrict;
+            infoEffect.querySelector('.effect-3 .acc b').innerHTML = effect3.accuracy;
             let damageProfile = '';
             if (effect3.damage.length > 0) {
                 effect3.damage.forEach( (dmg, i) => {
@@ -481,7 +481,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 infoGear.innerHTML = '<b>Equipment</b>';
                 infoUsablesWeapon.forEach((wpn) => {
                     let gear = document.createElement('li');
-                    gear.innerHTML = '<img src="' + (wpn.hnd === 1 ? types[wpn.typ].icon2 : types[wpn.typ].icon1) + '">';
+                    gear.innerHTML = '<img src="' + (wpn.hnd === 1 ? itemTypes[wpn.typ].icon2 : itemTypes[wpn.typ].icon1) + '">';
                     gear.innerHTML += '<span>' + wpn.name + '</span><b>' + wpn.abltyuse + ' <small>use' + (wpn.abltyuse > 1 ? 's' : '') + '</small></b>';
                     infoGear.appendChild(gear);
                 });
@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     infoGear.innerHTML = '<b>Equipment</b>';
                 infoUsablesArmor.forEach((arm) => {
                     let gear = document.createElement('li');
-                    gear.innerHTML = '<img src="' + (arm.var ? types[arm.typ]['icon' + arm.var] : types[arm.typ]['icon']) + '">';
+                    gear.innerHTML = '<img src="' + (arm.var ? itemTypes[arm.typ]['icon' + arm.var] : itemTypes[arm.typ]['icon']) + '">';
                     gear.innerHTML += '<span>' + arm.name + '</span><b>' + arm.abltyuse + ' <small>use' + (arm.abltyuse > 1 ? 's' : '') + '</small></b>';
                     infoGear.appendChild(gear);
                 });
@@ -532,6 +532,8 @@ document.addEventListener('DOMContentLoaded', function() {
             infoNotes.querySelector('b').textContent = item.notes;
             infoNotes.classList.remove('hidden');
         } else infoNotes.classList.add('hidden');
+
+        activateTooltips();
 
         swapEffectRemove( sidePanel, panelContent );
 

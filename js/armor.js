@@ -5,11 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
         skillsJson = 'data/skills.json',
         abilitiesJson = 'data/abilities.json',
         jobsJson = 'data/jobs.json',
-        obtainsJson = 'data/obtains.json';
+        obtainsJson = 'data/obtains.json',
+        weaponsJson = 'data/weapons.json';
     let items = [],
         skills = [],
         abilities = [],
-        jobs = [];
+        jobs = [],
+        weapons = [];
 
     const itemList = document.getElementById('itemList'),
         sidePanel = document.getElementById('sidePanel'),
@@ -81,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let tr = document.createElement('tr');
                 tr.className = 'separator';
                 let category = document.createElement('td');
-                category.textContent = types[item.typ]['name'];
+                category.textContent = itemTypes[item.typ]['name'];
                 category.colSpan = document.querySelectorAll('#itemList th').length;
                 tr.appendChild(category);
                 itemList.appendChild(tr);
@@ -91,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tr.id = index;
             let type = document.createElement('td');
                 let classImg = document.createElement('img');
-                    classImg.src = item.var ? types[item.typ]['icon' + item.var] : types[item.typ]['icon'];
+                    classImg.src = item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon'];
             if (item.skillbonamt >= 8) classImg.classList.add('uni');
             type.appendChild(classImg);
             let name = document.createElement('td');
@@ -164,8 +166,8 @@ document.addEventListener('DOMContentLoaded', function() {
         item.skillbonamt >= 8 ? sidePanel.classList.add('uni') : sidePanel.classList.remove('uni');
         infoTitle.textContent = item.name;
         infoLevel.textContent = 'Lv ' + item.lvlreq;
-        infoType.textContent = types[item.typ]['name'];
-        infoTypeIcon.src = item.var ? types[item.typ]['icon' + item.var] : types[item.typ]['icon'];
+        infoType.textContent = itemTypes[item.typ]['name'];
+        infoTypeIcon.src = item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon'];
         if (item.skillbonamt >= 8) infoTypeIcon.classList.add('uni'); else infoTypeIcon.classList.remove('uni');
         item.var ? infoGroup.textContent = armorTypes[item.var]['name'] : infoGroup.textContent = '—';
         if ( item.frm ) {
@@ -214,46 +216,34 @@ document.addEventListener('DOMContentLoaded', function() {
         } else infoDamagePanel.classList.add('hidden');
 
         if ( item.onhit ) {
-            infoOnhit.textContent = item.onhitch === 100 ? '' : (item.onhitch + '% to ');
-            switch(item.onhit) {
-                case 1:
-                    infoOnhit.textContent += (item.onhitform === 0 ? 'Doublehit' : statusEffects[item.onhit]['name']);
-                    break;
-                case 18:
-                    infoOnhit.textContent += (item.onhitch === 100 ? capitalize(statusEffects[item.onhit]['name']) : statusEffects[item.onhit]['name']) + ' ' + statusEffects[item.onhit][item.onhiteff]['name'];
-                    break;
-                case 19:
-                    infoOnhit.textContent += (item.onhitch === 100 ? capitalize(statusEffects[item.onhit]['name']) : statusEffects[item.onhit]['name']) + ' ' + statusEffects[item.onhit][item.onhiteff]['name'];
-                    break;
-                case 20:
-                    infoOnhit.textContent += (item.onhitch === 100 ? capitalize(statusEffects[item.onhit]['name']) : statusEffects[item.onhit]['name']) + ' ' + statusEffects[item.onhit][item.onhiteff]['name'];
-                    break;
-                default :
-                    infoOnhit.textContent += statusEffects[item.onhit]['name'];
+            infoOnhit.innerHTML = '';
+            if (item.onhitch !== 100)
+                infoOnhit.innerHTML += item.onhitch + '% to ';
+            if (item.onhit === 1 && item.onhitform === 0) {
+                infoOnhit.innerHTML += 'Doublehit';
+            } else {
+                infoOnhit.innerHTML += item.onhitch === 100 ? capitalize(statusEffects[item.onhit]['name']) : statusEffects[item.onhit]['name'];
+            }
+            if ([18,19,20].includes(item.onhit)) {
+                infoOnhit.innerHTML += ' <span data-tooltip="status-' + item.onhit+ '-' + item.onhiteff + '">'
+                    + statusEffects[item.onhit === 20 ? 20 : 18][item.onhiteff]['name'] + '</span>';
             }
             switch(item.onhitform) {
                 case 0:
                     break;
                 case 3:
-                    infoOnhit.textContent += ' for ' + item.onhitamt + ' points';
-                    break;
+                    infoOnhit.innerHTML += ' for ' + item.onhitamt + ' points';break;
                 case 4:
-                    infoOnhit.textContent += ' for ' + item.onhitamt + (item.onhit === 12 ? ' ticks' : ' points');
-                    break;
+                    infoOnhit.innerHTML += ' for ' + item.onhitamt + (item.onhit === 12 ? ' ticks' : ' points');break;
                 case 6:
-                    infoOnhit.textContent += ' for ' + item.onhitamt + ' Turns';
-                    break;
+                    infoOnhit.innerHTML += ' for ' + item.onhitamt + ' Turns';break;
                 case 8:
-                    infoOnhit.textContent += ' for ' + item.onhitamt * 10 + ' RT ticks';
-                    break;
+                    infoOnhit.innerHTML += ' for ' + item.onhitamt * 10 + ' RT ticks';break;
                 case 9:
-                    infoOnhit.textContent += ' for ' + item.onhitamt + '% of Max';
-                    break;
                 case 14:
-                    infoOnhit.textContent += ' for ' + item.onhitamt + '% of Max';
+                    infoOnhit.innerHTML += ' for ' + item.onhitamt + '% of Max';
             }
-            infoOnhitPanel.classList.remove('hidden');
-        } else infoOnhitPanel.classList.add('hidden');
+        } else infoOnhit.innerHTML = '—';
 
         infoStatsBottom.forEach( (stat, index) => {
             stat.textContent = (statList[index] > 120 && index > 2) ? (statList[index] - 256) : (statList[index] === 0 ? '—' : statList[index]);
@@ -295,7 +285,16 @@ document.addEventListener('DOMContentLoaded', function() {
             infoAbility.textContent = item.abltyuse + 'x ' + ability.name;
         } else infoAbility.textContent = '—';
         if ( item.set ) {
-            infoSet.querySelector('b').textContent = itemSets.find((row) => row['id'] === item.set).name;
+            let itemSet = itemSets.find((row) => row['id'] === item.set);
+            infoSet.querySelector('b').innerHTML = itemSet.name;
+            infoSet.querySelector('b').setAttribute('data-tooltip', 'itemset-' + item.set );
+            let setPieces = weapons.filter((rows) => (rows['set'] === item.set )).map(item => {
+                return {name: item.name, icon: item.hnd === 1 ? itemTypes[item.typ].icon2 : itemTypes[item.typ].icon1};
+            });
+            setPieces = setPieces.concat(items.filter((rows) => (rows['set'] === item.set )).map(item => {
+                return {name: item.name, icon: item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon']};
+            }));
+            infoSet.querySelector('b').setAttribute('data-setpieces', JSON.stringify(setPieces) );
             infoSet.classList.remove('hidden');
         } else infoSet.classList.add('hidden');
         infoRestriction.innerHTML = '';
@@ -332,6 +331,8 @@ document.addEventListener('DOMContentLoaded', function() {
             infoNotes.classList.remove('hidden');
         } else infoNotes.classList.add('hidden');
 
+        activateTooltips();
+
         swapEffectRemove( sidePanel, panelContent );
 
         openPanel(sidePanel);
@@ -350,6 +351,9 @@ document.addEventListener('DOMContentLoaded', function() {
         );
         fetchJSON(obtainsJson).then(
             data => obtains = data
+        );
+        fetchJSON(weaponsJson).then(
+            data => weapons = data
         );
     }
 });

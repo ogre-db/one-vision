@@ -5,11 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
         skillsJson = 'data/skills.json',
         abilitiesJson = 'data/abilities.json',
         jobsJson = 'data/jobs.json',
-        obtainsJson = 'data/obtains.json';
+        obtainsJson = 'data/obtains.json',
+        armorJson = 'data/armor.json';
     let items = [],
         skills = [],
         abilities = [],
-        jobs = [];
+        jobs = [],
+        armor = [];
 
     let innate,
         categoryName;
@@ -60,12 +62,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             innate = item.price === 0 ? 100 : 0;
 
-            if ( index === 0 || (types[item.typ + innate]['name']) !== categoryName ) {
-                categoryName = types[item.typ + innate]['name'];
+            if ( index === 0 || (itemTypes[item.typ + innate]['name']) !== categoryName ) {
+                categoryName = itemTypes[item.typ + innate]['name'];
                 let tr = document.createElement('tr');
                     tr.className = 'separator';
                     let category = document.createElement('td');
-                        category.textContent = types[item.typ + innate]['name'];
+                        category.textContent = itemTypes[item.typ + innate]['name'];
                         category.colSpan = document.querySelectorAll('#itemList th').length;
                     tr.appendChild(category);
                 itemList.appendChild(tr);
@@ -75,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tr.id = index;
                 let type = document.createElement('td');
                     let classImg = document.createElement('img');
-                        classImg.src = (item.hnd === 1 || (item.typ === 177 && item.wght > 2)) ? types[item.typ + innate]['icon2'] : types[item.typ + innate]['icon1'];
+                        classImg.src = (item.hnd === 1 || (item.typ === 177 && item.wght > 2)) ? itemTypes[item.typ + innate]['icon2'] : itemTypes[item.typ + innate]['icon1'];
                         if (item.skillbonamt >= 8) classImg.classList.add('uni');
                     type.appendChild(classImg);
                 let name = document.createElement('td');
@@ -147,8 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
         item.skillbonamt >= 8 ? sidePanel.classList.add('uni') : sidePanel.classList.remove('uni');
         infoTitle.textContent = item.name;
         infoLevel.textContent = 'Lv ' + item.lvlreq;
-        infoType.textContent = types[item.typ + innate]['name'];
-        infoTypeIcon.src = (item.hnd === 1 || (item.typ === 177 && item.wght > 2)) ? types[item.typ + innate]['icon2'] : types[item.typ + innate]['icon1'];
+        infoType.textContent = itemTypes[item.typ + innate]['name'];
+        infoTypeIcon.src = (item.hnd === 1 || (item.typ === 177 && item.wght > 2)) ? itemTypes[item.typ + innate]['icon2'] : itemTypes[item.typ + innate]['icon1'];
         infoTypeIcon.parentNode.classList.remove('oneh', 'twoh');
         infoTypeIcon.parentNode.classList.add(item.hnd === 0 ? 'oneh' : 'twoh');
         if (item.skillbonamt >= 8) infoTypeIcon.classList.add('uni'); else infoTypeIcon.classList.remove('uni');
@@ -182,45 +184,34 @@ document.addEventListener('DOMContentLoaded', function() {
         } else infoDamagePanel.classList.add('hidden');
 
         if ( item.onhit ) {
-            infoOnhit.textContent = item.onhitch === 100 ? '' : (item.onhitch + '% to ');
-            switch(item.onhit) {
-                case 1:
-                    infoOnhit.textContent += (item.onhitform === 0 ? 'Doublehit' : statusEffects[item.onhit]['name']);
-                    break;
-                case 18:
-                    infoOnhit.textContent += (item.onhitch === 100 ? capitalize(statusEffects[item.onhit]['name']) : statusEffects[item.onhit]['name']) + ' ' + statusEffects[item.onhit][item.onhiteff]['name'];
-                    break;
-                case 19:
-                    infoOnhit.textContent += (item.onhitch === 100 ? capitalize(statusEffects[item.onhit]['name']) : statusEffects[item.onhit]['name']) + ' ' + statusEffects[item.onhit][item.onhiteff]['name'];
-                    break;
-                case 20:
-                    infoOnhit.textContent += (item.onhitch === 100 ? capitalize(statusEffects[item.onhit]['name']) : statusEffects[item.onhit]['name']) + ' ' + statusEffects[item.onhit][item.onhiteff]['name'];
-                    break;
-                default :
-                    infoOnhit.textContent += statusEffects[item.onhit]['name'];
+            infoOnhit.innerHTML = '';
+            if (item.onhitch !== 100)
+                infoOnhit.innerHTML += item.onhitch + '% to ';
+            if (item.onhit === 1 && item.onhitform === 0) {
+                infoOnhit.innerHTML += 'Doublehit';
+            } else {
+                infoOnhit.innerHTML += item.onhitch === 100 ? capitalize(statusEffects[item.onhit]['name']) : statusEffects[item.onhit]['name'];
+            }
+            if ([18,19,20].includes(item.onhit)) {
+                infoOnhit.innerHTML += ' <span data-tooltip="status-' + item.onhit+ '-' + item.onhiteff + '">'
+                    + statusEffects[item.onhit === 20 ? 20 : 18][item.onhiteff]['name'] + '</span>';
             }
             switch(item.onhitform) {
                 case 0:
                     break;
                 case 3:
-                    infoOnhit.textContent += ' for ' + item.onhitamt + ' points';
-                    break;
+                    infoOnhit.innerHTML += ' for ' + item.onhitamt + ' points';break;
                 case 4:
-                    infoOnhit.textContent += ' for ' + item.onhitamt + (item.onhit === 12 ? ' ticks' : ' points');
-                    break;
+                    infoOnhit.innerHTML += ' for ' + item.onhitamt + (item.onhit === 12 ? ' ticks' : ' points');break;
                 case 6:
-                    infoOnhit.textContent += ' for ' + item.onhitamt + ' Turns';
-                    break;
+                    infoOnhit.innerHTML += ' for ' + item.onhitamt + ' Turns';break;
                 case 8:
-                    infoOnhit.textContent += ' for ' + item.onhitamt * 10 + ' RT ticks';
-                    break;
+                    infoOnhit.innerHTML += ' for ' + item.onhitamt * 10 + ' RT ticks';break;
                 case 9:
-                    infoOnhit.textContent += ' for ' + item.onhitamt + '% of Max';
-                    break;
                 case 14:
-                    infoOnhit.textContent += ' for ' + item.onhitamt + '% of Max';
+                    infoOnhit.innerHTML += ' for ' + item.onhitamt + '% of Max';
             }
-        } else infoOnhit.textContent = '—';
+        } else infoOnhit.innerHTML = '—';
 
         infoStatsBottom.forEach( (stat, index) => {
             stat.textContent = (statList[index] > 120 && index > 2) ? (statList[index] - 256) : (statList[index] === 0 ? '—' : statList[index]);
@@ -241,7 +232,16 @@ document.addEventListener('DOMContentLoaded', function() {
             infoAbility.textContent = item.abltyuse + 'x ' + ability.name;
         } else infoAbility.textContent = '—';
         if ( item.set ) {
-            infoSet.querySelector('b').textContent = itemSets.find((row) => row['id'] === item.set).name;
+            let itemSet = itemSets.find((row) => row['id'] === item.set);
+            infoSet.querySelector('b').innerHTML = itemSet.name;
+            infoSet.querySelector('b').setAttribute('data-tooltip', 'itemset-' + item.set );
+            let setPieces = items.filter((rows) => (rows['set'] === item.set )).map(item => {
+                return {name: item.name, icon: item.hnd === 1 ? itemTypes[item.typ].icon2 : itemTypes[item.typ].icon1};
+            });
+            setPieces = setPieces.concat(armor.filter((rows) => (rows['set'] === item.set )).map(item => {
+                return {name: item.name, icon: item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon']};
+            }));
+            infoSet.querySelector('b').setAttribute('data-setpieces', JSON.stringify(setPieces) );
             infoSet.classList.remove('hidden');
         } else infoSet.classList.add('hidden');
         infoRestriction.innerHTML = '';
@@ -284,6 +284,8 @@ document.addEventListener('DOMContentLoaded', function() {
             infoNotes.classList.remove('hidden');
         } else infoNotes.classList.add('hidden');
 
+        activateTooltips();
+
         swapEffectRemove( sidePanel, panelContent );
 
         openPanel(sidePanel);
@@ -302,6 +304,9 @@ document.addEventListener('DOMContentLoaded', function() {
         );
         fetchJSON(obtainsJson).then(
             data => obtains = data
+        );
+        fetchJSON(armorJson).then(
+            data => armor = data
         );
     }
 });

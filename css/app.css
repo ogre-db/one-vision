@@ -155,27 +155,40 @@ body {
   z-index: 999;
 }
 .ov-navigation .accordion-title {
+  background-color: #5f5854;
   position: absolute;
-  height: 40px;
-  width: 40px;
-  bottom: -4px;
-  left: -4px;
-  padding: 4px;
+  height: 32px;
+  width: 32px;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  border-radius: 50%;
 }
 .ov-navigation .accordion-title i {
   font-family: BenguiatITC-Condensed, serif;
   display: block;
-  background-color: #5f5854;
-  color: #eee;
-  font-size: 16px;
-  line-height: 30px;
+  position: absolute;
+  background-color: #eee;
   font-style: normal;
   font-weight: bold;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  width: 16px;
+  height: 2px;
+  left: calc(50% - 8px);
+  top: calc(50% - 1px);
   pointer-events: none;
-  text-shadow: 0 0 4px black;
+}
+.ov-navigation .accordion-title i:before,
+.ov-navigation .accordion-title i:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background-color: #eee;
+  width: 16px;
+  height: 2px;
+  top: calc(50% - 7px);
+}
+.ov-navigation .accordion-title i:after {
+  top: calc(50% + 5px);
 }
 .ov-navigation .accordion-content {
   height: 0;
@@ -219,13 +232,10 @@ body {
   border-top: 2px solid #ccc;
 }
 .ov-navigation.open .accordion-title {
-  padding: 0;
-}
-.ov-navigation.open .accordion-title i {
-  color: #ee9500;
-  line-height: 38px;
   height: 40px;
   width: 40px;
+  bottom: -4px;
+  left: -4px;
 }
 .ov-navigation.open .accordion-content {
   width: auto;
@@ -579,13 +589,13 @@ ul {
   left: 0;
   bottom: 1px;
   height: 1px;
-  width: calc(100% + 2px);
+  width: calc(100% + 1px);
 }
 [data-tooltip]:after {
   content: '';
   position: absolute;
   background: linear-gradient(transparent, #ee9500);
-  right: -5px;
+  left: calc(100% + 1px);
   bottom: 1px;
   height: 100%;
   max-height: 0;
@@ -601,7 +611,9 @@ ul {
   background-color: #f2f0ed;
   color: #333;
   cursor: default;
+  font-size: 0.875rem;
   font-weight: normal;
+  width: max-content;
   max-width: 220px;
   bottom: calc(100% + 5px);
   left: 50%;
@@ -624,7 +636,10 @@ ul {
   border-bottom-right-radius: 100%;
   box-shadow: 1px 1px 2px #5f5854;
 }
-[data-tooltip] > .tooltip > ul {
+[data-tooltip] > .tooltip p {
+  margin-top: 6px;
+}
+[data-tooltip][data-tooltip*=obtain] > .tooltip > ul {
   display: flex;
   width: 500px;
   max-width: 100%;
@@ -633,28 +648,50 @@ ul {
   list-style: none;
   padding: 0;
 }
-[data-tooltip] > .tooltip > ul li {
+[data-tooltip][data-tooltip*=obtain] > .tooltip > ul li {
   width: 100%;
   font-size: 0.7rem !important;
   margin-left: 10px;
 }
-[data-tooltip] > .tooltip > ul.drop,
-[data-tooltip] > .tooltip > ul.steal,
-[data-tooltip] > .tooltip > ul.auction {
+[data-tooltip][data-tooltip*=obtain] > .tooltip > ul.drop,
+[data-tooltip][data-tooltip*=obtain] > .tooltip > ul.steal,
+[data-tooltip][data-tooltip*=obtain] > .tooltip > ul.auction {
   list-style: circle;
 }
-[data-tooltip] > .tooltip > ul.drop li,
-[data-tooltip] > .tooltip > ul.steal li,
-[data-tooltip] > .tooltip > ul.auction li {
+[data-tooltip][data-tooltip*=obtain] > .tooltip > ul.drop li,
+[data-tooltip][data-tooltip*=obtain] > .tooltip > ul.steal li,
+[data-tooltip][data-tooltip*=obtain] > .tooltip > ul.auction li {
   margin-left: 15px;
 }
-[data-tooltip] > .tooltip > ul.craft li span {
+[data-tooltip][data-tooltip*=obtain] > .tooltip > ul.craft li span {
   display: inline-block;
 }
-[data-tooltip] > .tooltip > ul.craft li b {
+[data-tooltip][data-tooltip*=obtain] > .tooltip > ul.craft li b {
   display: inline-block;
   width: 20px;
   float: right;
+}
+[data-tooltip][data-tooltip*=itemset] > .tooltip > ul {
+  display: flex;
+  width: 500px;
+  max-width: 100%;
+  flex-wrap: wrap;
+  font-size: 0.7rem;
+  list-style: none;
+  padding: 0;
+  margin-top: 6px;
+}
+[data-tooltip][data-tooltip*=itemset] > .tooltip > ul li {
+  width: 100%;
+  font-size: 0.7rem !important;
+}
+[data-tooltip][data-tooltip*=itemset] > .tooltip > ul li img {
+  display: inline-block;
+  position: relative;
+  height: 12px;
+  margin-right: 4px;
+  border-radius: 50%;
+  top: 2px;
 }
 #sidePanel {
   display: none;
@@ -804,7 +841,7 @@ ul {
 #sidePanel .panel .content .stats-effect > div > div {
   width: 50%;
 }
-#sidePanel .panel .content .stats-effect > div > div:nth-child(2n + 1) span {
+#sidePanel .panel .content .stats-effect > div > div:nth-child(2n + 1) li > span {
   min-width: 60px;
 }
 #sidePanel .panel .content .stats-effect > div > div:nth-child(2n) b {
@@ -866,11 +903,11 @@ ul {
 #sidePanel .panel .content .stats-effect [class^='effect-'] > div {
   width: 100%;
 }
-#sidePanel .panel .content .stats-effect [class^='effect-'] > div li > span {
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div ul > li > span {
   min-width: 80px;
 }
-#sidePanel .panel .content .stats-effect [class^='effect-'] > div .effect span,
-#sidePanel .panel .content .stats-effect [class^='effect-'] > div .restrict span {
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div .effect > span,
+#sidePanel .panel .content .stats-effect [class^='effect-'] > div .restrict > span {
   float: left;
 }
 #sidePanel .panel .content .stats-effect [class^='effect-'] > div .effect b,
@@ -1347,11 +1384,11 @@ ul {
   font-size: 0.875rem;
   margin-top: 15px;
 }
-#sidePanel.weapons-panel .panel .content .stats-extra span {
+#sidePanel.weapons-panel .panel .content .stats-extra ul li > span {
   display: inline-block;
   min-width: 120px;
 }
-#sidePanel.weapons-panel .panel .content .stats-extra .itemset b {
+#sidePanel.weapons-panel .panel .content .stats-extra .itemset > b {
   color: #29a329;
 }
 #sidePanel.weapons-panel .panel .content .stats-extra .restriction {
@@ -1528,11 +1565,11 @@ ul {
   font-size: 0.875rem;
   margin-top: 15px;
 }
-#sidePanel.armor-panel .panel .content .stats-extra span {
+#sidePanel.armor-panel .panel .content .stats-extra ul li > span {
   display: inline-block;
   min-width: 120px;
 }
-#sidePanel.armor-panel .panel .content .stats-extra .itemset b {
+#sidePanel.armor-panel .panel .content .stats-extra .itemset > b {
   color: #29a329;
 }
 #sidePanel.armor-panel .panel .content .stats-extra .restriction {
@@ -1691,7 +1728,7 @@ ul {
   font-size: 0.875rem;
   margin-top: 15px;
 }
-#sidePanel.sundries-panel .panel .content .stats-extra span {
+#sidePanel.sundries-panel .panel .content .stats-extra ul li > span {
   display: inline-block;
   min-width: 120px;
 }
@@ -2101,7 +2138,7 @@ ul {
 #sidePanel.classes-panel .panel .content .stats-extra > ul li {
   font-size: 0.875rem;
 }
-#sidePanel.classes-panel .panel .content .stats-extra > ul li span {
+#sidePanel.classes-panel .panel .content .stats-extra > ul li > span {
   display: inline-block;
   min-width: 110px;
 }

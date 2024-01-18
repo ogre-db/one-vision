@@ -76,9 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     if ( item.typ === 3 )
                         classImg.src = abilityType[item.abilitygrp]['icon'];
                     else if ( [5,7,8,12,18,19,20].includes(item.id) )
-                        classImg.src = types[item.id + 160]['icon2'];
+                        classImg.src = itemTypes[item.id + 160]['icon2'];
                     else if ( item.id <= 20 )
-                        classImg.src = types[item.id + 160]['icon1'];
+                        classImg.src = itemTypes[item.id + 160]['icon1'];
                     else
                         classImg.src = skillType[item.typ]['icon'];
                     if ( item.npconly )
@@ -136,9 +136,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (item.typ === 3)
             typeIcon = abilityType[item.abilitygrp]['icon'];
         else if ([5, 7, 8, 12].includes(item.id))
-            typeIcon = types[item.id + 160]['icon2'];
+            typeIcon = itemTypes[item.id + 160]['icon2'];
         else if (item.id <= 20)
-            typeIcon = types[item.id + 160]['icon1'];
+            typeIcon = itemTypes[item.id + 160]['icon1'];
         else
             typeIcon = skillType[item.typ]['icon'];
         if (item.npconly)
@@ -215,11 +215,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (ability.eff11) {
                 let effect1 = getEffectText(ability, 1);
                 if (item.name.indexOf('Palace Guide') >= 0)
-                    infoEffect.querySelector('.effect-1 .effect b').innerText = 'Teleports the party to a different section of the Palace of the Dead';
+                    infoEffect.querySelector('.effect-1 .effect b').innerHTML = 'Teleports the party to a different section of the Palace of the Dead';
                 else
-                    infoEffect.querySelector('.effect-1 .effect b').innerText = effect1.effect;
-                infoEffect.querySelector('.effect-1 .restrict b').innerText = effect1.restrict;
-                infoEffect.querySelector('.effect-1 .acc b').innerText = effect1.accuracy;
+                    infoEffect.querySelector('.effect-1 .effect b').innerHTML = effect1.effect;
+                infoEffect.querySelector('.effect-1 .restrict b').innerHTML = effect1.restrict;
+                infoEffect.querySelector('.effect-1 .acc b').innerHTML = effect1.accuracy;
                 let damageProfile = '';
                 if (effect1.damage.length > 0) {
                     effect1.damage.forEach((dmg, i) => {
@@ -236,9 +236,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (ability.eff21) {
                 let effect2 = getEffectText(ability, 2);
-                infoEffect.querySelector('.effect-2 .effect b').innerText = effect2.effect;
-                infoEffect.querySelector('.effect-2 .restrict b').innerText = effect2.restrict;
-                infoEffect.querySelector('.effect-2 .acc b').innerText = effect2.accuracy;
+                infoEffect.querySelector('.effect-2 .effect b').innerHTML = effect2.effect;
+                infoEffect.querySelector('.effect-2 .restrict b').innerHTML = effect2.restrict;
+                infoEffect.querySelector('.effect-2 .acc b').innerHTML = effect2.accuracy;
                 let damageProfile = '';
                 if (effect2.damage.length > 0) {
                     effect2.damage.forEach((dmg, i) => {
@@ -255,9 +255,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (ability.eff31) {
                 let effect3 = getEffectText(ability, 3);
-                infoEffect.querySelector('.effect-3 .effect b').innerText = effect3.effect;
-                infoEffect.querySelector('.effect-3 .restrict b').innerText = effect3.restrict;
-                infoEffect.querySelector('.effect-3 .acc b').innerText = effect3.accuracy;
+                infoEffect.querySelector('.effect-3 .effect b').innerHTML = effect3.effect;
+                infoEffect.querySelector('.effect-3 .restrict b').innerHTML = effect3.restrict;
+                infoEffect.querySelector('.effect-3 .acc b').innerHTML = effect3.accuracy;
                 let damageProfile = '';
                 if (effect3.damage.length > 0) {
                     effect3.damage.forEach((dmg, i) => {
@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 infoGear.innerHTML = '<b>Equipment</b>';
                 infoUsablesWeapon.forEach((wpn) => {
                     let gear = document.createElement('li');
-                    gear.innerHTML = '<img src="' + (wpn.hnd === 1 ? types[wpn.typ].icon2 : types[wpn.typ].icon1) + '">';
+                    gear.innerHTML = '<img src="' + (wpn.hnd === 1 ? itemTypes[wpn.typ].icon2 : itemTypes[wpn.typ].icon1) + '">';
                     gear.innerHTML += '<span>' + wpn.name + '</span>';
                     infoGear.appendChild(gear);
                 });
@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     infoGear.innerHTML = '<b>Equipment</b>';
                 infoUsablesArmor.forEach((arm) => {
                     let gear = document.createElement('li');
-                    gear.innerHTML = '<img src="' + (arm.var ? types[arm.typ]['icon' + arm.var] : types[arm.typ]['icon']) + '">';
+                    gear.innerHTML = '<img src="' + (arm.var ? itemTypes[arm.typ]['icon' + arm.var] : itemTypes[arm.typ]['icon']) + '">';
                     gear.innerHTML += '<span>' + arm.name + '</span>';
                     infoGear.appendChild(gear);
                 });
@@ -428,6 +428,8 @@ document.addEventListener('DOMContentLoaded', function() {
             infoNotes.querySelector('b').textContent = noteText;
             infoNotes.classList.remove('hidden');
         } else infoNotes.classList.add('hidden');
+
+        activateTooltips();
 
         swapEffectRemove( sidePanel, panelContent );
 

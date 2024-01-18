@@ -450,6 +450,8 @@ document.addEventListener('DOMContentLoaded', function() {
             infoNotes.classList.remove('hidden');
         } else infoNotes.classList.add('hidden');
 
+        activateTooltips();
+
         swapEffectRemove( sidePanel, panelContent );
 
         openPanel(sidePanel);

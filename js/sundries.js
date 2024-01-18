@@ -55,12 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // let total = items.length;
 
         items.forEach( (item, index) => {
-            if ( index === 0 || types[item.typ]['name'] !== categoryName ) {
-                categoryName = types[item.typ]['name'];
+            if ( index === 0 || itemTypes[item.typ]['name'] !== categoryName ) {
+                categoryName = itemTypes[item.typ]['name'];
                 let tr = document.createElement('tr');
                     tr.className = 'separator';
                     let category = document.createElement('td');
-                        category.textContent = types[item.typ]['name'];
+                        category.textContent = itemTypes[item.typ]['name'];
                         category.colSpan = document.querySelectorAll('#itemList th').length;
                     tr.appendChild(category);
                 itemList.appendChild(tr);
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tr.id = index;
                 let type = document.createElement('td');
                     let classImg = document.createElement('img');
-                        classImg.src = types[item.typ]['icon'];
+                        classImg.src = itemTypes[item.typ]['icon'];
                         if ( item.unique === 1 ) classImg.classList.add('uni');
                         if ( item.typ === 35 ) {
                             job = jobs.find((row) => row['mark'] === item.id);
@@ -159,8 +159,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         item.unique === 1 ? sidePanel.classList.add('uni') : sidePanel.classList.remove('uni');
         infoTitle.textContent = item.name;
-        infoType.textContent = types[item.typ]['name'];
-        infoTypeIcon.src = item.var ? types[item.typ]['icon' + item.var] : types[item.typ]['icon'];
+        infoType.textContent = itemTypes[item.typ]['name'];
+        infoTypeIcon.src = item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon'];
         if ( item.typ === 35 ) {
             infoTypeIcon.classList.value = '';
             let job = jobs.find((row) => row['mark'] === item.id);
@@ -316,11 +316,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (ability.eff11) {
                 let effect1 = getEffectText(ability, 1);
                 if (item.name.indexOf('Palace Guide') >= 0)
-                    infoEffect.querySelector('.effect-1 .effect b').innerText = 'Teleports the party to a different section of the Palace of the Dead';
+                    infoEffect.querySelector('.effect-1 .effect b').innerHTML = 'Teleports the party to a different section of the Palace of the Dead';
                 else
-                    infoEffect.querySelector('.effect-1 .effect b').innerText = effect1.effect;
-                infoEffect.querySelector('.effect-1 .restrict b').innerText = effect1.restrict;
-                infoEffect.querySelector('.effect-1 .acc b').innerText = effect1.accuracy;
+                    infoEffect.querySelector('.effect-1 .effect b').innerHTML = effect1.effect;
+                infoEffect.querySelector('.effect-1 .restrict b').innerHTML = effect1.restrict;
+                infoEffect.querySelector('.effect-1 .acc b').innerHTML = effect1.accuracy;
                 let damageProfile = '';
                 if (effect1.damage.length > 0) {
                     effect1.damage.forEach( (dmg, i) => {
@@ -337,9 +337,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (ability.eff21) {
                 let effect2 = getEffectText(ability, 2);
-                infoEffect.querySelector('.effect-2 .effect b').innerText = effect2.effect;
-                infoEffect.querySelector('.effect-2 .restrict b').innerText = effect2.restrict;
-                infoEffect.querySelector('.effect-2 .acc b').innerText = effect2.accuracy;
+                infoEffect.querySelector('.effect-2 .effect b').innerHTML = effect2.effect;
+                infoEffect.querySelector('.effect-2 .restrict b').innerHTML = effect2.restrict;
+                infoEffect.querySelector('.effect-2 .acc b').innerHTML = effect2.accuracy;
                 let damageProfile = '';
                 if (effect2.damage.length > 0) {
                     effect2.damage.forEach( (dmg, i) => {
@@ -356,9 +356,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (ability.eff31) {
                 let effect3 = getEffectText(ability, 3);
-                infoEffect.querySelector('.effect-3 .effect b').innerText = effect3.effect;
-                infoEffect.querySelector('.effect-3 .restrict b').innerText = effect3.restrict;
-                infoEffect.querySelector('.effect-3 .acc b').innerText = effect3.accuracy;
+                infoEffect.querySelector('.effect-3 .effect b').innerHTML = effect3.effect;
+                infoEffect.querySelector('.effect-3 .restrict b').innerHTML = effect3.restrict;
+                infoEffect.querySelector('.effect-3 .acc b').innerHTML = effect3.accuracy;
                 let damageProfile = '';
                 if (effect3.damage.length > 0) {
                     effect3.damage.forEach( (dmg, i) => {
@@ -431,6 +431,8 @@ document.addEventListener('DOMContentLoaded', function() {
             infoNotes.querySelector('b').textContent = item.notes;
             infoNotes.classList.remove('hidden');
         } else infoNotes.classList.add('hidden');
+
+        activateTooltips();
 
         swapEffectRemove( sidePanel, panelContent );
 

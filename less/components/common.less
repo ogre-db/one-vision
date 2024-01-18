@@ -211,27 +211,40 @@ body {
   z-index: 999;
 
   .accordion-title {
+    background-color: @background-dark;
     position: absolute;
-    height: 40px;
-    width: 40px;
-    bottom: -4px;
-    left: -4px;
-    padding: 4px;
+    height: 32px;
+    width: 32px;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    border-radius: 50%;
 
     i {
       font-family: @main-font;
       display: block;
-      background-color: @background-dark;
-      color: @text-light;
-      font-size: 16px;
-      line-height: 30px;
+      position: absolute;
+      background-color: @text-light;
       font-style: normal;
       font-weight: bold;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
+      width: 16px;
+      height: 2px;
+      left: calc(50% - 8px);
+      top: calc(50% - 1px);
       pointer-events: none;
-      text-shadow: 0 0 4px black;
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        background-color: @text-light;
+        width: 16px;
+        height: 2px;
+        top: calc(50% - 7px);
+      }
+      &:after {
+        top: calc(50% + 5px);
+      }
     }
   }
 
@@ -290,14 +303,10 @@ body {
   &.open {
 
     .accordion-title {
-      padding: 0;
-
-      i {
-        color: @color-orange;
-        line-height: 38px;
-        height: 40px;
-        width: 40px;
-      }
+      height: 40px;
+      width: 40px;
+      bottom: -4px;
+      left: -4px;
     }
 
     .accordion-content {
@@ -727,13 +736,13 @@ ul {
     left: 0;
     bottom: 1px;
     height: 1px;
-    width: calc(100% + 2px);
+    width: calc(100% + 1px);
   }
   &:after {
     content: '';
     position: absolute;
     background: linear-gradient(transparent, @color-orange);
-    right: -5px;
+    left: calc(100% + 1px);
     bottom: 1px;
     height: 100%;
     max-height: 0;
@@ -751,7 +760,9 @@ ul {
     background-color: lighten(@background-card, 5%);
     color: @text-dark;
     cursor: default;
+    font-size: 0.875rem;
     font-weight: normal;
+    width: max-content;
     max-width: 220px;
     bottom: calc(100% + 5px);
     left: 50%;
@@ -775,40 +786,79 @@ ul {
       box-shadow: 1px 1px 2px #5f5854;
     }
 
-    >ul {
-      display: flex;
-      width: 500px;
-      max-width: 100%;
-      flex-wrap: wrap;
-      font-size: 0.7rem;
-      list-style: none;
-      padding: 0;
+    p {
+      margin-top: 6px;
+    }
+  }
 
-      li {
-        width: 100%;
-        font-size: 0.7rem !important;
-        margin-left: 10px;
-      }
+  &[data-tooltip*=obtain] {
 
-      &.drop, &.steal, &.auction {
-        list-style: circle;
+    >.tooltip {
+      >ul {
+        display: flex;
+        width: 500px;
+        max-width: 100%;
+        flex-wrap: wrap;
+        font-size: 0.7rem;
+        list-style: none;
+        padding: 0;
 
         li {
-          margin-left: 15px;
+          width: 100%;
+          font-size: 0.7rem !important;
+          margin-left: 10px;
+        }
+
+        &.drop, &.steal, &.auction {
+          list-style: circle;
+
+          li {
+            margin-left: 15px;
+          }
+        }
+
+        &.craft {
+
+          li {
+
+            span {
+              display: inline-block;
+            }
+            b {
+              display: inline-block;
+              width: 20px;
+              float: right;
+            }
+          }
         }
       }
+    }
+  }
 
-      &.craft {
+  &[data-tooltip*=itemset] {
+
+    >.tooltip {
+      >ul {
+        display: flex;
+        width: 500px;
+        max-width: 100%;
+        flex-wrap: wrap;
+        font-size: 0.7rem;
+        list-style: none;
+        padding: 0;
+        margin-top: 6px;
 
         li {
+          width: 100%;
+          font-size: 0.7rem !important;
 
-          span {
+          img {
             display: inline-block;
-          }
-          b {
-            display: inline-block;
-            width: 20px;
-            float: right;
+            position: relative;
+            height: 12px;
+            margin-right: 4px;
+            border-radius: 50%;
+            top: 2px;
           }
         }
       }
@@ -1003,7 +1053,7 @@ ul {
 
             &:nth-child(2n + 1) {
 
-              span {
+              li > span {
                 min-width: 60px;
               }
             }
@@ -1094,13 +1144,13 @@ ul {
           &>div {
             width: 100%;
 
-            li > span {
+            ul > li > span {
               min-width: 80px;
             }
 
             .effect, .restrict {
 
-              span {
+              &>span {
                 float: left;
               }
 
