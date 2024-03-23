@@ -147,26 +147,29 @@ body {
 .ov-navigation {
   background-color: #e8e3de;
   position: fixed;
-  overflow: hidden;
   left: max(5px, 50% - 475px);
   bottom: 5px;
   border-radius: 16px;
   overflow: visible;
   z-index: 999;
+  box-shadow: 0 1px 3px #5f5854;
 }
 .ov-navigation .accordion-title {
-  background-color: #5f5854;
+  background: url("../img/icon-shortcut.png") center / 22px no-repeat, #25282C;
   position: absolute;
-  height: 32px;
+  height: 38px;
   width: 32px;
   bottom: 0;
   left: 0;
   padding: 0;
-  border-radius: 50%;
+  border-radius: 500px;
+  box-shadow: 0 1px 3px #5f5854;
+  outline: 2px solid #DABA40;
+  outline-offset: -3px;
 }
 .ov-navigation .accordion-title i {
   font-family: BenguiatITC-Condensed, serif;
-  display: block;
+  display: none;
   position: absolute;
   background-color: #eee;
   font-style: normal;
@@ -195,10 +198,10 @@ body {
   width: 0;
   overflow: hidden;
   border-radius: 16px;
-  border: 2px solid transparent;
+  border: 0 solid transparent;
 }
 .ov-navigation .accordion-content > ul {
-  padding: 10px 10px 40px;
+  padding: 10px 10px 42px;
   transition: opacity 1s ease;
 }
 .ov-navigation .accordion-content > ul > li {
@@ -232,14 +235,14 @@ body {
   border-top: 2px solid #ccc;
 }
 .ov-navigation.open .accordion-title {
-  height: 40px;
-  width: 40px;
-  bottom: -4px;
-  left: -4px;
+  height: 44px;
+  width: 38px;
+  bottom: -3px;
+  left: -3px;
 }
 .ov-navigation.open .accordion-content {
   width: auto;
-  border-color: #7c7672;
+  border: 2px solid #7c7672;
 }
 .float-left {
   float: left;
@@ -2338,230 +2341,6 @@ ul {
   margin-top: 5px;
   margin-left: 15px;
 }
-.page-cheats .ov-accordion {
-  background-color: #e8e3de;
-  border-radius: 5px;
-}
-.page-cheats .ov-accordion:not(:first-child) {
-  margin-top: 5px;
-}
-.page-cheats .ov-accordion > li .accordion-title {
-  background-color: #5f5854;
-  color: #eee;
-  font-size: 1rem;
-  text-align: left;
-  padding: 3px 15px;
-  text-shadow: 0 0 5px #000;
-  border-radius: 4px;
-}
-.page-cheats .ov-accordion > li .accordion-title:after {
-  font-size: 0.875rem;
-}
-.page-cheats .ov-accordion > li .accordion-title:hover {
-  color: #ee9500;
-}
-.page-cheats .ov-accordion > li .accordion-content > div {
-  margin: 20px 20px 15px;
-}
-.page-cheats .ov-accordion > li .accordion-content label {
-  display: block;
-}
-.page-cheats .ov-accordion > li .accordion-content select {
-  background-color: #f2f0ed;
-  font-family: sans-serif;
-  width: 100%;
-  padding: 5px 10px;
-  border: 1px solid #5f5854;
-  border-radius: 4px;
-  outline: none;
-}
-.page-cheats .ov-accordion > li .accordion-content select option {
-  background-color: #f2f0ed;
-  font-family: sans-serif;
-}
-.page-cheats .ov-accordion > li .accordion-content input[type=text],
-.page-cheats .ov-accordion > li .accordion-content input[type=number] {
-  background-color: #f2f0ed;
-  font-family: sans-serif;
-  width: 100%;
-  padding: 5px 10px;
-  border: 1px solid #5f5854;
-  border-radius: 4px;
-  outline: none;
-}
-.page-cheats .ov-accordion > li .accordion-content p.info {
-  font-family: sans-serif;
-  font-size: 0.875rem;
-  font-style: italic;
-  margin: 10px 0;
-}
-.page-cheats .ov-accordion > li .accordion-content p.info.red {
-  font-size: 1rem;
-}
-.page-cheats .ov-accordion > li .accordion-content p.info.monospace {
-  font-family: monospace;
-  font-style: normal;
-}
-.page-cheats .ov-accordion > li .accordion-content .generator {
-  margin-bottom: 30px;
-}
-.page-cheats .ov-accordion > li .accordion-content .generator p.info {
-  font-size: 0.7rem;
-}
-.page-cheats .ov-accordion > li .accordion-content .generator p.info.red,
-.page-cheats .ov-accordion > li .accordion-content .generator p.info.monospace {
-  font-size: 0.875rem;
-}
-.page-cheats .ov-accordion > li .accordion-content .generator p.info.monospace {
-  background-color: #f2f0ed;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-}
-.page-cheats .ov-accordion > li .accordion-content .generator p.result {
-  background-color: #f2f0ed;
-  font-family: monospace;
-  width: 100%;
-  border: 1px solid #5f5854;
-  border-radius: 4px;
-  padding: 20px;
-}
-.page-cheats .ov-accordion > li .accordion-content .generator .input-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.page-cheats .ov-accordion > li .accordion-content .generator .input-group:not(:first-child) {
-  margin-top: 15px;
-}
-.page-cheats .ov-accordion > li .accordion-content .generator .input-group > div {
-  width: 100%;
-  padding: 10px 20px;
-}
-.page-cheats .ov-accordion > li .accordion-content .ov-accordion {
-  background-color: #f2f0ed;
-  border-radius: 12px;
-  box-shadow: inset 0 0 3px rgba(95, 88, 84, 0.6);
-}
-.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li .accordion-title {
-  background-color: transparent;
-  color: #333;
-  font-size: 1rem;
-  padding: 2px 10px 2px;
-  border-radius: 12px;
-  text-shadow: none;
-}
-.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li .accordion-title:after {
-  font-size: 0.875rem;
-}
-.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li .accordion-title:hover {
-  color: #ee9500;
-}
-.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li.open .accordion-title {
-  color: #ee9500;
-}
-.page-cheats .ov-accordion > li.open .accordion-title {
-  color: #ee9500;
-}
-.page-cheats .ov-accordion#spellTeacher .input-group {
-  flex-direction: column-reverse;
-}
-.page-cheats .ov-accordion#spellTeacher fieldset {
-  position: relative;
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-.page-cheats .ov-accordion#spellTeacher fieldset:not(:first-child) {
-  margin-top: 10px;
-}
-.page-cheats .ov-accordion#spellTeacher fieldset legend img {
-  height: 20px;
-  width: auto;
-  background-color: #E7E2D6;
-  border: 1px solid #7c7672;
-  border-radius: 50%;
-  box-shadow: 0 1px 0 #7c7672, inset 0 2px 0 #fff;
-  vertical-align: middle;
-}
-.page-cheats .ov-accordion#spellTeacher fieldset legend span {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-left: 5px;
-  line-height: 20px;
-  vertical-align: middle;
-}
-.page-cheats .ov-accordion#spellTeacher fieldset legend label {
-  background-color: #f2f0ed;
-  position: absolute;
-  font-size: 0.7rem;
-  line-height: 14px;
-  border-radius: 500px;
-  right: 10px;
-  top: -20px;
-  padding: 2px 8px;
-}
-.page-cheats .ov-accordion#spellTeacher fieldset legend label input[type=checkbox] {
-  margin: 0 0 0 5px;
-}
-.page-cheats .ov-accordion#spellTeacher fieldset input[type=checkbox] {
-  margin: 2px 10px 2px 0;
-  cursor: pointer;
-}
-.page-cheats .ov-accordion#spellTeacher #spTeachSpells label {
-  display: inline-block;
-  padding-left: 5px;
-  cursor: pointer;
-}
-.page-cheats .ov-accordion#spellTeacher #spTeachSpells label:hover {
-  color: #ee9500;
-}
-.page-cheats .ov-accordion#spellTeacher #spTeachSpells label.orange:hover {
-  color: #ffac22;
-}
-.page-cheats .ov-accordion#spellTeacher #spTeachSpells label.red:hover {
-  color: #ff7463;
-}
-.page-cheats .ov-accordion#spellTeacher label[for=spTeachResult] {
-  margin-top: 60px;
-}
-@media only screen and (min-width: 480px) {
-  .page-cheats .ov-accordion > li .accordion-title {
-    font-size: 1.2rem;
-    padding: 5px 20px;
-    border-radius: 5px;
-  }
-  .page-cheats .ov-accordion > li .accordion-title:after {
-    font-size: 1rem;
-  }
-  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-3 {
-    width: calc(100% / 3);
-  }
-  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-2-3 {
-    width: calc(100% * 2 / 3);
-  }
-  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-4 {
-    width: calc(100% / 2);
-  }
-}
-@media only screen and (min-width: 768px) {
-  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-2 {
-    width: calc(100% / 2);
-  }
-  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-3 {
-    width: calc(100% / 3);
-  }
-  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-4 {
-    width: calc(100% / 4);
-  }
-  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-3-4 {
-    width: calc(100% * 3 / 4);
-  }
-  .page-cheats .ov-accordion#spellTeacher .input-group {
-    flex-direction: row;
-  }
-  .page-cheats .ov-accordion#templateTweaker .ov-accordion {
-    width: 66%;
-  }
-}
 .page-tarot .tarot-information {
   padding: 30px 0 15px;
   margin-bottom: 20px;
@@ -2949,5 +2728,312 @@ ul {
   }
   .page-tarot #tarotSimulator > li .accordion-title:after {
     font-size: 1rem;
+  }
+}
+.page-drops .ov-accordion {
+  background-color: #e8e3de;
+  border-radius: 5px;
+}
+.page-drops .ov-accordion:not(:first-child) {
+  margin-top: 5px;
+}
+.page-drops .ov-accordion > li .accordion-title {
+  background-color: #5f5854;
+  color: #eee;
+  font-size: 1rem;
+  text-align: left;
+  padding: 3px 15px;
+  text-shadow: 0 0 5px #000;
+  border-radius: 4px;
+}
+.page-drops .ov-accordion > li .accordion-title:after {
+  font-size: 0.875rem;
+}
+.page-drops .ov-accordion > li .accordion-title:hover {
+  color: #ee9500;
+}
+.page-drops .ov-accordion > li .accordion-content > div {
+  margin: 20px 20px 15px;
+}
+.page-drops .ov-accordion > li .accordion-content > div table {
+  width: 100%;
+  border-spacing: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+}
+.page-drops .ov-accordion > li .accordion-content > div table thead tr th {
+  background-color: rgba(160, 152, 147, 0.6);
+  padding: 0 5px;
+}
+.page-drops .ov-accordion > li .accordion-content > div table thead tr th:nth-child(1) {
+  padding: 0 5px 0 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.page-drops .ov-accordion > li .accordion-content > div table thead tr th:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.page-drops .ov-accordion > li .accordion-content > div table tbody tr:nth-child(2n) {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.page-drops .ov-accordion > li .accordion-content > div table tbody td {
+  padding: 0 5px;
+}
+.page-drops .ov-accordion > li .accordion-content > div table tbody td:nth-child(1) {
+  text-align: center;
+  width: 10px;
+  padding: 0 5px;
+}
+.page-drops .ov-accordion > li .accordion-content > div table tbody td:last-child {
+  width: 30px;
+  vertical-align: middle;
+}
+.page-drops .ov-accordion > li .accordion-content > div table tbody td:last-child img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+.page-drops .ov-accordion > li .accordion-content > div table.act tbody td:nth-child(2) {
+  width: auto;
+}
+.page-drops .ov-accordion > li .accordion-content > div table.act tbody td:nth-child(3) {
+  width: 25%;
+}
+.page-drops .ov-accordion > li .accordion-content > div table.act tbody td:nth-child(4) {
+  width: 20%;
+}
+@media only screen and (min-width: 480px) {
+  .page-drops .ov-accordion > li .accordion-title {
+    font-size: 1.2rem;
+    padding: 5px 20px;
+    border-radius: 5px;
+  }
+  .page-drops .ov-accordion > li .accordion-title:after {
+    font-size: 1rem;
+  }
+}
+.page-cheats .ov-accordion {
+  background-color: #e8e3de;
+  border-radius: 5px;
+}
+.page-cheats .ov-accordion:not(:first-child) {
+  margin-top: 5px;
+}
+.page-cheats .ov-accordion > li .accordion-title {
+  background-color: #5f5854;
+  color: #eee;
+  font-size: 1rem;
+  text-align: left;
+  padding: 3px 15px;
+  text-shadow: 0 0 5px #000;
+  border-radius: 4px;
+}
+.page-cheats .ov-accordion > li .accordion-title:after {
+  font-size: 0.875rem;
+}
+.page-cheats .ov-accordion > li .accordion-title:hover {
+  color: #ee9500;
+}
+.page-cheats .ov-accordion > li .accordion-content > div {
+  margin: 20px 20px 15px;
+}
+.page-cheats .ov-accordion > li .accordion-content label {
+  display: block;
+}
+.page-cheats .ov-accordion > li .accordion-content select {
+  background-color: #f2f0ed;
+  font-family: sans-serif;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #5f5854;
+  border-radius: 4px;
+  outline: none;
+}
+.page-cheats .ov-accordion > li .accordion-content select option {
+  background-color: #f2f0ed;
+  font-family: sans-serif;
+}
+.page-cheats .ov-accordion > li .accordion-content input[type=text],
+.page-cheats .ov-accordion > li .accordion-content input[type=number] {
+  background-color: #f2f0ed;
+  font-family: sans-serif;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #5f5854;
+  border-radius: 4px;
+  outline: none;
+}
+.page-cheats .ov-accordion > li .accordion-content p.info {
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  font-style: italic;
+  margin: 10px 0;
+}
+.page-cheats .ov-accordion > li .accordion-content p.info.red {
+  font-size: 1rem;
+}
+.page-cheats .ov-accordion > li .accordion-content p.info.monospace {
+  font-family: monospace;
+  font-style: normal;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator {
+  margin-bottom: 30px;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator p.info {
+  font-size: 0.7rem;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator p.info.red,
+.page-cheats .ov-accordion > li .accordion-content .generator p.info.monospace {
+  font-size: 0.875rem;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator p.info.monospace {
+  background-color: #f2f0ed;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator p.result {
+  background-color: #f2f0ed;
+  font-family: monospace;
+  width: 100%;
+  border: 1px solid #5f5854;
+  border-radius: 4px;
+  padding: 20px;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator .input-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator .input-group:not(:first-child) {
+  margin-top: 15px;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator .input-group > div {
+  width: 100%;
+  padding: 10px 20px;
+}
+.page-cheats .ov-accordion > li .accordion-content .ov-accordion {
+  background-color: #f2f0ed;
+  border-radius: 12px;
+  box-shadow: inset 0 0 3px rgba(95, 88, 84, 0.6);
+}
+.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li .accordion-title {
+  background-color: transparent;
+  color: #333;
+  font-size: 1rem;
+  padding: 2px 10px 2px;
+  border-radius: 12px;
+  text-shadow: none;
+}
+.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li .accordion-title:after {
+  font-size: 0.875rem;
+}
+.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li .accordion-title:hover {
+  color: #ee9500;
+}
+.page-cheats .ov-accordion > li .accordion-content .ov-accordion > li.open .accordion-title {
+  color: #ee9500;
+}
+.page-cheats .ov-accordion > li.open .accordion-title {
+  color: #ee9500;
+}
+.page-cheats .ov-accordion#spellTeacher .input-group {
+  flex-direction: column-reverse;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset {
+  position: relative;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset:not(:first-child) {
+  margin-top: 10px;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset legend img {
+  height: 20px;
+  width: auto;
+  background-color: #E7E2D6;
+  border: 1px solid #7c7672;
+  border-radius: 50%;
+  box-shadow: 0 1px 0 #7c7672, inset 0 2px 0 #fff;
+  vertical-align: middle;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset legend span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 5px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset legend label {
+  background-color: #f2f0ed;
+  position: absolute;
+  font-size: 0.7rem;
+  line-height: 14px;
+  border-radius: 500px;
+  right: 10px;
+  top: -20px;
+  padding: 2px 8px;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset legend label input[type=checkbox] {
+  margin: 0 0 0 5px;
+}
+.page-cheats .ov-accordion#spellTeacher fieldset input[type=checkbox] {
+  margin: 2px 10px 2px 0;
+  cursor: pointer;
+}
+.page-cheats .ov-accordion#spellTeacher #spTeachSpells label {
+  display: inline-block;
+  padding-left: 5px;
+  cursor: pointer;
+}
+.page-cheats .ov-accordion#spellTeacher #spTeachSpells label:hover {
+  color: #ee9500;
+}
+.page-cheats .ov-accordion#spellTeacher #spTeachSpells label.orange:hover {
+  color: #ffac22;
+}
+.page-cheats .ov-accordion#spellTeacher #spTeachSpells label.red:hover {
+  color: #ff7463;
+}
+.page-cheats .ov-accordion#spellTeacher label[for=spTeachResult] {
+  margin-top: 60px;
+}
+@media only screen and (min-width: 480px) {
+  .page-cheats .ov-accordion > li .accordion-title {
+    font-size: 1.2rem;
+    padding: 5px 20px;
+    border-radius: 5px;
+  }
+  .page-cheats .ov-accordion > li .accordion-title:after {
+    font-size: 1rem;
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-3 {
+    width: calc(100% / 3);
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-2-3 {
+    width: calc(100% * 2 / 3);
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-4 {
+    width: calc(100% / 2);
+  }
+}
+@media only screen and (min-width: 768px) {
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-2 {
+    width: calc(100% / 2);
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-3 {
+    width: calc(100% / 3);
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-4 {
+    width: calc(100% / 4);
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-3-4 {
+    width: calc(100% * 3 / 4);
+  }
+  .page-cheats .ov-accordion#spellTeacher .input-group {
+    flex-direction: row;
+  }
+  .page-cheats .ov-accordion#templateTweaker .ov-accordion {
+    width: 66%;
   }
 }

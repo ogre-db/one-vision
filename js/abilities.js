@@ -332,17 +332,15 @@ document.addEventListener('DOMContentLoaded', function() {
             infoEffect.querySelector('.effect-obstacle').classList.remove('hidden');
         } else infoEffect.querySelector('.effect-obstacle').classList.add('hidden');
 
-        let obtain;
         let arcana;
         if (item.typ <= 12) {
             arcana = sundries.find((row) => row['effect'] === item.id && row['typ'] === 34);
             let arcanaEl = document.createElement('li');
-            if (arcana) {
-                arcanaEl.innerHTML = '<b>' + arcana.name + '</b>';
-                obtain = obtains.find((row) => row['id'] === arcana.id).obtained;
-            } else {
+            if (arcana)
+                arcanaEl.innerHTML = '<b data-tooltip="obtain-' + arcana.id + '">' + arcana.name + '</b>';
+            else
                 arcanaEl.innerHTML = '<b><span class="red">NPC Only</span></b>';
-            }
+
             infoArcana.querySelector('ul').innerHTML = '';
             infoArcana.querySelector('ul').appendChild(arcanaEl);
             infoArcana.classList.remove('hidden');
@@ -354,8 +352,8 @@ document.addEventListener('DOMContentLoaded', function() {
             consumable = sundries.find((row) => row['effect'] === item.id);
             if (consumable) {
                 let consumabEl = document.createElement('li');
-                consumabEl.innerHTML = '<b>' + consumable.name + '</b>';
-                obtain = obtains.find((row) => row['id'] === consumable.id).obtained;
+                consumabEl.innerHTML = '<b data-tooltip="obtain-' + item.id + '">' + consumable.name + '</b>';
+
                 infoConsumable.querySelector('ul').innerHTML = '';
                 infoConsumable.querySelector('ul').appendChild(consumabEl);
                 infoConsumable.classList.remove('hidden');
@@ -385,16 +383,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             infoSkills.classList.remove('hidden');
         } else infoSkills.classList.add('hidden');
-
-        if (obtain) {
-            let craftable;
-            if (arcana)
-                craftable = arcana;
-            else if (consumable)
-                craftable = consumable;
-            infoObtain.querySelector('.accordion-content').innerHTML = listObtains(craftable.id);
-            infoObtain.classList.remove('hidden');
-        } else infoObtain.classList.add('hidden');
 
         let infoClasses = [];
         let spell;

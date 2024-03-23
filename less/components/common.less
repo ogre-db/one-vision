@@ -203,26 +203,29 @@ body {
 .ov-navigation {
   background-color: @background-card;
   position: fixed;
-  overflow: hidden;
   left: e('max(5px, 50% - 475px)');
   bottom: 5px;
   border-radius: 16px;
   overflow: visible;
   z-index: 999;
+  box-shadow: 0 1px 3px #5f5854;
 
   .accordion-title {
-    background-color: @background-dark;
+    background: url("../img/icon-shortcut.png") center / 22px no-repeat, #25282C;
     position: absolute;
-    height: 32px;
+    height: 38px;
     width: 32px;
     bottom: 0;
     left: 0;
     padding: 0;
-    border-radius: 50%;
+    border-radius: 500px;
+    box-shadow: 0 1px 3px @background-dark;
+    outline: 2px solid #DABA40;
+    outline-offset: -3px;
 
     i {
       font-family: @main-font;
-      display: block;
+      display: none;
       position: absolute;
       background-color: @text-light;
       font-style: normal;
@@ -253,10 +256,10 @@ body {
     width: 0;
     overflow: hidden;
     border-radius: 16px;
-    border: 2px solid transparent;
+    border: 0 solid transparent;
 
     >ul {
-      padding: 10px 10px 40px;
+      padding: 10px 10px 42px;
       transition: opacity 1s ease;
 
       >li {
@@ -303,15 +306,15 @@ body {
   &.open {
 
     .accordion-title {
-      height: 40px;
-      width: 40px;
-      bottom: -4px;
-      left: -4px;
+      height: 44px;
+      width: 38px;
+      bottom: -3px;
+      left: -3px;
     }
 
     .accordion-content {
       width: auto;
-      border-color: @border-dark;
+      border: 2px solid @border-dark;
     }
   }
 }

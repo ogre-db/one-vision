@@ -1,0 +1,129 @@
+
+.page-drops {
+
+  .ov-accordion {
+    background-color: @background-card;
+    border-radius: 5px;
+
+    &:not(:first-child) {
+      margin-top: 5px;
+    }
+
+    &>li {
+
+      .accordion-title {
+        background-color: @background-dark;
+        color: @text-light;
+        font-size: 1rem;
+        text-align: left;
+        padding: 3px 15px;
+        text-shadow: 0 0 5px #000;
+        border-radius: 4px;
+
+        &:after {
+          font-size: 0.875rem;
+        }
+
+        &:hover {
+          color: @color-orange;
+        }
+      }
+
+      .accordion-content {
+
+        &>div {
+          margin: 20px 20px 15px;
+
+          table {
+            width: 100%;
+            border-spacing: 0;
+            background-color: @highlight-white;
+            border-radius: 5px;
+
+            thead {
+
+              tr {
+
+                th {
+                  background-color: lighten(@highlight-dark, 25%);
+                  padding: 0 5px;
+                }
+                th:nth-child(1) {
+                  padding: 0 5px 0 10px;
+                  border-top-left-radius: 5px;
+                  border-bottom-left-radius: 5px;
+                }
+                th:last-child {
+                  border-top-right-radius: 5px;
+                  border-bottom-right-radius: 5px;
+                }
+              }
+            }
+
+            tbody {
+
+              tr {
+
+                &:nth-child(2n) {
+                  background-color: @highlight-white;
+                }
+              }
+
+              td  {
+                padding: 0 5px;
+
+                &:nth-child(1)  {
+                  text-align: center;
+                  width: 10px;
+                  padding: 0 5px;
+                }
+                &:last-child {
+                  width: 30px;
+                  vertical-align: middle;
+
+                  img {
+                    display: block;
+                    width: 20px;
+                    height: 20px;
+                  }
+                }
+              }
+            }
+
+            &.act {
+
+              tbody {
+
+                td:nth-child(2)  {
+                  width: auto;
+                }
+                td:nth-child(3)  {
+                  width: 25%;
+                }
+                td:nth-child(4)  {
+                  width: 20%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media only screen and (min-width: 480px) {
+
+      &>li {
+
+        .accordion-title {
+          font-size: 1.2rem;
+          padding: 5px 20px;
+          border-radius: 5px;
+
+          &:after {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}

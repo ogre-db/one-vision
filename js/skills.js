@@ -413,8 +413,6 @@ document.addEventListener('DOMContentLoaded', function() {
             infoUsable.classList.remove('hidden');
         } else infoUsable.classList.add('hidden');
 
-
-
         let noteText;
         if ( item.group || item.typvar ) {
             if ( item.typvar )

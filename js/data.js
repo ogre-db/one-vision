@@ -1190,7 +1190,7 @@ const statusEffects = {
         },
         '35': {
             'name': 'Reflection',
-            'effect': 'Next Spell cast on the user will be reflected back on the user'
+            'effect': 'Next Spell cast on the user will be reflected back on the caster'
         },
         '36': {
             'name': 'Evilsbane',
@@ -1801,31 +1801,39 @@ const skillPassives = {
         'insert1': 'Golem'
     },
     'var-ma': {
-        'text': 'Adds <b>4 Offense/Power</b> per <b>Rank</b> to any <b>[insert1]</b> Element hits | Adds <b>Toughness/Resilience</b> against any incoming <b>[insert1]</b> Element hits by <b>3</b> per <b>Rank</b>'
+        'text': 'Adds <b>4 Offense/Power</b> per <b>Rank</b> to any <b>[insert1]</b> Element hits | Adds <b>Toughness/Resilience</b> against any incoming <b>[insert2]</b> Element hits by <b>3</b> per <b>Rank</b>'
     },
     '31': {
-        'insert1': 'Air'
+        'insert1': 'Air',
+        'insert2': 'Air'
     },
     '32': {
-        'insert1': 'Earth'
+        'insert1': 'Earth',
+        'insert2': 'Earth'
     },
     '33': {
-        'insert1': 'Lightning'
+        'insert1': 'Lightning',
+        'insert2': 'Lightning'
     },
     '34': {
-        'insert1': 'Water'
+        'insert1': 'Water',
+        'insert2': 'Water'
     },
     '35': {
-        'insert1': 'Fire'
+        'insert1': 'Fire',
+        'insert2': 'Fire'
     },
     '36': {
-        'insert1': 'Ice'
+        'insert1': 'Ice',
+        'insert2': 'Ice'
     },
     '37': {
-        'insert1': 'Divine'
+        'insert1': 'Light',
+        'insert2': 'Dark'
     },
     '38': {
-        'insert1': 'Dark'
+        'insert1': 'Dark',
+        'insert2': 'Light'
     },
     '39': {
         'text': 'Adds a separate chance of <b>5%</b>(?) per <b>Rank</b> to <b>Parry</b> a <b>Melee</b> Basic Attack, if Avoiding it fails'
@@ -1837,31 +1845,39 @@ const skillPassives = {
         'text': 'Reduces the target\'s <b>Parry</b> chance by <b>4%</b>(?) per <b>Rank</b>'
     },
     'var-ie': {
-        'text': 'If <b>Augment [insert1]</b> is also equipped, this skill will reduce the <b>Final Damage</b> of the same element by <b>4%</b> per <b>Augment Rank</b>'
+        'text': 'If <b>Augment [insert1]</b> is also equipped, this skill will reduce the <b>Final Damage</b> of any incoming <b>[insert2]</b> Element hits by <b>4%</b> per <b>Augment Rank</b>'
     },
     '71': {
-        'insert1': 'Air'
+        'insert1': 'Air',
+        'insert2': 'Air'
     },
     '72': {
-        'insert1': 'Earth'
+        'insert1': 'Earth',
+        'insert2': 'Earth'
     },
     '73': {
-        'insert1': 'Lightning'
+        'insert1': 'Lightning',
+        'insert2': 'Lightning'
     },
     '74': {
-        'insert1': 'Water'
+        'insert1': 'Water',
+        'insert2': 'Water'
     },
     '75': {
-        'insert1': 'Fire'
+        'insert1': 'Fire',
+        'insert2': 'Fire'
     },
     '76': {
-        'insert1': 'Ice'
+        'insert1': 'Ice',
+        'insert2': 'Ice'
     },
     '77': {
-        'insert1': 'Light'
+        'insert1': 'Light',
+        'insert2': 'Dark'
     },
     '78': {
-        'insert1': 'Darkness'
+        'insert1': 'Darkness',
+        'insert2': 'Light'
     },
     'var-ar': {
         'text': 'Stops the <b>Enemy</b> unit movement in an area of [insert1]'
