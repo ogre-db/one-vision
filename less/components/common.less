@@ -402,6 +402,30 @@ button {
   cursor: pointer;
 }
 
+button.ov-btn {
+  background-color: @highlight-white;
+  color: #333;
+  font-family: sans-serif;
+  font-size: 0.625rem;
+  font-weight: bold;
+  text-shadow: 0 0 6px white;
+  padding: 2px 8px 2px;
+  margin-right: 5px;
+  border-radius: 500px;
+  border: 1px solid @highlight-dark;
+  box-shadow: inset 0 0 3px @highlight-dark;
+
+  &.active {
+    border-color: @color-unique;
+    box-shadow: inset 0 0 3px @color-orange;
+  }
+
+  @media only screen and (min-width: 720px) {
+    font-size: 0.75rem;
+    padding: 3px 10px 2px;
+  }
+}
+
 canvas, img, video {
   max-width: 100%;
   height: auto;

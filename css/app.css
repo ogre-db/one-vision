@@ -324,6 +324,29 @@ button {
   border: none;
   cursor: pointer;
 }
+button.ov-btn {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #333;
+  font-family: sans-serif;
+  font-size: 0.625rem;
+  font-weight: bold;
+  text-shadow: 0 0 6px white;
+  padding: 2px 8px 2px;
+  margin-right: 5px;
+  border-radius: 500px;
+  border: 1px solid rgba(95, 88, 84, 0.6);
+  box-shadow: inset 0 0 3px rgba(95, 88, 84, 0.6);
+}
+button.ov-btn.active {
+  border-color: #af6025;
+  box-shadow: inset 0 0 3px #ee9500;
+}
+@media only screen and (min-width: 720px) {
+  button.ov-btn {
+    font-size: 0.75rem;
+    padding: 3px 10px 2px;
+  }
+}
 canvas,
 img,
 video {
@@ -2753,17 +2776,52 @@ ul {
   color: #ee9500;
 }
 .page-drops .ov-accordion > li .accordion-content > div {
-  margin: 20px 20px 15px;
+  margin: 5px 10px 10px;
+}
+.page-drops .ov-accordion > li .accordion-content > div > button.law {
+  color: #0e6dcd;
+}
+.page-drops .ov-accordion > li .accordion-content > div > button.law.active {
+  border-color: #0e6dcd;
+  box-shadow: inset 0 0 3px #0e6dcd;
+}
+.page-drops .ov-accordion > li .accordion-content > div > button.law.active ~ table tr.neutral,
+.page-drops .ov-accordion > li .accordion-content > div > button.law.active ~ table tr.chaos {
+  display: none;
+}
+.page-drops .ov-accordion > li .accordion-content > div > button.neutral {
+  color: #29a329;
+}
+.page-drops .ov-accordion > li .accordion-content > div > button.neutral.active {
+  border-color: #29a329;
+  box-shadow: inset 0 0 3px #29a329;
+}
+.page-drops .ov-accordion > li .accordion-content > div > button.neutral.active ~ table tr.law,
+.page-drops .ov-accordion > li .accordion-content > div > button.neutral.active ~ table tr.chaos {
+  display: none;
+}
+.page-drops .ov-accordion > li .accordion-content > div > button.chaos {
+  color: #ff4630;
+}
+.page-drops .ov-accordion > li .accordion-content > div > button.chaos.active {
+  border-color: #ff4630;
+  box-shadow: inset 0 0 3px #ff4630;
+}
+.page-drops .ov-accordion > li .accordion-content > div > button.chaos.active ~ table tr.law,
+.page-drops .ov-accordion > li .accordion-content > div > button.chaos.active ~ table tr.neutral {
+  display: none;
 }
 .page-drops .ov-accordion > li .accordion-content > div table {
   width: 100%;
   border-spacing: 0;
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 5px;
+  margin-top: 5px;
 }
 .page-drops .ov-accordion > li .accordion-content > div table thead tr th {
   background-color: rgba(160, 152, 147, 0.6);
-  padding: 0 5px;
+  font-size: 0.75rem;
+  padding: 0 3px;
 }
 .page-drops .ov-accordion > li .accordion-content > div table thead tr th:nth-child(1) {
   padding: 0 5px 0 10px;
@@ -2774,36 +2832,78 @@ ul {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.page-drops .ov-accordion > li .accordion-content > div table tbody tr:nth-child(2n) {
+.page-drops .ov-accordion > li .accordion-content > div table tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
 .page-drops .ov-accordion > li .accordion-content > div table tbody td {
-  padding: 0 5px;
+  font-size: 0.75rem;
+  padding: 0 3px;
+  border-bottom: 1px solid rgba(219, 216, 215, 0.6);
 }
-.page-drops .ov-accordion > li .accordion-content > div table tbody td:nth-child(1) {
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.battle,
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.act {
   text-align: center;
-  width: 10px;
-  padding: 0 5px;
+  width: 6px;
 }
-.page-drops .ov-accordion > li .accordion-content > div table tbody td:last-child {
-  width: 30px;
-  vertical-align: middle;
-}
-.page-drops .ov-accordion > li .accordion-content > div table tbody td:last-child img {
-  display: block;
-  width: 20px;
-  height: 20px;
-}
-.page-drops .ov-accordion > li .accordion-content > div table.act tbody td:nth-child(2) {
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.area {
   width: auto;
 }
-.page-drops .ov-accordion > li .accordion-content > div table.act tbody td:nth-child(3) {
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.target i,
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.area i {
+  font-family: sans-serif;
+  color: #ff4630;
+  display: inline-block;
+  position: relative;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  width: 14px;
+  bottom: 0;
+  text-shadow: 0 0 2px #f8f8f8;
+}
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.target i.drop,
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.area i.drop {
+  background: url('../img/icons/icon-drop.png') center / 100% no-repeat;
+}
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.target i.steal,
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.area i.steal {
+  background: url('../img/icons/icon-steal.png') center / 100% no-repeat;
+}
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.target i.hg,
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.area i.hg {
+  background: url('../img/icons/icon-fork.png') center / 100% no-repeat;
+}
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.loot {
+  position: relative;
+  padding-left: 14px;
+}
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.loot img {
+  position: absolute;
+  text-align: center;
+  width: 13px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+.page-drops .ov-accordion > li .accordion-content > div table tbody td.loot img.uni {
+  border: 1px solid rgba(238, 149, 0, 0.8);
+  box-shadow: 0 0 2px #ee9500 inset;
+}
+.page-drops .ov-accordion > li .accordion-content > div table.act tbody td.target {
+  width: 30%;
+}
+.page-drops .ov-accordion > li .accordion-content > div table.act tbody td.loot {
   width: 25%;
 }
-.page-drops .ov-accordion > li .accordion-content > div table.act tbody td:nth-child(4) {
-  width: 20%;
+.page-drops .ov-accordion > li .accordion-content > div table.phorampa tbody td.target {
+  width: 30%;
 }
-@media only screen and (min-width: 480px) {
+.page-drops .ov-accordion > li .accordion-content > div table.phorampa tbody td.loot {
+  width: 25%;
+}
+@media only screen and (min-width: 720px) {
   .page-drops .ov-accordion > li .accordion-title {
     font-size: 1.2rem;
     padding: 5px 20px;
@@ -2811,6 +2911,34 @@ ul {
   }
   .page-drops .ov-accordion > li .accordion-title:after {
     font-size: 1rem;
+  }
+  .page-drops .ov-accordion > li .accordion-content > div {
+    margin: 10px 20px 15px;
+  }
+  .page-drops .ov-accordion > li .accordion-content > div table thead tr th {
+    font-size: 1rem;
+    padding: 0 5px;
+  }
+  .page-drops .ov-accordion > li .accordion-content > div table tbody td {
+    font-size: 1rem;
+    padding: 0 5px;
+  }
+  .page-drops .ov-accordion > li .accordion-content > div table tbody td.battle,
+  .page-drops .ov-accordion > li .accordion-content > div table tbody td.act {
+    width: 10px;
+    padding: 0 5px;
+  }
+  .page-drops .ov-accordion > li .accordion-content > div table tbody td.target i,
+  .page-drops .ov-accordion > li .accordion-content > div table tbody td.area i {
+    font-size: 0.75rem;
+    width: 20px;
+    bottom: 1px;
+  }
+  .page-drops .ov-accordion > li .accordion-content > div table tbody td.loot {
+    padding-left: 20px;
+  }
+  .page-drops .ov-accordion > li .accordion-content > div table tbody td.loot img {
+    width: 19px;
   }
 }
 .page-cheats .ov-accordion {

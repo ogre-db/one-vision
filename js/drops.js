@@ -1,7 +1,10 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    const obtainsJson = 'data/obtains.json';
+    const obtainsJson = 'data/obtains.json',
+        weaponsJson = 'data/weapons.json',
+        armorJson = 'data/armor.json',
+        sundriesJson = 'data/sundries.json';
 
     fetchJSON(obtainsJson).then(items => {
         items = items.filter((rows) => (rows['obtained'] && (/Dropped by|Stolen from/).test(rows['obtained'])));
@@ -30,8 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ruins: []
         };
         let randoms = [];
-
-        console.log(items);
+        let itemList = [];
 
         items.forEach( (item) => {
             let obtainWays = item.obtained.split(' | ');
@@ -116,14 +118,18 @@ document.addEventListener('DOMContentLoaded', function() {
                             if (area.includes('Chapter'))
                                 location.act = (/Chapter (\d+)/).exec(area)[1];
 
-                            if (area.includes(' #'))
-                                location.battle = (/#(\d+)/).exec(area)[1];
-
                             if (area.includes('heavenly general')) location.hg = 1;
+                            else location.hg = 0;
 
                             if ((/#\d/).test(area))
                                 location.area = (/#\d+ - (.+)/).exec(area)[1];
                             else location.area = 'a';
+
+                            if (area.includes(' #'))
+                                location.battle = (/#(\d+)/).exec(area)[1];
+                            else if (location.area === 'a') {
+                                location.battle = 500;
+                            }
 
                             if (location.area.includes('(rank')) {
                                 location.rank = (/\(rank(\d)/).exec(location.area)[1];
@@ -161,11 +167,15 @@ document.addEventListener('DOMContentLoaded', function() {
                             } else pirates.push(location);
                         } else if (area && (area.includes('Palace of the Dead') || area.startsWith('San Bronsa '))) {
                             if (area.includes('heavenly general')) location.hg = 1;
+                            else location.hg = 0;
 
                             if (area.includes(' #')) {
                                 location.battle = (/#(\d+)/).exec(area)[1];
                                 location.area = 'Floor ' + location.battle + (/#\d+(.*)/).exec(area)[1];
-                            } else location.area = '';
+                            } else {
+                                location.area = 'a';
+                                location.battle = 500;
+                            }
 
                             if (location.area.includes('(rank')) {
                                 location.rank = (/\(rank(\d)/).exec(location.area)[1];
@@ -175,6 +185,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                 location.level = (/\(level (<\d+|\d+\+)/).exec(location.area)[1];
                                 location.area = location.area.split(' (level', 2)[0];
                             }
+                            if (location.area.includes(' heavenly general'))
+                                location.area = location.area.split(' heavenly general', 2)[0];
 
                             if (area.startsWith('San Bronsa ')) {
                                 if (area.includes('Tower of Law Eternal')) {
@@ -182,8 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 } else if (area.includes('Floating Ruins')) {
                                     sanbronsa.ruins.push(location);
                                 }
-                            }
-                            palace.push(location);
+                            } else palace.push(location);
                         } else if (area && area.includes(' random battle')) {
                             if (area.includes('(rank')) {
                                 location.rank = (/\(rank(\d)/).exec(area)[1];
@@ -192,6 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 location.level = (/\(level (<\d+|\d+\+)/).exec(area)[1];
 
                             location.area = area.split(' random battle', 2)[0];
+                            location.battle = 500;
                             randoms.push(location);
                         }
                     });
@@ -199,45 +211,134 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        console.log(campaign);
-        console.log(phorampa);
-        console.log(pirates);
-        console.log(temples);
-        console.log(palace);
-        console.log(sanbronsa);
-        console.log(randoms);
+        listDrops();
 
-        for (const key in campaign) {
-            if (campaign[key].length) {
-                let tableContainer = document.getElementById(key);
-                let drops = campaign[key].sort((a, b) => a.battle - b.battle || a.area.localeCompare(b.area) || a.target.localeCompare(b.target));
-                tableContainer.classList.remove('hidden');
-                let table = tableContainer.querySelector('table tbody');
+        async function listDrops() {
+            itemList = await fetchJSON(weaponsJson);
+            itemList = itemList.concat(await fetchJSON(armorJson));
+            itemList = itemList.concat(await fetchJSON(sundriesJson));
 
-                drops.forEach( (drop) => {
-                    let tr = document.createElement('tr');
-                    let battle = document.createElement('td');
-                    if (drop.battle === 's')
-                        battle.innerText = 'any'
-                    else if (drop.battle === 'e')
-                        battle.innerText = 'end';
-                    else if (drop.battle === 'o')
-                        battle.innerText = 'opt';
-                    else
-                        battle.innerText = drop.battle;
-                    let area = document.createElement('td');
-                    area.innerText = drop.area === 'a' ? '—' : drop.area;
-                    let target = document.createElement('td');
-                    target.innerText = drop.target;
-                    let item = document.createElement('td');
-                    item.innerText = drop.item;
-                    let source = document.createElement('td');
-                    source.innerHTML = '<img src="img/icons/' + ( drop.source === 'd' ? 'item-treasure' : 'icon-hands1') +  '.png" />';
-
-                    tr.append(battle, area, target, item, source);
-                    table.append(tr);
-                });
+            for (const key in campaign) {
+                if (campaign[key].length) {
+                    fillTable (campaign[key], key);
+                }
+            }
+            if (randoms.length) {
+                fillTable (randoms, 'randoms');
+            }
+            if (phorampa.length) {
+                fillTable (phorampa, 'phorampa');
+            }
+            if (pirates.length) {
+                fillTable (pirates, 'pirates');
+            }
+            for (const key in temples) {
+                if (temples[key].length) {
+                    fillTable (temples[key], key);
+                }
+            }
+            if (palace.length) {
+                fillTable (palace, 'palace');
+            }
+            for (const key in sanbronsa) {
+                if (sanbronsa[key].length) {
+                    fillTable (sanbronsa[key], key);
+                }
             }
         }
+
+        function fillTable (drops, section) {
+            let tableContainer = document.getElementById(section);
+            tableContainer.classList.remove('hidden');
+            let table = tableContainer.querySelector('table tbody');
+            drops = drops.sort((a, b) => a.battle - b.battle || a.area.localeCompare(b.area) || a.hg - b.hg || a.target.localeCompare(b.target));
+            drops.forEach( (drop) => {
+                let tr = document.createElement('tr');
+                if (drop.path === 'l')
+                    tr.classList.add('law');
+                else if (drop.path === 'n')
+                    tr.classList.add('neutral');
+                else if (drop.path === 'c')
+                    tr.classList.add('chaos');
+                if (section === 'phorampa') {
+                    let act = document.createElement('td');
+                    act.classList.add('act');
+                    console.log(drop.act);
+                    if (drop.act === '2') act.innerText = 'II';
+                    else if (drop.act === '3') act.innerText = 'III';
+                    else if (drop.act === '4') act.innerText = 'IV';
+                    tr.append(act);
+                }
+                if (!['randoms', 'palace', 'tower', 'ruins'].includes(section)) {
+                    let battle = document.createElement('td');
+                    battle.classList.add('battle');
+                    if (drop.battle / 100 >= 2 && drop.battle / 100 < 3) {
+                        battle.innerText = 'end';
+                        if (drop.battle > 200) battle.innerText += drop.battle - 200;
+                    } else if (drop.battle / 100 >= 3 && drop.battle / 100 < 4) {
+                        battle.innerText = 'end';
+                        if (drop.battle > 300) battle.innerText += drop.battle - 300;
+                    } else if (drop.battle / 100 >= 4 && drop.battle / 100 < 5) {
+                        battle.innerText = 'opt';
+                    } else if (drop.battle / 100 >= 5 && drop.battle / 100 < 6) {
+                        battle.innerText = '';
+                    } else {
+                        battle.innerText = (section === 'act4c' ? 'ep' : '') + drop.battle;
+                    }
+                    tr.append(battle);
+                }
+                let area = document.createElement('td');
+                area.classList.add('area');
+                if (drop.hg) {
+                    area.innerHTML += '<i class="hg">&nbsp;</i>';
+                }
+                area.innerHTML += drop.area === 'a' ? '—' : drop.area;
+                let target = document.createElement('td');
+                target.classList.add('target');
+                target.innerHTML += '<i class="' + (drop.source === 'd' ? 'drop' : 'steal') + '">' + (drop.rank ? drop.rank : '&nbsp;') + '</i>';
+                target.innerHTML += drop.target;
+                let loot = document.createElement('td');
+                loot.classList.add('loot');
+                let item = itemList.find((row) => row.id === drop.id);
+                let classImg = document.createElement('img');
+                if (item.typ > 160 && item.typ !== 182) {
+                    classImg.src = item.hnd === 1 ? itemTypes[item.typ].icon2 : itemTypes[item.typ].icon1;
+                    if (item.skillbonamt >= 8) classImg.classList.add('uni');
+                } else if (item.typ < 30 || item.typ === 182) {
+                    classImg.src = item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon'];
+                    if (item.skillbonamt >= 8) classImg.classList.add('uni');
+                } else {
+                    classImg.src = itemTypes[item.typ]['icon'];
+                    if ( item.unique === 1 ) classImg.classList.add('uni');
+                }
+                loot.append(classImg);
+                loot.innerHTML += drop.item;
+
+                tr.append(area, target, loot);
+                table.append(tr);
+            });
+        }
+    });
+
+    let lawButtons = document.querySelectorAll('button.law');
+    let neutralButtons = document.querySelectorAll('button.neutral');
+    let chaosButtons = document.querySelectorAll('button.chaos');
+    document.querySelectorAll('button.law, button.neutral, button.chaos').forEach( (element) => {
+        element.addEventListener('click', function (event) {
+            if (event.target.classList.contains('law')) {
+                neutralButtons.forEach( (element) => {element.classList.remove('active');});
+                chaosButtons.forEach( (element) => {element.classList.remove('active');});
+                lawButtons.forEach( (element) => {element.classList.add('active');});
+            } else if (event.target.classList.contains('neutral')) {
+                lawButtons.forEach( (element) => {element.classList.remove('active');});
+                chaosButtons.forEach( (element) => {element.classList.remove('active');});
+                neutralButtons.forEach( (element) => {element.classList.add('active');});
+                document.querySelector('#act2 button.chaos').classList.add('active');
+            } else if (event.target.classList.contains('chaos')) {
+                lawButtons.forEach( (element) => {element.classList.remove('active');});
+                neutralButtons.forEach( (element) => {element.classList.remove('active');});
+                chaosButtons.forEach( (element) => {element.classList.add('active');});
+            }
+        });
     });
 });

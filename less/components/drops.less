@@ -32,13 +32,60 @@
       .accordion-content {
 
         &>div {
-          margin: 20px 20px 15px;
+          margin: 5px 10px 10px;
+
+          >button {
+
+            &.law {
+              color: @color-blue;
+
+              &.active {
+                border-color: @color-blue;
+                box-shadow: inset 0 0 3px @color-blue;
+
+                &~table {
+                  tr.neutral, tr.chaos {
+                    display: none;
+                  }
+                }
+              }
+            }
+            &.neutral {
+              color: @color-green;
+
+              &.active {
+                border-color: @color-green;
+                box-shadow: inset 0 0 3px @color-green;
+
+                &~table {
+                  tr.law, tr.chaos {
+                    display: none;
+                  }
+                }
+              }
+            }
+            &.chaos {
+              color: @color-red;
+
+              &.active {
+                border-color: @color-red;
+                box-shadow: inset 0 0 3px @color-red;
+
+                &~table {
+                  tr.law, tr.neutral {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
 
           table {
             width: 100%;
             border-spacing: 0;
             background-color: @highlight-white;
             border-radius: 5px;
+            margin-top: 5px;
 
             thead {
 
@@ -46,7 +93,8 @@
 
                 th {
                   background-color: lighten(@highlight-dark, 25%);
-                  padding: 0 5px;
+                  font-size: 0.75rem;
+                  padding: 0 3px;
                 }
                 th:nth-child(1) {
                   padding: 0 5px 0 10px;
@@ -64,27 +112,68 @@
 
               tr {
 
-                &:nth-child(2n) {
+                &:hover {
                   background-color: @highlight-white;
                 }
               }
 
               td  {
-                padding: 0 5px;
+                font-size: 0.75rem;
+                padding: 0 3px;
+                border-bottom: 1px solid lighten(@highlight-dark, 50%);
 
-                &:nth-child(1)  {
+                &.battle, &.act  {
                   text-align: center;
-                  width: 10px;
-                  padding: 0 5px;
+                  width: 6px;
                 }
-                &:last-child {
-                  width: 30px;
-                  vertical-align: middle;
+
+                &.area {
+                  width: auto;
+                }
+
+                &.target, &.area {
+
+                  i {
+                    font-family: sans-serif;
+                    color: @color-red;
+                    display: inline-block;
+                    position: relative;
+                    font-size: 0.625rem;
+                    font-style: normal;
+                    font-weight: bold;
+                    text-align: center;
+                    width: 14px;
+                    bottom: 0;
+                    text-shadow: 0 0 2px @background-muted;
+
+                    &.drop {
+                      background: url('../img/icons/icon-drop.png') center / 100% no-repeat;
+                    }
+                    &.steal {
+                      background: url('../img/icons/icon-steal.png') center / 100% no-repeat;
+                    }
+                    &.hg {
+                      background: url('../img/icons/icon-fork.png') center / 100% no-repeat;
+                    }
+                  }
+                }
+                &.loot  {
+                  position: relative;
+                  padding-left: 14px;
 
                   img {
-                    display: block;
-                    width: 20px;
-                    height: 20px;
+                    position: absolute;
+                    text-align: center;
+                    width: 13px;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    border-radius: 50%;
+
+                    &.uni {
+                      border: 1px solid fade(@color-orange, 80%);
+                      box-shadow: 0 0 2px @color-orange inset;
+                    }
                   }
                 }
               }
@@ -94,14 +183,24 @@
 
               tbody {
 
-                td:nth-child(2)  {
-                  width: auto;
+                td.target  {
+                  width: 30%;
                 }
-                td:nth-child(3)  {
+                td.loot {
                   width: 25%;
                 }
-                td:nth-child(4)  {
-                  width: 20%;
+              }
+            }
+
+            &.phorampa {
+
+              tbody {
+
+                td.target  {
+                  width: 30%;
+                }
+                td.loot {
+                  width: 25%;
                 }
               }
             }
@@ -110,7 +209,7 @@
       }
     }
 
-    @media only screen and (min-width: 480px) {
+    @media only screen and (min-width: 720px) {
 
       &>li {
 
@@ -121,6 +220,51 @@
 
           &:after {
             font-size: 1rem;
+          }
+        }
+
+        .accordion-content > div{
+          margin: 10px 20px 15px;
+
+          table {
+
+            thead {
+
+              tr th {
+                font-size: 1rem;
+                padding: 0 5px;
+              }
+            }
+
+            tbody {
+
+              td {
+                font-size: 1rem;
+                padding: 0 5px;
+
+                &.battle, &.act  {
+                  width: 10px;
+                  padding: 0 5px;
+                }
+
+                &.target, &.area {
+
+                  i {
+                    font-size: 0.75rem;
+                    width: 20px;
+                    bottom: 1px;
+                  }
+                }
+
+                &.loot  {
+                  padding-left: 20px;
+
+                  img {
+                    width: 19px;
+                  }
+                }
+              }
+            }
           }
         }
       }
