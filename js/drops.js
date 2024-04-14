@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-
+console.log(campaign);
         listDrops();
 
         async function listDrops() {
@@ -263,7 +263,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (section === 'phorampa') {
                     let act = document.createElement('td');
                     act.classList.add('act');
-                    console.log(drop.act);
                     if (drop.act === '2') act.innerText = 'II';
                     else if (drop.act === '3') act.innerText = 'III';
                     else if (drop.act === '4') act.innerText = 'IV';
@@ -289,14 +288,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 let area = document.createElement('td');
                 area.classList.add('area');
-                if (drop.hg) {
+                if (drop.hg)
                     area.innerHTML += '<i class="hg">&nbsp;</i>';
-                }
                 area.innerHTML += drop.area === 'a' ? '—' : drop.area;
                 let target = document.createElement('td');
                 target.classList.add('target');
                 target.innerHTML += '<i class="' + (drop.source === 'd' ? 'drop' : 'steal') + '">' + (drop.rank ? drop.rank : '&nbsp;') + '</i>';
                 target.innerHTML += drop.target;
+                if (drop.level)
+                    target.innerHTML += '<small>Lv.' + drop.level + '</small>';
                 let loot = document.createElement('td');
                 loot.classList.add('loot');
                 let item = itemList.find((row) => row.id === drop.id);
