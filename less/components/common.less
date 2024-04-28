@@ -455,10 +455,37 @@ canvas, img, video {
   margin-top: 10px;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+ul, ol {
   margin: 0;
+  list-style: none;
+}
+ul {
+  padding: 0;
+}
+ol {
+  padding-left: 30px;
+  counter-reset: item;
+
+  li {
+    position: relative;
+
+    &:before {
+      content: counter(item) "  ";
+      counter-increment: item;
+      position: absolute;
+      background-color: @background-dark;
+      color: @text-light;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 20px;
+      top: 2px;
+      left: -30px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+  }
 }
 
 .ov-button-pad {
@@ -534,6 +561,102 @@ ul {
       display: block;
       width: 0;
       height: 10px;
+    }
+  }
+}
+
+.ov-gallery {
+
+  img {
+    cursor: zoom-in;
+  };
+}
+#galleryModal {
+  background-color: #0008;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  animation: fadeIn ease 500ms;
+
+  >div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    img {
+      display: block;
+      max-width: calc(100vw - 60px);
+      max-height: calc(100vh - 60px);
+      object-fit: contain;
+    }
+
+    button {
+      background-color: #25282C;
+      color: @text-light;
+      position: absolute;
+      box-shadow: 0 1px 3px @background-dark;
+      outline: 2px solid #DABA40;
+      outline-offset: -3px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        font-size: 18px;
+        text-align: center;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+      }
+
+      &.close-button {
+        top: -18px;
+        right: -18px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+
+        &:after {
+          content: '\2716';
+        }
+      }
+
+      &.prev-button, &.next-button {
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 48px;
+
+        &:after {
+          font-size: 20px;
+          font-weight: bold;
+        }
+      }
+
+      &.prev-button {
+        left: -28px;
+        border-top-left-radius: 500px;
+        border-bottom-left-radius: 500px;
+
+        &:after {
+          content: '\25D6';
+          right: 3px;
+        }
+      }
+
+      &.next-button {
+        right: -28px;
+        border-top-right-radius: 500px;
+        border-bottom-right-radius: 500px;
+
+        &:after {
+          content: '\25D7';
+          right: calc(100% - 3px);
+        }
+      }
     }
   }
 }

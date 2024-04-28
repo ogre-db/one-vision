@@ -375,10 +375,36 @@ video {
 .margin-small-top {
   margin-top: 10px;
 }
-ul {
-  list-style: none;
-  padding: 0;
+ul,
+ol {
   margin: 0;
+  list-style: none;
+}
+ul {
+  padding: 0;
+}
+ol {
+  padding-left: 30px;
+  counter-reset: item;
+}
+ol li {
+  position: relative;
+}
+ol li:before {
+  content: counter(item) "  ";
+  counter-increment: item;
+  position: absolute;
+  background-color: #5f5854;
+  color: #eee;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 20px;
+  top: 2px;
+  left: -30px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }
 .ov-button-pad {
   background: linear-gradient(to bottom right, #555, #666), #555;
@@ -443,6 +469,88 @@ ul {
   display: block;
   width: 0;
   height: 10px;
+}
+.ov-gallery img {
+  cursor: zoom-in;
+}
+#galleryModal {
+  background-color: #0008;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  animation: fadeIn ease 500ms;
+}
+#galleryModal > div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#galleryModal > div img {
+  display: block;
+  max-width: calc(100vw - 60px);
+  max-height: calc(100vh - 60px);
+  object-fit: contain;
+}
+#galleryModal > div button {
+  background-color: #25282C;
+  color: #eee;
+  position: absolute;
+  box-shadow: 0 1px 3px #5f5854;
+  outline: 2px solid #DABA40;
+  outline-offset: -3px;
+}
+#galleryModal > div button:after {
+  content: '';
+  position: absolute;
+  font-size: 18px;
+  text-align: center;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+#galleryModal > div button.close-button {
+  top: -18px;
+  right: -18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+#galleryModal > div button.close-button:after {
+  content: '\2716';
+}
+#galleryModal > div button.prev-button,
+#galleryModal > div button.next-button {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 48px;
+}
+#galleryModal > div button.prev-button:after,
+#galleryModal > div button.next-button:after {
+  font-size: 20px;
+  font-weight: bold;
+}
+#galleryModal > div button.prev-button {
+  left: -28px;
+  border-top-left-radius: 500px;
+  border-bottom-left-radius: 500px;
+}
+#galleryModal > div button.prev-button:after {
+  content: '\25D6';
+  right: 3px;
+}
+#galleryModal > div button.next-button {
+  right: -28px;
+  border-top-right-radius: 500px;
+  border-bottom-right-radius: 500px;
+}
+#galleryModal > div button.next-button:after {
+  content: '\25D7';
+  right: calc(100% - 3px);
 }
 .ov-item-list table {
   position: relative;
@@ -3168,5 +3276,94 @@ ul {
   }
   .page-cheats .ov-accordion#templateTweaker .ov-accordion {
     width: 66%;
+  }
+}
+.page-installation .ov-content > div {
+  margin-bottom: 30px;
+}
+.page-installation .ov-content > div p:not(:first-child) {
+  margin-top: 15px;
+}
+.page-installation .ov-accordion {
+  background-color: #e8e3de;
+  border-radius: 5px;
+}
+.page-installation .ov-accordion:not(:first-child) {
+  margin-top: 20px;
+}
+.page-installation .ov-accordion > li .accordion-title {
+  background-color: #5f5854;
+  color: #eee;
+  font-size: 1rem;
+  text-align: left;
+  padding: 3px 15px;
+  text-shadow: 0 0 5px #000;
+  border-radius: 4px;
+}
+.page-installation .ov-accordion > li .accordion-title:after {
+  font-size: 0.875rem;
+}
+.page-installation .ov-accordion > li .accordion-title:hover {
+  color: #ee9500;
+}
+.page-installation .ov-accordion > li .accordion-content > div {
+  margin: 5px 10px 10px;
+}
+.page-installation .ov-accordion > li .accordion-content > div ul {
+  list-style: disc;
+  padding-left: 10px;
+}
+.page-installation .ov-accordion > li .accordion-content > div ul li {
+  margin: 5px 0 0 10px;
+}
+.page-installation .ov-accordion > li .accordion-content > div ol {
+  padding-left: 40px;
+}
+.page-installation .ov-accordion > li .accordion-content > div ol li {
+  position: relative;
+  clear: both;
+  overflow: visible;
+  padding-bottom: 10px;
+}
+.page-installation .ov-accordion > li .accordion-content > div ol li:not(:first-child) {
+  margin-top: 10px;
+}
+.page-installation .ov-accordion > li .accordion-content > div ol li:before {
+  font-size: 18px;
+  line-height: 24px;
+  top: 0;
+  left: -40px;
+  width: 24px;
+  height: 24px;
+}
+.page-installation .ov-accordion > li .accordion-content > div ol li:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.page-installation .ov-accordion > li .accordion-content > div ol li .ov-gallery {
+  margin-left: 20px;
+  display: inline-block;
+  float: right;
+}
+.page-installation .ov-accordion > li .accordion-content > div ol li .ov-gallery > img {
+  width: 100%;
+  max-width: 100px;
+  margin-left: 10px;
+}
+.page-installation .ov-accordion > li .accordion-content > div ol li > p:not(:first-of-type) {
+  margin-top: 10px;
+}
+@media only screen and (min-width: 720px) {
+  .page-installation .ov-accordion > li .accordion-title {
+    font-size: 1.2rem;
+    padding: 5px 20px;
+    border-radius: 5px;
+  }
+  .page-installation .ov-accordion > li .accordion-title:after {
+    font-size: 1rem;
+  }
+  .page-installation .ov-accordion > li .accordion-content > div {
+    margin: 10px 20px 15px;
   }
 }

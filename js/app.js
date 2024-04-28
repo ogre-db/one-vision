@@ -73,6 +73,62 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    let galleries = document.querySelectorAll('.ov-gallery');
+    if (galleries) {
+        let galleryData = [];
+        galleries.forEach((gallery, galleryIndex) => {
+            gallery.setAttribute('data-index', galleryIndex.toString());
+            let sources = [];
+            let galleryImages = gallery.querySelectorAll('img');
+            galleryImages.forEach((image, imageIndex) => {
+                sources.push(image.src);
+                image.setAttribute('data-index', imageIndex.toString());
+                image.addEventListener('click', function () {
+                    showGallery(galleryIndex, imageIndex);
+                });
+            });
+            galleryData.push(sources);
+        });
+
+        function showGallery(galleryIndex, imageIndex) {
+            let gallery = galleryData[galleryIndex];
+            let galleryContainer = document.createElement('div');
+            galleryContainer.id = 'galleryModal';
+            let imageContainer = document.createElement('div');
+            let image = document.createElement('img');
+            image.src = gallery[imageIndex];
+            image.setAttribute('data-index', imageIndex);
+            imageContainer.append(image);
+
+            let closeButton = document.createElement('button');
+            closeButton.classList.add('close-button');
+            closeButton.addEventListener('click', function () {
+                galleryContainer.remove();
+            });
+            imageContainer.append(closeButton);
+
+            if (gallery.length > 1) {
+                let prevButton = document.createElement('button');
+                prevButton.classList.add('prev-button');
+                prevButton.addEventListener('click', function () {
+                    imageIndex > 0 ? imageIndex-- : imageIndex = gallery.length - 1;
+                    image.src = gallery[imageIndex];
+                });
+                imageContainer.append(prevButton);
+                let nextButton = document.createElement('button');
+                nextButton.classList.add('next-button');
+                nextButton.addEventListener('click', function () {
+                    imageIndex < gallery.length - 1 ? imageIndex++ : imageIndex = 0;
+                    image.src = gallery[imageIndex];
+                });
+                imageContainer.append(nextButton);
+            }
+
+            galleryContainer.append(imageContainer);
+            document.body.append(galleryContainer);
+        }
+    }
+
     activateTooltips();
 });
 

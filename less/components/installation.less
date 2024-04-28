@@ -1,0 +1,132 @@
+
+.page-installation {
+
+  .ov-content {
+
+    >div {
+      margin-bottom: 30px;
+
+      p {
+
+
+        &:not(:first-child) {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+
+  .ov-accordion {
+    background-color: @background-card;
+    border-radius: 5px;
+
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+
+    &>li {
+
+      .accordion-title {
+        background-color: @background-dark;
+        color: @text-light;
+        font-size: 1rem;
+        text-align: left;
+        padding: 3px 15px;
+        text-shadow: 0 0 5px #000;
+        border-radius: 4px;
+
+        &:after {
+          font-size: 0.875rem;
+        }
+
+        &:hover {
+          color: @color-orange;
+        }
+      }
+
+      .accordion-content {
+
+        &>div {
+          margin: 5px 10px 10px;
+
+          ul {
+            list-style: disc;
+            padding-left: 10px;
+
+            li {
+              margin: 5px 0 0 10px;
+            }
+          }
+
+          ol {
+            padding-left: 40px;
+
+            li {
+              position: relative;
+              clear: both;
+              overflow: visible;
+              padding-bottom: 10px;
+
+              &:not(:first-child) {
+                margin-top: 10px;
+              }
+
+              &:before {
+                font-size: 18px;
+                line-height: 24px;
+                top: 0;
+                left: -40px;
+                width: 24px;
+                height: 24px;
+              }
+
+              &:after {
+                content: '';
+                display: block;
+                clear:both;
+              }
+
+              .ov-gallery {
+                margin-left: 20px;
+                display: inline-block;
+                float: right;
+
+                &>img {
+                  width: 100%;
+                  max-width: 100px;
+                  margin-left: 10px;
+                }
+              }
+
+              &>p {
+                &:not(:first-of-type) {
+                  margin-top: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media only screen and (min-width: 720px) {
+
+      &>li {
+
+        .accordion-title {
+          font-size: 1.2rem;
+          padding: 5px 20px;
+          border-radius: 5px;
+
+          &:after {
+            font-size: 1rem;
+          }
+        }
+
+        .accordion-content > div {
+          margin: 10px 20px 15px;
+        }
+      }
+    }
+  }
+}
