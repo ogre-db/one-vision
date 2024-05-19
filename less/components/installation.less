@@ -54,6 +54,7 @@
             padding-left: 10px;
 
             li {
+              font-size: 0.875rem;
               margin: 5px 0 0 10px;
             }
           }
@@ -87,21 +88,71 @@
               }
 
               .ov-gallery {
-                margin-left: 20px;
+                margin-left: 15px;
                 display: inline-block;
                 float: right;
 
                 &>img {
+                  display: block;
                   width: 100%;
-                  max-width: 100px;
-                  margin-left: 10px;
+                  max-width: 80px;
+                  margin: 0 0 10px 5px;
                 }
               }
 
               &>p {
+                font-size: 0.875rem;
+
                 &:not(:first-of-type) {
                   margin-top: 10px;
                 }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media only screen and (min-width: 640px) {
+
+      &>li {
+
+        .accordion-title {
+          font-size: 1.2rem;
+          padding: 5px 20px;
+          border-radius: 5px;
+
+          &:after {
+            font-size: 1rem;
+          }
+        }
+
+        .accordion-content > div {
+          margin: 10px 20px 15px;
+
+          ul {
+
+            li {
+              font-size: 1rem;
+            }
+          }
+
+          ol {
+
+            li {
+
+              .ov-gallery {
+                margin-left: 20px;
+
+                &>img {
+                  display: inline-block;
+                  max-width: 100px;
+                  margin: 0 0 20px 10px;
+                }
+              }
+
+              &>p {
+                font-size: 1rem;
               }
             }
           }

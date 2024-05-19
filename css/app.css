@@ -3314,6 +3314,7 @@ ol li:before {
   padding-left: 10px;
 }
 .page-installation .ov-accordion > li .accordion-content > div ul li {
+  font-size: 0.875rem;
   margin: 5px 0 0 10px;
 }
 .page-installation .ov-accordion > li .accordion-content > div ol {
@@ -3342,17 +3343,48 @@ ol li:before {
   clear: both;
 }
 .page-installation .ov-accordion > li .accordion-content > div ol li .ov-gallery {
-  margin-left: 20px;
+  margin-left: 15px;
   display: inline-block;
   float: right;
 }
 .page-installation .ov-accordion > li .accordion-content > div ol li .ov-gallery > img {
+  display: block;
   width: 100%;
-  max-width: 100px;
-  margin-left: 10px;
+  max-width: 80px;
+  margin: 0 0 10px 5px;
+}
+.page-installation .ov-accordion > li .accordion-content > div ol li > p {
+  font-size: 0.875rem;
 }
 .page-installation .ov-accordion > li .accordion-content > div ol li > p:not(:first-of-type) {
   margin-top: 10px;
+}
+@media only screen and (min-width: 640px) {
+  .page-installation .ov-accordion > li .accordion-title {
+    font-size: 1.2rem;
+    padding: 5px 20px;
+    border-radius: 5px;
+  }
+  .page-installation .ov-accordion > li .accordion-title:after {
+    font-size: 1rem;
+  }
+  .page-installation .ov-accordion > li .accordion-content > div {
+    margin: 10px 20px 15px;
+  }
+  .page-installation .ov-accordion > li .accordion-content > div ul li {
+    font-size: 1rem;
+  }
+  .page-installation .ov-accordion > li .accordion-content > div ol li .ov-gallery {
+    margin-left: 20px;
+  }
+  .page-installation .ov-accordion > li .accordion-content > div ol li .ov-gallery > img {
+    display: inline-block;
+    max-width: 100px;
+    margin: 0 0 20px 10px;
+  }
+  .page-installation .ov-accordion > li .accordion-content > div ol li > p {
+    font-size: 1rem;
+  }
 }
 @media only screen and (min-width: 720px) {
   .page-installation .ov-accordion > li .accordion-title {
