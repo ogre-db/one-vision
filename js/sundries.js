@@ -276,10 +276,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             infoEffect.querySelector('.cost b').innerHTML = cost;
             infoEffect.querySelector('.rtcost b').innerText = ability.rtcost;
-            if (ability.reag)
+            if (ability.reag) {
                 infoEffect.querySelector('.reagent b').innerText = obtains.find((row) => row['id'] === ability.reag).name + ' x' + ability.reagamt;
-            else
-                infoEffect.querySelector('.reagent b').innerText = '—';
+                infoEffect.querySelector('.reagent').classList.remove('hidden');
+            } else
+                infoEffect.querySelector('.reagent').classList.add('hidden');
+            if (ability.affel) {
+                infoEffect.querySelector('.affinity b').innerHTML = '<img src="' + elements[ability.affel].icon + '">+' + '<small>' + ability.affamt + '</small>' + '<img src="' + elements[getOpposingElement(ability.affel)].icon + '">' + '<small class="red">-' + ability.affamt / 2 + '</small>';
+                infoEffect.querySelector('.affinity').classList.remove('hidden');
+            } else
+                infoEffect.querySelector('.affinity').classList.add('hidden');
             infoEffect.querySelector('.target b').innerText = abilityRangeType[ability.rntyp].name;
             if (ability.maxr) {
                 if (ability.minr === ability.maxr)

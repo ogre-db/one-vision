@@ -1034,6 +1034,17 @@ ol li:before {
   position: relative;
   top: -1px;
 }
+#sidePanel .panel .content .stats-effect .main > div .affinity b img {
+  display: inline-block;
+  background-color: rgba(95, 88, 84, 0.4);
+  position: relative;
+  height: 16px;
+  border-radius: 50%;
+  top: 2px;
+}
+#sidePanel .panel .content .stats-effect .main > div .affinity b img:last-of-type {
+  margin-left: 10px;
+}
 #sidePanel .panel .content .stats-effect [class^='effect-'] > div {
   width: 100%;
 }
@@ -1979,6 +1990,17 @@ ol li:before {
   font-size: 0.75em;
   position: relative;
   top: -1px;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div .affinity b img {
+  display: inline-block;
+  background-color: rgba(95, 88, 84, 0.4);
+  position: relative;
+  height: 16px;
+  border-radius: 50%;
+  top: 2px;
+}
+#sidePanel.abilities-panel .panel .content .stats-top .basic > div .affinity b img:last-of-type {
+  margin-left: 10px;
 }
 #sidePanel.abilities-panel .panel .content .arcana table tr td:first-child {
   width: 60px;

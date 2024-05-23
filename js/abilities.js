@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
         infoTypeIcon = sidePanel.querySelector('.title .subtitle img'),
         infoCost = sidePanel.querySelector('.stats-top li.cost b'),
         infoRtCost = sidePanel.querySelector('.stats-top li.rtcost b'),
-        infoReagent = sidePanel.querySelector('.stats-top li.reagent b'),
+        infoReagent = sidePanel.querySelector('.stats-top li.reagent'),
+        infoAffinity = sidePanel.querySelector('.stats-top li.affinity'),
         infoTrajectory = sidePanel.querySelector('.stats-top li.trajectory b'),
         infoRange = sidePanel.querySelector('.stats-top li.range b'),
         infoArea = sidePanel.querySelector('.stats-top li.area b'),
@@ -225,16 +226,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         infoCost.innerHTML = cost;
-        if ( item.typ === 17 )
+        infoReagent.classList.add('hidden');
+        if ( item.typ === 17 ) {
             infoRtCost.innerHTML = trap.rtcost;
-        else
+            infoReagent.querySelector('b').innerText = obtains.find((row) => row['id'] === item.id + 741).name;
+            infoReagent.classList.remove('hidden');
+        } else {
             infoRtCost.innerHTML = item.rtcost;
-        if ( item.reag )
-            infoReagent.innerText = obtains.find((row) => row['id'] === item.reag).name + ' x' + item.reagamt;
-        else if ( item.typ === 17 )
-            infoReagent.innerText = obtains.find((row) => row['id'] === item.id + 741).name;
-        else
-            infoReagent.innerText = '—';
+            if ( item.reag ) {
+                infoReagent.querySelector('b').innerText = obtains.find((row) => row['id'] === item.reag).name + ' x' + item.reagamt;
+                infoReagent.classList.remove('hidden');
+            }
+        }
+        if (item.affel) {
+            infoAffinity.querySelector('b').innerHTML = '<img src="' + elements[item.affel].icon + '">+' + '<small>' + item.affamt + '</small>' + '<img src="' + elements[getOpposingElement(item.affel)].icon + '">' + '<small class="red">-' + item.affamt / 2 + '</small>';
+            infoAffinity.classList.remove('hidden');
+        } else
+            infoAffinity.classList.add('hidden');
         infoTrajectory.innerText = abilityRangeType[item.rntyp].name;
         let range = '';
         if (item.maxr)
