@@ -3143,6 +3143,12 @@ ol li:before {
 .page-cheats .ov-accordion > li .accordion-content .generator {
   margin-bottom: 30px;
 }
+.page-cheats .ov-accordion > li .accordion-content .generator h5 {
+  font-size: 1.1rem;
+}
+.page-cheats .ov-accordion > li .accordion-content .generator:not(:first-child) h5 {
+  margin-top: 30px;
+}
 .page-cheats .ov-accordion > li .accordion-content .generator p.info {
   font-size: 0.7rem;
 }

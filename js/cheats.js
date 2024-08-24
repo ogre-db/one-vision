@@ -4031,16 +4031,16 @@ document.addEventListener('DOMContentLoaded', function() {
             'name': 'Death Knight'
         },
         {
+            'id': 73,
+            'name': 'Harbinger/Furia'
+        },
+        {
             'id': 71,
             'name': 'Knight Commander (NPC)'
         },
         {
             'id': 72,
             'name': 'Death Templar'
-        },
-        {
-            'id': 73,
-            'name': 'Dark Bishop'
         }
     ];
 
