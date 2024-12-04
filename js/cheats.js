@@ -3786,6 +3786,10 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             'id': 42,
             'name': 'Dievold'
+        },
+        {
+            'id': 43,
+            'name': 'Arycelle'
         }
     ];
 
@@ -3820,7 +3824,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             'id': 8,
-            'name': 'Berserker/Freya'
+            'name': 'Berserker/Maenad'
         },
         {
             'id': 9,
@@ -3868,7 +3872,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             'id': 20,
-            'name': 'Juggernaut/Maenad'
+            'name': 'Juggernaut/Titania'
         },
         {
             'id': 21,
@@ -3964,7 +3968,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             'id': 56,
-            'name': 'Paladin'
+            'name': 'Paladin/Freya'
         },
         {
             'id': 57,
@@ -3984,7 +3988,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             'id': 61,
-            'name': 'Wicce'
+            'name': 'Sage/Wicce'
         },
         {
             'id': 62,

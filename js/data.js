@@ -482,14 +482,14 @@ const scalingFormula = {
     '1': {
         'name': 'Str/<small>Dex</small>'
     },
-    '5': {
-        'name': 'Dex/<small>Str</small>'
-    },
     '7': {
         'name': 'Dex/<small>Str</small>'
     },
-    '20': {
-        'name': 'Level'
+    '13': {
+        'name': 'Mnd/<small>Int</small>'
+    },
+    '19': {
+        'name': 'Vit/<small>Str</small>'
     }
 };
 

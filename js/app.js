@@ -402,24 +402,26 @@ function getEffectText (ability, effectSet) {
 
     let effectText = '';
     if (ability[effect1] === 1) {
-        if ( ability[scaling] >= 21 && ability[scaling] <= 27 )
+        if ( ability[scaling] === 37 )
             effectText += 'Spell ';
-        else if (ability[scaling] === 20)
+        else if (ability[scaling] === 39)
             effectText += 'Raw ';
-        else if ( ability[scaling] >= 31 && ability[scaling] <= 37 )
+        else if ( ability[scaling] <= 19 )
             effectText += 'Attack ';
         effectText += 'Damage ';
-        if ( ability[scaling] === 31 || ability[scaling] === 33 )
+        if ( ability[scaling] === 3 || ability[scaling] === 5 )
             effectText += 'STR/DEX';
-        else if ( ability[scaling] === 35 || ability[scaling] === 37 )
+        else if ( ability[scaling] === 9 || ability[scaling] === 11 )
             effectText += 'DEX/STR';
-        if ( ability.typ >= 22 && ability.typ <= 43 && ability[scaling] >= 31 && ability[scaling] <= 37 )
+        else if ( ability[scaling] === 15 || ability[scaling] === 17 )
+            effectText += 'MND/INT';
+        else if ( ability[scaling] === 19 )
+            effectText += 'VIT/STR';
+        if ( ability.typ >= 22 && ability.typ <= 43 && ability[scaling] >= 1 && ability[scaling] <= 17 )
             effectText += ' +W.Skill';
-        if ( ability[scaling] === 33 || ability[scaling] === 37 )
+        if ( ability[scaling] === 5 || ability[scaling] === 11 || ability[scaling] === 17 )
             effectText += ' +TP';
-        if (ability[scaling] === 20)
-            effectText += 100 / ability[power] + 'X';
-        else if ( ability[formula] === 0 && ability.eff1form === 16 )
+        if ( ability[formula] === 0 && ability.eff1form === 16 )
             effectText += 'for User\'s MaxHP - CurrentHP if Above 50%, or CurrentHP if Below';
         else if (ability[formula] === 0)
             effectText += 'for the Amount of Main';
