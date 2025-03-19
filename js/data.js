@@ -475,42 +475,146 @@ const armorTypes = {
     }
 };
 
-const scalingFormula = {
+const damageScaling = {
     '0': {
-        'name': '—'
+        'name': '—',
+        'desc': '—',
+        'attr': {}
     },
     '1': {
-        'name': 'Str/<small>Dex</small>'
+        'name': 'Weapon Damage Str/<small>Dex</small>',
+        'desc': 'Str/<small>Dex</small>',
+        'attack': {
+            'atk': {
+                'wp': 0,
+                'sh': 0,
+                'ar1': 0,
+                'ar2': 0,
+                'jw': 0,
+                'cls': 0
+            },
+            'def': {
+                'wp': 0,
+                'sh': 0,
+                'ar1': 0,
+                'ar2': 0,
+                'jw': 0,
+                'cls': 0
+            },
+            'attr': {
+                'str': 0,
+                'vit': 0,
+                'dex': 0,
+                'int': 0,
+                'mnd': 0,
+                'res': 0
+            }
+        },
+        'defend': {
+        }
+    },
+    '3': {
+        'name': 'Attack Damage Str/<small>Dex</small>',
+        'desc': 'Str/<small>Dex</small>'
+    },
+    '5': {
+        'name': 'Attack Damage Str/<small>Dex</small> +TP',
+        'desc': 'Str/<small>Dex</small> +TP'
     },
     '7': {
-        'name': 'Dex/<small>Str</small>'
+        'name': 'Weapon Damage Dex/<small>Str</small>',
+        'desc': 'Dex/<small>Str</small>'
+    },
+    '9': {
+        'name': 'Attack Damage Dex/<small>Str</small>',
+        'desc': 'Dex/<small>Str</small>'
+    },
+    '11': {
+        'name': 'Attack Damage Dex/<small>Str</small> +TP',
+        'desc': 'Dex/<small>Str</small> +TP'
     },
     '13': {
-        'name': 'Mnd/<small>Int</small>'
+        'name': 'Weapon Damage Mnd/<small>Int</small>',
+        'desc': 'Mnd/<small>Int</small>'
+    },
+    '15': {
+        'name': 'Attack Damage Mnd/<small>Int</small>',
+        'desc': 'Mnd/<small>Int</small>'
+    },
+    '17': {
+        'name': 'Attack Damage Mnd/<small>Int</small> +TP',
+        'desc': 'Mnd/<small>Int</small>'
     },
     '19': {
-        'name': 'Vit/<small>Str</small>'
+        'name': 'Attack Damage Vit/<small>Str</small>',
+        'desc': 'Vit/<small>Str</small> +TP'
+    },
+    '37': {
+        'name': 'Spell Damage',
+        'desc': 'Int/<small>Mnd</small>'
+    },
+    '39': {
+        'name': 'Raw Damage',
+        'desc': 'All stats'
     }
 };
 
-const accuracyFormula = {
+const accuracyScaling = {
     '0': {
-        'name': '—'
+        'name': '—',
+        'desc': '—'
     },
     '1': {
-        'name': 'Melee'
+        'name': 'Melee Attack',
+        'desc': 'Melee'
     },
     '3': {
-        'name': 'Ranged'
+        'name': 'Melee Attack +TP',
+        'desc': 'Melee +TP'
+    },
+    '5': {
+        'name': 'Melee Unarmed',
+        'desc': 'Unarmed M'
     },
     '7': {
-        'name': 'Ranged'
+        'name': 'Ranged Attack',
+        'desc': 'Ranged'
     },
     '9': {
-        'name': 'Melee'
+        'name': 'Ranged Attack +TP',
+        'desc': 'Ranged +TP'
     },
-    '22': {
-        'name': '100%'
+    '11': {
+        'name': 'Ranged Unarmed',
+        'desc': 'Unarmed R'
+    },
+    '13': {
+        'name': '100%',
+        'desc': '100%'
+    },
+    '15': {
+        'name': 'Sneak',
+        'desc': '—'
+    },
+    '21': {
+        'name': 'Projectile Spell',
+        'desc': '—'
+    },
+    '23': {
+        'name': 'Status Spell',
+        'desc': '—'
+    },
+    '25': {
+        'name': 'Illusion Spell',
+        'desc': '—'
+    },
+    '27': {
+        'name': 'Sign Spell',
+        'desc': '—'
+    },
+    '29': {
+        'name': 'Gaze Spell',
+        'desc': '—'
     }
 };
 

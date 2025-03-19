@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (item.skillbonamt >= 8) infoTypeIcon.classList.add('uni'); else infoTypeIcon.classList.remove('uni');
         item.var ? infoGroup.textContent = armorTypes[item.var]['name'] : infoGroup.textContent = '—';
         if ( item.frm ) {
-            infoScaling.innerHTML = scalingFormula[item.frm]['name'];
+            infoScaling.innerHTML = damageScaling[item.frm]['desc'];
             infoScaling.parentNode.classList.remove('hidden');
         } else infoScaling.parentNode.classList.add('hidden');
         if ( item.rntyp ) {
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
             infoAttack.parentNode.classList.remove('hidden');
         } else infoAttack.parentNode.classList.add('hidden');
         if ( item.acc ) {
-            infoAccuracy.textContent = accuracyFormula[item.acc]['name'];
+            infoAccuracy.textContent = accuracyScaling[item.acc]['desc'];
             infoAccuracy.parentNode.classList.remove('hidden');
         } else infoAccuracy.parentNode.classList.add('hidden');
         infoWeight.textContent = item.wght > 120 ? item.wght - 256 : ( item.wght > 0 ? item.wght : '—' );

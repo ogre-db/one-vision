@@ -154,9 +154,9 @@ document.addEventListener('DOMContentLoaded', function() {
         infoTypeIcon.parentNode.classList.remove('oneh', 'twoh');
         infoTypeIcon.parentNode.classList.add(item.hnd === 0 ? 'oneh' : 'twoh');
         if (item.skillbonamt >= 8) infoTypeIcon.classList.add('uni'); else infoTypeIcon.classList.remove('uni');
-        infoScaling.innerHTML = scalingFormula[item.frm]['name'];
+        infoScaling.innerHTML = damageScaling[item.frm]['desc'];
         infoAttack.textContent = attackType[ item.rntyp + (item.proj === 1 ? 10 : 0) + item.arc ]['name'];
-        infoAccuracy.textContent = accuracyFormula[ item.acc ]['name'];
+        infoAccuracy.textContent = accuracyScaling[ item.acc ]['desc'];
         infoWeight.textContent = item.wght > 120 ? item.wght - 256 : ( item.wght > 0 ? item.wght : '—' );
         item.wght > 120 ? infoWeight.classList.add('neg') : infoWeight.classList.remove('neg');
         infoRtCost.textContent = item.rtcost;

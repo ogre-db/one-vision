@@ -402,25 +402,12 @@ function getEffectText (ability, effectSet) {
 
     let effectText = '';
     if (ability[effect1] === 1) {
-        if ( ability[scaling] === 37 )
-            effectText += 'Spell ';
-        else if (ability[scaling] === 39)
-            effectText += 'Raw ';
-        else if ( ability[scaling] <= 19 )
-            effectText += 'Attack ';
-        effectText += 'Damage ';
-        if ( ability[scaling] === 3 || ability[scaling] === 5 )
-            effectText += 'STR/DEX';
-        else if ( ability[scaling] === 9 || ability[scaling] === 11 )
-            effectText += 'DEX/STR';
-        else if ( ability[scaling] === 15 || ability[scaling] === 17 )
-            effectText += 'MND/INT';
-        else if ( ability[scaling] === 19 )
-            effectText += 'VIT/STR';
-        if ( ability.typ >= 22 && ability.typ <= 43 && ability[scaling] >= 1 && ability[scaling] <= 17 )
-            effectText += ' +W.Skill';
-        if ( ability[scaling] === 5 || ability[scaling] === 11 || ability[scaling] === 17 )
-            effectText += ' +TP';
+        if ( ability[scaling] > 0 ) {
+            effectText += damageScaling[ability[scaling]].name;
+            if ( ability.typ >= 22 && ability.typ <= 43 ) effectText += ' +W.Skill';
+        } else {
+            effectText += 'Damage ';
+        }
         if ( ability[formula] === 0 && ability.eff1form === 16 )
             effectText += 'for User\'s MaxHP - CurrentHP if Above 50%, or CurrentHP if Below';
         else if (ability[formula] === 0)
@@ -432,7 +419,7 @@ function getEffectText (ability, effectSet) {
         else if (ability[formula] === 16)
             effectText += 'for MaxHP - CurrentHP';
         else if (ability[power] > 0)
-            effectText += ' +' + (ability[scaling] === 27 ? ability[power] + 40 : ability[power]);
+            effectText += ' +' + ability[power];
     } else if (ability[effect1] === 2) {
         if (ability[scaling] === 1)
             effectText += 'Spell Heal' + (ability[power] > 0 ? ' +' + ability[power] : '');
@@ -450,13 +437,13 @@ function getEffectText (ability, effectSet) {
                 effectText += ability[power];
         }
     } else if (ability[effect1] === 4) {
-        if ( ability[scaling] >= 21 && ability[scaling] <= 27 )
-            effectText += 'Spell ';
-        else if (ability[scaling] === 20)
-            effectText += 'Raw ';
-        else if ( ability[scaling] >= 31 && ability[scaling] <= 37 )
-            effectText += 'Attack ';
-        effectText += 'MP Damage ';
+        if ( ability[scaling] > 0 ) {
+            effectText += damageScaling[ability[scaling]].name;
+            if ( ability.typ >= 22 && ability.typ <= 43 ) effectText += ' +W.Skill';
+        } else {
+            effectText += 'Damage';
+        }
+        effectText += ' to MP ';
         if ( ability[formula] === 17 || ability[formula] === 18 )
             effectText += 'for ' + ability[power] + '% of Current';
         else if (ability[formula] === 16)
@@ -474,19 +461,17 @@ function getEffectText (ability, effectSet) {
         else
             effectText += ability[power];
     } else if (ability[effect1] === 8) {
-        if ( ability[scaling] >= 21 && ability[scaling] <= 27 )
-            effectText += 'Spell ';
-        else if (ability[scaling] === 20)
-            effectText += 'Raw ';
-        else if ( ability[scaling] >= 31 && ability[scaling] <= 37 )
-            effectText += 'Attack ';
-        effectText += 'TP Damage ';
+        if ( ability[scaling] > 0 ) {
+            effectText += damageScaling[ability[scaling]].name;
+            if ( ability.typ >= 22 && ability.typ <= 43 ) effectText += ' +W.Skill';
+        } else {
+            effectText += 'Damage';
+        }
+        effectText += ' to TP ';
         if (ability[formula] === 23)
             effectText += 'for ' + ability[power] + '% of Current';
         else if (ability[formula] === 16)
             effectText += 'for 100% of Max';
-        else if (ability[scaling] === 23)
-            effectText += '+' + ability[power];
         else if (ability[formula] === 5)
             effectText += ability[power] + ' - ' + ability[power] * 1.5;
         else
@@ -537,28 +522,14 @@ function getEffectText (ability, effectSet) {
         restrictText = '—';
 
     let accuracyText = '';
-    if ([2,3].includes(ability[hit1])) {
+    if ([2,3].includes(ability[hit1]) || ability[hit1] === 5 && ability[hit2] > 0) {
         accuracyText = ability[hit2] + '%';
     } else if (ability[hit1] === 4) {
         accuracyText = '100%';
     } else if ([7,8].includes(ability[hit1])) {
         accuracyText = ability[hit2] + '% + 10%/Skill Rank';
-    } else if (ability[accuracy] === 1) {
-        accuracyText = 'Melee Attack';
-    } else if (ability[accuracy] === 3) {
-        accuracyText = 'Projectile Attack';
-    } else if (ability[accuracy] === 5) {
-        accuracyText = 'Gaze Spell';
-    } else if (ability[accuracy] === 7) {
-        accuracyText = 'Projectile Spell';
-    } else if (ability[accuracy] === 9) {
-        accuracyText = 'Forbidden Spell';
-    } else if (ability[accuracy] === 11) {
-        accuracyText = 'Debuff Spell';
-    } else if (ability[accuracy] === 17) {
-        accuracyText = 'Melee Attack + TP';
-    } else if (ability[accuracy] === 19) {
-        accuracyText = 'Projectile Attack + TP';
+    } else if (ability[accuracy] > 0) {
+        accuracyText = accuracyScaling[ability[accuracy]].name;
     } else {
         accuracyText = '—';
     }
