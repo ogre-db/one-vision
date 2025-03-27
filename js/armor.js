@@ -172,16 +172,29 @@ document.addEventListener('DOMContentLoaded', function() {
         item.var ? infoGroup.textContent = armorTypes[item.var]['name'] : infoGroup.textContent = '—';
         if ( item.frm ) {
             infoScaling.innerHTML = damageScaling[item.frm]['desc'];
+            infoScaling.setAttribute('data-tooltip', 'scalingdmg-' + item.frm);
+            infoScaling.setAttribute('data-position', 'bottom');
+            infoScaling.setAttribute('data-size', 'large');
             infoScaling.parentNode.classList.remove('hidden');
-        } else infoScaling.parentNode.classList.add('hidden');
+        } else {
+            infoScaling.parentNode.classList.add('hidden');
+            infoScaling.removeAttribute('data-tooltip');
+        }
         if ( item.rntyp ) {
             infoAttack.textContent = attackType[ item.rntyp + (item.proj === 1 ? 10 : 0) + item.arc ]['name'];
             infoAttack.parentNode.classList.remove('hidden');
         } else infoAttack.parentNode.classList.add('hidden');
         if ( item.acc ) {
-            infoAccuracy.textContent = accuracyScaling[item.acc]['desc'];
+            infoAccuracy.innerHTML = accuracyScaling[item.acc]['desc'];
+            infoAccuracy.setAttribute('data-tooltip', 'scalingacc-' + item.acc);
+            infoAccuracy.setAttribute('data-position', 'bottom');
+            infoAccuracy.setAttribute('data-size', 'large');
             infoAccuracy.parentNode.classList.remove('hidden');
-        } else infoAccuracy.parentNode.classList.add('hidden');
+        } else {
+            infoAccuracy.parentNode.classList.add('hidden');
+            infoAccuracy.removeAttribute('data-tooltip');
+        }
+
         infoWeight.textContent = item.wght > 120 ? item.wght - 256 : ( item.wght > 0 ? item.wght : '—' );
         item.wght > 120 ? infoWeight.classList.add('neg') : infoWeight.classList.remove('neg');
         if ( item.rtcost ) {

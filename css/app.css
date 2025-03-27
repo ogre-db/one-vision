@@ -747,6 +747,7 @@ ol li:before {
   cursor: default;
   font-size: 0.875rem;
   font-weight: normal;
+  z-index: 1;
   width: max-content;
   max-width: 220px;
   bottom: calc(100% + 5px);
@@ -757,6 +758,13 @@ ol li:before {
   border-radius: 6px;
   box-shadow: 1px 1px 4px #5f5854;
   animation: fadeIn ease 250ms;
+}
+[data-tooltip] > .tooltip.large {
+  max-width: 280px;
+}
+[data-tooltip] > .tooltip.bottom {
+  top: calc(100% + 5px);
+  bottom: auto;
 }
 [data-tooltip] > .tooltip:before {
   content: '';
@@ -770,8 +778,18 @@ ol li:before {
   border-bottom-right-radius: 100%;
   box-shadow: 1px 1px 2px #5f5854;
 }
+[data-tooltip] > .tooltip.bottom:before {
+  bottom: calc(100% + 1px);
+  top: auto;
+  border-radius: 100% 100% 0 0;
+  box-shadow: 1px 0 2px #5f5854;
+}
 [data-tooltip] > .tooltip p {
   margin-top: 6px;
+}
+[data-tooltip] > .tooltip b {
+  min-width: auto !important;
+  width: auto !important;
 }
 [data-tooltip][data-tooltip*=obtain] > .tooltip > ul {
   display: flex;
@@ -836,7 +854,7 @@ ol li:before {
   max-width: 370px;
   max-height: 100vh;
   padding: 30px 5px 15px;
-  overflow-y: scroll;
+  overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -1480,19 +1498,21 @@ ol li:before {
   display: flex;
   flex-wrap: wrap;
 }
-#sidePanel.weapons-panel .panel .content .stats-top .basic > div:first-child {
-  width: 55%;
-}
-#sidePanel.weapons-panel .panel .content .stats-top .basic > div:last-child {
-  width: 45%;
-}
 #sidePanel.weapons-panel .panel .content .stats-top .basic span {
   display: inline-block;
   min-width: 75px;
 }
 #sidePanel.weapons-panel .panel .content .stats-top .basic b {
   display: inline-block;
-  min-width: 50px;
+}
+#sidePanel.weapons-panel .panel .content .stats-top .basic > div:first-child {
+  width: 60%;
+}
+#sidePanel.weapons-panel .panel .content .stats-top .basic > div:last-child {
+  width: 40%;
+}
+#sidePanel.weapons-panel .panel .content .stats-top .basic > div:last-child b {
+  min-width: 40px;
 }
 #sidePanel.weapons-panel .panel .content .stats-top .on-hit {
   margin-top: 10px;
@@ -1641,16 +1661,21 @@ ol li:before {
   display: flex;
   flex-wrap: wrap;
 }
-#sidePanel.armor-panel .panel .content .stats-top .basic > div {
-  width: 50%;
-}
 #sidePanel.armor-panel .panel .content .stats-top .basic span {
   display: inline-block;
   min-width: 75px;
 }
 #sidePanel.armor-panel .panel .content .stats-top .basic b {
   display: inline-block;
-  min-width: 50px;
+}
+#sidePanel.armor-panel .panel .content .stats-top .basic > div:first-child {
+  width: 60%;
+}
+#sidePanel.armor-panel .panel .content .stats-top .basic > div:last-child {
+  width: 40%;
+}
+#sidePanel.armor-panel .panel .content .stats-top .basic > div:last-child b {
+  min-width: 40px;
 }
 #sidePanel.armor-panel .panel .content .stats-top .on-hit {
   margin-top: 10px;

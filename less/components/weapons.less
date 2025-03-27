@@ -122,14 +122,6 @@
           display: flex;
           flex-wrap: wrap;
 
-          &>div:first-child {
-            width: 55%;
-          }
-
-          &>div:last-child {
-            width: 45%;
-          }
-
           span {
             display: inline-block;
             min-width: 75px;
@@ -137,7 +129,17 @@
 
           b {
             display: inline-block;
-            min-width: 50px;
+          }
+
+          & > div:first-child {
+            width: 60%;
+          }
+          & > div:last-child {
+            width: 40%;
+
+            b {
+              min-width: 40px;
+            }
           }
         }
 

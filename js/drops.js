@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-console.log(campaign);
+
         listDrops();
 
         async function listDrops() {

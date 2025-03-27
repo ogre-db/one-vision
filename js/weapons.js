@@ -89,7 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 let rt = document.createElement('td');
                     rt.textContent = item.rtcost;
                 let wt = document.createElement('td');
-                    wt.textContent = item.wght;
+                    wt.textContent = item.wght > 120 ? item.wght - 256 : ( item.wght > 0 ? item.wght : '—' );
+                    item.wght > 120 ? wt.classList.add('neg') : wt.classList.remove('neg');
                 let ele = document.createElement('td');
                 if (item.ele > 0) {
                     let eleImg = document.createElement('img');
@@ -155,8 +156,22 @@ document.addEventListener('DOMContentLoaded', function() {
         infoTypeIcon.parentNode.classList.add(item.hnd === 0 ? 'oneh' : 'twoh');
         if (item.skillbonamt >= 8) infoTypeIcon.classList.add('uni'); else infoTypeIcon.classList.remove('uni');
         infoScaling.innerHTML = damageScaling[item.frm]['desc'];
+        if ( item.frm ) {
+            infoScaling.setAttribute('data-tooltip', 'scalingdmg-' + item.frm);
+            infoScaling.setAttribute('data-position', 'bottom');
+            infoScaling.setAttribute('data-size', 'large');
+        } else {
+            infoScaling.removeAttribute('data-tooltip');
+        }
         infoAttack.textContent = attackType[ item.rntyp + (item.proj === 1 ? 10 : 0) + item.arc ]['name'];
-        infoAccuracy.textContent = accuracyScaling[ item.acc ]['desc'];
+        infoAccuracy.innerHTML = accuracyScaling[ item.acc ]['desc'];
+        if ( item.acc ) {
+            infoAccuracy.setAttribute('data-tooltip', 'scalingacc-' + item.acc);
+            infoAccuracy.setAttribute('data-position', 'bottom');
+            infoAccuracy.setAttribute('data-size', 'large');
+        } else {
+            infoAccuracy.removeAttribute('data-tooltip');
+        }
         infoWeight.textContent = item.wght > 120 ? item.wght - 256 : ( item.wght > 0 ? item.wght : '—' );
         item.wght > 120 ? infoWeight.classList.add('neg') : infoWeight.classList.remove('neg');
         infoRtCost.textContent = item.rtcost;

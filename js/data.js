@@ -475,149 +475,6 @@ const armorTypes = {
     }
 };
 
-const damageScaling = {
-    '0': {
-        'name': '—',
-        'desc': '—',
-        'attr': {}
-    },
-    '1': {
-        'name': 'Weapon Damage Str/<small>Dex</small>',
-        'desc': 'Str/<small>Dex</small>',
-        'attack': {
-            'atk': {
-                'wp': 0,
-                'sh': 0,
-                'ar1': 0,
-                'ar2': 0,
-                'jw': 0,
-                'cls': 0
-            },
-            'def': {
-                'wp': 0,
-                'sh': 0,
-                'ar1': 0,
-                'ar2': 0,
-                'jw': 0,
-                'cls': 0
-            },
-            'attr': {
-                'str': 0,
-                'vit': 0,
-                'dex': 0,
-                'int': 0,
-                'mnd': 0,
-                'res': 0
-            }
-        },
-        'defend': {
-        }
-    },
-    '3': {
-        'name': 'Attack Damage Str/<small>Dex</small>',
-        'desc': 'Str/<small>Dex</small>'
-    },
-    '5': {
-        'name': 'Attack Damage Str/<small>Dex</small> +TP',
-        'desc': 'Str/<small>Dex</small> +TP'
-    },
-    '7': {
-        'name': 'Weapon Damage Dex/<small>Str</small>',
-        'desc': 'Dex/<small>Str</small>'
-    },
-    '9': {
-        'name': 'Attack Damage Dex/<small>Str</small>',
-        'desc': 'Dex/<small>Str</small>'
-    },
-    '11': {
-        'name': 'Attack Damage Dex/<small>Str</small> +TP',
-        'desc': 'Dex/<small>Str</small> +TP'
-    },
-    '13': {
-        'name': 'Weapon Damage Mnd/<small>Int</small>',
-        'desc': 'Mnd/<small>Int</small>'
-    },
-    '15': {
-        'name': 'Attack Damage Mnd/<small>Int</small>',
-        'desc': 'Mnd/<small>Int</small>'
-    },
-    '17': {
-        'name': 'Attack Damage Mnd/<small>Int</small> +TP',
-        'desc': 'Mnd/<small>Int</small>'
-    },
-    '19': {
-        'name': 'Attack Damage Vit/<small>Str</small>',
-        'desc': 'Vit/<small>Str</small> +TP'
-    },
-    '37': {
-        'name': 'Spell Damage',
-        'desc': 'Int/<small>Mnd</small>'
-    },
-    '39': {
-        'name': 'Raw Damage',
-        'desc': 'All stats'
-    }
-};
-
-const accuracyScaling = {
-    '0': {
-        'name': '—',
-        'desc': '—'
-    },
-    '1': {
-        'name': 'Melee Attack',
-        'desc': 'Melee'
-    },
-    '3': {
-        'name': 'Melee Attack +TP',
-        'desc': 'Melee +TP'
-    },
-    '5': {
-        'name': 'Melee Unarmed',
-        'desc': 'Unarmed M'
-    },
-    '7': {
-        'name': 'Ranged Attack',
-        'desc': 'Ranged'
-    },
-    '9': {
-        'name': 'Ranged Attack +TP',
-        'desc': 'Ranged +TP'
-    },
-    '11': {
-        'name': 'Ranged Unarmed',
-        'desc': 'Unarmed R'
-    },
-    '13': {
-        'name': '100%',
-        'desc': '100%'
-    },
-    '15': {
-        'name': 'Sneak',
-        'desc': '—'
-    },
-    '21': {
-        'name': 'Projectile Spell',
-        'desc': '—'
-    },
-    '23': {
-        'name': 'Status Spell',
-        'desc': '—'
-    },
-    '25': {
-        'name': 'Illusion Spell',
-        'desc': '—'
-    },
-    '27': {
-        'name': 'Sign Spell',
-        'desc': '—'
-    },
-    '29': {
-        'name': 'Gaze Spell',
-        'desc': '—'
-    }
-};
-
 const attackType = {
     '1': {
         'name': 'Direct'
@@ -842,11 +699,11 @@ const statusEffects = {
         },
         '8': {
             'name': 'Paranoia',
-            'effect': 'Player cannot control the unit, it will run from allies and refuse aid'
+            'effect': 'Player cannot control the unit, it will run from allies and refuse aid<br>Increases Attack and Projectile Spell Evasion by ' + Math.abs(accuracyScaling[1].defend.prnoia) + '%<br>Reduces Spell Evasion by ' + Math.abs(accuracyScaling[21].defend.prnoia) + '%'
         },
         '9': {
             'name': 'Stun',
-            'effect': 'Performing actions will fail 50% of the time (except active skills)<p><small><i>Disables Counterhit, Mind\'s Eye and Preempt</i></small></p>'
+            'effect': 'Performing any action except active skills will fail 50% of the time<br>Reduces Attack and Projectile Spell Evasion by ' + Math.abs(accuracyScaling[1].defend.stn) + '%<p><small><i>Disables Counterhit, Mind\'s Eye and Preempt</i></small></p>'
         },
         '10': {
             'name': 'Silence',
@@ -854,7 +711,7 @@ const statusEffects = {
         },
         '11': {
             'name': 'Petrify',
-            'effect': 'Petrified units cannot move or act on their turn, but take less damage from attacks and spells'
+            'effect': 'Petrified units cannot move or act on their turn<br>Increases Attack and Spell Resistance by ' + Math.abs(damageScaling[1].defend.ptrfy) + '%'
         },
         '12': {
             'name': 'Bind',
@@ -882,7 +739,7 @@ const statusEffects = {
         },
         '18': {
             'name': 'Leaden',
-            'effect': 'Lowers up/down Jump value to 1 and disables Flying</br>Reduces Melee Evasion by 30% and Ranged Evasion by 40%'
+            'effect': 'Lowers up/down Jump value to 1 and disables Flying</br>Reduces Attack and Projectile Spell Evasion by ' + Math.abs(accuracyScaling[1].defend.ldn) + '%'
         },
         '19': {
             'name': 'Wither',
@@ -944,7 +801,7 @@ const statusEffects = {
         },
         '34': {
             'name': 'Pain Aura',
-            'effect': 'Slightly increases damage taken and reflects 40% of it to the attacker'
+            'effect': 'Reduces damage resistance by ' + Math.abs(damageScaling[1].defend.pnra) + '% and reflects a part of damage received to the attacker'
         },
         '35': {
             'name': 'Nullify',
@@ -964,115 +821,115 @@ const statusEffects = {
         },
         '39': {
             'name': 'Strengthen',
-            'effect': 'Increases Attack Damage Bonus by 40%'
+            'effect': 'Increases Attack Damage Bonus by ' + Math.abs(damageScaling[1].attack.strngthn) + '%'
         },
         '40': {
             'name': 'Weaken',
-            'effect': 'Reduces Attack Damage Bonus by 50%'
+            'effect': 'Reduces Attack Damage Bonus by ' + Math.abs(damageScaling[1].attack.wkn) + '%'
         },
         '41': {
             'name': 'Spellcraft',
-            'effect': 'Increases Spell Damage Bonus by 40%'
+            'effect': 'Increases Spell Damage Bonus by ' + Math.abs(damageScaling[37].attack.spllcrft) + '%'
         },
         '42': {
             'name': 'Feeblemind',
-            'effect': 'Reduces Spell Damage Bonus by 50%'
+            'effect': 'Reduces Spell Damage Bonus by ' + Math.abs(damageScaling[37].attack.fblmnd) + '%'
         },
         '43': {
             'name': 'Healcraft',
-            'effect': 'Slightly increases the amount healed by Divine Magic spells<p><small><i>Only works on healing that isn\'t a percentage or fixed amount</i></small></p>'
+            'effect': 'Increases the Spell Healing amount by 25%<p><small><i>Only works on healing that isn\'t a percentage or fixed amount</i></small></p>'
         },
         '44': {
             'name': 'Spoilheal',
-            'effect': 'Slightly reduces the amount healed by Divine Magic spells<p><small><i>Only works on healing that isn\'t a percentage or fixed amount</i></small></p>'
+            'effect': 'Reduces the Spell Healing amount by 35%<p><small><i>Only works on healing that isn\'t a percentage or fixed amount</i></small></p>'
         },
         '45': {
             'name': 'Fortify',
-            'effect': 'Increases Attack Resistance by 40%'
+            'effect': 'Increases Attack Resistance by ' + Math.abs(damageScaling[1].defend.frtfy) + '%'
         },
         '46': {
             'name': 'Breach',
-            'effect': 'Reduces Attack Resistance by 50%'
+            'effect': 'Reduces Attack Resistance by ' + Math.abs(damageScaling[1].defend.brch) + '%'
         },
         '47': {
             'name': 'Resilient',
-            'effect': 'Increases Spell Resistance by 40%'
+            'effect': 'Increases Spell Resistance by ' + Math.abs(damageScaling[37].defend.rslnt) + '%'
         },
         '48': {
             'name': 'Rupture',
-            'effect': 'Reduces Spell Resistance by 50%'
+            'effect': 'Reduces Spell Resistance by ' + Math.abs(damageScaling[37].defend.rptr) + '%'
         },
         '49': {
-            'name': 'Truestrike',
-            'effect': 'Increases Melee Accuracy by 50%'
+            'name': 'Precision',
+            'effect': 'Increases Accuracy by ' + Math.abs(accuracyScaling[1].attack.prcsn) + '%'
         },
         '50': {
-            'name': 'Falsestrike',
-            'effect': 'Reduces Melee Accuracy by 50%'
+            'name': 'Blind',
+            'effect': 'Reduces Accuracy by ' + Math.abs(accuracyScaling[1].attack.blnd) + '%'
         },
         '51': {
-            'name': 'Trueflight',
+            'name': 'REMOVED',
             'effect': 'Increases Ranged Accuracy by 50%'
         },
         '52': {
-            'name': 'Falseflight',
+            'name': 'REMOVED',
             'effect': 'Reduces Ranged Accuracy by 50%'
         },
         '53': {
             'name': 'Spellstrike',
-            'effect': 'Increases Spell Accuracy by 50%'
+            'effect': 'Increases Spell Accuracy by ' + Math.abs(accuracyScaling[21].attack.spllstrk) + '%'
         },
         '54': {
             'name': 'Spellslip',
-            'effect': 'Reduces Spell Accuracy by 50%'
+            'effect': 'Reduces Spell Accuracy by ' + Math.abs(accuracyScaling[21].attack.spllslp) + '%'
         },
         '55': {
             'name': 'Dodge',
-            'effect': 'Increases Melee Evasion by 50%'
+            'effect': 'Increases Evasion by ' + Math.abs(accuracyScaling[1].defend.ddg) + '%'
         },
         '56': {
             'name': 'Stagger',
-            'effect': 'Reduces Melee Evasion by 50%'
+            'effect': 'Reduces Evasion by ' + Math.abs(accuracyScaling[1].defend.stggr) + '%'
         },
         '57': {
-            'name': 'Sidestep',
-            'effect': 'Increases Ranged Evasion by 50%'
+            'name': 'Ward',
+            'effect': 'Increases Spell Evasion by ' + Math.abs(accuracyScaling[21].defend.wrd) + '%'
         },
         '58': {
-            'name': 'Misstep',
-            'effect': 'Reduces Ranged Evasion by 50%'
+            'name': 'Daze',
+            'effect': 'Reduces Spell Evasion by ' + Math.abs(accuracyScaling[21].defend.dzd) + '%'
         },
         '59': {
             'name': 'Air-bringer',
-            'effect': 'Adds 25% of Attack damage dealt as extra Air damage<p><small><i>This damage increases Augment rank, but is unaffected by any elemental bonuses</i></small></p>'
+            'effect': 'Adds 25% of Attack damage dealt as extra Air damage<p><small><i>This damage increases Augment rank, but is unaffected by any bonuses</i></small></p>'
         },
         '60': {
             'name': 'Earth-bringer',
-            'effect': 'Adds 25% of Attack damage dealt as extra Earth damage<p><small><i>This damage increases Augment rank, but is unaffected by any elemental bonuses</i></small></p>'
+            'effect': 'Adds 25% of Attack damage dealt as extra Earth damage<p><small><i>This damage increases Augment rank, but is unaffected by any bonuses</i></small></p>'
         },
         '61': {
             'name': 'Lightning-bringer',
-            'effect': 'Adds 25% of Attack damage dealt as extra Lightning damage<p><small><i>This damage increases Augment rank, but is unaffected by any elemental bonuses</i></small></p>'
+            'effect': 'Adds 25% of Attack damage dealt as extra Lightning damage<p><small><i>This damage increases Augment rank, but is unaffected by any bonuses</i></small></p>'
         },
         '62': {
             'name': 'Water-bringer',
-            'effect': 'Adds 25% of Attack damage dealt as extra Water damage<p><small><i>This damage increases Augment rank, but is unaffected by any elemental bonuses</i></small></p>'
+            'effect': 'Adds 25% of Attack damage dealt as extra Water damage<p><small><i>This damage increases Augment rank, but is unaffected by any bonuses</i></small></p>'
         },
         '63': {
             'name': 'Fire-bringer',
-            'effect': 'Adds 25% of Attack damage dealt as extra Fire damage<p><small><i>This damage increases Augment rank, but is unaffected by any elemental bonuses</i></small></p>'
+            'effect': 'Adds 25% of Attack damage dealt as extra Fire damage<p><small><i>This damage increases Augment rank, but is unaffected by any bonuses</i></small></p>'
         },
         '64': {
             'name': 'Ice-bringer',
-            'effect': 'Adds 25% of Attack damage dealt as extra Ice damage<p><small><i>This damage increases Augment rank, but is unaffected by any elemental bonuses</i></small></p>'
+            'effect': 'Adds 25% of Attack damage dealt as extra Ice damage<p><small><i>This damage increases Augment rank, but is unaffected by any bonuses</i></small></p>'
         },
         '65': {
             'name': 'Light-bringer',
-            'effect': 'Adds 25% of Attack damage dealt as extra Light damage<p><small><i>This damage increases Augment rank, but is unaffected by any elemental bonuses</i></small></p>'
+            'effect': 'Adds 25% of Attack damage dealt as extra Light damage<p><small><i>This damage increases Augment rank, but is unaffected by any bonuses</i></small></p>'
         },
         '66': {
             'name': 'Dark-bringer',
-            'effect': 'Adds 25% of Attack damage dealt as extra Fark damage<p><small><i>This damage increases Augment rank, but is unaffected by any elemental bonuses</i></small></p>'
+            'effect': 'Adds 25% of Attack damage dealt as extra Dark damage<p><small><i>This damage increases Augment rank, but is unaffected by any bonuses</i></small></p>'
         },
         '67': {
             'name': 'Silence-Bringer',
@@ -1088,67 +945,67 @@ const statusEffects = {
         },
         '70': {
             'name': 'Resist Air',
-            'effect': 'Increases Air Resistance by 35%'
+            'effect': 'Increases Air Resistance by ' + Math.abs(damageScaling[1].defend.elres) + '%'
         },
         '71': {
             'name': 'Resist Earth',
-            'effect': 'Increases Earth Resistance by 35%'
+            'effect': 'Increases Earth Resistance by ' + Math.abs(damageScaling[1].defend.elres) + '%'
         },
         '72': {
             'name': 'Resist Lightning',
-            'effect': 'Increases Lightning Resistance by 35%'
+            'effect': 'Increases Lightning Resistance by ' + Math.abs(damageScaling[1].defend.elres) + '%'
         },
         '73': {
             'name': 'Resist Water',
-            'effect': 'Increases Water Resistance by 35%'
+            'effect': 'Increases Water Resistance by ' + Math.abs(damageScaling[1].defend.elres) + '%'
         },
         '74': {
             'name': 'Resist Fire',
-            'effect': 'Increases Fire Resistance by 35%'
+            'effect': 'Increases Fire Resistance by ' + Math.abs(damageScaling[1].defend.elres) + '%'
         },
         '75': {
             'name': 'Resist Ice',
-            'effect': 'Increases Ice Resistance by 35%'
+            'effect': 'Increases Ice Resistance by ' + Math.abs(damageScaling[1].defend.elres) + '%'
         },
         '76': {
             'name': 'Resist Light',
-            'effect': 'Increases Light Resistance by 35%'
+            'effect': 'Increases Light Resistance by ' + Math.abs(damageScaling[1].defend.elres) + '%'
         },
         '77': {
             'name': 'Resist Dark',
-            'effect': 'Increases Dark Resistance by 35%'
+            'effect': 'Increases Dark Resistance by ' + Math.abs(damageScaling[1].defend.elres) + '%'
         },
         '78': {
             'name': 'Air-averse',
-            'effect': 'Reduces Air Resistance by 35%'
+            'effect': 'Reduces Air Resistance by ' + Math.abs(damageScaling[1].defend.elave) + '%'
         },
         '79': {
             'name': 'Earth-averse',
-            'effect': 'Reduces Earth Resistance by 35%'
+            'effect': 'Reduces Earth Resistance by ' + Math.abs(damageScaling[1].defend.elave) + '%'
         },
         '80': {
             'name': 'Lightning-averse',
-            'effect': 'Reduces Lightning Resistance by 35%'
+            'effect': 'Reduces Lightning Resistance by ' + Math.abs(damageScaling[1].defend.elave) + '%'
         },
         '81': {
             'name': 'Water-averse',
-            'effect': 'Reduces Water Resistance by 35%'
+            'effect': 'Reduces Water Resistance by ' + Math.abs(damageScaling[1].defend.elave) + '%'
         },
         '82': {
             'name': 'Fire-averse',
-            'effect': 'Reduces Fire Resistance by 35%'
+            'effect': 'Reduces Fire Resistance by ' + Math.abs(damageScaling[1].defend.elave) + '%'
         },
         '83': {
             'name': 'Ice-averse',
-            'effect': 'Reduces Ice Resistance by 35%'
+            'effect': 'Reduces Ice Resistance by ' + Math.abs(damageScaling[1].defend.elave) + '%'
         },
         '84': {
             'name': 'Light-averse',
-            'effect': 'Reduces Light Resistance by 35%'
+            'effect': 'Reduces Light Resistance by ' + Math.abs(damageScaling[1].defend.elave) + '%'
         },
         '85': {
             'name': 'Dark-averse',
-            'effect': 'Reduces Dark Resistance by 35%'
+            'effect': 'Reduces Dark Resistance by ' + Math.abs(damageScaling[1].defend.elave) + '%'
         }
     },
     '19': {
@@ -1821,7 +1678,7 @@ const skillGroup = {
 
 const skillPassives = {
     'var-w': {
-        'text': 'Adds <b>4 Offense</b> and <b>10% Hit Chance</b> per <b>Rank</b> to <b>[insert1]</b> Attacks and Finishers'
+        'text': 'Adds <b>4 Offense</b> and <b>8% Hit Chance</b> per <b>Rank</b> to <b>[insert1]</b> Attacks and Finishers'
     },
     '1': {
         'insert1': 'Fist'
@@ -1875,7 +1732,7 @@ const skillPassives = {
         'insert1': 'Fusil'
     },
     'var-mr': {
-        'text': 'Adds <b>5 Offense</b> per <b>Rank</b> to any hits delivered against <b>[insert1]</b> units'
+        'text': 'Adds <b>8 Offense</b> per <b>Rank</b> to any hits delivered against <b>[insert1]</b> units'
     },
     '22': {
         'insert1': 'Human'
@@ -1905,7 +1762,7 @@ const skillPassives = {
         'insert1': 'Golem'
     },
     'var-ma': {
-        'text': 'Adds <b>4 Offense/Power</b> per <b>Rank</b> to any <b>[insert1]</b> Element hits | Adds <b>Toughness/Resilience</b> against any incoming <b>[insert2]</b> Element hits by <b>3</b> per <b>Rank</b>'
+        'text': 'Adds <b>6 Offense/Power</b> per <b>Rank</b> to any <b>[insert1]</b> Element hits | Adds <b>6 Toughness/Resilience</b> per <b>Rank</b> against any incoming <b>[insert2]</b> Element hits'
     },
     '31': {
         'insert1': 'Air',

@@ -912,6 +912,7 @@ ol {
     cursor: default;
     font-size: 0.875rem;
     font-weight: normal;
+    z-index: 1;
     width: max-content;
     max-width: 220px;
     bottom: calc(100% + 5px);
@@ -922,6 +923,15 @@ ol {
     border-radius: 6px;
     box-shadow: 1px 1px 4px @background-dark;
     animation: fadeIn ease 250ms;
+
+    &.large {
+      max-width: 280px;
+    }
+
+    &.bottom {
+      top: calc(100% + 5px);
+      bottom: auto;
+    }
 
     &:before {
       content: '';
@@ -936,8 +946,20 @@ ol {
       box-shadow: 1px 1px 2px #5f5854;
     }
 
+    &.bottom:before {
+      bottom: calc(100% + 1px);
+      top: auto;
+      border-radius: 100% 100% 0 0;
+      box-shadow: 1px 0 2px #5f5854;
+    }
+
     p {
       margin-top: 6px;
+    }
+
+    b {
+      min-width: auto !important;
+      width: auto !important;
     }
   }
 
@@ -1025,7 +1047,7 @@ ol {
   max-width: 370px;
   max-height: 100vh;
   padding: 30px 5px 15px;
-  overflow-y: scroll;
+  overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
