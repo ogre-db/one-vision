@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/app.css" type="text/css"/>
     <script src="js/formula.js" type="text/javascript"></script>
     <script src="js/data.js" type="text/javascript"></script>
+    <script src="js/data_functions.js" type="text/javascript"></script>
+    <script src="js/tooltips.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
 </head>
 
@@ -144,15 +146,22 @@
                                             <ul>
                                                 <li>Offense STR<b></b></li>
                                                 <li>Offense DEX<b></b></li>
+                                                <li>Offense MND<b></b></li>
+                                                <li>Offense VIT<b></b></li>
                                                 <li>Toughness<b></b></li>
                                                 <li>Accuracy<b></b></li>
                                                 <li>Evasion<b></b></li>
                                                 <li class="spacer"></li>
                                                 <li>Spell Power<b></b></li>
                                                 <li>Resilience<b></b></li>
-                                                <li>Spell Accuracy<b></b></li>
-                                                <li>Status Spell Evade<b></b></li>
-                                                <li>Projectile Spell Evade<b></b></li>
+                                                <li>Projectile Spell Accuracy<b></b></li>
+                                                <li>Projectile Spell Evasion<b></b></li>
+                                                <li>Status Spell Accuracy<b></b></li>
+                                                <li>Status Spell Evasion<b></b></li>
+                                                <li>Illusion Spell Evasion<b></b></li>
+                                                <li>Gaze Spell Evasion<b></b></li>
+                                                <li>Sign Spell Accuracy<b></b></li>
+                                                <li>Sign Spell Evasion<b></b></li>
                                             </ul>
                                         </div>
                                     </li>
@@ -246,17 +255,24 @@
                                         <div>
                                             <div>
                                                 <ul>
-                                                    <li>Offense STR</li>
-                                                    <li>Offense DEX</li>
-                                                    <li>Toughness</li>
-                                                    <li>Accuracy</li>
-                                                    <li>Evasion</li>
+                                                    <li>Offense STR<b></b></li>
+                                                    <li>Offense DEX<b></b></li>
+                                                    <li>Offense MND<b></b></li>
+                                                    <li>Offense VIT<b></b></li>
+                                                    <li>Toughness<b></b></li>
+                                                    <li>Accuracy<b></b></li>
+                                                    <li>Evasion<b></b></li>
                                                     <li class="spacer"></li>
                                                     <li>Spell Power<b></b></li>
                                                     <li>Resilience<b></b></li>
-                                                    <li>Spell Acc<b></b></li>
-                                                    <li>Status Sp. Eva<b></b></li>
-                                                    <li>Proj. Sp. Eva<b></b></li>
+                                                    <li>Proj. Spell Acc<b></b></li>
+                                                    <li>Proj. Spell Eva<b></b></li>
+                                                    <li>Status Acc<b></b></li>
+                                                    <li>Status Eva<b></b></li>
+                                                    <li>Illusion Eva<b></b></li>
+                                                    <li>Gaze Eva<b></b></li>
+                                                    <li>Sign Accuracy<b></b></li>
+                                                    <li>Sign Evasion<b></b></li>
                                                 </ul>
                                             </div>
                                             <div>
@@ -266,7 +282,14 @@
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
                                                     <li class="spacer"></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
@@ -281,7 +304,14 @@
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
                                                     <li class="spacer"></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
@@ -296,7 +326,14 @@
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
                                                     <li class="spacer"></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
@@ -311,7 +348,14 @@
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
                                                     <li class="spacer"></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
+                                                    <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
                                                     <li><b>—</b></li>
@@ -363,7 +407,7 @@
         </div>
     </div>
 
-<script src="js/characters.js" type="text/javascript"></script>
+<script src="js/page/characters.js" type="text/javascript"></script>
 
 </body>
 </html>

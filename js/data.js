@@ -1,6 +1,3 @@
-const tooltips = {
-
-};
 
 const elements = {
     '0': {
@@ -2152,3 +2149,91 @@ const movementPerk = {
     '8': 'Swim',
     '10': 'Lava'
 };
+
+const derivedStatList = {
+    1: {
+        formula: 'damage',
+        formulaId: 1,
+        side: 'attack'
+    },
+    2: {
+        formula: 'damage',
+        formulaId: 7,
+        side: 'attack'
+    },
+    3: {
+        formula: 'damage',
+        formulaId: 13,
+        side: 'attack'
+    },
+    4: {
+        formula: 'damage',
+        formulaId: 19,
+        side: 'attack'
+    },
+    5: {
+        formula: 'damage',
+        formulaId: 1,
+        side: 'defend'
+    },
+    6: {
+        formula: 'accuracy',
+        formulaId: 1,
+        side: 'attack'
+    },
+    7: {
+        formula: 'accuracy',
+        formulaId: 1,
+        side: 'defend'
+    },
+    8: {
+        formula: 'damage',
+        formulaId: 37,
+        side: 'attack'
+    },
+    9: {
+        formula: 'damage',
+        formulaId: 37,
+        side: 'defend'
+    },
+    10: {
+        formula: 'accuracy',
+        formulaId: 21,
+        side: 'attack'
+    },
+    11: {
+        formula: 'accuracy',
+        formulaId: 21,
+        side: 'defend'
+    },
+    12: {
+        formula: 'accuracy',
+        formulaId: 23,
+        side: 'attack'
+    },
+    13: {
+        formula: 'accuracy',
+        formulaId: 23,
+        side: 'defend'
+    },
+    14: {
+        formula: 'accuracy',
+        formulaId: 25,
+        side: 'defend'
+    },
+    15: {
+        formula: 'accuracy',
+        formulaId: 29,
+        side: 'defend'
+    },
+    16: {
+        formula: 'accuracy',
+        formulaId: 27,
+        side: 'attack'
+    },
+    17: {
+        formula: 'accuracy',
+        formulaId: 27,
+        side: 'defend'
+    }
+}
