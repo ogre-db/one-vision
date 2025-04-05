@@ -228,12 +228,14 @@ function getEffectText (ability, effectSet) {
             effectText += 'Damage';
         }
         effectText += ' to MP ';
-        if ( ability[formula] === 17 || ability[formula] === 18 )
+        if (ability[formula] === 5)
+            effectText += 'for ' + ability[power] + ' - ' + ability[power] * 1.5;
+        else if ( ability[formula] === 17 || ability[formula] === 18 )
             effectText += 'for ' + ability[power] + '% of Current';
         else if (ability[formula] === 16)
             effectText += 'for 100% of Max';
         else if (ability[power] > 0)
-            effectText += '+' + ability[power];
+            effectText += 'for ' + ability[power];
     } else if (ability[effect1] === 5) {
         effectText += 'Charge MP ';
         if (ability[formula] === 21 )
@@ -278,7 +280,10 @@ function getEffectText (ability, effectSet) {
         else
             effectText += ability[power];
     } else if (ability[effect1] === 12) {
-        effectText += 'Delay RT by ' + ability[power];
+        effectText += 'Delay RT by ';
+        if (ability[formula] === 5)
+            effectText += ability[power] + ' - ' + ability[power] * 1.5;
+        else effectText += ability[power];
     } else if (ability[effect1] === 18) {
         let duration = '';
         if (ability[formula] === 6)
