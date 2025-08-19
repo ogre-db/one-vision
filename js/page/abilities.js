@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     classImg.classList.add('ban');
                 }
                 if ( item.typvar )
+                    console.log(item);
                     classImg.src = abilityType[item.typ + item.typvar].icon;
                 type.appendChild(classImg);
                 let name = document.createElement('td');

@@ -427,8 +427,8 @@ const damageScaling = {
         }
     },
     '13': {
-        'name': 'Weapon Damage Mnd/<small>Int</small>',
-        'desc': 'Mnd/<small>Int</small>',
+        'name': 'Weapon Damage <small>Dex/Mnd/Int</small>',
+        'desc': '<small>Dex/Mnd/Int</small>',
         'attack': {
             "wpatk": 1,
             "shatk": 0,
@@ -442,16 +442,16 @@ const damageScaling = {
             "clsdef": 0,
             "str": 0,
             "vit": 0,
-            "dex": 0,
+            "dex": 0.6,
             "int": 0.6,
-            "mnd": 1.2,
+            "mnd": 0.6,
             "res": 0,
             "wskl": 4,
             "aug": 6,
             "rac": 8,
             "ptrfy": 0,
-            "strngthn": 0,
-            "wkn": 0,
+            "strngthn": 20,
+            "wkn": -30,
             "spllcrft": 20,
             "fblmnd": -30,
             "frtfy": 0,
@@ -497,8 +497,8 @@ const damageScaling = {
         }
     },
     '15': {
-        'name': 'Attack Damage Mnd/<small>Int</small>',
-        'desc': 'Mnd/<small>Int</small>',
+        'name': 'Attack Damage <small>Dex/Mnd/Int</small>',
+        'desc': '<small>Dex/Mnd/Int</small>',
         'attack': {
             "wpatk": 1,
             "shatk": 0,
@@ -512,16 +512,16 @@ const damageScaling = {
             "clsdef": 0,
             "str": 0,
             "vit": 0,
-            "dex": 0,
+            "dex": 0.6,
             "int": 0.6,
-            "mnd": 1.2,
+            "mnd": 0.6,
             "res": 0,
             "wskl": 4,
             "aug": 6,
             "rac": 8,
             "ptrfy": 0,
-            "strngthn": 0,
-            "wkn": 0,
+            "strngthn": 20,
+            "wkn": -30,
             "spllcrft": 20,
             "fblmnd": -30,
             "frtfy": 0,
@@ -567,8 +567,8 @@ const damageScaling = {
         }
     },
     '17': {
-        'name': 'Attack Damage Mnd/<small>Int</small> +TP',
-        'desc': 'Mnd/<small>Int</small>',
+        'name': 'Attack Damage <small>Dex/Mnd/Int</small> +TP',
+        'desc': '<small>Dex/Mnd/Int</small>',
         'attack': {
             "wpatk": 1,
             "shatk": 0,
@@ -582,16 +582,16 @@ const damageScaling = {
             "clsdef": 0,
             "str": 0,
             "vit": 0,
-            "dex": 0,
+            "dex": 0.6,
             "int": 0.6,
-            "mnd": 1.2,
+            "mnd": 0.6,
             "res": 0,
             "wskl": 4,
             "aug": 6,
             "rac": 8,
             "ptrfy": 0,
-            "strngthn": 0,
-            "wkn": 0,
+            "strngthn": 20,
+            "wkn": -30,
             "spllcrft": 20,
             "fblmnd": -30,
             "frtfy": 0,
@@ -704,6 +704,76 @@ const damageScaling = {
             "pnra": -20,
             "elres": 80,
             "elave": -30
+        }
+    },
+    '35': {
+        'name': 'Nominal Damage',
+        'desc': '1 Dmg',
+        'attack': {
+            "wpatk": 0,
+            "shatk": 0,
+            "aratk": 0,
+            "jwatk": 0,
+            "clsatk": 0,
+            "wpdef": 0,
+            "shdef": 0,
+            "ardef": 0,
+            "jwdef": 0,
+            "clsdef": 0,
+            "str": 0,
+            "vit": 0,
+            "dex": 0,
+            "int": 0,
+            "mnd": 0,
+            "res": 0,
+            "wskl": 0,
+            "aug": 0,
+            "rac": 0,
+            "ptrfy": 0,
+            "strngthn": 0,
+            "wkn": 0,
+            "spllcrft": 0,
+            "fblmnd": 0,
+            "frtfy": 0,
+            "brch": 0,
+            "rslnt": 0,
+            "rptr": 0,
+            "pnra": 0,
+            "elres": 0,
+            "elave": 0
+        },
+        'defend': {
+            "wpatk": 0,
+            "shatk": 0,
+            "aratk": 0,
+            "jwatk": 0,
+            "clsatk": 0,
+            "wpdef": 0,
+            "shdef": 0,
+            "ardef": 0,
+            "jwdef": 0,
+            "clsdef": 0,
+            "str": 0,
+            "vit": 0,
+            "dex": 0,
+            "int": 0,
+            "mnd": 0,
+            "res": 0,
+            "wskl": 0,
+            "aug": 0,
+            "rac": 0,
+            "ptrfy": 0,
+            "strngthn": 0,
+            "wkn": 0,
+            "spllcrft": 0,
+            "fblmnd": 0,
+            "frtfy": 0,
+            "brch": 0,
+            "rslnt": 0,
+            "rptr": 0,
+            "pnra": 0,
+            "elres": 0,
+            "elave": 0
         }
     },
     '37': {
@@ -875,7 +945,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 20,
+            "side": 40,
+            "back": 60
         },
         'defend': {
             "dex": 0.6,
@@ -894,7 +967,10 @@ const accuracyScaling = {
             "ddg": 30,
             "stggr": -40,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '3': {
@@ -917,7 +993,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 20,
+            "side": 40,
+            "back": 60
         },
         'defend': {
             "dex": 0.6,
@@ -936,7 +1015,10 @@ const accuracyScaling = {
             "ddg": 30,
             "stggr": -40,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '5': {
@@ -959,7 +1041,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 20,
+            "side": 40,
+            "back": 60
         },
         'defend': {
             "dex": 0.6,
@@ -978,7 +1063,10 @@ const accuracyScaling = {
             "ddg": 30,
             "stggr": -40,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '7': {
@@ -1001,7 +1089,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 20,
+            "side": 40,
+            "back": 60
         },
         'defend': {
             "dex": 0.6,
@@ -1020,7 +1111,10 @@ const accuracyScaling = {
             "ddg": 30,
             "stggr": -40,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '9': {
@@ -1043,7 +1137,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 20,
+            "side": 40,
+            "back": 60
         },
         'defend': {
             "dex": 0.6,
@@ -1062,7 +1159,10 @@ const accuracyScaling = {
             "ddg": 30,
             "stggr": -40,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '11': {
@@ -1085,7 +1185,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 20,
+            "side": 40,
+            "back": 60
         },
         'defend': {
             "dex": 0.6,
@@ -1104,17 +1207,20 @@ const accuracyScaling = {
             "ddg": 30,
             "stggr": -40,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '13': {
         'name': '100%',
         'desc': '100%',
         'attack': {
-            "dex": 0.6,
-            "agi": 0.6,
-            "int": 0.6,
-            "mnd": 0.6,
+            "dex": 1,
+            "agi": 1,
+            "int": 1,
+            "mnd": 1,
             "avd": 0,
             "wskl": 0,
             "prnoia": 0,
@@ -1127,7 +1233,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         },
         'defend': {
             "dex": 0,
@@ -1146,17 +1255,20 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '15': {
-        'name': 'Sneak',
-        'desc': '—',
+        'name': 'Flank',
+        'desc': '-',
         'attack': {
-            "dex": 0.6,
-            "agi": 0.6,
-            "int": 0.6,
-            "mnd": 0.6,
+            "dex": 1,
+            "agi": 1,
+            "int": 1,
+            "mnd": 1,
             "avd": 0,
             "wskl": 0,
             "prnoia": 0,
@@ -1169,7 +1281,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": -100,
+            "side": -100,
+            "back": 0
         },
         'defend': {
             "dex": 0,
@@ -1188,7 +1303,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '21': {
@@ -1211,7 +1329,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 20,
+            "side": 40,
+            "back": 60
         },
         'defend': {
             "dex": 0,
@@ -1230,7 +1351,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 30,
-            "dzd": -40
+            "dzd": -40,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '23': {
@@ -1253,7 +1377,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         },
         'defend': {
             "dex": 0,
@@ -1272,7 +1399,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 30,
-            "dzd": -40
+            "dzd": -40,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '25': {
@@ -1295,7 +1425,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         },
         'defend': {
             "dex": 0,
@@ -1314,7 +1447,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 30,
-            "dzd": -40
+            "dzd": -40,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '27': {
@@ -1337,7 +1473,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         },
         'defend': {
             "dex": 0,
@@ -1356,7 +1495,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 30,
-            "dzd": -40
+            "dzd": -40,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     },
     '29': {
@@ -1379,7 +1521,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 0,
-            "dzd": 0
+            "dzd": 0,
+            "frnt": 0,
+            "side": -50,
+            "back": -100
         },
         'defend': {
             "dex": 0,
@@ -1398,7 +1543,10 @@ const accuracyScaling = {
             "ddg": 0,
             "stggr": 0,
             "wrd": 30,
-            "dzd": -40
+            "dzd": -40,
+            "frnt": 0,
+            "side": 0,
+            "back": 0
         }
     }
 };

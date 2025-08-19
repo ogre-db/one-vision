@@ -3790,6 +3790,22 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             'id': 43,
             'name': 'Arycelle'
+        },
+        {
+            'id': 44,
+            'name': 'Voltare'
+        },
+        {
+            'id': 45,
+            'name': 'Sara'
+        },
+        {
+            'id': 46,
+            'name': 'Bayin'
+        },
+        {
+            'id': 47,
+            'name': 'Phaesta'
         }
     ];
 
@@ -4016,7 +4032,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             'id': 67,
-            'name': 'Blade Knight'
+            'name': 'Sword Saint'
         },
         {
             'id': 68,

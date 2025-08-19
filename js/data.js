@@ -1412,6 +1412,10 @@ const abilityType = {
         'name': 'Draconic Magic',
         'icon': 'img/icons/ability-draconic.png'
     },
+    '9s': {
+        'name': 'Draconic Magic',
+        'icon': 'img/icons/ability-draconic.png'
+    },
     '10': {
         'name': 'Necromancy',
         'icon': 'img/icons/ability-necromancy.png'
@@ -1675,7 +1679,7 @@ const skillGroup = {
 
 const skillPassives = {
     'var-w': {
-        'text': 'Adds <b>4 Offense</b> and <b>8% Hit Chance</b> per <b>Rank</b> to <b>[insert1]</b> Attacks and Finishers'
+        'text': 'Adds <b>' + damageScaling[1].attack.wskl + ' Offense</b> and <b>' + accuracyScaling[1].attack.wskl +'% Hit Chance</b> per <b>Rank</b> to <b>[insert1]</b> Attacks and Finishers'
     },
     '1': {
         'insert1': 'Fist'
@@ -1729,7 +1733,7 @@ const skillPassives = {
         'insert1': 'Fusil'
     },
     'var-mr': {
-        'text': 'Adds <b>8 Offense</b> per <b>Rank</b> to any hits delivered against <b>[insert1]</b> units'
+        'text': 'Adds <b>' + damageScaling[1].attack.rac + ' Offense</b> per <b>Rank</b> to any hits delivered against <b>[insert1]</b> units'
     },
     '22': {
         'insert1': 'Human'
@@ -1759,7 +1763,7 @@ const skillPassives = {
         'insert1': 'Golem'
     },
     'var-ma': {
-        'text': 'Adds <b>6 Offense/Power</b> per <b>Rank</b> to any <b>[insert1]</b> Element hits | Adds <b>6 Toughness/Resilience</b> per <b>Rank</b> against any incoming <b>[insert2]</b> Element hits'
+        'text': 'Adds <b>' + damageScaling[1].attack.aug + ' Offense/Power</b> per <b>Rank</b> to any <b>[insert1]</b> Element hits | Adds <b>' + damageScaling[1].defend.aug + ' Toughness/Resilience</b> per <b>Rank</b> against any incoming <b>[insert2]</b> Element hits'
     },
     '31': {
         'insert1': 'Air',
@@ -1880,19 +1884,19 @@ const skillPassives = {
         'insert1': '100'
     },
     '96': {
-        'text': 'Adds 25% to <b>Attack Damage Bonus</b>'
+        'text': 'Adds <b>25%</b> to <b>Attack Damage Bonus</b>'
     },
     '102': {
-        'text': 'Adds 50% to <b>Attack Damage Resistance</b>'
+        'text': 'Adds <b>50%</b> to <b>Attack Damage Resistance</b>'
     },
     '111': {
-        'text': 'Adds 25% to <b>Spell Damage Resistance</b>'
+        'text': 'Adds <b>25%</b> to <b>Spell Damage Resistance</b>'
     },
     '112': {
-        'text': 'Adds 50% to <b>Spell Damage Resistance</b>'
+        'text': 'Adds <b>50%</b> to <b>Spell Damage Resistance</b>'
     },
     '117': {
-        'text': 'Adds 50% to <b>Melee Attack Hit Chance</b>'
+        'text': 'Adds <b>50%</b> to <b>Melee Attack Hit Chance</b>'
     },
     '141': {
         'text': 'Adds <b>25%</b> to <b>Status Spell Evasion</b>'
