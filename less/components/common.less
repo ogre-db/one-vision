@@ -780,6 +780,24 @@ ol {
           border-color: @color-red;
           box-shadow: 0 0 2px @color-red;
         }
+        &[class*=set-] {
+          border-right-width: 2px;
+        }
+        &.set-yellow {
+          border-right-color: yellow;
+        }
+        &.set-black {
+          border-right-color: #000;
+        }
+        &.set-purple {
+          border-right-color: @color-purple;
+        }
+        &.set-green {
+          border-right-color: @color-green;
+        }
+        &.set-red {
+          border-right-color: @color-red;
+        }
       }
     }
     th:last-child, td:last-child {
@@ -789,6 +807,18 @@ ol {
 
     th {
       font-size: 0.75rem;
+    }
+
+    .set-badge {
+      display: inline-block;
+      color: #fff;
+      line-height: 10px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid @color-green;
+      margin-left: 4px;
+      vertical-align: baseline;
     }
 
     @media only screen and (min-width: 480px) {
@@ -875,7 +905,7 @@ ol {
   }
 }
 
-[data-tooltip] {
+[data-tooltip]:not(.disabled) {
   position: relative;
   cursor: pointer;
 
@@ -906,6 +936,7 @@ ol {
   }
 
   >.tooltip {
+    display: none;
     position: absolute;
     background-color: lighten(@background-card, 5%);
     color: @text-dark;
@@ -960,6 +991,11 @@ ol {
     b {
       min-width: auto !important;
       width: auto !important;
+      margin-left: 0 !important;
+    }
+
+    .acc-facing {
+      min-width: 40px;
     }
   }
 

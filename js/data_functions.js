@@ -183,7 +183,7 @@ function getEffectText (ability, effectSet) {
                 `" data-position="bottom" data-size="large">` +
                 damageScaling[ability[scaling]].name +
                 `</span>`;
-            if ( ability.typ >= 22 && ability.typ <= 43 ) effectText += ' +W.Skill';
+            if ( ability.typ >= 22 && ability.typ <= 43 && ability[scaling] <= 17 ) effectText += ' +W.Skill';
         } else {
             effectText += 'Damage ';
         }
@@ -193,6 +193,8 @@ function getEffectText (ability, effectSet) {
             effectText += 'for the Amount of Main';
         else if (ability[formula] === 1)
             effectText += 'for the Amount of Previous';
+        else if (ability[formula] === 9)
+            effectText += 'for ' + ability[power] + '% of Max HP';
         else if (ability[formula] === 10)
             effectText += 'for ' + ability[power] + '% of Current HP';
         else if (ability[formula] === 16)
@@ -223,7 +225,7 @@ function getEffectText (ability, effectSet) {
                 `" data-position="bottom" data-size="large">` +
                 damageScaling[ability[scaling]].name +
                 `</span>`;
-            if ( ability.typ >= 22 && ability.typ <= 43 ) effectText += ' +W.Skill';
+            if ( ability.typ >= 22 && ability.typ <= 43 && ability.scaling <= 17 ) effectText += ' +W.Skill';
         } else {
             effectText += 'Damage';
         }
@@ -254,7 +256,7 @@ function getEffectText (ability, effectSet) {
                 `" data-position="bottom" data-size="large">` +
                 damageScaling[ability[scaling]].name +
                 `</span>`;
-            if ( ability.typ >= 22 && ability.typ <= 43 ) effectText += ' +W.Skill';
+            if ( ability.typ >= 22 && ability.typ <= 43 && ability.scaling <= 17 ) effectText += ' +W.Skill';
         } else {
             effectText += 'Damage';
         }
@@ -269,6 +271,8 @@ function getEffectText (ability, effectSet) {
             effectText += ability[power];
     } else if (ability[effect1] === 9) {
         effectText += 'Charge TP ';
+        if (ability[formula] === 9)
+            effectText += 'for ' + ability[power] + '% of Max HP';
         if (ability[formula] === 10)
             effectText += 'for ' + ability[power] + '% of Current HP';
         if (ability[formula] === 23)

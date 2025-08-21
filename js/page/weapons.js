@@ -79,6 +79,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     let classImg = document.createElement('img');
                         classImg.src = (item.hnd === 1 || (item.typ === 177 && item.wght > 2)) ? itemTypes[item.typ + innate]['icon2'] : itemTypes[item.typ + innate]['icon1'];
                         if (item.skillbonamt >= 8) classImg.classList.add('uni');
+                        if (item.set) {
+                            let itemSet = itemSets.find((row) => row['id'] === item.set);
+                            classImg.classList.add('set-' + itemSet.color);
+                        }
                     type.appendChild(classImg);
                 let name = document.createElement('td');
                     name.textContent = item.name;

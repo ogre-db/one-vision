@@ -161,7 +161,17 @@ function swapEffectRemove ( panel, content ) {
     }
 }
 
+function fadeIn (element) {
+    element.style.display = 'block'
+    element.style.animation = 'fadeIn ease 250ms';
+}
+
 function fadeOut (element) {
+    element.style.animation = 'fadeOut 250ms forwards ease';
+    setTimeout(() => element.style.display = 'none', 250);
+}
+
+function fadeOutRemove (element) {
     element.style.animation = 'fadeOut 250ms forwards ease';
     setTimeout(() => element.remove(), 250);
 }

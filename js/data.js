@@ -500,37 +500,47 @@ const itemSets = [
     {
         'id': 1,
         'name': 'Legion',
+        'short': 'LG',
         'active': 0,
         'passive': 190,
-        'description': '<b>Effect:</b><br/><small><i>(wear at least 3 set items)</i></small><br/><p>Wearer will not be directly attacked by enemies, unless they\'re the last standing unit on the field</p>'
+        'description': '<b>Effect:</b><br/><small><i>(wear at least 3 set items)</i></small><br/><p>Wearer will not be directly attacked by enemies, unless they\'re the last standing unit on the field</p>',
+        'color': 'yellow'
     },
     {
         'id': 2,
         'name': 'Ogre',
+        'short': 'OG',
         'active': 0,
         'passive': 195,
-        'description': '<b>Effect:</b><br/><small><i>(wear at least 3 set items)</i></small><br/><p>Wearer gains a 1.2x multiplier to <b>Offense</b> and <b>Spell Power</b>, as well as a 1.5x multiplier to <b>Toughness</b> and <b>Resilience</b></p>'
+        'description': '<b>Effect:</b><br/><small><i>(wear at least 3 set items)</i></small><br/><p>Wearer gains a 1.2x multiplier to <b>Offense</b> and <b>Spell Power</b>, as well as a 1.5x multiplier to <b>Toughness</b> and <b>Resilience</b></p>',
+        'color': 'black'
     },
     {
         'id': 3,
         'name': 'Shadowmaster',
+        'short': 'SM',
         'active': 277,
         'passive': 0,
-        'description': '<b>Effect:</b><br/><small><i>(wear at least 3 set items)</i></small><br/><p>Wearer gains the use of <b>Evil Deeds</b> active skill</p>'
+        'description': '<b>Effect:</b><br/><small><i>(wear at least 3 set items)</i></small><br/><p>Wearer gains the use of <b>Evil Deeds</b> active skill</p>',
+        'color': 'purple'
     },
     {
         'id': 4,
         'name': "Sniper",
+        'short': 'SP',
         'active': 0,
         'passive': 200,
-        'description': '<b>Effect:</b><br/><small><i>(wear at least 3 set items)</i></small><br/><p>Wearer gains a 1.3x multiplier to <b>ranged offense</b></p>'
+        'description': '<b>Effect:</b><br/><small><i>(wear at least 3 set items)</i></small><br/><p>Wearer gains a 1.3x multiplier to <b>ranged offense</b></p>',
+        'color': 'green'
     },
     {
         'id': 5,
         'name': 'Dragonslayer',
+        'short': 'DS',
         'active': 312,
         'passive': 0,
-        'description': '<b>Effect:</b><br/><small><i>(wear at least 3 set items)</i></small><br/><p>Wearer gains the use of <b>Dragonslayer</b> active skill</p>'
+        'description': '<b>Effect:</b><br/><small><i>(wear at least 3 set items)</i></small><br/><p>Wearer gains the use of <b>Dragonslayer</b> active skill</p>',
+        'color': 'red'
     }
 ];
 
