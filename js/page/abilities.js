@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     classImg.classList.remove('uni');
                     classImg.classList.add('ban');
                 }
-                if ( item.typvar )
-                    classImg.src = abilityType[item.typ + item.typvar].icon;
+                if ( item.var )
+                    classImg.src = abilityType[item.typ + item.var].icon;
                 type.appendChild(classImg);
                 let name = document.createElement('td');
                 name.textContent = item.name;
@@ -180,9 +180,9 @@ document.addEventListener('DOMContentLoaded', function() {
         infoTitle.textContent = item.name;
         let typeIcon = abilityType[item.typ].icon;
         let abilityGroup = abilityType[item.typ].name;
-        if ( item.typvar ) {
-            typeIcon = abilityType[item.typ + item.typvar].icon;
-            abilityGroup = abilityType[item.typ + item.typvar].name;
+        if ( item.var ) {
+            typeIcon = abilityType[item.typ + item.var].icon;
+            abilityGroup = abilityType[item.typ + item.var].name;
         }
         infoType.textContent = abilityGroup;
         infoTypeIcon.src = typeIcon;
@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     infoGear.innerHTML = '<b>Equipment</b>';
                 infoUsablesArmor.forEach((arm) => {
                     let gear = document.createElement('li');
-                    gear.innerHTML = '<img src="' + (arm.var ? itemTypes[arm.typ]['icon' + arm.var] : itemTypes[arm.typ]['icon']) + '">';
+                    gear.innerHTML = '<img src="' + (arm.cat ? itemTypes[arm.typ]['icon' + arm.cat] : itemTypes[arm.typ]['icon']) + '">';
                     gear.innerHTML += '<span>' + arm.name + '</span><b>' + arm.abltyuse + ' <small>use' + (arm.abltyuse > 1 ? 's' : '') + '</small></b>';
                     infoGear.appendChild(gear);
                 });

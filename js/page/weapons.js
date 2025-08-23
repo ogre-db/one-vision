@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return {name: item.name, icon: item.hnd === 1 ? itemTypes[item.typ].icon2 : itemTypes[item.typ].icon1};
             });
             setPieces = setPieces.concat(armor.filter((rows) => (rows['set'] === item.set )).map(item => {
-                return {name: item.name, icon: item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon']};
+                return {name: item.name, icon: item.cat ? itemTypes[item.cat]['icon' + item.cat] : itemTypes[item.typ]['icon']};
             }));
             infoSet.querySelector('b').setAttribute('data-setpieces', JSON.stringify(setPieces) );
             infoSet.classList.remove('hidden');

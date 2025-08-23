@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         item.unique === 1 ? sidePanel.classList.add('uni') : sidePanel.classList.remove('uni');
         infoTitle.textContent = item.name;
         infoType.textContent = itemTypes[item.typ]['name'];
-        infoTypeIcon.src = item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon'];
+        infoTypeIcon.src = item.cat ? itemTypes[item.typ]['icon' + item.cat] : itemTypes[item.typ]['icon'];
         if ( item.typ === 35 ) {
             infoTypeIcon.classList.value = '';
             let job = jobs.find((row) => row['mark'] === item.id);
@@ -256,9 +256,9 @@ document.addEventListener('DOMContentLoaded', function() {
             infoEffect.querySelector('.name b').innerText = ability.name;
             let typeIcon = abilityType[ability.typ].icon;
             let abilityGroup = abilityType[ability.typ].name;
-            if ( ability.typvar ) {
-                typeIcon = abilityType[ability.typ + ability.typvar].icon;
-                abilityGroup = abilityType[ability.typ + ability.typvar].name;
+            if ( ability.var ) {
+                typeIcon = abilityType[ability.typ + ability.var].icon;
+                abilityGroup = abilityType[ability.typ + ability.var].name;
             }
             infoEffect.querySelector('.type img').src = typeIcon;
             infoEffect.querySelector('.type b').innerText = abilityGroup;

@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // let total = items.length;
         items.forEach( (item, index) => {
-            if ( index === 0 || ( item.typvar && skillType[item.typ + item.typvar]['name'] !== categoryName)
-                    || ( !item.typvar && skillType[item.typ]['name'] !== categoryName) ) {
-                if ( item.typvar )
-                    categoryName = skillType[item.typ + item.typvar]['name'];
+            if ( index === 0 || ( item.var && skillType[item.typ + item.var]['name'] !== categoryName)
+                    || ( !item.var && skillType[item.typ]['name'] !== categoryName) ) {
+                if ( item.var )
+                    categoryName = skillType[item.typ + item.var]['name'];
                 else
                     categoryName = skillType[item.typ]['name'];
                 let tr = document.createElement('tr');
@@ -145,8 +145,8 @@ document.addEventListener('DOMContentLoaded', function() {
             infoTypeIcon.classList.add('ban');
         else
             infoTypeIcon.classList.remove('ban');
-        if (item.typvar)
-            abilityGroup = skillType[item.typ + item.typvar].name;
+        if (item.var)
+            abilityGroup = skillType[item.typ + item.var].name;
         infoType.textContent = abilityGroup;
         infoTypeIcon.src = typeIcon;
 
@@ -171,9 +171,9 @@ document.addEventListener('DOMContentLoaded', function() {
             infoEffect.querySelector('.name b').innerText = ability.name;
             let typeIcon = abilityType[ability.typ].icon;
             let abilityGroup = abilityType[ability.typ].name;
-            if (ability.typvar) {
-                typeIcon = abilityType[ability.typ + ability.typvar].icon;
-                abilityGroup = abilityType[ability.typ + ability.typvar].name;
+            if (ability.var) {
+                typeIcon = abilityType[ability.typ + ability.var].icon;
+                abilityGroup = abilityType[ability.typ + ability.var].name;
             }
             infoEffect.querySelector('.type img').src = typeIcon;
             infoEffect.querySelector('.type b').innerText = abilityGroup;
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if ( (item.id < 42 || item.id > 70 && item.id < 220) && ![121,126,129,151,161].includes(item.id) ) {
             infoPassive.querySelector('ul').innerHTML = '';
             let passiveText;
-            let varText = skillPassives['var-' + item.typvar];
+            let varText = skillPassives['var-' + item.var];
             let groupText = skillPassives['group-' + item.group];
             if ( varText ) {
                 passiveText = varText.text;
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     infoGear.innerHTML = '<b>Equipment</b>';
                 infoUsablesArmor.forEach((arm) => {
                     let gear = document.createElement('li');
-                    gear.innerHTML = '<img src="' + (arm.var ? itemTypes[arm.typ]['icon' + arm.var] : itemTypes[arm.typ]['icon']) + '">';
+                    gear.innerHTML = '<img src="' + (arm.cat ? itemTypes[arm.typ]['icon' + arm.cat] : itemTypes[arm.typ]['icon']) + '">';
                     gear.innerHTML += '<span>' + arm.name + '</span>';
                     infoGear.appendChild(gear);
                 });
@@ -420,9 +420,9 @@ document.addEventListener('DOMContentLoaded', function() {
         } else infoUsable.classList.add('hidden');
 
         let noteText;
-        if ( item.group || item.typvar ) {
-            if ( item.typvar )
-                noteText = items.find((row) => row['typvar'] === item.typvar).notes;
+        if ( item.group || item.var ) {
+            if ( item.var )
+                noteText = items.find((row) => row['var'] === item.var).notes;
             else
                 noteText = items.find((row) => row['group'] === item.group).notes;
         }

@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tr.id = index;
             let type = document.createElement('td');
                 let classImg = document.createElement('img');
-                    classImg.src = item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon'];
+                    classImg.src = item.cat ? itemTypes[item.typ]['icon' + item.cat] : itemTypes[item.typ]['icon'];
                     if (item.set) {
                         let itemSet = itemSets.find((row) => row['id'] === item.set);
                         classImg.classList.add('set-' + itemSet.color);
@@ -171,9 +171,9 @@ document.addEventListener('DOMContentLoaded', function() {
         infoTitle.textContent = item.name;
         infoLevel.textContent = 'Lv ' + item.lvlreq;
         infoType.textContent = itemTypes[item.typ]['name'];
-        infoTypeIcon.src = item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon'];
+        infoTypeIcon.src = item.cat ? itemTypes[item.typ]['icon' + item.cat] : itemTypes[item.typ]['icon'];
         if (item.skillbonamt >= 8) infoTypeIcon.classList.add('uni'); else infoTypeIcon.classList.remove('uni');
-        item.var ? infoGroup.textContent = armorTypes[item.var]['name'] : infoGroup.textContent = '—';
+        item.cat ? infoGroup.textContent = armorTypes[item.cat]['name'] : infoGroup.textContent = '—';
         if ( item.frm ) {
             infoScaling.innerHTML = damageScaling[item.frm]['desc'];
             infoScaling.setAttribute('data-tooltip', 'scalingdmg-' + item.frm);
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return {name: item.name, icon: item.hnd === 1 ? itemTypes[item.typ].icon2 : itemTypes[item.typ].icon1};
             });
             setPieces = setPieces.concat(items.filter((rows) => (rows['set'] === item.set )).map(item => {
-                return {name: item.name, icon: item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon']};
+                return {name: item.name, icon: item.cat ? itemTypes[item.typ]['icon' + item.cat] : itemTypes[item.typ]['icon']};
             }));
             infoSet.querySelector('b').setAttribute('data-setpieces', JSON.stringify(setPieces) );
             infoSet.classList.remove('hidden');

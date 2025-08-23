@@ -1077,7 +1077,7 @@ const statusEffects = {
             'effect': 'Next Melee attack will hit all tiles in front and to the sides of the user<p><small><i>All units struck will Counterhit, if able</i></small></p>'
         },
         '15': {
-            'name': 'Last Resort',
+            'name': 'Adrenaline',
             'effect': 'Next Melee attack is delivered as if the user\'s STR is 50% higher'
         },
         '16': {
