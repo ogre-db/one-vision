@@ -997,14 +997,14 @@ ol li:before {
   text-align: center;
   font-size: 1.125rem;
 }
-#sidePanel .panel .content .damage .damage-race.undead b {
+#sidePanel .panel .content .damage .damage-race.undead i {
   position: relative;
 }
-#sidePanel .panel .content .damage .damage-race.undead b:after {
+#sidePanel .panel .content .damage .damage-race.undead i:after {
   content: '';
   background: #fff url('../img/icons/damage-sacred.png') no-repeat center;
   position: absolute;
-  right: 28px;
+  right: 20px;
   top: -50px;
   width: 18px;
   height: 18px;
@@ -1424,6 +1424,27 @@ ol li:before {
     transform: rotate(360deg);
   }
 }
+.page-weapons .ov-item-list table td:first-child {
+  position: relative;
+}
+.page-weapons .ov-item-list table td:first-child .var:after {
+  content: '';
+  position: absolute;
+  box-sizing: border-box;
+  cursor: pointer;
+  left: 3px;
+  bottom: 4px;
+  height: 0;
+  width: 0;
+  border: 4px solid transparent;
+  transform: rotate(-45deg);
+}
+.page-weapons .ov-item-list table td:first-child .var.side:after {
+  border-left-color: #0e6dcd;
+}
+.page-weapons .ov-item-list table td:first-child .var.alt:after {
+  border-left-color: #7e44d2;
+}
 .page-weapons .ov-item-list table th:nth-child(2),
 .page-weapons .ov-item-list table td:nth-child(2) {
   width: auto;
@@ -1592,6 +1613,27 @@ ol li:before {
 }
 #sidePanel.weapons-panel .panel .content .stats-extra .restriction {
   margin-top: 10px;
+}
+.page-armor .ov-item-list table td:first-child {
+  position: relative;
+}
+.page-armor .ov-item-list table td:first-child .var:after {
+  content: '';
+  position: absolute;
+  box-sizing: border-box;
+  cursor: pointer;
+  left: 3px;
+  bottom: 4px;
+  height: 0;
+  width: 0;
+  border: 4px solid transparent;
+  transform: rotate(-45deg);
+}
+.page-armor .ov-item-list table td:first-child .var.side:after {
+  border-left-color: #0e6dcd;
+}
+.page-armor .ov-item-list table td:first-child .var.alt:after {
+  border-left-color: #7e44d2;
 }
 .page-armor .ov-item-list table th:nth-child(2),
 .page-armor .ov-item-list table td:nth-child(2) {

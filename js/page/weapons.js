@@ -76,14 +76,24 @@ document.addEventListener('DOMContentLoaded', function() {
             let tr = document.createElement('tr');
                 tr.id = index;
                 let type = document.createElement('td');
+                    let imageContainer = document.createElement('div');
+                    if (item.var !== 0) {
+                        imageContainer.classList.add('var');
+                        if (item.var === 's') imageContainer.classList.add('side');
+                        if (item.var === 'a') imageContainer.classList.add('alt');
+                    }
                     let classImg = document.createElement('img');
-                        classImg.src = (item.hnd === 1 || (item.typ === 177 && item.wght > 2)) ? itemTypes[item.typ + innate]['icon2'] : itemTypes[item.typ + innate]['icon1'];
+                        classImg.src = (item.hnd === 1 ||
+                                (item.typ === 177 && item.wght > 2) ||
+                                (item.typ === 179 && ['s','a'].includes(item.var))
+                            )? itemTypes[item.typ + innate]['icon2'] : itemTypes[item.typ + innate]['icon1'];
                         if (item.skillbonamt >= 8) classImg.classList.add('uni');
                         if (item.set) {
                             let itemSet = itemSets.find((row) => row['id'] === item.set);
                             classImg.classList.add('set-' + itemSet.color);
                         }
-                    type.appendChild(classImg);
+                    imageContainer.appendChild(classImg);
+                    type.appendChild(imageContainer);
                 let name = document.createElement('td');
                     name.textContent = item.name;
                 let atk = document.createElement('td');
@@ -189,13 +199,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (item.dmgtamt > 0) infoDamageType.innerHTML += '<br><b>' + item.dmgtamt + '%</b>';
             } else infoDamageType.innerHTML = '';
             if ( item.ele > 0 ) {
-                infoDamageElement.innerHTML = '<img src="' + elements[item.ele]['icon'] + '"  width="40" height="40">';
+                infoDamageElement.innerHTML = '<img src="' + elements[item.ele]['icon-crop'] + '"  width="40" height="40">';
                 if (item.eleamt > 0) infoDamageElement.innerHTML += '<br><b>' + item.eleamt + '%</b>';
             } else infoDamageElement.innerHTML = '';
 
             if ( item.rcbon > 0 ) {
                 infoDamageRace.innerHTML = '<img src="' + races[isOdd(item.rcbon) ? (item.rcbon - 1) : item.rcbon]['icon'] + '"  width="40" height="40">';
-                if (item.rcamt > 0) infoDamageRace.innerHTML += '<br><b>' + item.rcamt + '%</b>';
+                infoDamageRace.innerHTML += '<br>' + (item.rcamt > 0 ? '<b>' + item.rcamt + '%</b>' : '<i>—</i>');
                 if (isOdd(item.rcbon)) infoDamageRace.classList.add('undead');
             } else infoDamageRace.innerHTML = '';
 

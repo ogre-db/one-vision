@@ -90,31 +90,39 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             let tr = document.createElement('tr');
-            tr.id = index;
+                tr.id = index;
             let type = document.createElement('td');
+                let imageContainer = document.createElement('div');
+                if (item.var !== 0) {
+                    imageContainer.classList.add('var');
+                    if (item.var === 's') imageContainer.classList.add('side');
+                    if (item.var === 'a') imageContainer.classList.add('alt');
+                }
                 let classImg = document.createElement('img');
                     classImg.src = item.cat ? itemTypes[item.typ]['icon' + item.cat] : itemTypes[item.typ]['icon'];
                     if (item.set) {
                         let itemSet = itemSets.find((row) => row['id'] === item.set);
                         classImg.classList.add('set-' + itemSet.color);
                     }
+                imageContainer.appendChild(classImg);
+                type.appendChild(imageContainer);
             if (item.skillbonamt >= 8) classImg.classList.add('uni');
-            type.appendChild(classImg);
+                type.appendChild(classImg);
             let name = document.createElement('td');
-            name.textContent = item.name;
+                name.textContent = item.name;
             let atk = document.createElement('td');
-            item.atk > 0 ? atk.textContent = item.atk : atk.textContent = '';
+                item.atk > 0 ? atk.textContent = item.atk : atk.textContent = '';
             let def = document.createElement('td');
-            item.def > 0 ? def.textContent = item.def : def.textContent = '—';
+                item.def > 0 ? def.textContent = item.def : def.textContent = '—';
             let wt = document.createElement('td');
-            wt.textContent = item.wght > 120 ? item.wght - 256 : ( item.wght > 0 ? item.wght : '—' );
-            item.wght > 120 ? wt.classList.add('neg') : wt.classList.remove('neg');
+                wt.textContent = item.wght > 120 ? item.wght - 256 : ( item.wght > 0 ? item.wght : '—' );
+                item.wght > 120 ? wt.classList.add('neg') : wt.classList.remove('neg');
             let resph = document.createElement('td');
-            item.resphys > 0 ? (resph.textContent = item.resphys + '%') : resph.textContent = '—';
+                item.resphys > 0 ? (resph.textContent = item.resphys + '%') : resph.textContent = '—';
             let resel = document.createElement('td');
-            item.resele > 0 ? (resel.textContent = item.resele + '%') : resel.textContent = '—';
+                item.resele > 0 ? (resel.textContent = item.resele + '%') : resel.textContent = '—';
             let resrc = document.createElement('td');
-            item.resrace > 0 ? (resrc.textContent = item.resrace + '%') : resrc.textContent = '—';
+                item.resrace > 0 ? (resrc.textContent = item.resrace + '%') : resrc.textContent = '—';
             let ele = document.createElement('td');
             if (item.ele > 0) {
                 let eleImg = document.createElement('img');
@@ -122,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ele.appendChild(eleImg);
             }
             let level = document.createElement('td');
-            level.textContent = item.lvlreq;
+                level.textContent = item.lvlreq;
             // noinspection JSCheckFunctionSignatures
             tr.append(type, name, atk, def, wt, resph, resel, resrc, ele, level);
             itemList.appendChild(tr);
@@ -219,13 +227,13 @@ document.addEventListener('DOMContentLoaded', function() {
             } else infoDamageType.innerHTML = '';
 
             if ( item.ele > 0 ) {
-                infoDamageElement.innerHTML = '<img src="' + elements[item.ele]['icon'] + '"  width="40" height="40">';
+                infoDamageElement.innerHTML = '<img src="' + elements[item.ele]['icon-crop'] + '"  width="40" height="40">';
                 if (item.eleamt > 0) infoDamageElement.innerHTML += '<br><b>' + item.eleamt + '%</b>';
             } else infoDamageElement.innerHTML = '';
 
             if ( item.rcbon > 0 ) {
                 infoDamageRace.innerHTML = '<img src="' + races[isOdd(item.rcbon) ? (item.rcbon - 1) : item.rcbon]['icon'] + '"  width="40" height="40">';
-                if (item.rcamt > 0) infoDamageRace.innerHTML += '<br><b>' + item.rcamt + '%</b>';
+                infoDamageRace.innerHTML += '<br>' + (item.rcamt > 0 ? '<b>' + item.rcamt + '%</b>' : '<i>—</i>');
                 if (isOdd(item.rcbon)) infoDamageRace.classList.add('undead');
             } else infoDamageRace.innerHTML = '';
 

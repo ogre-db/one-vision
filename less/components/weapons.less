@@ -5,6 +5,34 @@
 
     table {
 
+      td:first-child {
+        position: relative;
+
+        .var {
+
+          &:after {
+            content: '';
+            position: absolute;
+            box-sizing: border-box;
+            cursor: pointer;
+            left: 3px;
+            bottom: 4px;
+            height: 0;
+            width: 0;
+            border: 4px solid transparent;
+            transform: rotate(-45deg);
+          }
+
+          &.side:after {
+            border-left-color: @color-blue;
+          }
+
+          &.alt:after {
+            border-left-color: @color-purple;
+          }
+        }
+      }
+
       th:nth-child(2), td:nth-child(2) {
         width: auto;
         text-align: left;

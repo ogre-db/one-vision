@@ -2,51 +2,63 @@
 const elements = {
     '0': {
         'name': 'None',
-        'icon': 'img/icons/icon-blank.png'
+        'icon': 'img/icons/icon-blank.png',
+        'icon-crop': 'img/icons/icon-blank.png'
     },
     '1': {
         'name': 'Air',
-        'icon': 'img/icons/element-air.png'
+        'icon': 'img/icons/element-air.png',
+        'icon-crop': 'img/icons/element-air-crop.png'
     },
     '2': {
         'name': 'Earth',
-        'icon': 'img/icons/element-earth.png'
+        'icon': 'img/icons/element-earth.png',
+        'icon-crop': 'img/icons/element-earth-crop.png'
     },
     '3': {
         'name': 'Lightning',
-        'icon': 'img/icons/element-lightning.png'
+        'icon': 'img/icons/element-lightning.png',
+        'icon-crop': 'img/icons/element-lightning-crop.png'
     },
     '4': {
         'name': 'Water',
-        'icon': 'img/icons/element-water.png'
+        'icon': 'img/icons/element-water.png',
+        'icon-crop': 'img/icons/element-water-crop.png'
     },
     '5': {
         'name': 'Fire',
-        'icon': 'img/icons/element-fire.png'
+        'icon': 'img/icons/element-fire.png',
+        'icon-crop': 'img/icons/element-fire-crop.png'
     },
     '6': {
         'name': 'Ice',
-        'icon': 'img/icons/element-ice.png'
+        'icon': 'img/icons/element-ice.png',
+        'icon-crop': 'img/icons/element-ice-crop.png'
     },
     '7': {
         'name': 'Light',
-        'icon': 'img/icons/element-light.png'
+        'icon': 'img/icons/element-light.png',
+        'icon-crop': 'img/icons/element-light-crop.png'
     },
     '8': {
         'name': 'Dark',
-        'icon': 'img/icons/element-dark.png'
+        'icon': 'img/icons/element-dark.png',
+        'icon-crop': 'img/icons/element-dark-crop.png'
     },
     '9': {
         'name': 'Draconic',
-        'icon': 'img/icons/element-dark.png'
+        'icon': 'img/icons/element-dark.png',
+        'icon-crop': 'img/icons/element-dark-crop.png'
     },
     '10': {
         'name': 'Necromancy',
-        'icon': 'img/icons/element-dark.png'
+        'icon': 'img/icons/element-dark.png',
+        'icon-crop': 'img/icons/element-dark-crop.png'
     },
     '12': {
         'name': 'Art Of War',
-        'icon': 'img/icons/element-dark.png'
+        'icon': 'img/icons/element-dark.png',
+        'icon-crop': 'img/icons/element-dark-crop.png'
     },
 };
 
@@ -366,8 +378,8 @@ const itemTypes = {
     },
     '179': {
         'name': 'Crossbows',
-        'icon1': 'img/icons/equip-crossbow1h.png',
-        'icon2': 'img/icons/equip-crossbow2h.png'
+        'icon1': 'img/icons/equip-crossbow2h.png',
+        'icon2': 'img/icons/equip-crossbow1h.png'
     },
     '180': {
         'name': 'Fusils',
