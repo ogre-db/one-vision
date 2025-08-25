@@ -991,20 +991,23 @@ ol li:before {
   border-radius: 8px;
   box-shadow: inset 0 0 5px rgba(60, 50, 45, 0.6), 0 0 2px rgba(95, 88, 84, 0.6);
 }
-#sidePanel .panel .content .damage b {
+#sidePanel .panel .content .damage b,
+#sidePanel .panel .content .damage i {
   display: inline-block;
   width: 40px;
   text-align: center;
   font-size: 1.125rem;
 }
+#sidePanel .panel .content .damage .damage-race.undead b,
 #sidePanel .panel .content .damage .damage-race.undead i {
   position: relative;
 }
+#sidePanel .panel .content .damage .damage-race.undead b:after,
 #sidePanel .panel .content .damage .damage-race.undead i:after {
   content: '';
   background: #fff url('../img/icons/damage-sacred.png') no-repeat center;
   position: absolute;
-  right: 20px;
+  right: 28px;
   top: -50px;
   width: 18px;
   height: 18px;
@@ -1237,32 +1240,40 @@ ol li:before {
   width: 20px;
   float: right;
 }
-#sidePanel .panel .content .usable .ov-accordion .accordion-content ul {
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul,
+#sidePanel .panel .content .ranks .ov-accordion .accordion-content ul {
   list-style: circle;
 }
-#sidePanel .panel .content .usable .ov-accordion .accordion-content ul li {
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul li,
+#sidePanel .panel .content .ranks .ov-accordion .accordion-content ul li {
   width: 100%;
   margin-left: 15px;
 }
-#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.item li span {
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.item li span,
+#sidePanel .panel .content .ranks .ov-accordion .accordion-content ul.item li span {
   display: inline-block;
 }
-#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.item li b {
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.item li b,
+#sidePanel .panel .content .ranks .ov-accordion .accordion-content ul.item li b {
   display: inline-block;
   width: 40px;
   float: right;
   text-align: right;
 }
-#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.item li b small {
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.item li b small,
+#sidePanel .panel .content .ranks .ov-accordion .accordion-content ul.item li b small {
   font-weight: normal;
 }
-#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear {
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear,
+#sidePanel .panel .content .ranks .ov-accordion .accordion-content ul.gear {
   list-style: none;
 }
-#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li {
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li,
+#sidePanel .panel .content .ranks .ov-accordion .accordion-content ul.gear li {
   margin-left: 5px;
 }
-#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li img {
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li img,
+#sidePanel .panel .content .ranks .ov-accordion .accordion-content ul.gear li img {
   display: inline-block;
   position: relative;
   height: 12px;
@@ -1270,16 +1281,19 @@ ol li:before {
   border-radius: 50%;
   top: 2px;
 }
-#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li span {
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li span,
+#sidePanel .panel .content .ranks .ov-accordion .accordion-content ul.gear li span {
   display: inline-block;
 }
-#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li b {
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li b,
+#sidePanel .panel .content .ranks .ov-accordion .accordion-content ul.gear li b {
   display: inline-block;
   width: 40px;
   float: right;
   text-align: right;
 }
-#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li b small {
+#sidePanel .panel .content .usable .ov-accordion .accordion-content ul.gear li b small,
+#sidePanel .panel .content .ranks .ov-accordion .accordion-content ul.gear li b small {
   font-weight: normal;
 }
 #sidePanel .panel .content .class .ov-accordion > li .accordion-content ul {

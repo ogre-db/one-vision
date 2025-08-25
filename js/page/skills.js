@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
         infoUsable = sidePanel.querySelector('.usable'),
         infoGear = sidePanel.querySelector('.usable .gear'),
         infoSet = sidePanel.querySelector('.usable .set'),
+        infoRanks = sidePanel.querySelector('.ranks'),
+        infoRanksGear = sidePanel.querySelector('.ranks .gear'),
         infoNotes = sidePanel.querySelector('.notes');
 
     // const progress = document.getElementById('progress');
@@ -418,6 +420,37 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             infoUsable.classList.remove('hidden');
         } else infoUsable.classList.add('hidden');
+
+        let infoRankBonusWeapon = weapons.filter((rows) => rows['skillbon'] === item.id);
+        let infoRankBonusArmor = armor.filter((rows) => rows['skillbon'] === item.id);
+        if (infoRankBonusWeapon.length || infoRankBonusArmor.length) {
+            infoRanksGear.classList.add('hidden');
+            sidePanel.querySelectorAll('.ranks .ov-accordion ul').forEach(e => e.innerHTML = '');
+            if (infoRankBonusWeapon.length > 0) {
+                infoRanksGear.innerHTML = '<b>Equipment</b>';
+                infoRankBonusWeapon.forEach((wpn) => {
+                    let gear = document.createElement('li');
+                    gear.innerHTML = '<img src="' + (wpn.hnd === 1 ? itemTypes[wpn.typ].icon2 : itemTypes[wpn.typ].icon1) + '">';
+                    gear.innerHTML += '<span>' + wpn.name + '</span>';
+                    gear.innerHTML += '<b>+' + (wpn.skillbonamt > 24 ? (wpn.skillbonamt - 24) : ((wpn.skillbonamt > 8 ? (wpn.skillbonamt - 8) : wpn.skillbonamt))) + '</b>';
+                    infoRanksGear.appendChild(gear);
+                });
+                infoRanksGear.classList.remove('hidden');
+            }
+            if (infoRankBonusArmor.length > 0) {
+                if (infoRanksGear.innerText.indexOf('Equipment') < 0)
+                    infoRanksGear.innerHTML = '<b>Equipment</b>';
+                infoRankBonusArmor.forEach((arm) => {
+                    let gear = document.createElement('li');
+                    gear.innerHTML = '<img src="' + (arm.cat ? itemTypes[arm.typ]['icon' + arm.cat] : itemTypes[arm.typ]['icon']) + '">';
+                    gear.innerHTML += '<span>' + arm.name + '</span>';
+                    gear.innerHTML += '<b>+' + (arm.skillbonamt > 24 ? (arm.skillbonamt - 24) : ((arm.skillbonamt > 8 ? (arm.skillbonamt - 8) : arm.skillbonamt))) + '</b>';
+                    infoRanksGear.appendChild(gear);
+                });
+                infoRanksGear.classList.remove('hidden');
+            }
+            infoRanks.classList.remove('hidden');
+        } else infoRanks.classList.add('hidden');
 
         let noteText;
         if ( item.group || item.var ) {
