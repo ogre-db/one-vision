@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     classImg.src = item.hnd === 1 ? itemTypes[item.typ].icon2 : itemTypes[item.typ].icon1;
                     if (item.skillbonamt >= 8) classImg.classList.add('uni');
                 } else if (item.typ < 30 || item.typ === 182) {
-                    classImg.src = item.var ? itemTypes[item.typ]['icon' + item.var] : itemTypes[item.typ]['icon'];
+                    classImg.src = item.cat ? itemTypes[item.typ]['icon' + item.cat] : itemTypes[item.typ]['icon'];
                     if (item.skillbonamt >= 8) classImg.classList.add('uni');
                 } else {
                     classImg.src = itemTypes[item.typ]['icon'];
