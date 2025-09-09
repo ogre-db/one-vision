@@ -14,88 +14,488 @@
 
 <body>
 
-    <div class="page-cheats">
+    <div class="page-calculator">
         <div class="ov-main-container container">
             <div class="ov-banner">
                 <h1>Calculations</h1>
             </div>
             <div class="ov-content">
-                <ul id ="" class="ov-accordion">
+                <ul id ="attackDamage" class="calculator ov-accordion">
                     <li class="open">
                         <button class="accordion-title">Attack Damage</button>
                         <div class="accordion-content">
                             <div>
-                                <div class="input-group">
-                                    <div class="width-1-2">
-                                        <label for="lowLevelResult">Codes</label>
-                                        <p id="lowLevelResult" class="result">
-                                            _C0 Low level EXP scaling fix
-                                            <br>_L 0x0001D1C4 0x00000011
-                                        </p>
+                                <div class="calc-step one">
+                                    <div class="attacker column">
+                                        <label><b>Attacker</b></label>
+                                        <div class="row">
+                                            <div class="width-1">
+                                                <label class="input">Base Stats
+                                                    <select class="select-template">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="width-1">
+                                                <label class="input">Template
+                                                    <select class="select-template-var">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="width-3">
+                                                <label class="input">Class
+                                                    <select class="select-class">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="width-1">
+                                                <label class="input">Class Level
+                                                    <select class="select-class-level">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="width-2">
+                                                <label class="input">Main Hand<span class="scaling float-right"><img class="damage-type" src="img/icons/damage-slash.png"><img class="damage-element" src="img/icons/element-ice.png"><b>Str/Dex</b></span>
+                                                    <select class="select-main-hand">
+                                                    </select>
+                                                </label>
+                                                <label class="input">Off Hand
+                                                    <select class="select-off-hand">
+                                                    </select>
+                                                </label>
+                                                <label class="input">Armor 1
+                                                    <select class="select-armor-1">
+                                                    </select>
+                                                </label>
+                                                <label class="input">Armor 2
+                                                    <select class="select-armor-2">
+                                                    </select>
+                                                </label>
+                                                <label class="input">Jewelry
+                                                    <select class="select-jewelry">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="width-1 text-right">
+                                                <label class="input">Weapon Rank<br>
+                                                    <select class="select-wp-rank number">
+                                                    </select>
+                                                </label>
+                                                <label class="input">Augment Rank<br>
+                                                    <select class="select-aug-rank number">
+                                                    </select>
+                                                </label>
+                                                <label class="input">Racial Rank<br>
+                                                    <select class="select-rac-rank number">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="inner">
+                                            <div class="row">
+                                                <div class="width-2">
+                                                    <label class="input"><img src="img/icons/ability-special.png">Readied Effect
+                                                        <select class="select-ready">
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                                <div class="width-3">
+                                                    <p class="info select"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" class="check-status" data-id="22" data-effect="fear"></label>
+                                                </div>
+                                                <div>
+                                                    <p class="info"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space-above">
+                                            <table class="stat-table basic">
+                                                <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Base</th>
+                                                    <th>Class</th>
+                                                    <th>Gear</th>
+                                                    <th>Multi</th>
+                                                    <th>Offense</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="defender column">
+                                        <label class="text-right"><b>Defender</b></label>
+                                        <div class="row">
+                                            <div class="width-1">
+                                                <label class="input">Base Stats
+                                                    <select class="select-template">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="width-1">
+                                                <label class="input">Template
+                                                    <select class="select-template-var">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="width-3">
+                                                <label class="input">Class
+                                                    <select class="select-class">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="width-1">
+                                                <label class="input">Class Level
+                                                    <select class="select-class-level">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="width-2">
+                                                <label class="input">Main Hand
+                                                    <select class="select-main-hand">
+                                                    </select>
+                                                </label>
+                                                <label class="input">Off Hand
+                                                    <select class="select-off-hand">
+                                                    </select>
+                                                </label>
+                                                <label class="input">Armor 1
+                                                    <select class="select-armor-1">
+                                                    </select>
+                                                </label>
+                                                <label class="input">Armor 2
+                                                    <select class="select-armor-2">
+                                                    </select>
+                                                </label>
+                                                <label class="input">Jewelry
+                                                    <select class="select-jewelry">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="width-1 text-right">
+                                                <label class="input">Augment Rank<br>
+                                                    <select class="select-aug-rank number">
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="inner">
+                                            <div class="row">
+                                                <div class="width-2">
+                                                    <label class="input"><img src="img/icons/ability-special.png">Readied Effect
+                                                        <select class="select-ready">
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                                <div class="width-3">
+                                                    <p class="info select"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" class="check-status" data-id="22" data-effect="fear"></label>
+                                                </div>
+                                                <div>
+                                                    <p class="info"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space-above">
+                                            <table class="stat-table basic">
+                                                <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Base</th>
+                                                    <th>Class</th>
+                                                    <th>Gear</th>
+                                                    <th>Multi</th>
+                                                    <th>Toughness</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="sum ">
+                                        <div class="row">
+                                            <div class="width-1 column">
+                                                <label class="input">Offense</label>
+                                                <span class="value"></span>
+                                            </div>
+                                            <div class="width-1 text-center">
+                                                <label class="input"><b>Overhead</b><br><small>(Offense - Toughness)</small></label>
+                                                <span class="value main"></span>
+                                            </div>
+                                            <div class="width-1 text-right">
+                                                <label class="input">Defense</label>
+                                                <span class="value"></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="input-group">
-                                    <div class="width-1-2">
-                                        <label for="enemyPickupsResult">Codes</label>
-                                        <p id="enemyPickupsResult" class="result">
-                                            _C0 Enemy Pickups go to Player ON (US/EU)
-                                            <br>_L 0x20025A9C 0x00000000
-                                            <br>_L 0x2002D298 0x00000000
-                                            <br>_L 0x2002D5E0 0x34050001
-                                            <br>
-                                            <br>_C0 Enemy Pickups go to Player OFF (US/EU)
-                                            <br>_L 0x20025A9C 0x14A6001D
-                                            <br>_L 0x2002D298 0x14A40030
-                                            <br>_L 0x2002D5E0 0x00C02825
-                                        </p>
+
+                                <div class="calc-step two">
+                                    <div class="attacker column">
+                                        <div class="inner">
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" class="check-status" data-id="39" data-effect="strngthn" data-group="damage"></label>
+                                                </div>
+                                                <div>
+                                                    <p class="info"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" class="check-status" data-id="40" data-effect="wkn" data-group="damage"></label>
+                                                </div>
+                                                <div>
+                                                    <p class="info"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space-above">
+                                            <table class="stat-table bonuses">
+                                                <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Physical</th>
+                                                    <th>Elemental</th>
+                                                    <th>Racial</th>
+                                                    <th>Bonus</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="defender column">
+                                        <div class="inner">
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" class="check-status" data-id="45" data-effect="frtfy" data-group="damage"></label>
+                                                </div>
+                                                <div>
+                                                    <p class="info"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" class="check-status" data-id="46" data-effect="brch" data-group="damage"></label>
+                                                </div>
+                                                <div>
+                                                    <p class="info"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" class="check-status" data-id="11" data-effect="ptrfy"></label>
+                                                </div>
+                                                <div>
+                                                    <p class="info"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" class="check-status" data-id="70" data-effect="elres" data-group="resistance"></label>
+                                                </div>
+                                                <div>
+                                                    <p class="info"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" class="check-status" data-id="78" data-effect="elave" data-group="resistance"></label>
+                                                </div>
+                                                <div>
+                                                    <p class="info"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" class="check-status" data-id="34" data-effect="pnra"></label>
+                                                </div>
+                                                <div>
+                                                    <p class="info"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space-above">
+                                            <table class="stat-table bonuses">
+                                                <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Physical</th>
+                                                    <th>Elemental</th>
+                                                    <th>Racial</th>
+                                                    <th>Resistance</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="sum">
+                                        <div class="row">
+                                            <div class="width-1">
+                                                <label class="input">Damage Bonus</label>
+                                                <span class="value"></span>
+                                            </div>
+                                            <div class="width-3 text-center">
+                                                <label class="input"><b>Modified Overhead</b><br><small>(Overhead x (Damage Bonus - Resistance))</small></label>
+                                                <span class="value main"></span>
+                                            </div>
+                                            <div class="width-1 text-right">
+                                                <label class="input">Resistance</label>
+                                                <span class="value"></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="input-group">
-                                    <div class="width-1-2">
-                                        <label for="enemyPickupsResult">Codes</label>
-                                        <p id="enemyPickupsResult" class="result">
-                                            _C0 Enemy Pickups go to Player ON (US/EU)
-                                            <br>_L 0x20025A9C 0x00000000
-                                            <br>_L 0x2002D298 0x00000000
-                                            <br>_L 0x2002D5E0 0x34050001
-                                            <br>
-                                            <br>_C0 Enemy Pickups go to Player OFF (US/EU)
-                                            <br>_L 0x20025A9C 0x14A6001D
-                                            <br>_L 0x2002D298 0x14A40030
-                                            <br>_L 0x2002D5E0 0x00C02825
-                                        </p>
+
+                                <div class="calc-step three">
+                                    <div class="attacker">
+                                        <div>
+                                            <table class="stat-table extra">
+                                                <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>Multi</th>
+                                                    <th>ATK</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="defender">
+                                        <div>
+                                            <table class="stat-table extra">
+                                                <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>Multi</th>
+                                                    <th>DEF</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="sum">
+                                        <div class="row">
+                                            <div class="width-1">
+                                                <label class="input">Attack</label>
+                                                <span class="value"></span>
+                                            </div>
+                                            <div class="width-3 text-center">
+                                                <label class="input"><b>Total Damage</b><br><small>(Modified Overhead + Attack - Defense)</small></label>
+                                                <span class="value main"></span>
+                                            </div>
+                                            <div class="width-1 text-right">
+                                                <label class="input">Defense</label>
+                                                <span class="value"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="calc-step four">
+                                    <div class="attacker">
+                                        <div class="inner">
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" data-id="101" class="check-status" data-effect="crit">Critical Hit</label>
+                                                </div>
+                                                <div>
+                                                    <p class="info">Damage dealt is 50% higher</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="defender">
+                                        <div class="inner">
+                                            <div class="row">
+                                                <div>
+                                                    <label class="checkbox"><input type="checkbox" data-id="102" class="check-status" data-effect="atten">Instill Element Skill</label>
+                                                </div>
+                                                <div>
+                                                    <p class="info">Passively lowers damage taken from same element by 4% per Augment rank</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sum shared">
+                                        <div>
+                                            <table class="stat-table multis">
+                                                <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Multiplier</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="sum">
+                                        <div class="text-center">
+                                            <label class="input"><b>Final Damage</b><br><small>(Total Damage x Multiplier)</small></label>
+                                            <span class="value main"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
                 </ul>
-                <ul id ="attackAccuracy" class="ov-accordion">
+                <ul id ="attackAccuracy" class="calculator ov-accordion">
                     <li>
                         <button class="accordion-title">Attack Accuracy</button>
                         <div class="accordion-content">
                             <div>
-                                fff
+                                Coming soon!
                             </div>
                         </div>
                     </li>
                 </ul>
-                <ul id ="spellDamage" class="ov-accordion">
+                <ul id ="spellDamage" class="calculator ov-accordion">
                     <li class="">
                         <button class="accordion-title">Spell Damage</button>
                         <div class="accordion-content">
                             <div>
-                                fdfgdf
+                                Coming soon!
                             </div>
                         </div>
                     </li>
                 </ul>
-                <ul id ="spellAccuracy" class="ov-accordion">
+                <ul id ="spellAccuracy" class="calculator ov-accordion">
                     <li class="">
-                        <button class="accordion-title">Character Renamer</button>
+                        <button class="accordion-title">Spell Accuracy</button>
                         <div class="accordion-content">
                             <div>
-
+                                Coming soon!
                             </div>
                         </div>
                     </li>
@@ -115,7 +515,8 @@
                         <hr>
                         <li><a href="tarot.html"><img src="img/icons/category-tarot.png">Tarot Quiz</a></li>
                         <li><a href="drops.html"><img src="img/icons/item-treasure.png">Drop Table</a></li>
-                        <li class="active"><a href="cheats.html"><img src="img/icons/category-cheat.png">CWC Codes</a></li>
+                        <li><a href="cheats.html"><img src="img/icons/category-cheat.png">CWC Codes</a></li>
+                        <li class="active"><a href="calculator.html"><img src="img/icons/category-calculator.png">Calculations</a></li>
                         <hr>
                         <li><a href="installation.html"><img src="img/icons/icon-installation.png">Install Guide</a></li>
                     </ul>

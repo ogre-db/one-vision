@@ -3,13 +3,13 @@ const damageScaling = {
     '0': {
         'name': '—',
         'desc': '—',
-        'attack': {},
-        'defend': {}
+        'attacker': {},
+        'defender': {}
     },
     '1': {
         'name': 'Weapon Damage Str/<small>Dex</small>',
         'desc': 'Str/<small>Dex</small>',
-        'attack': {
+        'attacker': {
             "wpatk": 1,
             "shatk": 0,
             "aratk": 1,
@@ -42,7 +42,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -79,7 +79,7 @@ const damageScaling = {
     '3': {
         'name': 'Attack Damage Str/<small>Dex</small>',
         'desc': 'Str/<small>Dex</small>',
-        'attack': {
+        'attacker': {
             "wpatk": 1,
             "shatk": 0,
             "aratk": 1,
@@ -112,7 +112,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -149,7 +149,7 @@ const damageScaling = {
     '5': {
         'name': 'Attack Damage Str/<small>Dex</small> +TP',
         'desc': 'Str/<small>Dex</small> +TP',
-        'attack': {
+        'attacker': {
             "wpatk": 1,
             "shatk": 0,
             "aratk": 1,
@@ -182,7 +182,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -219,7 +219,7 @@ const damageScaling = {
     '7': {
         'name': 'Weapon Damage Dex/<small>Str</small>',
         'desc': 'Dex/<small>Str</small>',
-        'attack': {
+        'attacker': {
             "wpatk": 1,
             "shatk": 0,
             "aratk": 1,
@@ -252,7 +252,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -289,7 +289,7 @@ const damageScaling = {
     '9': {
         'name': 'Attack Damage Dex/<small>Str</small>',
         'desc': 'Dex/<small>Str</small>',
-        'attack': {
+        'attacker': {
             "wpatk": 1,
             "shatk": 0,
             "aratk": 1,
@@ -322,7 +322,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -359,7 +359,7 @@ const damageScaling = {
     '11': {
         'name': 'Attack Damage Dex/<small>Str</small> +TP',
         'desc': 'Dex/<small>Str</small> +TP',
-        'attack': {
+        'attacker': {
             "wpatk": 1,
             "shatk": 0,
             "aratk": 1,
@@ -392,7 +392,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -428,8 +428,8 @@ const damageScaling = {
     },
     '13': {
         'name': 'Weapon Damage <small>Dex/Mnd/Int</small>',
-        'desc': '<small>Dex/Mnd/Int</small>',
-        'attack': {
+        'desc': 'Dex/Mnd/Int',
+        'attacker': {
             "wpatk": 1,
             "shatk": 0,
             "aratk": 1,
@@ -462,7 +462,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -498,8 +498,8 @@ const damageScaling = {
     },
     '15': {
         'name': 'Attack Damage <small>Dex/Mnd/Int</small>',
-        'desc': '<small>Dex/Mnd/Int</small>',
-        'attack': {
+        'desc': 'Dex/Mnd/Int',
+        'attacker': {
             "wpatk": 1,
             "shatk": 0,
             "aratk": 1,
@@ -532,7 +532,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -568,8 +568,8 @@ const damageScaling = {
     },
     '17': {
         'name': 'Attack Damage <small>Dex/Mnd/Int</small> +TP',
-        'desc': '<small>Dex/Mnd/Int</small>',
-        'attack': {
+        'desc': 'Dex/Mnd/Int',
+        'attacker': {
             "wpatk": 1,
             "shatk": 0,
             "aratk": 1,
@@ -602,7 +602,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -639,7 +639,7 @@ const damageScaling = {
     '19': {
         'name': 'Attack Damage Vit/<small>Str</small>',
         'desc': 'Vit/<small>Str</small>',
-        'attack': {
+        'attacker': {
             "wpatk": 1,
             "shatk": 0,
             "aratk": 1,
@@ -672,7 +672,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -709,7 +709,7 @@ const damageScaling = {
     '35': {
         'name': 'Nominal Damage',
         'desc': '1 Dmg',
-        'attack': {
+        'attacker': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -742,7 +742,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -779,7 +779,7 @@ const damageScaling = {
     '37': {
         'name': 'Spell Damage',
         'desc': 'Int/<small>Mnd</small>',
-        'attack': {
+        'attacker': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -812,7 +812,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -849,7 +849,7 @@ const damageScaling = {
     '39': {
         'name': 'Raw Damage',
         'desc': 'All stats',
-        'attack': {
+        'attacker': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -882,7 +882,7 @@ const damageScaling = {
             "elres": 0,
             "elave": 0
         },
-        'defend': {
+        'defender': {
             "wpatk": 0,
             "shatk": 0,
             "aratk": 0,
@@ -918,17 +918,52 @@ const damageScaling = {
     }
 };
 
+const healingScaling = {
+    '0': {
+        'name': '—',
+        'desc': '—',
+        'attacker': {},
+        'defender': {}
+    },
+    '1': {
+        'name': 'Spell Healing',
+        'desc': 'Mnd',
+        'attacker': {
+            "vit": 0,
+            "mnd": 0.8,
+            "res": 0,
+            "aug": 6,
+            "rac": 8,
+            "healcr": 25,
+            "spoilh": -35,
+            "elres": 0,
+            "elave": 0
+        },
+        'defender': {
+            "vit": 0,
+            "mnd": 0,
+            "res": 0,
+            "aug": 0,
+            "rac": 0,
+            "healcr": 0,
+            "spoilh": 0,
+            "elres": 0,
+            "elave": 0
+        }
+    },
+}
+
 const accuracyScaling = {
     '0': {
         'name': '—',
         'desc': '—',
-        'attack': {},
-        'defend': {}
+        'attacker': {},
+        'defender': {}
     },
     '1': {
         'name': 'Melee Attack',
         'desc': 'Melee',
-        'attack': {
+        'attacker': {
             "dex": 0.6,
             "agi": 1.2,
             "int": 0,
@@ -950,7 +985,7 @@ const accuracyScaling = {
             "side": 40,
             "back": 60
         },
-        'defend': {
+        'defender': {
             "dex": 0.6,
             "agi": 0,
             "int": 0,
@@ -976,7 +1011,7 @@ const accuracyScaling = {
     '3': {
         'name': 'Melee Attack +TP',
         'desc': 'Melee +TP',
-        'attack': {
+        'attacker': {
             "dex": 0.6,
             "agi": 1.2,
             "int": 0,
@@ -998,7 +1033,7 @@ const accuracyScaling = {
             "side": 40,
             "back": 60
         },
-        'defend': {
+        'defender': {
             "dex": 0.6,
             "agi": 0,
             "int": 0,
@@ -1024,7 +1059,7 @@ const accuracyScaling = {
     '5': {
         'name': 'Melee Unarmed',
         'desc': 'Unarmed M',
-        'attack': {
+        'attacker': {
             "dex": 1,
             "agi": 1.2,
             "int": 0,
@@ -1046,7 +1081,7 @@ const accuracyScaling = {
             "side": 40,
             "back": 60
         },
-        'defend': {
+        'defender': {
             "dex": 0.6,
             "agi": 0,
             "int": 0,
@@ -1072,7 +1107,7 @@ const accuracyScaling = {
     '7': {
         'name': 'Ranged Attack',
         'desc': 'Ranged',
-        'attack': {
+        'attacker': {
             "dex": 0.6,
             "agi": 1.2,
             "int": 0,
@@ -1094,7 +1129,7 @@ const accuracyScaling = {
             "side": 40,
             "back": 60
         },
-        'defend': {
+        'defender': {
             "dex": 0.6,
             "agi": 0,
             "int": 0,
@@ -1120,7 +1155,7 @@ const accuracyScaling = {
     '9': {
         'name': 'Ranged Attack +TP',
         'desc': 'Ranged +TP',
-        'attack': {
+        'attacker': {
             "dex": 0.6,
             "agi": 1.2,
             "int": 0,
@@ -1142,7 +1177,7 @@ const accuracyScaling = {
             "side": 40,
             "back": 60
         },
-        'defend': {
+        'defender': {
             "dex": 0.6,
             "agi": 0,
             "int": 0,
@@ -1168,7 +1203,7 @@ const accuracyScaling = {
     '11': {
         'name': 'Ranged Unarmed',
         'desc': 'Unarmed R',
-        'attack': {
+        'attacker': {
             "dex": 1,
             "agi": 1.2,
             "int": 0,
@@ -1190,7 +1225,7 @@ const accuracyScaling = {
             "side": 40,
             "back": 60
         },
-        'defend': {
+        'defender': {
             "dex": 0.6,
             "agi": 0,
             "int": 0,
@@ -1216,7 +1251,7 @@ const accuracyScaling = {
     '13': {
         'name': '100%',
         'desc': '100%',
-        'attack': {
+        'attacker': {
             "dex": 1,
             "agi": 1,
             "int": 1,
@@ -1238,7 +1273,7 @@ const accuracyScaling = {
             "side": 0,
             "back": 0
         },
-        'defend': {
+        'defender': {
             "dex": 0,
             "agi": 0,
             "int": 0,
@@ -1264,7 +1299,7 @@ const accuracyScaling = {
     '15': {
         'name': 'Flank',
         'desc': '-',
-        'attack': {
+        'attacker': {
             "dex": 1,
             "agi": 1,
             "int": 1,
@@ -1286,7 +1321,7 @@ const accuracyScaling = {
             "side": -100,
             "back": 0
         },
-        'defend': {
+        'defender': {
             "dex": 0,
             "agi": 0,
             "int": 0,
@@ -1312,7 +1347,7 @@ const accuracyScaling = {
     '21': {
         'name': 'Projectile Spell',
         'desc': '—',
-        'attack': {
+        'attacker': {
             "dex": 0,
             "agi": 0.4,
             "int": 0.6,
@@ -1334,7 +1369,7 @@ const accuracyScaling = {
             "side": 40,
             "back": 60
         },
-        'defend': {
+        'defender': {
             "dex": 0,
             "agi": 0,
             "int": 0,
@@ -1360,7 +1395,7 @@ const accuracyScaling = {
     '23': {
         'name': 'Status Spell',
         'desc': '—',
-        'attack': {
+        'attacker': {
             "dex": 0,
             "agi": 0,
             "int": 0.8,
@@ -1382,7 +1417,7 @@ const accuracyScaling = {
             "side": 0,
             "back": 0
         },
-        'defend': {
+        'defender': {
             "dex": 0,
             "agi": 0,
             "int": 0,
@@ -1408,7 +1443,7 @@ const accuracyScaling = {
     '25': {
         'name': 'Illusion Spell',
         'desc': '—',
-        'attack': {
+        'attacker': {
             "dex": 0,
             "agi": 0,
             "int": 0.8,
@@ -1430,7 +1465,7 @@ const accuracyScaling = {
             "side": 0,
             "back": 0
         },
-        'defend': {
+        'defender': {
             "dex": 0,
             "agi": 0,
             "int": 0.8,
@@ -1456,7 +1491,7 @@ const accuracyScaling = {
     '27': {
         'name': 'Sign Spell',
         'desc': '—',
-        'attack': {
+        'attacker': {
             "dex": 0.6,
             "agi": 0,
             "int": 0.6,
@@ -1478,7 +1513,7 @@ const accuracyScaling = {
             "side": 0,
             "back": 0
         },
-        'defend': {
+        'defender': {
             "dex": 0,
             "agi": 0,
             "int": 0.4,
@@ -1504,7 +1539,7 @@ const accuracyScaling = {
     '29': {
         'name': 'Gaze Spell',
         'desc': '—',
-        'attack': {
+        'attacker': {
             "dex": 0,
             "agi": 0,
             "int": 0.8,
@@ -1526,7 +1561,7 @@ const accuracyScaling = {
             "side": -50,
             "back": -100
         },
-        'defend': {
+        'defender': {
             "dex": 0,
             "agi": 0,
             "int": 0.4,

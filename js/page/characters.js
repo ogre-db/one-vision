@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let recruitChapters = String(item.chapter).split(',');
             let tr = document.createElement('tr');
-                tr.id = index;
+                tr.id = item.id;
                 let type = document.createElement('td');
                     let raceImg = document.createElement('img');
                         raceImg.src = races[item.race * 2].icon;
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         swapEffectStart(sidePanel, panelContent);
 
         let targetRow = event.target.closest('tr');
-        let item = items[targetRow.id];
+        let item = items.find((item) => item.id === parseInt(targetRow.id));
 
         let selectedRow = itemList.querySelector('tr.selected');
         if (selectedRow) selectedRow.classList.remove('selected');
@@ -288,16 +288,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.res + statBonusGeneric[variationType + 2].res
             ];
             let statList3 = [
-                item.hp + statBonusGeneric[variationType + 3].hp,
-                item.mp + statBonusGeneric[variationType + 3].mp,
-                item.str + statBonusGeneric[variationType + 3].str,
-                item.vit + statBonusGeneric[variationType + 3].vit,
-                item.dex + statBonusGeneric[variationType + 3].dex,
-                item.agi + statBonusGeneric[variationType + 3].agi,
-                item.avd + statBonusGeneric[variationType + 3].avd,
-                item.int + statBonusGeneric[variationType + 3].int,
-                item.mnd + statBonusGeneric[variationType + 3].mnd,
-                item.res + statBonusGeneric[variationType + 3].res
+                item.hp + statBonusGeneric[variationType + 3 ].hp,
+                item.mp + statBonusGeneric[variationType + 3 ].mp,
+                item.str + statBonusGeneric[variationType + 3 ].str,
+                item.vit + statBonusGeneric[variationType + 3 ].vit,
+                item.dex + statBonusGeneric[variationType + 3 ].dex,
+                item.agi + statBonusGeneric[variationType + 3 ].agi,
+                item.avd + statBonusGeneric[variationType + 3 ].avd,
+                item.int + statBonusGeneric[variationType + 3 ].int,
+                item.mnd + statBonusGeneric[variationType + 3 ].mnd,
+                item.res + statBonusGeneric[variationType + 3 ].res
             ];
             let statList4 = [
                 item.hp,
@@ -346,14 +346,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 'res': item.res + statBonusGeneric[variationType + 2].res
             }
             statList3 = {
-                'str': item.str + statBonusGeneric[variationType +3].str,
-                'vit': item.vit + statBonusGeneric[variationType +3].vit,
-                'dex': item.dex + statBonusGeneric[variationType +3].dex,
-                'agi': item.agi + statBonusGeneric[variationType +3].agi,
-                'avd': item.avd + statBonusGeneric[variationType +3].avd,
-                'int': item.int + statBonusGeneric[variationType +3].int,
-                'mnd': item.mnd + statBonusGeneric[variationType +3].mnd,
-                'res': item.res + statBonusGeneric[variationType +3].res
+                'str': item.str + statBonusGeneric[variationType + 3].str,
+                'vit': item.vit + statBonusGeneric[variationType + 3].vit,
+                'dex': item.dex + statBonusGeneric[variationType + 3].dex,
+                'agi': item.agi + statBonusGeneric[variationType + 3].agi,
+                'avd': item.avd + statBonusGeneric[variationType + 3].avd,
+                'int': item.int + statBonusGeneric[variationType + 3].int,
+                'mnd': item.mnd + statBonusGeneric[variationType + 3].mnd,
+                'res': item.res + statBonusGeneric[variationType + 3].res
             }
             statList4 = {
                 'str': item.str,

@@ -203,7 +203,11 @@ function getEffectText (ability, effectSet) {
             effectText += ' +' + ability[power];
     } else if (ability[effect1] === 2) {
         if (ability[scaling] === 1)
-            effectText += 'Spell Heal' + (ability[power] > 0 ? ' +' + ability[power] : '');
+            effectText += `<span data-tooltip="scalingheal-` +
+                ability[scaling] +
+                `" data-position="bottom" data-size="large">` +
+                healingScaling[ability[scaling]].name + (ability[power] > 0 ? ' +' + ability[power] : '') +
+                `</span>`;
         else {
             effectText += 'Heal ';
             if ( ability[formula] === 9 || ability[formula] === 14 )

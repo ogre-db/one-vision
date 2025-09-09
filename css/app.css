@@ -1446,8 +1446,8 @@ ol li:before {
   position: absolute;
   box-sizing: border-box;
   cursor: pointer;
-  left: 3px;
-  bottom: 4px;
+  left: 13%;
+  bottom: 13%;
   height: 0;
   width: 0;
   border: 4px solid transparent;
@@ -1636,8 +1636,8 @@ ol li:before {
   position: absolute;
   box-sizing: border-box;
   cursor: pointer;
-  left: 3px;
-  bottom: 4px;
+  left: 13%;
+  bottom: 13%;
   height: 0;
   width: 0;
   border: 4px solid transparent;
@@ -3419,6 +3419,299 @@ ol li:before {
   }
   .page-cheats .ov-accordion#templateTweaker .ov-accordion {
     width: 66%;
+  }
+}
+.page-calculator .ov-accordion {
+  background-color: #e8e3de;
+  border-radius: 5px;
+}
+.page-calculator .ov-accordion:not(:first-child) {
+  margin-top: 5px;
+}
+.page-calculator .ov-accordion > li .accordion-title {
+  background-color: #5f5854;
+  color: #eee;
+  font-size: 1rem;
+  text-align: left;
+  padding: 3px 15px;
+  text-shadow: 0 0 5px #000;
+  border-radius: 4px;
+}
+.page-calculator .ov-accordion > li .accordion-title:after {
+  font-size: 0.875rem;
+}
+.page-calculator .ov-accordion > li .accordion-title:hover {
+  color: #ee9500;
+}
+.page-calculator .ov-accordion > li .accordion-content > div {
+  margin: 20px 20px 15px;
+}
+.page-calculator .ov-accordion > li .accordion-content label {
+  display: block;
+}
+.page-calculator .ov-accordion > li .accordion-content label.input {
+  font-size: 0.75rem;
+  margin-bottom: 1px;
+}
+.page-calculator .ov-accordion > li .accordion-content label img {
+  max-height: 1.2em;
+  vertical-align: bottom;
+}
+.page-calculator .ov-accordion > li .accordion-content label .scaling {
+  display: inline-block;
+  padding: 0 6px;
+  background-color: #ffffff99;
+  border: 1px solid #ee9500;
+  border-radius: 4px;
+}
+.page-calculator .ov-accordion > li .accordion-content label .scaling b {
+  margin-left: 10px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #5f5854;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step:first-child,
+.page-calculator .ov-accordion > li .accordion-content .calc-step:first-child > div:first-child,
+.page-calculator .ov-accordion > li .accordion-content .calc-step:first-child > div.defender {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step:last-child,
+.page-calculator .ov-accordion > li .accordion-content .calc-step:last-child > div:last-child {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step:not(:first-child) {
+  border-top: none;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div {
+  padding: 10px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div > div {
+  margin-top: 8px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.attacker {
+  background-color: #f4dcdc;
+  flex: 1 0;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.defender {
+  background-color: #d4eaf4;
+  flex: 1 0;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.sum {
+  background-color: #f2f0ed;
+  flex: 1 0 100%;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.sum.narrow {
+  padding: 5px 10px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.sum.shared {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.sum > div label {
+  margin: 0;
+  font-size: 0.875rem;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.sum > div .value {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.sum > div .value.main {
+  font-size: 1.4rem;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.sum > div:first-child {
+  margin-top: 0;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.sum .value.main {
+  display: inline-block;
+  font-weight: bold;
+  padding: 0 6px;
+  background-color: #ffffff99;
+  border-radius: 4px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.sum .scaling {
+  margin-left: 10px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div.sum .stat-table {
+  margin-top: 0;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .row {
+  display: flex;
+  gap: 10px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .row label {
+  margin-top: 4px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .row > div.width-1 {
+  flex: 1 0;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .row > div.width-1.lock {
+  flex-basis: 25%;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .row > div.width-2 {
+  flex: 2 0;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .row > div.width-3 {
+  flex: 3 0;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .inner:not(:first-child) {
+  margin-top: 20px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .inner > div {
+  margin-top: 8px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .inner > div.row > div:first-child {
+  align-content: start;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .inner > div.row > div:last-child {
+  align-content: center;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .inner label {
+  margin-top: 0;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .inner label.checkbox {
+  white-space: nowrap;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .number {
+  max-width: 60px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .checkbox {
+  background-color: #ffffff99;
+  display: flex;
+  font-size: 0.875rem;
+  padding: 2px 6px 2px 2px;
+  border-radius: 4px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table {
+  background-color: #ffffff66;
+  width: 100%;
+  border-radius: 4px;
+  border-collapse: collapse;
+  margin: 10px auto 0;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table th,
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table td {
+  font-size: 0.75rem;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  padding: 1px 4px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table th img,
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table td img {
+  max-height: 1.2em;
+  vertical-align: bottom;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table.basic th {
+  width: 55px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table.basic th:first-child {
+  width: auto;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table.basic th:last-child {
+  width: 80px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table.bonuses th {
+  width: 65px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table.bonuses th:first-child {
+  width: auto;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table.bonuses th:last-child {
+  width: 80px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table.extra {
+  max-width: 300px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table.extra th {
+  width: 65px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table.extra th:first-child {
+  width: auto;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table.extra th:last-child {
+  width: 80px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table.multis {
+  max-width: 250px;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table td:first-child {
+  text-align: right;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table td:last-child {
+  font-weight: bold;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table thead tr:last-child th {
+  border-bottom: 1px solid rgba(124, 118, 114, 0.3);
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table tr:last-child td {
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-align: right;
+  border-top: 1px solid rgba(124, 118, 114, 0.3);
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table tr:last-child td:last-child {
+  font-size: 1.1rem;
+  text-align: center;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step > div .stat-table tr.divider td {
+  border-bottom: 1px solid rgba(124, 118, 114, 0.3);
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step .column {
+  display: flex;
+  flex-direction: column;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step .column > *.space-above {
+  margin-top: auto;
+}
+.page-calculator .ov-accordion > li .accordion-content .calc-step .column > div:first-child {
+  margin-top: 0;
+}
+.page-calculator .ov-accordion > li .accordion-content select {
+  background-color: #f2f0ed;
+  font-family: sans-serif;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #5f5854;
+  border-radius: 4px;
+  outline: none;
+}
+.page-calculator .ov-accordion > li .accordion-content select option {
+  background-color: #f2f0ed;
+  font-family: sans-serif;
+}
+.page-calculator .ov-accordion > li .accordion-content input[type=text],
+.page-calculator .ov-accordion > li .accordion-content input[type=number] {
+  background-color: #f2f0ed;
+  font-family: sans-serif;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #5f5854;
+  border-radius: 4px;
+  outline: none;
+}
+.page-calculator .ov-accordion > li .accordion-content p.info {
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  font-style: italic;
+  margin: 1px 0 0;
+}
+.page-calculator .ov-accordion > li .accordion-content p.info.select {
+  margin-top: 16px;
+}
+.page-calculator .ov-accordion > li.open .accordion-title {
+  color: #ee9500;
+}
+@media only screen and (min-width: 480px) {
+  .page-calculator .ov-accordion > li .accordion-title {
+    font-size: 1.2rem;
+    padding: 5px 20px;
+    border-radius: 5px;
+  }
+  .page-calculator .ov-accordion > li .accordion-title:after {
+    font-size: 1rem;
   }
 }
 .page-installation .ov-content > div {

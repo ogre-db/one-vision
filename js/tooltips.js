@@ -33,89 +33,102 @@ function activateTooltips () {
         } else if (tooltipData.startsWith('scalingdmg-')) {
             let matches = tooltipData.match(/(\d+)/g);
             let formula = damageScaling[matches[0]];
-            if (Object.values(formula.attack).some(val => val !== 0) || Object.values(formula.defend).some(val => val !== 0)) {
+            if (Object.values(formula.attacker).some(val => val !== 0) || Object.values(formula.defender).some(val => val !== 0)) {
                 tooltipContent =
-                    (formula.attack.str !== 0 ? `<b>` + formula.attack.str + `</b> x Strength<br>` : ``) +
-                    (formula.attack.vit !== 0 ? `<b>` + formula.attack.vit + `</b> x Vitality<br>` : ``) +
-                    (formula.attack.dex !== 0 ? `<b>` + formula.attack.dex + `</b> x Dexterity<br>` : ``) +
-                    (formula.attack.int !== 0 ? `<b>` + formula.attack.int + `</b> x Intelligence<br>` : ``) +
-                    (formula.attack.mnd !== 0 ? `<b>` + formula.attack.mnd + `</b> x Mind<br>` : ``) +
-                    (formula.attack.res !== 0 ? `<b>` + formula.attack.res + `</b> x Resistance<br>` : ``) +
-                    ((formula.attack.wpatk !== 0 && (formula.attack.wpatk === formula.attack.aratk && formula.attack.wpatk === formula.attack.jwatk)) ?
-                        `<b>` + formula.attack.wpatk + `</b> x Equipment ATK<br>` :
-                        (formula.attack.wpatk !== 0 ? `<b>` + formula.attack.wpatk + `</b> x Weapon ATK<br>` : ``) +
-                        (formula.attack.shatk !== 0 ? `<b>` + formula.attack.shatk + `</b> x Shield ATK<br>` : ``) +
-                        (formula.attack.aratk !== 0 ? `<b>` + formula.attack.aratk + `</b> x Armor ATK<br>` : ``) +
-                        (formula.attack.jwatk !== 0 ? `<b>` + formula.attack.jwatk + `</b> x Jewelry ATK<br>` : ``)) +
-                    (formula.attack.clsatk !== 0 ? `<b>` + formula.attack.clsatk + `</b> x Class ATK<br>` : ``) +
-                    ((formula.attack.wpdef !== 0 && (formula.attack.wpdef === formula.attack.ardef && formula.attack.wpdef === formula.attack.jwdef)) ?
-                        `<b>` + formula.attack.wpdef + `</b> x Equipment DEF<br>` :
-                        (formula.attack.wpdef !== 0 ? `<b>` + formula.attack.wpdef + `</b> x Weapon DEF<br>` : ``) +
-                        (formula.attack.shdef !== 0 ? `<b>` + formula.attack.shdef + `</b> x Shield DEF<br>` : ``) +
-                        (formula.attack.ardef !== 0 ? `<b>` + formula.attack.ardef + `</b> x Armor DEF<br>` : ``) +
-                        (formula.attack.jwdef !== 0 ? `<b>` + formula.attack.jwdef + `</b> x Jewelry DEF<br>` : ``)) +
-                    (formula.attack.clsdef !== 0 ? `<b>` + formula.attack.clsdef + `</b> x Class DEF<br>` : ``) +
-                    ((formula.attack.wskl !== 0 && !tooltipData.includes('-nwa-')) ? `<b>` + formula.attack.wskl + `</b> x Weapon Skill Rank<br>` : ``) +
-                    (formula.attack.aug !== 0 ? `<b>` + formula.attack.aug + `</b> x Augment Skill Rank<br>` : ``) +
-                    (formula.attack.rac !== 0 ? `<b>` + formula.attack.rac + `</b> x Racial Skill Rank<br>` : ``) +
+                    (formula.attacker.str !== 0 ? `<b>` + formula.attacker.str + `</b> x Strength<br>` : ``) +
+                    (formula.attacker.vit !== 0 ? `<b>` + formula.attacker.vit + `</b> x Vitality<br>` : ``) +
+                    (formula.attacker.dex !== 0 ? `<b>` + formula.attacker.dex + `</b> x Dexterity<br>` : ``) +
+                    (formula.attacker.int !== 0 ? `<b>` + formula.attacker.int + `</b> x Intelligence<br>` : ``) +
+                    (formula.attacker.mnd !== 0 ? `<b>` + formula.attacker.mnd + `</b> x Mind<br>` : ``) +
+                    (formula.attacker.res !== 0 ? `<b>` + formula.attacker.res + `</b> x Resistance<br>` : ``) +
+                    ((formula.attacker.wpatk !== 0 && (formula.attacker.wpatk === formula.attacker.aratk && formula.attacker.wpatk === formula.attacker.jwatk)) ?
+                        `<b>` + formula.attacker.wpatk + `</b> x Equipment ATK<br>` :
+                        (formula.attacker.wpatk !== 0 ? `<b>` + formula.attacker.wpatk + `</b> x Weapon ATK<br>` : ``) +
+                        (formula.attacker.shatk !== 0 ? `<b>` + formula.attacker.shatk + `</b> x Shield ATK<br>` : ``) +
+                        (formula.attacker.aratk !== 0 ? `<b>` + formula.attacker.aratk + `</b> x Armor ATK<br>` : ``) +
+                        (formula.attacker.jwatk !== 0 ? `<b>` + formula.attacker.jwatk + `</b> x Jewelry ATK<br>` : ``)) +
+                    (formula.attacker.clsatk !== 0 ? `<b>` + formula.attacker.clsatk + `</b> x Class ATK<br>` : ``) +
+                    ((formula.attacker.wpdef !== 0 && (formula.attacker.wpdef === formula.attacker.ardef && formula.attacker.wpdef === formula.attacker.jwdef)) ?
+                        `<b>` + formula.attacker.wpdef + `</b> x Equipment DEF<br>` :
+                        (formula.attacker.wpdef !== 0 ? `<b>` + formula.attacker.wpdef + `</b> x Weapon DEF<br>` : ``) +
+                        (formula.attacker.shdef !== 0 ? `<b>` + formula.attacker.shdef + `</b> x Shield DEF<br>` : ``) +
+                        (formula.attacker.ardef !== 0 ? `<b>` + formula.attacker.ardef + `</b> x Armor DEF<br>` : ``) +
+                        (formula.attacker.jwdef !== 0 ? `<b>` + formula.attacker.jwdef + `</b> x Jewelry DEF<br>` : ``)) +
+                    (formula.attacker.clsdef !== 0 ? `<b>` + formula.attacker.clsdef + `</b> x Class DEF<br>` : ``) +
+                    ((formula.attacker.wskl !== 0 && !tooltipData.includes('-nwa-')) ? `<b>` + formula.attacker.wskl + `</b> x Weapon Skill Rank<br>` : ``) +
+                    (formula.attacker.aug !== 0 ? `<b>` + formula.attacker.aug + `</b> x Augment Skill Rank<br>` : ``) +
+                    (formula.attacker.rac !== 0 ? `<b>` + formula.attacker.rac + `</b> x Racial Skill Rank<br>` : ``) +
                     `<div class="text-center"><b>VS</b></div>` +
-                    (formula.defend.str !== 0 ? `<b>` + formula.defend.str + `</b> x Strength<br>` : ``) +
-                    (formula.defend.vit !== 0 ? `<b>` + formula.defend.vit + `</b> x Vitality<br>` : ``) +
-                    (formula.defend.dex !== 0 ? `<b>` + formula.defend.dex + `</b> x Dexterity<br>` : ``) +
-                    (formula.defend.int !== 0 ? `<b>` + formula.defend.int + `</b> x Intelligence<br>` : ``) +
-                    (formula.defend.mnd !== 0 ? `<b>` + formula.defend.mnd + `</b> x Mind<br>` : ``) +
-                    (formula.defend.res !== 0 ? `<b>` + formula.defend.res + `</b> x Resistance<br>` : ``) +
-                    ((formula.defend.wpatk !== 0 && (formula.defend.wpatk === formula.defend.aratk && formula.defend.wpatk === formula.defend.jwatk)) ?
-                        `<b>` + formula.attack.wpatk + `</b> x Equipment ATK<br>` :
-                        (formula.defend.wpatk !== 0 ? `<b>` + formula.defend.wpatk + `</b> x Weapon ATK<br>` : ``) +
-                        (formula.defend.shatk !== 0 ? `<b>` + formula.defend.shatk + `</b> x Shield ATK<br>` : ``) +
-                        (formula.defend.aratk !== 0 ? `<b>` + formula.defend.aratk + `</b> x Armor ATK<br>` : ``) +
-                        (formula.defend.jwatk !== 0 ? `<b>` + formula.defend.jwatk + `</b> x Jewelry ATK<br>` : ``)) +
-                    (formula.defend.clsatk !== 0 ? `<b>` + formula.defend.clsatk + `</b> x Class ATK<br>` : ``) +
-                    ((formula.defend.wpdef !== 0 && (formula.defend.wpdef === formula.defend.ardef && formula.defend.wpdef === formula.defend.jwdef)) ?
-                        `<b>` + formula.defend.wpdef + `</b> x Equipment DEF<br>` :
-                        (formula.defend.wpdef !== 0 ? `<b>` + formula.defend.wpdef + `</b> x Weapon DEF<br>` : ``) +
-                        (formula.defend.shdef !== 0 ? `<b>` + formula.defend.shdef + `</b> x Shield DEF<br>` : ``) +
-                        (formula.defend.ardef !== 0 ? `<b>` + formula.defend.ardef + `</b> x Armor DEF<br>` : ``) +
-                        (formula.defend.jwdef !== 0 ? `<b>` + formula.defend.jwdef + `</b> x Jewelry DEF<br>` : ``)) +
-                    (formula.defend.clsdef !== 0 ? `<b>` + formula.defend.clsdef + `</b> x Class DEF<br>` : ``) +
-                    ((formula.defend.wskl !== 0 && !tooltipData.includes('-nwa-')) ? `<b>` + formula.defend.wskl + `</b> x Weapon Skill Rank<br>` : ``) +
-                    (formula.defend.aug !== 0 ? `<b>` + formula.defend.aug + `</b> x Augment Skill Rank<br>` : ``) +
-                    (formula.defend.rac !== 0 ? `<b>` + formula.defend.rac + `</b> x Racial Skill Rank<br>` : ``)
+                    (formula.defender.str !== 0 ? `<b>` + formula.defender.str + `</b> x Strength<br>` : ``) +
+                    (formula.defender.vit !== 0 ? `<b>` + formula.defender.vit + `</b> x Vitality<br>` : ``) +
+                    (formula.defender.dex !== 0 ? `<b>` + formula.defender.dex + `</b> x Dexterity<br>` : ``) +
+                    (formula.defender.int !== 0 ? `<b>` + formula.defender.int + `</b> x Intelligence<br>` : ``) +
+                    (formula.defender.mnd !== 0 ? `<b>` + formula.defender.mnd + `</b> x Mind<br>` : ``) +
+                    (formula.defender.res !== 0 ? `<b>` + formula.defender.res + `</b> x Resistance<br>` : ``) +
+                    ((formula.defender.wpatk !== 0 && (formula.defender.wpatk === formula.defender.aratk && formula.defender.wpatk === formula.defender.jwatk)) ?
+                        `<b>` + formula.attacker.wpatk + `</b> x Equipment ATK<br>` :
+                        (formula.defender.wpatk !== 0 ? `<b>` + formula.defender.wpatk + `</b> x Weapon ATK<br>` : ``) +
+                        (formula.defender.shatk !== 0 ? `<b>` + formula.defender.shatk + `</b> x Shield ATK<br>` : ``) +
+                        (formula.defender.aratk !== 0 ? `<b>` + formula.defender.aratk + `</b> x Armor ATK<br>` : ``) +
+                        (formula.defender.jwatk !== 0 ? `<b>` + formula.defender.jwatk + `</b> x Jewelry ATK<br>` : ``)) +
+                    (formula.defender.clsatk !== 0 ? `<b>` + formula.defender.clsatk + `</b> x Class ATK<br>` : ``) +
+                    ((formula.defender.wpdef !== 0 && (formula.defender.wpdef === formula.defender.ardef && formula.defender.wpdef === formula.defender.jwdef)) ?
+                        `<b>` + formula.defender.wpdef + `</b> x Equipment DEF<br>` :
+                        (formula.defender.wpdef !== 0 ? `<b>` + formula.defender.wpdef + `</b> x Weapon DEF<br>` : ``) +
+                        (formula.defender.shdef !== 0 ? `<b>` + formula.defender.shdef + `</b> x Shield DEF<br>` : ``) +
+                        (formula.defender.ardef !== 0 ? `<b>` + formula.defender.ardef + `</b> x Armor DEF<br>` : ``) +
+                        (formula.defender.jwdef !== 0 ? `<b>` + formula.defender.jwdef + `</b> x Jewelry DEF<br>` : ``)) +
+                    (formula.defender.clsdef !== 0 ? `<b>` + formula.defender.clsdef + `</b> x Class DEF<br>` : ``) +
+                    ((formula.defender.wskl !== 0 && !tooltipData.includes('-nwa-')) ? `<b>` + formula.defender.wskl + `</b> x Weapon Skill Rank<br>` : ``) +
+                    (formula.defender.aug !== 0 ? `<b>` + formula.defender.aug + `</b> x Augment Skill Rank<br>` : ``) +
+                    (formula.defender.rac !== 0 ? `<b>` + formula.defender.rac + `</b> x Racial Skill Rank<br>` : ``)
+                ;
+            }
+        } else if (tooltipData.startsWith('scalingheal-')) {
+            let matches = tooltipData.match(/(\d+)/g);
+            let formula = healingScaling[matches[0]];
+            if (Object.values(formula.attacker).some(val => val !== 0) || Object.values(formula.defender).some(val => val !== 0)) {
+                console.log(formula);
+                tooltipContent =
+                    (formula.attacker.vit !== 0 ? `<b>` + formula.attacker.vit + `</b> x Vitality<br>` : ``) +
+                    (formula.attacker.mnd !== 0 ? `<b>` + formula.attacker.mnd + `</b> x Mind<br>` : ``) +
+                    (formula.attacker.res !== 0 ? `<b>` + formula.attacker.res + `</b> x Resistance<br>` : ``) +
+                    (formula.attacker.aug !== 0 ? `<b>` + formula.attacker.aug + `</b> x Augment Skill Rank<br>` : ``) +
+                    (formula.attacker.rac !== 0 ? `<b>` + formula.attacker.rac + `</b> x Racial Skill Rank<br>` : ``)
                 ;
             }
         } else if (tooltipData.startsWith('scalingacc-')) {
             let matches = tooltipData.match(/(\d+)/g);
             let formula = accuracyScaling[matches[0]];
-            if (Object.values(formula.defend).some(val => val !== 0) || Object.keys(formula.attack).some(key => ['frnt','side','back'].includes(key) && formula.attack[key] !== 0)) {
-                if (!Object.values(formula.defend).some(val => val !== 0)) {
+            if (Object.values(formula.defender).some(val => val !== 0) || Object.keys(formula.attacker).some(key => ['frnt','side','back'].includes(key) && formula.attacker[key] !== 0)) {
+                if (!Object.values(formula.defender).some(val => val !== 0)) {
                     tooltipContent += '<b>100</b> % Chance';
                 } else {
                     tooltipContent +=
-                        (formula.attack.dex !== 0 ? `<b>` + formula.attack.dex + `</b> x Dexterity<br>` : ``) +
-                        (formula.attack.agi !== 0 ? `<b>` + formula.attack.agi + `</b> x Agility<br>` : ``) +
-                        (formula.attack.int !== 0 ? `<b>` + formula.attack.int + `</b> x Intelligence<br>` : ``) +
-                        (formula.attack.mnd !== 0 ? `<b>` + formula.attack.mnd + `</b> x Mind<br>` : ``) +
-                        (formula.attack.avd !== 0 ? `<b>` + formula.attack.avd + `</b> x Avoidance<br>` : ``) +
-                        ((formula.attack.wskl !== 0 && !tooltipData.includes('-nwa-')) ? `<b>` + formula.attack.wskl + `</b> x Weapon Skill Rank<br>` : ``) +
+                        (formula.attacker.dex !== 0 ? `<b>` + formula.attacker.dex + `</b> x Dexterity<br>` : ``) +
+                        (formula.attacker.agi !== 0 ? `<b>` + formula.attacker.agi + `</b> x Agility<br>` : ``) +
+                        (formula.attacker.int !== 0 ? `<b>` + formula.attacker.int + `</b> x Intelligence<br>` : ``) +
+                        (formula.attacker.mnd !== 0 ? `<b>` + formula.attacker.mnd + `</b> x Mind<br>` : ``) +
+                        (formula.attacker.avd !== 0 ? `<b>` + formula.attacker.avd + `</b> x Avoidance<br>` : ``) +
+                        ((formula.attacker.wskl !== 0 && !tooltipData.includes('-nwa-')) ? `<b>` + formula.attacker.wskl + `</b> x Weapon Skill Rank<br>` : ``) +
                         `<div class="text-center"><b>VS</b></div>` +
-                        (formula.defend.dex !== 0 ? `<b>` + formula.defend.dex + `</b> x Dexterity<br>` : ``) +
-                        (formula.defend.agi !== 0 ? `<b>` + formula.defend.agi + `</b> x Agility<br>` : ``) +
-                        (formula.defend.int !== 0 ? `<b>` + formula.defend.int + `</b> x Intelligence<br>` : ``) +
-                        (formula.defend.mnd !== 0 ? `<b>` + formula.defend.mnd + `</b> x Mind<br>` : ``) +
-                        (formula.defend.avd !== 0 ? `<b>` + formula.defend.avd + `</b> x Avoidance<br>` : ``) +
-                        ((formula.defend.wskl !== 0 && !tooltipData.includes('-nwa-')) ? `<b>` + formula.defend.wskl + `</b> x Weapon Skill Rank<br>` : ``)
+                        (formula.defender.dex !== 0 ? `<b>` + formula.defender.dex + `</b> x Dexterity<br>` : ``) +
+                        (formula.defender.agi !== 0 ? `<b>` + formula.defender.agi + `</b> x Agility<br>` : ``) +
+                        (formula.defender.int !== 0 ? `<b>` + formula.defender.int + `</b> x Intelligence<br>` : ``) +
+                        (formula.defender.mnd !== 0 ? `<b>` + formula.defender.mnd + `</b> x Mind<br>` : ``) +
+                        (formula.defender.avd !== 0 ? `<b>` + formula.defender.avd + `</b> x Avoidance<br>` : ``) +
+                        ((formula.defender.wskl !== 0 && !tooltipData.includes('-nwa-')) ? `<b>` + formula.defender.wskl + `</b> x Weapon Skill Rank<br>` : ``)
                     ;
                 }
-                if (Object.keys(formula.attack).some(key => ['frnt','side','back'].includes(key) && formula.attack[key] !== 0)) {
+                if (Object.keys(formula.attacker).some(key => ['frnt','side','back'].includes(key) && formula.attacker[key] !== 0)) {
                     tooltipContent +=
                         `<p><b>Limited</b></p>` +
                         `<span class="acc-facing">Front:</span> ` +
-                        (formula.attack.frnt !== 0 ? (formula.attack.frnt > 0 ? `<small class="blue">min</small> <b>` + formula.attack.frnt + `</b> %` : `<small class="red">max</small> <b>` + (100 + formula.attack.frnt) + `</b> %`) : '-') + `<br>` +
+                        (formula.attacker.frnt !== 0 ? (formula.attacker.frnt > 0 ? `<small class="blue">min</small> <b>` + formula.attacker.frnt + `</b> %` : `<small class="red">max</small> <b>` + (100 + formula.attacker.frnt) + `</b> %`) : '-') + `<br>` +
                         `<span class="acc-facing">Side:</span> ` +
-                        (formula.attack.side !== 0 ? (formula.attack.side > 0 ? `<small class="blue">min</small> <b>` + formula.attack.side + `</b> %` : `<small class="red">max</small> <b>` + (100 + formula.attack.side) + `</b> %`) : '-') + `<br>` +
+                        (formula.attacker.side !== 0 ? (formula.attacker.side > 0 ? `<small class="blue">min</small> <b>` + formula.attacker.side + `</b> %` : `<small class="red">max</small> <b>` + (100 + formula.attacker.side) + `</b> %`) : '-') + `<br>` +
                         `<span class="acc-facing">Back:</span> ` +
-                        (formula.attack.back !== 0 ? (formula.attack.back > 0 ? `<small class="blue">min</small> <b>` + formula.attack.back + `</b> %` : `<small class="red">max</small> <b>` + (100 + formula.attack.back) + `</b> %`) : '-') + `<br>`
+                        (formula.attacker.back !== 0 ? (formula.attacker.back > 0 ? `<small class="blue">min</small> <b>` + formula.attacker.back + `</b> %` : `<small class="red">max</small> <b>` + (100 + formula.attacker.back) + `</b> %`) : '-') + `<br>`
                     ;
                 }
             }

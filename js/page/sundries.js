@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             let tr = document.createElement('tr');
-                tr.id = index;
+                tr.id = item.id;
                 let type = document.createElement('td');
                     let classImg = document.createElement('img');
                         classImg.src = itemTypes[item.typ]['icon'];
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         swapEffectStart( sidePanel, panelContent );
 
         let targetRow = event.target.closest('tr');
-        let item = items[targetRow.id];
+        let item = items.find((item) => item.id === parseInt(targetRow.id));
         let job;
 
         let selectedRow = itemList.querySelector('tr.selected');
