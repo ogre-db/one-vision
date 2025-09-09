@@ -2246,86 +2246,86 @@ const derivedStatList = {
     1: {
         formula: 'damage',
         formulaId: 1,
-        side: 'attack'
+        side: 'attacker'
     },
     2: {
         formula: 'damage',
         formulaId: 7,
-        side: 'attack'
+        side: 'attacker'
     },
     3: {
         formula: 'damage',
         formulaId: 13,
-        side: 'attack'
+        side: 'attacker'
     },
     4: {
         formula: 'damage',
         formulaId: 19,
-        side: 'attack'
+        side: 'attacker'
     },
     5: {
         formula: 'damage',
         formulaId: 1,
-        side: 'defend'
+        side: 'defender'
     },
     6: {
         formula: 'accuracy',
         formulaId: 1,
-        side: 'attack'
+        side: 'attacker'
     },
     7: {
         formula: 'accuracy',
         formulaId: 1,
-        side: 'defend'
+        side: 'defender'
     },
     8: {
         formula: 'damage',
         formulaId: 37,
-        side: 'attack'
+        side: 'attacker'
     },
     9: {
         formula: 'damage',
         formulaId: 37,
-        side: 'defend'
+        side: 'defender'
     },
     10: {
         formula: 'accuracy',
         formulaId: 21,
-        side: 'attack'
+        side: 'attacker'
     },
     11: {
         formula: 'accuracy',
         formulaId: 21,
-        side: 'defend'
+        side: 'defender'
     },
     12: {
         formula: 'accuracy',
         formulaId: 23,
-        side: 'attack'
+        side: 'attacker'
     },
     13: {
         formula: 'accuracy',
         formulaId: 23,
-        side: 'defend'
+        side: 'defender'
     },
     14: {
         formula: 'accuracy',
         formulaId: 25,
-        side: 'defend'
+        side: 'defender'
     },
     15: {
         formula: 'accuracy',
         formulaId: 29,
-        side: 'defend'
+        side: 'defender'
     },
     16: {
         formula: 'accuracy',
         formulaId: 27,
-        side: 'attack'
+        side: 'attacker'
     },
     17: {
         formula: 'accuracy',
         formulaId: 27,
-        side: 'defend'
+        side: 'defender'
     }
 }

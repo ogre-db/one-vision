@@ -491,7 +491,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
             if (step === 'attackDamage-3') {
-                let amount = entity.role === 'attacker' ? (entity.class.atk + entity.class.atkgrw) * (entity.level - 1) / 10 : (entity.class.def + entity.class.defgrw) * (entity.level - 1) / 10;
+                let amount = entity.role === 'attacker' ? entity.class.atk + entity.class.atkgrw * (entity.level - 1) / 10 : entity.class.def + entity.class.defgrw * (entity.level - 1) / 10;
                 let multi = entity.role === 'attacker' ? formula[entity.role].clsatk : formula[entity.role].clsdef
                 let dataRow = {
                     'label': 'Class',
@@ -615,6 +615,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function checkSelections(attacker, defender, calculator, input) {
         [attacker, defender].forEach( (entity) => {
+            if (input && input.classList.contains('select-template') && input.closest('.' + entity.role)) {
+                let labels = ['Default','Warrior','Rogue','Mage'];
+                if ([2, 4, 9].includes(entity.template.race) && ![210, 234].includes(entity.template.id)) labels = ['Default','Offense','Defense','Speed']
+                calculator.querySelectorAll('.' + entity.role + ' .select-template-var option').forEach( (element, index) => {
+                    element.innerText = labels[index];
+                });
+            }
+
             if (entity.equipment.mainHand.hnd) {
                 entity.equipment.offHand = null;
                 calculator.querySelector('.' + entity.role + ' .select-off-hand').setAttribute('disabled', 'disabled');
