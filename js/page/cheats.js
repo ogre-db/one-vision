@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         tempTwSwitchResult = document.getElementById('tempTwSwitchResult'),
         classLevelSetter = document.getElementById('classLevelSetter'),
         classLvClass = document.getElementById('classLvClass'),
+        classLvAll = document.getElementById('classLvAll'),
         classLvLevel = document.getElementById('classLvLevel'),
         classLvResult = document.getElementById('classLvResult'),
         characterRenamer = document.getElementById('characterRenamer'),
@@ -233,12 +234,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function generateClassLvCodes() {
+        classLvClass.disabled = classLvAll.checked;
 
         classLvResult.innerHTML = '';
-        if (classLvClass.value === '') {
+        if (!classLvClass.disabled && classLvClass.value === '') {
             classLvResult.innerHTML = '<span class="red">No class selected</span>';
         } else if ( classLvLevel.value === '' || classLvLevel.value < 1 || classLvLevel.value > 50 ) {
             classLvResult.innerHTML = '<span class="red">No valid level set</span>';
+        } else if (classLvAll.checked) {
+            let level = parseInt(classLvLevel.value);
+            let exp = level/2 * (level - 1) * 40;
+            classLvResult.innerHTML += '_C0 Set All Classes to level ' + classLvLevel.value;
+            classLvResult.innerHTML += '<br>_L 0x402E7E90 0x00500002';
+            classLvResult.innerHTML += '<br>_L 0x000000' + decToHex(level, 1) + ' 0x00000000';
+            classLvResult.innerHTML += '<br>_L 0x402E7E94 0x00500002';
+            classLvResult.innerHTML += '<br>_L 0x0000' + decToHex(exp, 2) + ' 0x00000000';
         } else {
             let targetClass = parseInt(classLvClass.value);
             let level = parseInt(classLvLevel.value);

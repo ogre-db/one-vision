@@ -3216,7 +3216,7 @@ ol li:before {
 .page-cheats .ov-accordion > li .accordion-content > div {
   margin: 20px 20px 15px;
 }
-.page-cheats .ov-accordion > li .accordion-content label {
+.page-cheats .ov-accordion > li .accordion-content label:not(.check-label) {
   display: block;
 }
 .page-cheats .ov-accordion > li .accordion-content select {
