@@ -1,10 +1,12 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    const magicJson = 'data/magic.json';
+    const magicJson = 'data/magic.json',
+        templatesJson = 'data/templates.json';
 
     const templateTweaker = document.getElementById('templateTweaker'),
         tempTwTemplate = document.getElementById('tempTwTemplate'),
+        tempTwRace = document.getElementById('tempTwRace'),
         tempTwSprite = document.getElementById('tempTwSprite'),
         tempTwColor = document.getElementById('tempTwColor'),
         tempTwPortrait = document.getElementById('tempTwPortrait'),
@@ -26,7 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
         spTeachRoster = document.getElementById('spTeachRoster'),
         spTeachResult = document.getElementById('spTeachResult');
 
-    let magic = [];
+    let magic = [],
+        templates = [];
 
     async function loadGenerators() {
 
@@ -36,6 +39,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.value = item.id;
                 option.textContent = item.name;
             tempTwTemplate.append(option);
+        });
+        racialTypes.forEach( (item) => {
+            let option = document.createElement('option');
+            option.value = item.id;
+            option.textContent = item.name;
+            tempTwRace.append(option);
         });
         characterSprites.forEach( (item) => {
             let option = document.createElement('option');
@@ -67,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         templateTweaker.querySelectorAll('select').forEach( (element) => {
             element.onchange = function(){
-                generateTempTwCodes();
+                generateTempTwCodes(this);
                 generateTempTwSwitchCodes();
             };
         });
@@ -161,23 +170,33 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                     }
                 } else if (element.type === 'checkbox') {
-                    if (this.closest('fieldset').querySelectorAll('input[id]:not(:checked)').length === 0)
-                        this.closest('fieldset').querySelector('input:not([id])').checked = true;
-                    else
-                        this.closest('fieldset').querySelector('input:not([id])').checked = false;
+                    this.closest('fieldset').querySelector('input:not([id])').checked = this.closest('fieldset').querySelectorAll('input[id]:not(:checked)').length === 0;
                 }
                 generateSpTeachCodes();
             };
         });
     }
 
-    function generateTempTwCodes() {
-
+    function generateTempTwCodes(selector = null) {
         tempTwResult.innerHTML = '';
+        let customTemplate = null;
+        if (tempTwTemplate.options[tempTwTemplate.selectedIndex].text.startsWith('Custom')) {
+            tempTwRace.parentNode.classList.remove('hidden');
+            customTemplate = racialTypes.find((row) => row['id'] === parseInt(tempTwRace.value));
+            if (selector && selector.id === 'tempTwRace') {
+                if ( customTemplate.classSet === 0) tempTwCcset.value = 0;
+                else tempTwCcset.value = customTemplate.classSet;
+            }
+        } else {
+            tempTwRace.parentNode.classList.add('hidden');
+        }
+
         if (tempTwTemplate.value === '') {
             tempTwResult.innerHTML = '<span class="red">No template selected</span>';
         } else if ( tempTwSprite.value === '' && tempTwColor.value === '' && tempTwPortrait.value === '' && tempTwCcset.value === '' ) {
             tempTwResult.innerHTML = '<span class="red">No tweaks selected</span>';
+        } else if ( customTemplate && (tempTwSprite.value === '' || tempTwColor.value === '' || tempTwPortrait.value === '' )) {
+            tempTwResult.innerHTML = '<span class="red">Custom templates need to have a Sprite, Color and Portrait selected</span>';
         } else {
             let template = parseInt(tempTwTemplate.value);
             tempTwResult.innerHTML += '_C0 Template Change (' + tempTwTemplate.options[tempTwTemplate.selectedIndex].text + ')';
@@ -214,6 +233,18 @@ document.addEventListener('DOMContentLoaded', function() {
             if (tempTwCcset.value !== '') {
                 let classSet = parseInt(tempTwCcset.value);
                 tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138A', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(classSet, 1);
+            }
+
+            if (customTemplate) {
+                let defaultTemplate = templates.find((row) => row['id'] === customTemplate.default);
+                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1362', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.race, 1);
+                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1363', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.gender, 1);
+                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1368', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.noItems, 1);
+                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1380', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(defaultTemplate.rt, 1);
+                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1382', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.movement, 1);
+                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138B', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(parseInt(tempTwCcset.value), 1);
+                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138E', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.large ? 6 : 0, 1);
+                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1391', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.scavengeGroup, 1);
             }
         }
     }
@@ -322,168 +353,715 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const characterTemplates = [
         {
+            "id": 1,
+            "name": "Denam"
+        },
+        {
+            "id": 2,
+            "name": "Vyce"
+        },
+        {
+            "id": 3,
+            "name": "Catiua"
+        },
+        {
+            "id": 4,
+            "name": "Lanselot"
+        },
+        {
+            "id": 5,
+            "name": "Warren"
+        },
+        {
+            "id": 6,
+            "name": "Canopus"
+        },
+        {
+            "id": 7,
+            "name": "Mirdyn"
+        },
+        {
+            "id": 8,
+            "name": "Gildas"
+        },
+        {
+            "id": 9,
+            "name": "Cerya"
+        },
+        {
+            "id": 10,
+            "name": "Sherri"
+        },
+        {
+            "id": 11,
+            "name": "Cistina"
+        },
+        {
+            "id": 12,
+            "name": "Olivya"
+        },
+        {
+            "id": 13,
+            "name": "Deneb"
+        },
+        {
+            "id": 16,
+            "name": "Donnalto"
+        },
+        {
+            "id": 17,
+            "name": "Folcurt"
+        },
+        {
+            "id": 18,
+            "name": "Bayin"
+        },
+        {
+            "id": 19,
+            "name": "Arycelle"
+        },
+        {
+            "id": 20,
+            "name": "Hobyrim"
+        },
+        {
+            "id": 21,
+            "name": "Jeunan"
+        },
+        {
+            "id": 22,
+            "name": "Ocionne"
+        },
+        {
+            "id": 23,
+            "name": "Xapan"
+        },
+        {
+            "id": 24,
+            "name": "Dievold"
+        },
+        {
+            "id": 25,
+            "name": "Oelias"
+        },
+        {
+            "id": 26,
+            "name": "Rudlum"
+        },
+        {
+            "id": 27,
+            "name": "Ganpp"
+        },
+        {
+            "id": 28,
+            "name": "Iuria"
+        },
+        {
+            "id": 29,
+            "name": "Cressida"
+        },
+        {
+            "id": 30,
+            "name": "Ozma"
+        },
+        {
+            "id": 31,
+            "name": "Lindl"
+        },
+        {
+            "id": 32,
+            "name": "Leonar"
+        },
+        {
+            "id": 33,
+            "name": "Ravness"
+        },
+        {
+            "id": 34,
+            "name": "Azelstan"
+        },
+        {
+            "id": 38,
+            "name": "Ehlrig"
+        },
+        {
+            "id": 39,
+            "name": "Berda the Younger"
+        },
+        {
+            "id": 40,
+            "name": "Obda the Younger"
+        },
+        {
+            "id": 133,
+            "name": "Sara"
+        },
+        {
+            "id": 134,
+            "name": "Voltare"
+        },
+        {
+            "id": 135,
+            "name": "Felicia"
+        },
+        {
+            "id": 136,
+            "name": "Chamos"
+        },
+        {
+            "id": 137,
+            "name": "Phaesta"
+        },
+        {
+            "id": 138,
+            "name": "Tamuz"
+        },
+        {
+            "id": 35,
+            "name": "Custom 1"
+        },
+        {
+            "id": 36,
+            "name": "Custom 2"
+        },
+        {
+            "id": 37,
+            "name": "Custom 3"
+        },
+        {
+            "id": 153,
+            "name": "Custom 4"
+        },
+        {
+            "id": 239,
+            "name": "Custom 5"
+        },
+        {
+            "id": 240,
+            "name": "Custom 6"
+        },
+        {
+            "id": 247,
+            "name": "Custom 7"
+        },
+        {
+            "id": 248,
+            "name": "Custom 8"
+        },
+        {
+            "id": 255,
+            "name": "Custom 9"
+        },
+        {
+            "id": 320,
+            "name": "Custom 10"
+        },
+        {
+            "id": 321,
+            "name": "Custom 11"
+        },
+        {
+            "id": 322,
+            "name": "Custom 12"
+        },
+        {
+            "id": 323,
+            "name": "Custom 13"
+        },
+        {
+            "id": 324,
+            "name": "Custom 14"
+        },
+        {
+            "id": 325,
+            "name": "Custom 15"
+        },
+        {
+            "id": 326,
+            "name": "Custom 16"
+        },
+        {
+            "id": 327,
+            "name": "Custom 17"
+        },
+        {
+            "id": 432,
+            "name": "Custom 18"
+        },
+        {
+            "id": 433,
+            "name": "Custom 19"
+        },
+        {
+            "id": 434,
+            "name": "Custom 20"
+        },
+        {
+            "id": 435,
+            "name": "Custom 21"
+        },
+        {
+            "id": 436,
+            "name": "Custom 22"
+        },
+        {
+            "id": 437,
+            "name": "Custom 23"
+        },
+        {
+            "id": 438,
+            "name": "Custom 24"
+        },
+        {
+            "id": 439,
+            "name": "Custom 25"
+        },
+        {
+            "id": 440,
+            "name": "Custom 26"
+        },
+        {
+            "id": 441,
+            "name": "Custom 27"
+        },
+        {
+            "id": 442,
+            "name": "Custom 28"
+        },
+        {
+            "id": 443,
+            "name": "Custom 29"
+        },
+        {
+            "id": 444,
+            "name": "Custom 30"
+        },
+        {
+            "id": 445,
+            "name": "Custom 31"
+        },
+        {
+            "id": 446,
+            "name": "Custom 32"
+        },
+        {
+            "id": 447,
+            "name": "Custom 33"
+        },
+        {
+            "id": 448,
+            "name": "Custom 34"
+        },
+        {
+            "id": 449,
+            "name": "Custom 35"
+        },
+        {
+            "id": 450,
+            "name": "Custom 36"
+        },
+        {
+            "id": 451,
+            "name": "Custom 37"
+        },
+        {
+            "id": 452,
+            "name": "Custom 38"
+        },
+        {
+            "id": 453,
+            "name": "Custom 39"
+        },
+        {
+            "id": 454,
+            "name": "Custom 40"
+        },
+        {
+            "id": 455,
+            "name": "Custom 41"
+        },
+        {
+            "id": 456,
+            "name": "Custom 42"
+        },
+        {
+            "id": 457,
+            "name": "Custom 43"
+        },
+        {
+            "id": 458,
+            "name": "Custom 44"
+        },
+        {
+            "id": 459,
+            "name": "Custom 45"
+        },
+        {
+            "id": 460,
+            "name": "Custom 46"
+        },
+        {
+            "id": 461,
+            "name": "Custom 47"
+        },
+        {
+            "id": 462,
+            "name": "Custom 48"
+        },
+        {
+            "id": 463,
+            "name": "Custom 49"
+        },
+        {
+            "id": 464,
+            "name": "Custom 50"
+        },
+        {
+            "id": 465,
+            "name": "Custom 51"
+        },
+        {
+            "id": 466,
+            "name": "Custom 52"
+        },
+        {
+            "id": 467,
+            "name": "Custom 53"
+        },
+        {
+            "id": 468,
+            "name": "Custom 54"
+        },
+        {
+            "id": 469,
+            "name": "Custom 55"
+        },
+        {
+            "id": 470,
+            "name": "Custom 56"
+        },
+        {
+            "id": 471,
+            "name": "Custom 57"
+        },
+        {
+            "id": 472,
+            "name": "Custom 58"
+        },
+        {
+            "id": 473,
+            "name": "Custom 59"
+        },
+        {
+            "id": 474,
+            "name": "Custom 60"
+        },
+        {
+            "id": 475,
+            "name": "Custom 61"
+        },
+        {
+            "id": 476,
+            "name": "Custom 62"
+        },
+        {
+            "id": 477,
+            "name": "Custom 63"
+        },
+        {
+            "id": 478,
+            "name": "Custom 64"
+        },
+        {
+            "id": 479,
+            "name": "Custom 65"
+        },
+        {
+            "id": 480,
+            "name": "Custom 66"
+        },
+        {
+            "id": 481,
+            "name": "Custom 67"
+        },
+        {
+            "id": 482,
+            "name": "Custom 68"
+        },
+        {
+            "id": 483,
+            "name": "Custom 69"
+        },
+        {
+            "id": 484,
+            "name": "Custom 70"
+        },
+        {
+            "id": 485,
+            "name": "Custom 71"
+        },
+        {
+            "id": 486,
+            "name": "Custom 72"
+        },
+        {
+            "id": 487,
+            "name": "Custom 73"
+        },
+        {
+            "id": 488,
+            "name": "Custom 74"
+        },
+        {
+            "id": 489,
+            "name": "Custom 75"
+        },
+        {
+            "id": 503,
+            "name": "Custom 76"
+        }
+    ];
+
+    const racialTypes = [
+        {
             'id': 1,
-            'name': 'Denam'
+            'name': 'Human Male',
+            'large': false,
+            'race': 1,
+            'gender': 0,
+            'noItems': 0,
+            'default': 162,
+            'classSet': 1,
+            'scavengeGroup': 1,
+            'movement': 0
         },
         {
             'id': 2,
-            'name': 'Vyce'
+            'name': 'Human Female',
+            'large': false,
+            'race': 1,
+            'gender': 1,
+            'noItems': 0,
+            'default': 166,
+            'classSet': 1,
+            'scavengeGroup': 1,
+            'movement': 0
         },
         {
             'id': 3,
-            'name': 'Catiua'
+            'name': 'Hawkman',
+            'large': false,
+            'race': 1,
+            'gender': 0,
+            'noItems': 0,
+            'default': 170,
+            'classSet': 2,
+            'scavengeGroup': 2,
+            'movement': 5
         },
         {
             'id': 4,
-            'name': 'Lanselot'
+            'name': 'Lizardman',
+            'large': false,
+            'race': 3,
+            'gender': 0,
+            'noItems': 0,
+            'default': 174,
+            'classSet': 3,
+            'scavengeGroup': 3,
+            'movement': 0
         },
         {
             'id': 5,
-            'name': 'Warren'
+            'name': 'Lamia',
+            'large': false,
+            'race': 3,
+            'gender': 1,
+            'noItems': 0,
+            'default': 178,
+            'classSet': 4,
+            'scavengeGroup': 4,
+            'movement': 0
         },
         {
             'id': 6,
-            'name': 'Canopus'
+            'name': 'Orc',
+            'large': false,
+            'race': 6,
+            'gender': 0,
+            'noItems': 0,
+            'default': 182,
+            'classSet': 5,
+            'scavengeGroup': 5,
+            'movement': 0
         },
         {
             'id': 7,
-            'name': 'Mirdyn'
+            'name': 'Skeleton Male',
+            'large': false,
+            'race': 8,
+            'gender': 0,
+            'noItems': 0,
+            'default': 186,
+            'classSet': 6,
+            'scavengeGroup': 6,
+            'movement': 0
         },
         {
             'id': 8,
-            'name': 'Gildas'
+            'name': 'Skeleton Female',
+            'large': false,
+            'race': 8,
+            'gender': 1,
+            'noItems': 0,
+            'default': 190,
+            'classSet': 6,
+            'scavengeGroup': 6,
+            'movement': 0
         },
         {
             'id': 9,
-            'name': 'Cerya'
+            'name': 'Ghost Male',
+            'large': false,
+            'race': 8,
+            'gender': 0,
+            'noItems': 0,
+            'default': 194,
+            'classSet': 7,
+            'scavengeGroup': 6,
+            'movement': 4
         },
         {
             'id': 10,
-            'name': 'Sherri'
+            'name': 'Ghost Female',
+            'large': false,
+            'race': 8,
+            'gender': 1,
+            'noItems': 0,
+            'default': 198,
+            'classSet': 7,
+            'scavengeGroup': 6,
+            'movement': 4
         },
         {
             'id': 11,
-            'name': 'Cistina'
+            'name': 'Faerie',
+            'large': false,
+            'race': 7,
+            'gender': 1,
+            'noItems': 0,
+            'default': 202,
+            'classSet': 8,
+            'scavengeGroup': 7,
+            'movement': 6
         },
         {
             'id': 12,
-            'name': 'Olivya'
+            'name': 'Gremlin',
+            'large': false,
+            'race': 6,
+            'gender': 0,
+            'noItems': 0,
+            'default': 206,
+            'classSet': 9,
+            'scavengeGroup': 8,
+            'movement': 6
         },
         {
             'id': 13,
-            'name': 'Deneb'
+            'name': 'Pumpkinhead',
+            'large': false,
+            'race': 9,
+            'gender': 1,
+            'noItems': 0,
+            'default': 210,
+            'classSet': 10,
+            'scavengeGroup': 9,
+            'movement': 0
+        },
+        {
+            'id': 14,
+            'name': 'Dragon',
+            'large': true,
+            'race': 4,
+            'gender': 0,
+            'noItems': 1,
+            'default': 214,
+            'classSet': 11,
+            'scavengeGroup': 10,
+            'movement': 0
+        },
+        {
+            'id': 15,
+            'name': 'Hydra',
+            'large': true,
+            'race': 4,
+            'gender': 0,
+            'noItems': 1,
+            'default': 218,
+            'classSet': 0,
+            'scavengeGroup': 11,
+            'movement': 0
         },
         {
             'id': 16,
-            'name': 'Donnalto'
+            'name': 'Gryphon',
+            'large': true,
+            'race': 2,
+            'gender': 0,
+            'noItems': 1,
+            'default': 222,
+            'classSet': 0,
+            'scavengeGroup': 13,
+            'movement': 5
         },
         {
             'id': 17,
-            'name': 'Folcurt'
+            'name': 'Cockatrice',
+            'large': true,
+            'race': 2,
+            'gender': 0,
+            'noItems': 1,
+            'default': 226,
+            'classSet': 0,
+            'scavengeGroup': 14,
+            'movement': 5
         },
         {
             'id': 18,
-            'name': 'Bayin'
+            'name': 'Octopus',
+            'large': true,
+            'race': 2,
+            'gender': 0,
+            'noItems': 1,
+            'default': 230,
+            'classSet': 0,
+            'scavengeGroup': 15,
+            'movement': 0
         },
         {
             'id': 19,
-            'name': 'Arycelle'
+            'name': 'Cyclops',
+            'large': true,
+            'race': 2,
+            'gender': 0,
+            'noItems': 0,
+            'default': 234,
+            'classSet': 0,
+            'scavengeGroup': 16,
+            'movement': 0
         },
         {
             'id': 20,
-            'name': 'Hobyrim'
-        },
-        {
-            'id': 21,
-            'name': 'Jeunan'
-        },
-        {
-            'id': 22,
-            'name': 'Ocionne'
-        },
-        {
-            'id': 23,
-            'name': 'Xapan'
-        },
-        {
-            'id': 24,
-            'name': 'Dievold'
-        },
-        {
-            'id': 25,
-            'name': 'Oelias'
-        },
-        {
-            'id': 26,
-            'name': 'Rudlum'
-        },
-        {
-            'id': 27,
-            'name': 'Ganpp'
-        },
-        {
-            'id': 28,
-            'name': 'Iuria'
-        },
-        {
-            'id': 29,
-            'name': 'Cressida'
-        },
-        {
-            'id': 30,
-            'name': 'Ozma'
-        },
-        {
-            'id': 31,
-            'name': 'Lindl'
-        },
-        {
-            'id': 32,
-            'name': 'Leonar'
-        },
-        {
-            'id': 33,
-            'name': 'Ravness'
-        },
-        {
-            'id': 34,
-            'name': 'Azelstan'
-        },
-        {
-            'id': 38,
-            'name': 'Ehlrig'
-        },
-        {
-            'id': 39,
-            'name': 'Berda the Younger'
-        },
-        {
-            'id': 40,
-            'name': 'Obda the Younger'
-        },
-        {
-            'id': 133,
-            'name': 'Sara'
-        },
-        {
-            'id': 134,
-            'name': 'Voltare'
-        },
-        {
-            'id': 135,
-            'name': 'Felicia'
-        },
-        {
-            'id': 136,
-            'name': 'Chamos'
-        },
-        {
-            'id': 137,
-            'name': 'Phaesta'
-        },
-        {
-            'id': 138,
-            'name': 'Tamuz'
+            'name': 'Golem',
+            'large': true,
+            'race': 9,
+            'gender': 0,
+            'noItems': 1,
+            'default': 238,
+            'classSet': 0,
+            'scavengeGroup': 12,
+            'movement': 0
         }
     ];
 
@@ -4910,5 +5488,14 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     loadGenerators();
+
+    loadTables();
+
+    async function loadTables() {
+
+        fetchJSON(templatesJson).then(
+            data => templates = data
+        );
+    }
 
 });
