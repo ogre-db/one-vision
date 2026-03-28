@@ -5,15 +5,16 @@ document.addEventListener('DOMContentLoaded', function() {
         templatesJson = 'data/templates.json';
 
     const templateTweaker = document.getElementById('templateTweaker'),
-        tempTwTemplate = document.getElementById('tempTwTemplate'),
-        tempTwRace = document.getElementById('tempTwRace'),
-        tempTwSprite = document.getElementById('tempTwSprite'),
-        tempTwColor = document.getElementById('tempTwColor'),
-        tempTwPortrait = document.getElementById('tempTwPortrait'),
-        tempTwCcset = document.getElementById('tempTwCcset'),
-        tempTwResult = document.getElementById('tempTwResult'),
-        tempTwSwitchRoster = document.getElementById('tempTwSwitchRoster'),
-        tempTwSwitchResult = document.getElementById('tempTwSwitchResult'),
+        tempTweakerTemplate = document.getElementById('tempTweakerTemplate'),
+        tempTweakerRace = document.getElementById('tempTweakerRace'),
+        tempTweakerVoice = document.getElementById('tempTweakerVoice'),
+        tempTweakerSprite = document.getElementById('tempTweakerSprite'),
+        tempTweakerColor = document.getElementById('tempTweakerColor'),
+        tempTweakerPortrait = document.getElementById('tempTweakerPortrait'),
+        tempTweakerCcset = document.getElementById('tempTweakerCcset'),
+        tempTweakerResult = document.getElementById('tempTweakerResult'),
+        tempTweakerSwitchRoster = document.getElementById('tempTweakerSwitchRoster'),
+        tempTweakerSwitchResult = document.getElementById('tempTweakerSwitchResult'),
         classLevelSetter = document.getElementById('classLevelSetter'),
         classLvClass = document.getElementById('classLvClass'),
         classLvAll = document.getElementById('classLvAll'),
@@ -38,51 +39,57 @@ document.addEventListener('DOMContentLoaded', function() {
             let option = document.createElement('option');
                 option.value = item.id;
                 option.textContent = item.name;
-            tempTwTemplate.append(option);
+            tempTweakerTemplate.append(option);
         });
         racialTypes.forEach( (item) => {
             let option = document.createElement('option');
             option.value = item.id;
             option.textContent = item.name;
-            tempTwRace.append(option);
+            tempTweakerRace.append(option);
+        });
+        voiceTypes.forEach( (item) => {
+            let option = document.createElement('option');
+            option.value = item.id;
+            option.textContent = item.name;
+            tempTweakerVoice.append(option);
         });
         characterSprites.forEach( (item) => {
             let option = document.createElement('option');
                 option.value = item.id;
                 option.textContent = item.name;
-            tempTwSprite.append(option);
+            tempTweakerSprite.append(option);
         });
         spriteColors.forEach( (item) => {
             let option = document.createElement('option');
                 option.value = item.id;
                 option.textContent = item.name;
-            tempTwColor.append(option);
+            tempTweakerColor.append(option);
         });
         characterPortraits.forEach( (item) => {
             let option = document.createElement('option');
                 option.value = item.id;
                 option.textContent = item.name;
-            tempTwPortrait.append(option);
+            tempTweakerPortrait.append(option);
         });
         classChangeSets.forEach( (item) => {
             let option = document.createElement('option');
                 option.value = item.id;
                 option.textContent = item.name;
-            tempTwCcset.append(option);
+            tempTweakerCcset.append(option);
         });
 
-        generateTempTwCodes();
-        generateTempTwSwitchCodes();
+        generateTempTweakerCodes();
+        generateTempTweakerSwitchCodes();
 
         templateTweaker.querySelectorAll('select').forEach( (element) => {
             element.onchange = function(){
-                generateTempTwCodes(this);
-                generateTempTwSwitchCodes();
+                generateTempTweakerCodes(this);
+                generateTempTweakerSwitchCodes();
             };
         });
         templateTweaker.querySelectorAll('input').forEach( (element) => {
             element.oninput = function(){
-                generateTempTwSwitchCodes();
+                generateTempTweakerSwitchCodes();
             };
         });
 
@@ -177,90 +184,93 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function generateTempTwCodes(selector = null) {
-        tempTwResult.innerHTML = '';
+    function generateTempTweakerCodes(selector = null) {
+        tempTweakerResult.innerHTML = '';
         let customTemplate = null;
-        if (tempTwTemplate.options[tempTwTemplate.selectedIndex].text.startsWith('Custom')) {
-            tempTwRace.parentNode.classList.remove('hidden');
-            customTemplate = racialTypes.find((row) => row['id'] === parseInt(tempTwRace.value));
-            if (selector && selector.id === 'tempTwRace') {
-                if ( customTemplate.classSet === 0) tempTwCcset.value = 0;
-                else tempTwCcset.value = customTemplate.classSet;
+        if (tempTweakerTemplate.options[tempTweakerTemplate.selectedIndex].text.startsWith('Custom')) {
+            tempTweakerRace.parentNode.classList.remove('hidden');
+            customTemplate = racialTypes.find((row) => row['id'] === parseInt(tempTweakerRace.value));
+            tempTweakerVoice.parentNode.classList.remove('hidden');
+            if (selector && selector.id === 'tempTweakerRace') {
+                if ( customTemplate.classSet === 0) tempTweakerCcset.value = 0;
+                else tempTweakerCcset.value = customTemplate.classSet;
+                tempTweakerVoice.value = customTemplate.voice;
             }
         } else {
-            tempTwRace.parentNode.classList.add('hidden');
+            tempTweakerRace.parentNode.classList.add('hidden');
+            tempTweakerVoice.parentNode.classList.add('hidden');
         }
 
-        if (tempTwTemplate.value === '') {
-            tempTwResult.innerHTML = '<span class="red">No template selected</span>';
-        } else if ( tempTwSprite.value === '' && tempTwColor.value === '' && tempTwPortrait.value === '' && tempTwCcset.value === '' ) {
-            tempTwResult.innerHTML = '<span class="red">No tweaks selected</span>';
-        } else if ( customTemplate && (tempTwSprite.value === '' || tempTwColor.value === '' || tempTwPortrait.value === '' )) {
-            tempTwResult.innerHTML = '<span class="red">Custom templates need to have a Sprite, Color and Portrait selected</span>';
+        if (tempTweakerTemplate.value === '') {
+            tempTweakerResult.innerHTML = '<span class="red">No template selected</span>';
+        } else if ( tempTweakerSprite.value === '' && tempTweakerColor.value === '' && tempTweakerPortrait.value === '' && tempTweakerCcset.value === '' ) {
+            tempTweakerResult.innerHTML = '<span class="red">No tweaks selected</span>';
+        } else if ( customTemplate && (tempTweakerSprite.value === '' || tempTweakerColor.value === '' || tempTweakerPortrait.value === '' )) {
+            tempTweakerResult.innerHTML = '<span class="red">Custom templates need to have a Sprite, Color and Portrait selected</span>';
         } else {
-            let template = parseInt(tempTwTemplate.value);
-            tempTwResult.innerHTML += '_C0 Template Change (' + tempTwTemplate.options[tempTwTemplate.selectedIndex].text + ')';
-            if (tempTwSprite.value !== '') {
-                let sprite = parseInt(tempTwSprite.value);
-                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138C', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(sprite, 1);
+            let template = parseInt(tempTweakerTemplate.value);
+            tempTweakerResult.innerHTML += '_C0 Template Change (' + tempTweakerTemplate.options[tempTweakerTemplate.selectedIndex].text + ')';
+            if (tempTweakerSprite.value !== '') {
+                let sprite = parseInt(tempTweakerSprite.value);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138C', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(sprite, 1);
                 if (template === 1)
-                    tempTwResult.innerHTML += '<br>_L 0x00471E10 0x000000' + decToHex(sprite, 1) + '<br>_L 0x00471E12 0x000000' + decToHex(sprite, 1);
+                    tempTweakerResult.innerHTML += '<br>_L 0x00471E10 0x000000' + decToHex(sprite, 1) + '<br>_L 0x00471E12 0x000000' + decToHex(sprite, 1);
                 if (template === 2)
-                    tempTwResult.innerHTML += '<br>_L 0x00471E88 0x000000' + decToHex(sprite, 1) + '<br>_L 0x00471E8A 0x000000' + decToHex(sprite, 1);
+                    tempTweakerResult.innerHTML += '<br>_L 0x00471E88 0x000000' + decToHex(sprite, 1) + '<br>_L 0x00471E8A 0x000000' + decToHex(sprite, 1);
                 if (template === 3)
-                    tempTwResult.innerHTML += '<br>_L 0x00471FF0 0x000000' + decToHex(sprite, 1) + '<br>_L 0x00471FF2 0x000000' + decToHex(sprite, 1);
+                    tempTweakerResult.innerHTML += '<br>_L 0x00471FF0 0x000000' + decToHex(sprite, 1) + '<br>_L 0x00471FF2 0x000000' + decToHex(sprite, 1);
             }
-            if (tempTwColor.value !== '') {
-                let color = parseInt(tempTwColor.value);
-                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138F', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(color, 1);
+            if (tempTweakerColor.value !== '') {
+                let color = parseInt(tempTweakerColor.value);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138F', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(color, 1);
                 if (template === 1)
-                    tempTwResult.innerHTML += '<br>_L 0x00471E14 0x000000' + decToHex(color, 1);
+                    tempTweakerResult.innerHTML += '<br>_L 0x00471E14 0x000000' + decToHex(color, 1);
                 if (template === 2)
-                    tempTwResult.innerHTML += '<br>_L 0x00471E8C 0x000000' + decToHex(color, 1);
+                    tempTweakerResult.innerHTML += '<br>_L 0x00471E8C 0x000000' + decToHex(color, 1);
                 if (template === 3)
-                    tempTwResult.innerHTML += '<br>_L 0x00471FF4 0x000000' + decToHex(color, 1);
+                    tempTweakerResult.innerHTML += '<br>_L 0x00471FF4 0x000000' + decToHex(color, 1);
             }
-            if (tempTwPortrait.value !== '') {
-                let portrait = parseInt(tempTwPortrait.value);
-                tempTwResult.innerHTML += '<br>_L 0x10' + decToHex(parseInt('4B1392', 16) + 64 * (template - 1), 3) + ' 0x0000' + decToHex(portrait, 2);
+            if (tempTweakerPortrait.value !== '') {
+                let portrait = parseInt(tempTweakerPortrait.value);
+                tempTweakerResult.innerHTML += '<br>_L 0x10' + decToHex(parseInt('4B1392', 16) + 64 * (template - 1), 3) + ' 0x0000' + decToHex(portrait, 2);
                 if (template === 1)
-                    tempTwResult.innerHTML += '<br>_L 0x80471DEA 0x000E0001<br>_L 0x1000' + decToHex(portrait, 2) + ' 0x00000000';
+                    tempTweakerResult.innerHTML += '<br>_L 0x80471DEA 0x000E0001<br>_L 0x1000' + decToHex(portrait, 2) + ' 0x00000000';
                 if (template === 2)
-                    tempTwResult.innerHTML += '<br>_L 0x80471E62 0x000E0001<br>_L 0x1000' + decToHex(portrait, 2) + ' 0x00000000';
+                    tempTweakerResult.innerHTML += '<br>_L 0x80471E62 0x000E0001<br>_L 0x1000' + decToHex(portrait, 2) + ' 0x00000000';
                 if (template === 3)
-                    tempTwResult.innerHTML += '<br>_L 0x80471FCA 0x000E0001<br>_L 0x1000' + decToHex(portrait, 2) + ' 0x00000000';
+                    tempTweakerResult.innerHTML += '<br>_L 0x80471FCA 0x000E0001<br>_L 0x1000' + decToHex(portrait, 2) + ' 0x00000000';
             }
-            if (tempTwCcset.value !== '') {
-                let classSet = parseInt(tempTwCcset.value);
-                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138A', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(classSet, 1);
+            if (tempTweakerCcset.value !== '') {
+                let classSet = parseInt(tempTweakerCcset.value);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138A', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(classSet, 1);
             }
 
             if (customTemplate) {
                 let defaultTemplate = templates.find((row) => row['id'] === customTemplate.default);
-                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1362', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.race, 1);
-                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1363', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.gender, 1);
-                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1368', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.noItems, 1);
-                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1380', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(defaultTemplate.rt, 1);
-                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1382', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.movement, 1);
-                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138B', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(parseInt(tempTwCcset.value), 1);
-                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138E', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.large ? 6 : 0, 1);
-                tempTwResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1391', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.scavengeGroup, 1);
+                tempTweakerResult.innerHTML += '<br>_L 0x10' + decToHex(parseInt('4B1362', 16) + 64 * (template - 1), 3) + ' 0x0000' + decToHex(customTemplate.gender, 1) + decToHex(customTemplate.race, 1);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1364', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(tempTweakerVoice.value, 1);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1368', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.noItems, 1);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1380', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(defaultTemplate.rt, 1);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1382', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.movement, 1);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138B', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(parseInt(tempTweakerCcset.value), 1);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138E', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.large ? 6 : 0, 1);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1391', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.scavengeGroup, 1);
             }
         }
     }
 
-    function generateTempTwSwitchCodes() {
+    function generateTempTweakerSwitchCodes() {
 
-        tempTwSwitchResult.innerHTML = '';
-        if (tempTwSwitchRoster.value === '') {
-            tempTwSwitchResult.innerHTML = '<span class="red">No roster slot selected</span>';
-        } else if (tempTwTemplate.value === '') {
-            tempTwSwitchResult.innerHTML = '<span class="red">No special character template selected in the tweaker section</span>';
+        tempTweakerSwitchResult.innerHTML = '';
+        if (tempTweakerSwitchRoster.value === '') {
+            tempTweakerSwitchResult.innerHTML = '<span class="red">No roster slot selected</span>';
+        } else if (tempTweakerTemplate.value === '') {
+            tempTweakerSwitchResult.innerHTML = '<span class="red">No special character template selected in the tweaker section</span>';
         } else {
-            let rosterSlot = parseInt(tempTwSwitchRoster.value);
-            let template = parseInt(tempTwTemplate.value);
-            tempTwSwitchResult.innerHTML += '_C0 Change Unit ' + rosterSlot + ' to ' + tempTwTemplate.options[tempTwTemplate.selectedIndex].text;
-            tempTwSwitchResult.innerHTML += '<br>_L 0x10' + decToHex(parseInt('2D84A4', 16) + 1164 * (rosterSlot - 1), 3) + ' 0x0000' + decToHex(template, 2);
+            let rosterSlot = parseInt(tempTweakerSwitchRoster.value);
+            let template = parseInt(tempTweakerTemplate.value);
+            tempTweakerSwitchResult.innerHTML += '_C0 Change Unit ' + rosterSlot + ' to ' + tempTweakerTemplate.options[tempTweakerTemplate.selectedIndex].text;
+            tempTweakerSwitchResult.innerHTML += '<br>_L 0x10' + decToHex(parseInt('2D84A4', 16) + 1164 * (rosterSlot - 1), 3) + ' 0x0000' + decToHex(template, 2);
         }
     }
 
@@ -829,6 +839,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'large': false,
             'race': 1,
             'gender': 0,
+            'voice': 0,
             'noItems': 0,
             'default': 162,
             'classSet': 1,
@@ -841,6 +852,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'large': false,
             'race': 1,
             'gender': 1,
+            'voice': 2,
             'noItems': 0,
             'default': 166,
             'classSet': 1,
@@ -849,10 +861,11 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             'id': 3,
-            'name': 'Hawkman',
+            'name': 'Hawkman Male',
             'large': false,
             'race': 1,
             'gender': 0,
+            'voice': 0,
             'noItems': 0,
             'default': 170,
             'classSet': 2,
@@ -861,10 +874,24 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             'id': 4,
-            'name': 'Lizardman',
+            'name': 'Hawkman Female',
+            'large': false,
+            'race': 1,
+            'gender': 1,
+            'voice': 2,
+            'noItems': 0,
+            'default': 170,
+            'classSet': 2,
+            'scavengeGroup': 2,
+            'movement': 5
+        },
+        {
+            'id': 5,
+            'name': 'Lizardfolk Male',
             'large': false,
             'race': 3,
             'gender': 0,
+            'voice': 1,
             'noItems': 0,
             'default': 174,
             'classSet': 3,
@@ -872,11 +899,25 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 0
         },
         {
-            'id': 5,
+            'id': 6,
+            'name': 'Lizardfolk Female',
+            'large': false,
+            'race': 3,
+            'gender': 1,
+            'voice': 3,
+            'noItems': 0,
+            'default': 174,
+            'classSet': 3,
+            'scavengeGroup': 3,
+            'movement': 0
+        },
+        {
+            'id': 7,
             'name': 'Lamia',
             'large': false,
             'race': 3,
             'gender': 1,
+            'voice': 3,
             'noItems': 0,
             'default': 178,
             'classSet': 4,
@@ -884,11 +925,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 0
         },
         {
-            'id': 6,
+            'id': 8,
             'name': 'Orc',
             'large': false,
             'race': 6,
             'gender': 0,
+            'voice': 1,
             'noItems': 0,
             'default': 182,
             'classSet': 5,
@@ -896,11 +938,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 0
         },
         {
-            'id': 7,
+            'id': 9,
             'name': 'Skeleton Male',
             'large': false,
             'race': 8,
             'gender': 0,
+            'voice': 4,
             'noItems': 0,
             'default': 186,
             'classSet': 6,
@@ -908,11 +951,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 0
         },
         {
-            'id': 8,
+            'id': 10,
             'name': 'Skeleton Female',
             'large': false,
             'race': 8,
             'gender': 1,
+            'voice': 4,
             'noItems': 0,
             'default': 190,
             'classSet': 6,
@@ -920,11 +964,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 0
         },
         {
-            'id': 9,
+            'id': 11,
             'name': 'Ghost Male',
             'large': false,
             'race': 8,
             'gender': 0,
+            'voice': 4,
             'noItems': 0,
             'default': 194,
             'classSet': 7,
@@ -932,11 +977,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 4
         },
         {
-            'id': 10,
+            'id': 12,
             'name': 'Ghost Female',
             'large': false,
             'race': 8,
             'gender': 1,
+            'voice': 4,
             'noItems': 0,
             'default': 198,
             'classSet': 7,
@@ -944,11 +990,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 4
         },
         {
-            'id': 11,
+            'id': 13,
             'name': 'Faerie',
             'large': false,
             'race': 7,
             'gender': 1,
+            'voice': 2,
             'noItems': 0,
             'default': 202,
             'classSet': 8,
@@ -956,11 +1003,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 6
         },
         {
-            'id': 12,
+            'id': 14,
             'name': 'Gremlin',
             'large': false,
             'race': 6,
             'gender': 0,
+            'voice': 4,
             'noItems': 0,
             'default': 206,
             'classSet': 9,
@@ -968,11 +1016,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 6
         },
         {
-            'id': 13,
-            'name': 'Pumpkinhead',
+            'id': 15,
+            'name': 'Pumpkinhead Male',
             'large': false,
             'race': 9,
-            'gender': 1,
+            'gender': 0,
+            'voice': 0,
             'noItems': 0,
             'default': 210,
             'classSet': 10,
@@ -980,11 +1029,25 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 0
         },
         {
-            'id': 14,
+            'id': 16,
+            'name': 'Pumpkinhead Female',
+            'large': false,
+            'race': 9,
+            'gender': 1,
+            'voice': 2,
+            'noItems': 0,
+            'default': 210,
+            'classSet': 10,
+            'scavengeGroup': 9,
+            'movement': 0
+        },
+        {
+            'id': 17,
             'name': 'Dragon',
             'large': true,
             'race': 4,
             'gender': 0,
+            'voice': 7,
             'noItems': 1,
             'default': 214,
             'classSet': 11,
@@ -992,11 +1055,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 0
         },
         {
-            'id': 15,
+            'id': 18,
             'name': 'Hydra',
             'large': true,
             'race': 4,
             'gender': 0,
+            'voice': 7,
             'noItems': 1,
             'default': 218,
             'classSet': 0,
@@ -1004,11 +1068,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 0
         },
         {
-            'id': 16,
+            'id': 19,
             'name': 'Gryphon',
             'large': true,
             'race': 2,
             'gender': 0,
+            'voice': 5,
             'noItems': 1,
             'default': 222,
             'classSet': 0,
@@ -1016,11 +1081,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 5
         },
         {
-            'id': 17,
+            'id': 20,
             'name': 'Cockatrice',
             'large': true,
             'race': 2,
             'gender': 0,
+            'voice': 5,
             'noItems': 1,
             'default': 226,
             'classSet': 0,
@@ -1028,11 +1094,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 5
         },
         {
-            'id': 18,
+            'id': 21,
             'name': 'Octopus',
             'large': true,
             'race': 2,
             'gender': 0,
+            'voice': 6,
             'noItems': 1,
             'default': 230,
             'classSet': 0,
@@ -1040,11 +1107,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 0
         },
         {
-            'id': 19,
+            'id': 22,
             'name': 'Cyclops',
             'large': true,
             'race': 2,
             'gender': 0,
+            'voice': 6,
             'noItems': 0,
             'default': 234,
             'classSet': 0,
@@ -1052,11 +1120,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 0
         },
         {
-            'id': 20,
+            'id': 23,
             'name': 'Golem',
             'large': true,
             'race': 9,
             'gender': 0,
+            'voice': 6,
             'noItems': 1,
             'default': 238,
             'classSet': 0,
@@ -1064,6 +1133,41 @@ document.addEventListener('DOMContentLoaded', function() {
             'movement': 0
         }
     ];
+
+    const voiceTypes = [
+        {
+            'id': 0,
+            'name': 'Male (younger)'
+        },
+        {
+            'id': 1,
+            'name': 'Male (older)'
+        },
+        {
+            'id': 2,
+            'name': 'Female (younger)'
+        },
+        {
+            'id': 3,
+            'name': 'Female (older)'
+        },
+        {
+            'id': 4,
+            'name': 'Undead'
+        },
+        {
+            'id': 5,
+            'name': 'Flying Beast'
+        },
+        {
+            'id': 6,
+            'name': 'Beast'
+        },
+        {
+            'id': 7,
+            'name': 'Dragon'
+        }
+    ]
 
     const characterSprites = [
         {
