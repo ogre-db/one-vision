@@ -249,6 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let defaultTemplate = templates.find((row) => row['id'] === customTemplate.default);
                 tempTweakerResult.innerHTML += '<br>_L 0x10' + decToHex(parseInt('4B1362', 16) + 64 * (template - 1), 3) + ' 0x0000' + decToHex(customTemplate.gender, 1) + decToHex(customTemplate.race, 1);
                 tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1364', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(tempTweakerVoice.value, 1);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1366', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.race === 8 ? 249 : 248, 1);
                 tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1368', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.noItems, 1);
                 tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1380', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(defaultTemplate.rt, 1);
                 tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1382', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.movement, 1);

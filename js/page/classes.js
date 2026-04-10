@@ -235,6 +235,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 infoEquipMelee.innerHTML += '<li><b>1H Swords </b><small>(bastard sword only)</small></li>';
             if (equipMelee.find((row) => row['id'] === 86))
                 infoEquipMelee.innerHTML += '<li><b>2H Swords</b></li>';
+            else if (equipMelee.find((row) => row['id'] === 395))
+                infoEquipMelee.innerHTML += '<li><b>2H Swords </b><small>(gunblade only)</small></li>';
             if (equipMelee.find((row) => row['id'] === 113) && equipMelee.find((row) => row['id'] === 114))
                 infoEquipMelee.innerHTML += '<li><b>Axes</b></li>';
             else if (equipMelee.find((row) => row['id'] === 113))
