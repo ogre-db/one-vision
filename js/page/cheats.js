@@ -205,8 +205,8 @@ document.addEventListener('DOMContentLoaded', function() {
             tempTweakerResult.innerHTML = '<span class="red">No template selected</span>';
         } else if ( tempTweakerSprite.value === '' && tempTweakerColor.value === '' && tempTweakerPortrait.value === '' && tempTweakerCcset.value === '' ) {
             tempTweakerResult.innerHTML = '<span class="red">No tweaks selected</span>';
-        } else if ( customTemplate && (tempTweakerSprite.value === '' || tempTweakerColor.value === '' || tempTweakerPortrait.value === '' )) {
-            tempTweakerResult.innerHTML = '<span class="red">Custom templates need to have a Sprite, Color and Portrait selected</span>';
+        } else if ( customTemplate && (tempTweakerSprite.value === '' || tempTweakerColor.value === '' || tempTweakerPortrait.value === '' ||  tempTweakerCcset.value === '')) {
+            tempTweakerResult.innerHTML = '<span class="red">Custom templates need to have a Sprite, Color, Portrait and Class change set selected</span>';
         } else {
             let template = parseInt(tempTweakerTemplate.value);
             tempTweakerResult.innerHTML += '_C0 Template Change (' + tempTweakerTemplate.options[tempTweakerTemplate.selectedIndex].text + ')';
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1368', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.noItems, 1);
                 tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1380', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(defaultTemplate.rt, 1);
                 tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1382', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.movement, 1);
-                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138B', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(parseInt(tempTweakerCcset.value), 1);
+                tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138B', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.classSet, 1);
                 tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B138E', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.large ? 6 : 0, 1);
                 tempTweakerResult.innerHTML += '<br>_L 0x00' + decToHex(parseInt('4B1391', 16) + 64 * (template - 1), 3) + ' 0x000000' + decToHex(customTemplate.scavengeGroup, 1);
             }
@@ -266,11 +266,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (tempTweakerSwitchRoster.value === '') {
             tempTweakerSwitchResult.innerHTML = '<span class="red">No roster slot selected</span>';
         } else if (tempTweakerTemplate.value === '') {
-            tempTweakerSwitchResult.innerHTML = '<span class="red">No special character template selected in the tweaker section</span>';
+            tempTweakerSwitchResult.innerHTML = '<span class="red">No template selected in the tweaker section</span>';
         } else {
             let rosterSlot = parseInt(tempTweakerSwitchRoster.value);
             let template = parseInt(tempTweakerTemplate.value);
-            tempTweakerSwitchResult.innerHTML += '_C0 Change Unit ' + rosterSlot + ' to ' + tempTweakerTemplate.options[tempTweakerTemplate.selectedIndex].text;
+            tempTweakerSwitchResult.innerHTML += '_C0 Change Unit ' + rosterSlot + ' template to ' + tempTweakerTemplate.options[tempTweakerTemplate.selectedIndex].text;
             tempTweakerSwitchResult.innerHTML += '<br>_L 0x10' + decToHex(parseInt('2D84A4', 16) + 1164 * (rosterSlot - 1), 3) + ' 0x0000' + decToHex(template, 2);
         }
     }

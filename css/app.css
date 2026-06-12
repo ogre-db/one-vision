@@ -3400,6 +3400,9 @@ ol li:before {
   .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-4 {
     width: calc(100% / 2);
   }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-5 {
+    width: calc(100% / 3);
+  }
 }
 @media only screen and (min-width: 768px) {
   .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-2 {
@@ -3410,6 +3413,9 @@ ol li:before {
   }
   .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-4 {
     width: calc(100% / 4);
+  }
+  .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-1-5 {
+    width: calc(100% / 5);
   }
   .page-cheats .ov-accordion > li .accordion-content .generator .input-group > div.width-3-4 {
     width: calc(100% * 3 / 4);
